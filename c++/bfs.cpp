@@ -57,6 +57,7 @@ struct BreadthFirstSearch {
 
     vector<int> search(int start) {
         vector<int> cost(n_node, INF);
+        cost[start] = 0;
         std::queue<int> que;
         que.push(start);
 
