@@ -26,6 +26,9 @@ class WarshallFloyd:
             for dist, arr in edge:
                 self.cost[dep][arr] = dist
 
+        for i in range(self.n_node):
+            self.cost[i][i] = 0
+
     def search(self) -> None:
         for k in range(self.n_node):
             for i in range(self.n_node):

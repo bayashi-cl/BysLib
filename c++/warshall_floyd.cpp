@@ -55,14 +55,14 @@ struct WarshallFloyd {
     int n_node;
     vector<vector<ll>> cost;
     vector<int> prev;
-    WarshallFloyd(const Adj& graph) {
-        n_node = graph.size();
+    WarshallFloyd(const Adj& graph) : n_node(graph.size()) {
         cost.resize(n_node, vector<ll>(n_node, LINF));
         prev.resize(n_node, -1);
 
         for (int i = 0; i < n_node; i++) {
             for (auto [dist, j] : graph[i]) cost[i][j] = dist;
         }
+        for (int i = 0; i < n_node; i++) cost[i][i] = 0;
     }
 
     void search() {
