@@ -5,7 +5,6 @@ https://judge.yosupo.jp/problem/shortest_path
 # region template
 import sys
 import typing
-import heapq
 
 sys.setrecursionlimit(10 ** 6)
 Vec = typing.List[int]
@@ -34,6 +33,8 @@ class Dijkstra:
         self.n_node = len(graph)
 
     def search(self, start: int) -> typing.List[float]:
+        import heapq
+
         self.cost = [Dijkstra.INF] * self.n_node
         self.cost[start] = 0
         que: typing.List[Dijkstra.Edge] = [(0, start)]
