@@ -26,23 +26,27 @@ vector<T> make_divisor(T n) {
 struct MultiComb {
     int _n;
     int mod;
-    vector<int> fact, factinv, inv;
+    vector<ll> fact, factinv, inv;
 
     MultiComb(int n, int mod = MOD) : _n(n), mod(mod) {
-        fact = {1, 1};
-        factinv = {1, 1};
-        inv = {0, 1};
-        for (int i = 1; i <= n; i++) {
-            fact.push_back(fact.back() * i % mod);
-            inv.push_back((-inv[mod % i] * (mod / i)) % mod);
-            factinv.push_back((factinv.back() * inv.back()) % mod);
+        fact.resize(_n + 1);
+        factinv.resize(_n + 1);
+        inv.resize(_n + 1);
+
+        fact[0] = fact[1] = 1;
+        factinv[0] = factinv[1] = 1;
+        inv[1] = 1;
+
+        for (int i = 2; i <= _n; i++) {
+            fact[i] = fact[i - 1] * i % mod;
+            inv[i] = mod - inv[mod % i] * (mod / i) % mod;
+            factinv[i] = factinv[i - 1] * inv[i] % mod;
         }
     }
 
-    int comb(int n, int r) {
-        if ((r < 0) || (n < r)) return 0;
-        chmin(r, n - r);
-        return fact[n] * factinv[r] * factinv[n - r] % mod;
+    ll comb(int n, int r) {
+        if (r < 0 || n < r) return 0;
+        return fact[n] * (factinv[r] * factinv[n - r] % mod) % mod;
     }
 };
 
