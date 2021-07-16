@@ -1,5 +1,4 @@
-#ifndef BYS_SEARCH
-#define BYS_SEARCH 1
+#pragma once
 
 #include "bys.hpp"
 
@@ -53,4 +52,3 @@ struct DeapthFirstSearch {
 };
 
 }  // namespace bys
-#endif  // BYS_SEARCH

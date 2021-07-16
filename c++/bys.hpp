@@ -1,10 +1,8 @@
-#ifndef BYS
-#define BYS 1
+#pragma once
 
 #include <atcoder/math>
 #include <atcoder/modint>
 #include <boost/range/irange.hpp>
-// #include <bits/stdc++.h>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -149,6 +147,6 @@ inline void init() {
     cout << std::fixed << std::setprecision(11) << std::boolalpha;
 }
 
-}  // namespace bys
+void solve();
 
-#endif
+}  // namespace bys

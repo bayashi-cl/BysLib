@@ -1,5 +1,4 @@
-#ifndef BYS_GRAPH
-#define BYS_GRAPH 1
+#pragma once
 
 #include <atcoder/dsu>
 
@@ -166,4 +165,3 @@ struct Kruskal {
 };
 
 }  // namespace bys
-#endif

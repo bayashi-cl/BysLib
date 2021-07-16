@@ -1,5 +1,4 @@
-#ifndef BYS_INTEGER
-#define BYS_INTEGER 1
+#pragma once
 
 #include "bys.hpp"
 
@@ -71,5 +70,3 @@ vector<T> prime_factorize(T n) {
 }
 
 }  // namespace bys
-
-#endif

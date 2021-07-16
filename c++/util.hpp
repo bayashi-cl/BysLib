@@ -1,5 +1,4 @@
-#ifndef BYS_UTIL
-#define BYS_UTIL 1
+#pragma once
 
 #include "bys.hpp"
 
@@ -37,4 +36,3 @@ T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
 }
 
 }  // namespace bys
-#endif
