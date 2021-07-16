@@ -1,8 +1,6 @@
-#pragma region template
 #include <atcoder/math>
 #include <atcoder/modint>
 #include <boost/range/irange.hpp>
-// #include <bits/stdc++.h>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -49,19 +47,18 @@ template <class Tail> void debug(Tail&& tail) {std::clog << tail << endl;}
 template <class Head, class... Body> void debug(Head&& head, Body&&... tail) {std::clog << head << " "; debug(std::forward<Body>(tail)...);}
 template <class T> inline bool chmax(T& a, const T& b) {if (a < b) {a = b; return 1;} return 0;}
 template <class T> inline bool chmin(T& a, const T& b) {if (b < a) {a = b; return 1;} return 0;}
-inline void init() {cin.tie(nullptr); std::ios::sync_with_stdio(false); cout << std::fixed << std::setprecision(11) << std::boolalpha;}
+void init() {cin.tie(nullptr); std::ios::sync_with_stdio(false); cout << std::fixed << std::setprecision(11) << std::boolalpha;}
+void solve();
 // clang-format on
-#pragma endregion
+}  // namespace bys
 
-void main() {
+void bys::solve() {
     // code
 }
 
-}  // namespace bys
-
 int main() {
     bys::init();
-    bys::main();
+    bys::solve();
     std::cout << std::flush;
     return 0;
 }
