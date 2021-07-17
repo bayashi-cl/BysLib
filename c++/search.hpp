@@ -36,18 +36,18 @@ struct DeapthFirstSearch {
     using Adj = vector<vector<int>>;
 
     Adj graph;
-    vector<int> first_order;
-    vector<int> last_order;
+    vector<int> pre_order;
+    vector<int> post_order;
 
     DeapthFirstSearch(Adj graph) : graph(graph) {}
 
     void search(int now, int from = -1) {
-        first_order.push_back(now);
+        pre_order.push_back(now);
         for (int to : graph[now]) {
             if (to == from) continue;
             search(to, now);
         }
-        last_order.push_back(now);
+        post_order.push_back(now);
     }
 };
 

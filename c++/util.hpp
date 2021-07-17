@@ -35,4 +35,20 @@ T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
     return ok;
 }
 
+template <class Lambda, class... Args>
+double bisect_float(double ok, double ng, int rep, Lambda is_ok, Args... args) {
+    assert(is_ok(ok, args...));
+    assert(!is_ok(ng, args...));
+
+    for (int i = 0; i < rep; i++) {
+        double mid = (ok + ng) / 2;
+        if (is_ok(mid, args...)) {
+            ok = mid;
+        } else {
+            ng = mid;
+        }
+    }
+    return ok;
+}
+
 }  // namespace bys
