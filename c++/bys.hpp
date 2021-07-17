@@ -147,6 +147,4 @@ inline void init() {
     cout << std::fixed << std::setprecision(11) << std::boolalpha;
 }
 
-void solve();
-
 }  // namespace bys
