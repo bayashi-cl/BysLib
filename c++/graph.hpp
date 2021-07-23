@@ -108,10 +108,10 @@ struct WarshallFloyd {
     vector<vector<ll>> cost;
     vector<int> prev;
 
-    WarshallFloyd(const Adj& graph) : n_node(graph.size()) {
-        cost.resize(n_node, vector<ll>(n_node, LINF));
-        prev.resize(n_node, -1);
-
+    WarshallFloyd(const Adj& graph)
+        : n_node(graph.size()),
+          cost(n_node, vector<ll>(n_node, LINF)),
+          prev(n_node, -1) {
         for (int i = 0; i < n_node; i++) {
             for (auto [dist, j] : graph[i]) cost[i][j] = dist;
         }
