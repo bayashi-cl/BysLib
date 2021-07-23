@@ -51,4 +51,24 @@ double bisect_float(double ok, double ng, int rep, Lambda is_ok, Args... args) {
     return ok;
 }
 
+template <class T>
+T cumulate(vector<T>& vec, T init = 0) {
+    T sum = init;
+    for (auto&& i : vec) {
+        sum += i;
+        i = sum;
+    }
+    return sum;
+}
+
+template <class T, class BinOp>
+T cumulate(vector<T>& vec, BinOp op, T init = 0) {
+    T sum = init;
+    for (auto&& i : vec) {
+        sum = op(sum, i);
+        i = sum;
+    }
+    return sum;
+}
+
 }  // namespace bys
