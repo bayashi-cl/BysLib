@@ -15,6 +15,7 @@ double dot(Point a, Point b) { return (a * std::conj(b)).real(); }
 double det(Point a, Point b) { return (a * std::conj(b)).imag(); }
 Point rot(Point a, double theta);
 using Segment = pair<Point, Point>;
+double len(Segment s) { return std::abs(s.second - s.first); }
 bool cross(Segment a, Segment b) {
     double d1 = det(a.second - a.first, b.first - a.first);
     double d2 = det(a.second - a.first, b.second - a.first);

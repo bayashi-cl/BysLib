@@ -38,6 +38,7 @@ struct DeapthFirstSearch {
     Adj graph;
     vector<int> pre_order;
     vector<int> post_order;
+    vector<int> tour;
     vector<bool> seen;
 
     DeapthFirstSearch(Adj graph) : graph(graph), seen(graph.size()) {}
@@ -45,11 +46,44 @@ struct DeapthFirstSearch {
     void search(int now) {
         seen[now] = true;
         pre_order.push_back(now);
+        tour.push_back(now);
         for (int to : graph[now]) {
             if (seen[to]) continue;
             search(to);
+            tour.push_back(now);
         }
         post_order.push_back(now);
+    }
+};
+
+struct ZeroOneBFS {
+    using Adj = vector<vector<pair<int, int>>>;
+
+    Adj graph;
+    int n_node;
+    vector<int> cost;
+
+    ZeroOneBFS(Adj& adj)
+        : graph(adj), n_node(graph.size()), cost(n_node, INF) {}
+
+    void search(int start) {
+        std::deque<int> que;
+        cost[start] = 0;
+        que.push_back(start);
+        while (!que.empty()) {
+            int now = que.front();
+            que.pop_front();
+            for (auto [zo, to] : graph[now]) {
+                int dist = cost[now] + zo;
+                if (dist >= cost[to]) continue;
+                cost[to] = dist;
+                if (zo == 0) {
+                    que.push_front(to);
+                } else {
+                    que.push_back(to);
+                }
+            }
+        }
     }
 };
 

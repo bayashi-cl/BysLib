@@ -4,6 +4,12 @@
 
 namespace bys {
 
+ll int_pow(int a, int b) {
+    ll res = 1;
+    for (int i = 0; i < b; ++i) res *= a;
+    return res;
+}
+
 template <typename T>
 vector<T> make_divisor(T n) {
     vector<T> lower, upper;
