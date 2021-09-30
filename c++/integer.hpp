@@ -13,12 +13,12 @@ ll int_pow(int a, int b) {
 template <typename T>
 vector<T> make_divisor(T n) {
     vector<T> lower, upper;
-    int i = 1;
+    T i = 1;
 
     while (i * i <= n) {
         if (n % i == 0) {
             lower.push_back(i);
-            if (i != n / i) upper.push_back(n / i);
+            if (T j = n / i; i != j) upper.push_back(j);
         }
         ++i;
     }

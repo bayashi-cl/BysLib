@@ -13,7 +13,13 @@ using Point = std::complex<double>;
 double len(Point a) { return std::abs(a); }
 double dot(Point a, Point b) { return (a * std::conj(b)).real(); }
 double det(Point a, Point b) { return (a * std::conj(b)).imag(); }
-Point rot(Point a, double theta);
+Point rot(Point a, double theta) {
+    Point r(std::cos(theta), std::sin(theta));
+    return a * r;
+}
+Point internal_division(Point p, Point q, double m, double n) {
+    return (n * p + m * q) / (m + n);
+}
 using Segment = pair<Point, Point>;
 double len(Segment s) { return std::abs(s.second - s.first); }
 bool cross(Segment a, Segment b) {
@@ -22,6 +28,9 @@ bool cross(Segment a, Segment b) {
     double d3 = det(b.second - b.first, a.first - b.first);
     double d4 = det(b.second - b.first, a.second - b.first);
     return (sgn(d1) * sgn(d2) == -1 && sgn(d3) * sgn(d4) == -1);
+}
+Point internal_division(Segment s, double m, double n) {
+    return internal_division(s.first, s.second, m, n);
 }
 }  // namespace geo
 }  // namespace bys
