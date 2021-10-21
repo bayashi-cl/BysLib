@@ -24,6 +24,7 @@ struct BreadthFirstSearch {
             que.pop();
             for (int to : graph[from]) {
                 if (cost[to] == INF) {
+                    prev[to] = from;
                     cost[to] = cost[from] + 1;
                     que.push(to);
                 }
