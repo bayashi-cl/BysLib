@@ -88,4 +88,26 @@ T cumulate(vector<T>& vec, BinOp op, T init = 0) {
     return sum;
 }
 
+struct Board {
+    int h, w;
+    Board(int row, int col) : h(row), w(col) {}
+
+    bool contain(int row, int col) {
+        return 0 <= row && row < h && 0 <= col && col < w;
+    }
+    vector<pair<int, int>> next(int i, int j,
+                                const vector<pair<int, int>> delta = {
+                                    {1, 0}, {-1, 0}, {0, 1}, {0, -1}}) {
+        vector<pair<int, int>> res;
+        for (auto [di, dj] : delta) {
+            int ni = i + di;
+            int nj = j + dj;
+            if (contain(ni, nj)) res.push_back({ni, nj});
+        }
+        return res;
+    }
+    int index(int i, int j) { return i * w + j; }
+    int area() { return h * w; }
+};
+
 }  // namespace bys
