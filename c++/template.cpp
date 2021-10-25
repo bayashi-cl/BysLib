@@ -75,14 +75,16 @@ inline void init() { cin.tie(nullptr); std::ios::sync_with_stdio(false); cout <<
 #endif
 #define EXIT(...) { print(__VA_ARGS__); return; }
 // clang-format on
-
 }  // namespace bys
-using namespace bys;
 
-void solve() {}
+namespace bys {
+void solve() {
+    
+}
+}  // namespace bys
 
 int main() {
     bys::init();
-    solve();
+    bys::solve();
     return 0;
 }
