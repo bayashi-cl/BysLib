@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef LOCAL
 #define NDEBUG
 #endif
