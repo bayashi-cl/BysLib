@@ -1,13 +1,10 @@
 #pragma once
-
 #ifndef LOCAL
 #define NDEBUG
 #endif
 
 #include <algorithm>
 #include <array>
-#include <atcoder/math>
-#include <atcoder/modint>
 #include <cassert>
 #include <cmath>
 #include <complex>
@@ -27,13 +24,11 @@
 #include <vector>
 
 namespace bys {
-using atcoder::pow_mod, atcoder::inv_mod;
 using std::array, std::vector, std::string, std::set, std::map, std::pair;
 using std::cin, std::cout, std::endl;
 using std::min, std::max, std::sort, std::reverse, std::abs, std::pow;
 
 // alias
-using mint = atcoder::modint998244353;
 using ll = long long int;
 using Pa = pair<int, int>;
 using Vec = vector<int>;
@@ -49,17 +44,6 @@ constexpr int INF = std::numeric_limits<int>::max() / 2;
 constexpr ll LINF = std::numeric_limits<ll>::max() / 2;
 
 // I/O
-// modint
-inline std::istream& operator>>(std::istream& is, mint& m) {
-    ll n;
-    is >> n;
-    m = n;
-    return is;
-}
-inline std::ostream& operator<<(std::ostream& os, const mint& m) {
-    return os << m.val();
-}
-
 // pair
 template <class T, class U>
 std::istream& operator>>(std::istream& is, std::pair<T, U>& p) {
@@ -167,7 +151,7 @@ inline bool chmin(T& a, const T& b) {
     return 0;
 }
 template <class T>
-inline T ceil(T a, T b) {
+inline T iceil(T a, T b) {
     return (a + b - 1) / b;
 }
 inline bool pop(int s, int d) { return s & (1 << d); }

@@ -1,9 +1,7 @@
 #pragma once
-
-#include "bys.hpp"
+#include "byslib/template/bys.hpp"
 
 namespace bys {
-
 template <class T, std::size_t I>
 struct ItemGetter {
     bool operator()(const T& lh, const T& rh) { return lh[I] < rh[I]; }

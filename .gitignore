@@ -2,3 +2,4 @@
 /.mypy_cache
 **/a.out
 **/draft
+Makefile

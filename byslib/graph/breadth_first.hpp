@@ -1,23 +1,7 @@
-#pragma once
-
-#include "bys.hpp"
+#include "byslib/graph/edge.hpp"
+#include "byslib/template/bys.hpp"
 
 namespace bys {
-struct Edge {
-    int from, to;
-    ll cost;
-    // 重みなし単頂点
-    Edge(int to) : from(-1), to(to), cost(1) {}
-    // 重み付き単頂点
-    Edge(int to, ll cost) : from(-1), to(to), cost(cost) {}
-    // 重み付き両頂点
-    Edge(int from, int to, ll cost) : from(from), to(to), cost(cost) {}
-    bool operator<(const Edge& rh) const { return cost < rh.cost; }
-    friend std::ostream& operator>>(std::ostream& os, const Edge& e) {
-        return os << e.from << " - " << e.to << ": " << e.cost;
-    }
-};
-using Adj = vector<vector<Edge>>;
 struct BreadthFirstSearch {
     int n_node;
     vector<int> prev;
@@ -56,32 +40,6 @@ struct BreadthFirstSearch {
         return res;
     }
 };
-
-struct DeapthFirstSearch {
-    const Adj& graph;
-    vector<bool> seen;
-    vector<int> pre_order;
-    vector<int> post_order;
-    vector<int> tour;
-
-    DeapthFirstSearch(const Adj& graph, int start)
-        : graph(graph), seen(graph.size()) {
-        search(start);
-    }
-
-    void search(int now) {
-        seen[now] = true;
-        pre_order.push_back(now);
-        tour.push_back(now);
-        for (auto&& to : graph[now]) {
-            if (seen[to.to]) continue;
-            search(to.to);
-            tour.push_back(now);
-        }
-        post_order.push_back(now);
-    }
-};
-
 struct ZeroOneBFS {
     int n_node;
     vector<int> cost;
@@ -124,5 +82,4 @@ struct ZeroOneBFS {
         return res;
     }
 };
-
 }  // namespace bys

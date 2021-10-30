@@ -1,6 +1,5 @@
 #pragma once
-
-#include "bys.hpp"
+#include "byslib/template/bys.hpp"
 
 namespace bys {
 template <class T>

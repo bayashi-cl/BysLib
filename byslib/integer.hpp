@@ -1,9 +1,7 @@
 #pragma once
-
-#include "bys.hpp"
+#include "byslib/template/bys.hpp"
 
 namespace bys {
-
 ll int_pow(int a, int b) {
     ll res = 1;
     for (int i = 0; i < b; ++i) res *= a;
@@ -74,5 +72,4 @@ vector<T> prime_factorize(T n) {
     if (n != 1) res.push_back(n);
     return res;
 }
-
 }  // namespace bys
