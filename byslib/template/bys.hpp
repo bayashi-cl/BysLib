@@ -30,6 +30,7 @@ using std::min, std::max, std::sort, std::reverse, std::abs, std::pow;
 
 // alias
 using ll = long long int;
+using ld = long double;
 using Pa = pair<int, int>;
 using Vec = vector<int>;
 using VecVec = std::vector<Vec>;
@@ -170,9 +171,13 @@ inline void init() {
 #else
 #define DEBUG(...)
 #endif
-#define EXIT(...)           \
-    {                       \
-        print(__VA_ARGS__); \
-        return;             \
-    }
+// clang-format off
+#define EXIT(...) { print(__VA_ARGS__); return; }
+// clang-format on
+
+// solver
+void solve();
+void solver(int t = 1) {
+    for (int i = 0; i < t; ++i) solve();
+}
 }  // namespace bys

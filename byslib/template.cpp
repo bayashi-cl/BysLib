@@ -1,12 +1,13 @@
-#include <byslib/template/acl.hpp>
-#include <byslib/template/bys.hpp>
+#include "byslib/template/bys.hpp"
 
 namespace bys {
-void solve() {}
+void solve() {
+    
+}
 }  // namespace bys
 
 int main() {
     bys::init();
-    bys::solve();
+    bys::solver(/* bys::input<int>() */);
     return 0;
 }
