@@ -6,6 +6,7 @@
 namespace bys {
 using atcoder::pow_mod, atcoder::inv_mod;
 using mint = atcoder::modint998244353;
+using mint7 = atcoder::modint1000000007;
 template <int MOD>
 inline std::istream& operator>>(std::istream& is,
                                 atcoder::static_modint<MOD>& m) {
