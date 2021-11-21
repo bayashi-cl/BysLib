@@ -37,10 +37,12 @@ struct Point {
     ld norm() const { return std::sqrt(norm2()); }
     Point normalized() const { return Point(x / norm(), y / norm()); }
     ld angle() const { return std::atan2(y, x); }
-    Point rotate(ld theta) {
+    Point rotate(ld theta) const {
         ld ct = std::cos(theta), st = std::sin(theta);
         return Point(x * ct - y * st, x * st + y * ct);
     }
+    // マンハッタン距離用。45度回転して√2倍する
+    Point manhattan_rotate() const { return Point(x - y, x + y); }
     T dot(const Point& rh) const { return x * rh.x + y * rh.y; }
     T det(const Point& rh) const { return x * rh.y - y * rh.x; }
     Point normal() const { return Point(-normalized().y, normalized().x); }
