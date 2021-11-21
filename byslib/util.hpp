@@ -127,6 +127,7 @@ struct CumulativeSum {
     // [l, r)
     T sum(int l, int r) {
         assert(build);
+        if (l > r) return 0;
         return data[r] - data[l];
     }
 
