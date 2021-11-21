@@ -73,6 +73,7 @@ template <typename C,
                                       !std::is_same<C, std::wstring>::value,
                                   std::nullptr_t>::type = nullptr>
 std::ostream& operator<<(std::ostream& os, const C& container) noexcept {
+    if (container.empty()) return os;
     std::for_each(std::begin(container), std::prev(std::end(container)),
                   [&](auto e) { os << e << ' '; });
     return os << *std::prev(std::end(container));
