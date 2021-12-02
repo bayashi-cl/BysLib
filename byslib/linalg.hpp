@@ -5,16 +5,15 @@ namespace bys {
 template <class T>
 struct Matrix {
     vector<vector<T>> mat;
-    Matrix(int i, int j) : mat(i, vector<T>(j)) {}
+    Matrix(int i, int j) : mat(i, vector<T>(j)), r(i), c(j) {}
 
     vector<T>& operator[](int k) { return mat[k]; }
-    int row() const { return mat.size(); }
-    int col() const { return mat[0].size(); }
-    pair<int, int> shape() const { return {row(), col()}; }
+    int row() const { return r; }
+    int col() const { return c; }
+    pair<int, int> shape() const { return {r, c}; }
 
     Matrix operator+(const Matrix<T>& rh) {
         assert(shape() == rh.shape());
-        auto [r, c] = shape();
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
             for (int j = 0; j < c; ++j) {
@@ -25,7 +24,6 @@ struct Matrix {
     }
     Matrix operator-(const Matrix<T>& rh) {
         assert(shape() == rh.shape());
-        auto [r, c] = shape();
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
             for (int j = 0; j < c; ++j) {
@@ -35,7 +33,6 @@ struct Matrix {
         return res;
     }
     Matrix operator*(const T rh) {
-        auto [r, c] = shape();
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
             for (int j = 0; j < c; ++j) {
@@ -45,7 +42,6 @@ struct Matrix {
         return res;
     }
     Matrix operator/(const T rh) {
-        auto [r, c] = shape();
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
             for (int j = 0; j < c; ++j) {
@@ -57,24 +53,35 @@ struct Matrix {
 
     Matrix operator*(const Matrix<T>& rh) {
         assert(col() == rh.row());
-        auto [r, m] = shape();
-        int c = rh.col();
-        Matrix<T> res(r, c);
+        int k = rh.col();
+        Matrix<T> res(r, k);
         for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < c; ++j) {
-                for (int k = 0; k < m; ++k) {
+            for (int j = 0; j < k; ++j) {
+                for (int k = 0; k < c; ++k) {
                     res.mat[i][j] += mat[i][k] * rh.mat[k][j];
                 }
             }
         }
     }
 
-    template <class T>
-    static Matrix<T> ident(int n) {
-        Matrix res(n, n);
-        for (int i = 0; i < n; ++i) mat[i][i] = 1;
+    Matrix rotate() const {
+        Matrix<T> res(c, r);
+        for (int i = 0; i < r; ++i) {
+            for (int j = 0; j < c; ++j) {
+                res.mat[j][r - i - 1] = mat[i][j];
+            }
+        }
         return res;
     }
-    static Matrix<double> rotate(double theta) {}
+
+    static Matrix<T> ident(int n) {
+        Matrix res(n, n);
+        for (int i = 0; i < n; ++i) res.mat[i][i] = 1;
+        return res;
+    }
+    // static Matrix<double> rotate(double theta) {}
+
+   private:
+    int r, c;
 };
 }  // namespace bys
