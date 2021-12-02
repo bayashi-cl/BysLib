@@ -1,13 +1,13 @@
 #include "byslib/template/bys.hpp"
 
 namespace bys {
-void solve() {
+void Solver::solve() {
     
 }
 }  // namespace bys
 
 int main() {
-    bys::init();
-    bys::solver(/* bys::input<int>() */);
+    bys::Solver solver;
+    solver.solve(/* bys::input<int>() */);
     return 0;
 }
