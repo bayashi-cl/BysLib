@@ -103,6 +103,12 @@ inline vector<T> input(int n) {
     cin >> res;
     return res;
 }
+template <class T>
+inline vector<vector<T>> input(int n, int m) {
+    vector res(n, vector<T>(m));
+    cin >> res;
+    return res;
+}
 template <class T, size_t N>
 inline std::array<T, N> input() {
     std::array<T, N> res;
@@ -157,6 +163,28 @@ inline T iceil(T a, T b) {
     return (a + b - 1) / b;
 }
 inline bool pop(int s, int d) { return s & (1 << d); }
+inline bool pop(ll s, int d) { return s & (1LL << d); }
+template <typename T>
+struct Range {
+    Range(T start, T stop, T step = 1)
+        : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}
+    Range(T stop) : it(0), stop(stop), step(1), dir(1) {}
+    Range<T> begin() const { return *this; }
+    T end() const { return stop; }
+    bool operator!=(const T val) const { return (val - it) * dir > 0; }
+    void operator++() { it += step; }
+    const T& operator*() const { return it; }
+
+   private:
+    T it;
+    const T stop, step;
+    const int dir;
+
+    friend Range reversed(const Range& r) {
+        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;
+        return {new_start, r.it - r.dir, -r.step};
+    }
+};
 
 // config
 inline void init() {
@@ -177,8 +205,11 @@ inline void init() {
 // clang-format on
 
 // solver
-void solve();
-void solver(int t = 1) {
-    for (int i = 0; i < t; ++i) solve();
-}
+struct Solver {
+    Solver() { init(); }
+    void solve();
+    void solve(int rep) {
+        for (int i = 0; i < rep; ++i) solve();
+    }
+};
 }  // namespace bys
