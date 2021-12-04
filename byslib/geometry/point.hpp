@@ -67,12 +67,14 @@ bool compy(Point<T>& a, Point<T>& b) {
 }
 
 /**
- * +1: ab->bcが左に曲がる
- * -1: ab->bcが右に曲がる
- * +2: abcで直線上
- * -2: bacで直線上
- *  0: acbで直線上
+ * +1: CCW ab->bcが左に曲がる
+ * -1: CW  ab->bcが右に曲がる
+ * +2: Front  abの前方
+ * -2: Back   abの後方
+ *  0: Middle ab上
  */
+enum class Turn { Back = -2, CW, Middle, CCW, Front };
+// TODO: 返り値をenumにする
 template <class T>
 int iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int flg = sgn((b - a).det(c - a));
@@ -88,6 +90,23 @@ int iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
         } else {
             return 0;
         }
+    }
+}
+/**
+ * -1: Obtuse 鈍角
+ *  0: Right 直角
+ * +1: Acute 鋭角
+ */
+enum class Angle { Obtuse = -1, Right, Acute };
+template <class T>
+Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
+    int t = sgn((a - b).dot(c - b));
+    if (t == -1) {
+        return Angle::Obtuse;
+    } else if (t == 0) {
+        return Angle::Right;
+    } else {
+        return Angle::Acute;
     }
 }
 }  // namespace bys::geo

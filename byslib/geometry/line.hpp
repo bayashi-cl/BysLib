@@ -54,16 +54,7 @@ ld angle(const Line<T>& a, const Line<T>& b) {
     return std::atan2(a.to_Point().det(b.to_Point()),
                       a.to_Point().dot(b.to_Point()));
 }
-/**
- * ∠abcが
- * -1: 鈍角
- *  0: 直角
- * +1: 鋭角
- */
-template <class T>
-int angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
-    return sgn((a - b).dot(c - b));
-}
+
 template <class T>
 ld distance(const Point<T>& p, const Line<T>& l) {
     return abs(l.to_Point().det(p - l.p) / (l.q - l.p).norm());
