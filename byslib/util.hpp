@@ -86,9 +86,9 @@ T cumulate(vector<T>& vec, BinOp op, T init = 0) {
     return sum;
 }
 
-struct Board {
+struct Grid {
     int h, w;
-    Board(int row, int col) : h(row), w(col) {}
+    Grid(int row, int col) : h(row), w(col) {}
 
     bool contain(int row, int col) {
         return 0 <= row && row < h && 0 <= col && col < w;
