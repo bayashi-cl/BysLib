@@ -2,7 +2,7 @@
 #include "byslib/template/bys.hpp"
 
 namespace bys {
-ll int_pow(int a, int b) {
+constexpr ll int_pow(int a, int b) {
     ll res = 1;
     for (int i = 0; i < b; ++i) res *= a;
     return res;
@@ -11,20 +11,79 @@ ll int_pow(int a, int b) {
 template <typename T>
 vector<T> make_divisor(T n) {
     vector<T> lower, upper;
-    T i = 1;
-
-    while (i * i <= n) {
+    for (int i = 1; i * i <= n; ++i) {
         if (n % i == 0) {
             lower.push_back(i);
             if (T j = n / i; i != j) upper.push_back(j);
         }
-        ++i;
     }
-    std::reverse(std::begin(upper), std::end(upper));
-    std::copy(std::begin(upper), std::end(upper), std::back_inserter(lower));
-
+    std::copy(upper.rbegin(), upper.rend(), std::back_inserter(lower));
     return lower;
 }
+
+vector<vector<int>> eratosthenes_factorize(int n) {
+    vector<vector<int>> res(n + 1);
+    for (int i = 2; i <= n; i += 2) res[i].push_back(2);
+    for (int p = 3; p <= n; p += 2) {
+        if (!res[p].empty()) continue;
+        for (int k = 1; p * k <= n; ++k) {
+            res[p * k].push_back(p);
+        }
+    }
+    return res;
+}
+struct Osa_K {
+    int mx;
+    vector<int> spf;  // smallest prime factor
+    Osa_K(int n) : mx(n), spf(n + 1) {
+        std::iota(spf.begin(), spf.end(), 0);
+        sieve();
+    }
+
+    void sieve() {
+        for (int i = 2; i <= mx; i += 2) spf[i] = 2;
+        for (int p = 3; p * p <= mx; p += 2) {
+            if (spf[p] != p) continue;
+            for (int k = p * p; k <= mx; k += p) {
+                if (spf[k] == k) spf[k] = p;
+            }
+        }
+    }
+    bool is_prime(int n) const {
+        assert(n <= mx);
+        if (n <= 1) return false;
+        return spf[n] == n;
+    }
+    map<int, int> factorize(int n) const {
+        assert(n <= mx);
+        map<int, int> res;
+        while (n > 1) {
+            res[spf[n]]++;
+            n /= spf[n];
+        }
+        return res;
+    }
+    vector<int> divisor(int n) const {
+        vector<int> res;
+        map<int, int> factor_ = factorize(n);
+        vector<pair<int, int>> factor(factor_.begin(), factor_.end());
+        int k = factor.size();
+        auto dfs = [&](auto dfs, int depth, int prod) {
+            if (depth == k) {
+                res.push_back(prod);
+                return;
+            }
+            auto [p, q] = factor[depth];
+            for (int i = 0; i <= q; ++i) {
+                dfs(dfs, depth + 1, prod);
+                prod *= p;
+            }
+        };
+        dfs(dfs, 0, 1);
+        sort(res.begin(), res.end());
+        return res;
+    }
+};
 
 struct MultiComb {
     int _n;
