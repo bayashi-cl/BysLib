@@ -10,7 +10,7 @@ struct Line {
     Point<ld> to_unit_Point() const { return to_Point().normalized(); }
     ld angle() const { return to_Point().angle(); }
     bool operator==(const Line& rh) const {
-        return abs(iSP(p, q, rh.p)) != 1 && abs(iSP(p, q, rh.q)) != 1;
+        return abs((int)iSP(p, q, rh.p)) != 1 && abs((int)iSP(p, q, rh.q)) != 1;
     }
     bool operator!=(const Line& rh) const { return !(*this == rh); }
 };
@@ -28,7 +28,7 @@ struct Segment : Line<T> {
     bool operator!=(const Segment& rh) const { return !(*this == rh); }
 };
 template <class T>
-int iSP(const Point<T>& p, const Line<T>& l) {
+Turn iSP(const Point<T>& p, const Line<T>& l) {
     return iSP(l.p, l.q, p);
 }
 
@@ -47,7 +47,8 @@ bool is_cross(const Line<T>& a, const Line<T>& b) {
 }
 template <class T>
 bool is_cross(const Segment<T>& a, const Segment<T>& b) {
-    return iSP(b.p, a) * iSP(b.q, a) <= 0 && iSP(a.p, b) * iSP(a.q, b) <= 0;
+    return (int)iSP(b.p, a) * (int)iSP(b.q, a) <= 0 &&
+           (int)iSP(a.p, b) * (int)iSP(a.q, b) <= 0;
 }
 template <class T>
 ld angle(const Line<T>& a, const Line<T>& b) {
@@ -78,6 +79,15 @@ ld distance(const Segment<T>& s, const Segment<T>& t) {
 }
 template <class T>
 std::pair<bool, Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
+    if (!is_cross(a, b)) return {false, Point<T>()};
+    Point s = b.p - a.p;
+    Point res = b.p + b.to_Point() * abs(a.to_Point().det(s) /
+                                         a.to_Point().det(b.to_Point()));
+    return {true, res};
+}
+template <class T>
+std::pair<bool, Point<T>> cross_point(const Segment<T>& a,
+                                      const Segment<T>& b) {
     if (!is_cross(a, b)) return {false, Point<T>()};
     Point s = b.p - a.p;
     Point res = b.p + b.to_Point() * abs(a.to_Point().det(s) /

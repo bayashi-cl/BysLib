@@ -74,21 +74,20 @@ bool compy(Point<T>& a, Point<T>& b) {
  *  0: Middle ab上
  */
 enum class Turn { Back = -2, CW, Middle, CCW, Front };
-// TODO: 返り値をenumにする
 template <class T>
-int iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
+Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int flg = sgn((b - a).det(c - a));
     if (flg == 1) {
-        return +1;
+        return Turn::CCW;
     } else if (flg == -1) {
-        return -1;
+        return Turn::CW;
     } else {
         if (sgn((b - a).dot(c - b)) > 0) {
-            return +2;
+            return Turn::Front;
         } else if (sgn((a - b).dot(c - a)) > 0) {
-            return -2;
+            return Turn::Back;
         } else {
-            return 0;
+            return Turn::Middle;
         }
     }
 }

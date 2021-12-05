@@ -1,16 +1,15 @@
-// #include "byslib/geometry/line.hpp"
-#include "byslib/integer.hpp"
+#include "byslib/geometry/line.hpp"
+// #include "byslib/integer.hpp"
 #include "byslib/template/bys.hpp"
 
 namespace bys {
 void Solver::solve() {
-    Osa_K osa_k(36);
-    // print(osa_k.divisor(1));
-    // print(osa_k.divisor(2));
-    // print(osa_k.divisor(12));
-    // print(osa_k.divisor(17));
-    print(osa_k.divisor(36));
-    print(make_divisor(36));
+    geo::Point<double> a(0, 0), b(3, 0), c(5, 5), d(5, -2);
+
+    geo::Segment s1(a, b), s2(c, d);
+    cout << std::boolalpha;
+    // print(geo::is_cross(s1, s2));
+    print(geo::cross_point(s1, s2));
 }
 }  // namespace bys
 
