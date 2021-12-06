@@ -124,7 +124,7 @@ std::tuple<S, T, Us...> input() {
 
 struct Print {
     std::ostream& os;
-    char sep = ' ', end = '\n';
+    string sep = " ", end = "\n";
     Print() : os(std::cout) {}
     Print(std::ostream& os) : os(os) {}
     ~Print() { os << std::flush; }
