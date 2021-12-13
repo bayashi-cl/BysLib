@@ -210,10 +210,11 @@ inline void init() {
 
 // solver
 struct Solver {
+    int IT = 1;
     Solver() { init(); }
     void solve();
     void solve(int rep) {
-        for (int i = 0; i < rep; ++i) solve();
+        for (; IT <= rep; ++IT) solve();
     }
 };
 }  // namespace bys
