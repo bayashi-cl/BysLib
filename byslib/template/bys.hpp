@@ -125,7 +125,6 @@ std::tuple<S, T, Us...> input() {
 struct Print {
     std::ostream& os;
     string sep = " ", end = "\n";
-    Print() : os(std::cout) {}
     Print(std::ostream& os) : os(os) {}
     ~Print() { os << std::flush; }
     void operator()() { os << end; }
@@ -139,7 +138,12 @@ struct Print {
         (os << ... << (os << sep, b));
         os << end;
     }
-} print, debug(std::cerr);
+    template <class... Ts>
+    void send(const Ts&... a) {
+        operator()(a...);
+        os << std::flush;
+    }
+} print(std::cout), debug(std::cerr);
 
 // utility
 template <class T>
