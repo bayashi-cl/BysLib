@@ -131,4 +131,19 @@ vector<T> prime_factorize(T n) {
     if (n != 1) res.push_back(n);
     return res;
 }
+template <class T>
+vector<T> deci2n(T deci, T base) {
+    vector<T> res;
+    while (deci > 0) {
+        res.push_back(deci % base);
+        deci /= base;
+    }
+    return res;
+}
+array<int, 3> ext_gcd(int a, int b) {
+    if (b == 0) return {a, 1, 0};
+    auto [d, y, x] = ext_gcd(b, a % b);
+    y -= (a / b) * x;
+    return {d, x, y};
+}
 }  // namespace bys

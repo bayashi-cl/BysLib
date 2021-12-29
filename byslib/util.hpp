@@ -6,7 +6,6 @@ template <class T, std::size_t I>
 struct ItemGetter {
     bool operator()(const T& lh, const T& rh) { return lh[I] < rh[I]; }
 };
-
 /**
  * @brief 二分探索法
  * https://atcoder.jp/contests/abc205/submissions/23500985
@@ -178,6 +177,10 @@ struct CumulativeSum2D {
     T sum(int si, int sj, int gi, int gj) {
         assert(build);
         return (data[gi][gj] - data[si][gj] - data[gi][sj] + data[si][sj]);
+    }
+    // [s, g)
+    T sum(pair<int, int> s, pair<int, int> g) {
+        return sum(s.first, s.second, g.first, g.second);
     }
 
    private:

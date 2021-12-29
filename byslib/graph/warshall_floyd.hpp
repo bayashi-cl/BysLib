@@ -6,14 +6,21 @@ namespace bys {
 struct WarshallFloyd {
     int n_node;
     vector<vector<ll>> cost;
-    vector<int> prev;
+    vector<vector<int>> prev;
 
     WarshallFloyd(const Adj& graph)
-        : n_node(graph.size()), cost(n_node, vector<ll>(n_node, LINF)) {
+        : n_node(graph.size()),
+          cost(n_node, vector(n_node, LINF)),
+          prev(n_node, vector(n_node, -1)) {
         for (int i = 0; i < n_node; ++i) {
             for (auto e : graph[i]) cost[i][e.to] = e.cost;
         }
         for (int i = 0; i < n_node; ++i) cost[i][i] = 0;
+        for (int i = 0; i < n_node; ++i) {
+            for (int j = 0; j < n_node; ++j) {
+                prev[i][j] = i;
+            }
+        }
         search();
     }
 
@@ -21,10 +28,21 @@ struct WarshallFloyd {
         for (int k = 0; k < n_node; k++) {
             for (int i = 0; i < n_node; i++) {
                 for (int j = 0; j < n_node; j++) {
-                    chmin(cost[i][j], cost[i][k] + cost[k][j]);
+                    if (chmin(cost[i][j], cost[i][k] + cost[k][j])) {
+                        prev[i][j] = prev[k][j];
+                    };
                 }
             }
         }
+    }
+    vector<int> path(int from, int to) {
+        vector<int> res;
+        for (int now = to; now != from; now = prev[from][now]) {
+            res.push_back(now);
+        }
+        res.push_back(from);
+        std::reverse(res.begin(), res.end());
+        return res;
     }
 };
 }  // namespace bys
