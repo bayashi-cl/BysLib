@@ -27,7 +27,18 @@ T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
     }
     return ok;
 }
-
+/**
+ * @brief 実数の二分探索
+ *
+ * @tparam Lambda
+ * @tparam Args
+ * @param ok is_okを満たす初期値
+ * @param ng is_okを満たさない初期値
+ * @param rep エポック
+ * @param is_ok 判定用ラムダ式 bool(long double, Args...)
+ * @param args is_okに渡される追加引数
+ * @return double
+ */
 template <class Lambda, class... Args>
 double bisect_float(ld ok, ld ng, int rep, Lambda is_ok, Args... args) {
     assert(is_ok(ok, args...));

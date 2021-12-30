@@ -2,6 +2,7 @@
 #include "base.hpp"
 
 namespace bys::geo {
+//! @brief 点/ベクトル
 template <class T>
 struct Point {
     T x, y;
@@ -32,7 +33,7 @@ struct Point {
         ld ct = std::cos(theta), st = std::sin(theta);
         return Point(x * ct - y * st, x * st + y * ct);
     }
-    // マンハッタン距離用。45度回転して√2倍する
+    //! @brief マンハッタン距離用。45度回転して√2倍する
     Point manhattan_rotate() const { return Point(x - y, x + y); }
     T dot(const Point& rh) const { return x * rh.x + y * rh.y; }
     T det(const Point& rh) const { return x * rh.y - y * rh.x; }
@@ -64,14 +65,16 @@ bool compy(Point<T>& a, Point<T>& b) {
     return a.y < b.y;
 }
 
+enum class Turn { Back = -2, CW, Middle, CCW, Front };
 /**
+ * @brief 辺の曲がる方向
+ * @return
  * +1: CCW ab->bcが左に曲がる
  * -1: CW  ab->bcが右に曲がる
  * +2: Front  abの前方
  * -2: Back   abの後方
  *  0: Middle ab上
  */
-enum class Turn { Back = -2, CW, Middle, CCW, Front };
 template <class T>
 Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int flg = sgn((b - a).det(c - a));
@@ -95,6 +98,13 @@ Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
  * +1: Acute 鋭角
  */
 enum class Angle { Obtuse = -1, Right, Acute };
+/**
+ * @brief 角の種類
+ * @return Angle
+ * -1: Obtuse 鈍角
+ *  0: Right 直角
+ * +1: Acute 鋭角
+ */
 template <class T>
 Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int t = sgn((a - b).dot(c - b));

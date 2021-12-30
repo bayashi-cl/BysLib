@@ -1,6 +1,6 @@
 #pragma once
-#include "core/stdlib.hpp"
-#include "core/const.hpp"
-#include "core/io.hpp"
-#include "core/macro.hpp"
-#include "core/solver.hpp"
+#include "stdlib.hpp"
+#include "const.hpp"
+#include "io.hpp"
+#include "macro.hpp"
+#include "solver.hpp"

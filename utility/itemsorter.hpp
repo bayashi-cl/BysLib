@@ -2,6 +2,7 @@
 #include "byslib/core/stdlib.hpp"
 
 namespace bys {
+//! @brief I番目の要素を比較
 template <class T, std::size_t I>
 struct ItemSorter {
     bool operator()(const T& lh, const T& rh) { return lh[I] < rh[I]; }

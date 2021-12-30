@@ -3,6 +3,7 @@
 
 namespace bys::geo {
 template <class T>
+//! @brief 直線
 struct Line {
     Point<T> p, q;
     Line(Point<T> p, Point<T> q) : p(p), q(q) {}
@@ -12,6 +13,7 @@ struct Line {
     bool operator==(const Line& rh) const { return abs((int)iSP(p, q, rh.p)) != 1 && abs((int)iSP(p, q, rh.q)) != 1; }
     bool operator!=(const Line& rh) const { return !(*this == rh); }
 };
+//! @brief 線分
 template <class T>
 struct Segment : Line<T> {
     Segment(Point<T>& p, Point<T>& q) : Line<T>::Line(p, q) {}
@@ -26,7 +28,6 @@ template <class T>
 Turn iSP(const Point<T>& p, const Line<T>& l) {
     return iSP(l.p, l.q, p);
 }
-
 template <class T>
 bool is_parallel(const Line<T>& a, const Line<T>& b) {
     return sgn(a.to_Point().det(b.to_Point())) == 0;
@@ -91,3 +92,8 @@ Point<T> reflection(const Point<T>& p, const Line<T>& l) {
     return p + (projection(p, l) - p) * 2;
 }
 }  // namespace bys::geo
+
+/**
+ * @todo 半直線の実装
+ *
+ */

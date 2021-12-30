@@ -1,5 +1,5 @@
 #pragma once
-#include "core/stdlib.hpp"
+#include "stdlib.hpp"
 
 namespace bys {
 // pair
@@ -40,41 +40,48 @@ std::istream& operator>>(std::istream& is, C& container) {
 }
 
 // I/O helper
+//! @brief 任意の型を1つ
 template <class T>
 inline T input() {
     T n;
     cin >> n;
     return n;
 }
+//! @brief 任意の型がn要素のvector
 template <class T>
 inline vector<T> input(int n) {
     vector<T> res(n);
     cin >> res;
     return res;
 }
+//! @brief 任意の型がn行m列のvector
 template <class T>
 inline vector<vector<T>> input(int n, int m) {
     vector res(n, vector<T>(m));
     cin >> res;
     return res;
 }
+
+//! @brief 任意の型をN個 受け取りは構造化束縛で
 template <class T, size_t N>
 inline std::array<T, N> input() {
     std::array<T, N> res;
     cin >> res;
     return res;
 }
+//! @brief 2つ以上の異なる型 受け取りは構造化束縛で
 template <class S, class T, class... Us>
 std::tuple<S, T, Us...> input() {
     std::tuple<S, T, Us...> res;
     std::apply([](auto&... e) { (cin >> ... >> e); }, res);
     return res;
 }
+//! @brief 標準入力から代入
 template <class... Ts>
 void cinto(Ts&... args) {
     (cin >> ... >> args);
 }
-
+//! @brief pythonのprintっぽい挙動をする
 struct Print {
     std::ostream& os;
     string sep = " ", end = "\n";
@@ -85,12 +92,14 @@ struct Print {
     void operator()(const T& a) {
         os << a << end;
     }
+    //! @brief 空白区切りで出力
     template <class T, class... Ts>
     void operator()(const T& a, const Ts&... b) {
         os << a;
         (os << ... << (os << sep, b));
         os << end;
     }
+    //! @brief 出力後flush インタラクティブ問題用
     template <class... Ts>
     void send(const Ts&... a) {
         operator()(a...);
@@ -98,6 +107,7 @@ struct Print {
     }
 } print(std::cout), debug(std::cerr);
 
+//! @brief cin高速化など
 inline void fastio() {
     cin.tie(nullptr);
     std::ios::sync_with_stdio(false);

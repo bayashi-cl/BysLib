@@ -1,5 +1,5 @@
 #pragma once
-#include "core/stdlib.hpp"
+#include "stdlib.hpp"
 
 namespace bys {
 constexpr int MOD = 998244353;

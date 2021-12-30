@@ -2,6 +2,7 @@
 #include "byslib/core/stdlib.hpp"
 
 namespace bys {
+//! @brief グリッド探索管理
 struct Grid {
     int h, w;
     Grid(int row, int col) : h(row), w(col) {}
@@ -26,8 +27,11 @@ struct Grid {
         }
         return res;
     }
+    //! @brief 右・下
     vector<pair<int, int>> next2(int row, int col) const { return next(row, col, {{1, 0}, {0, 1}}); }
+    //! @brief 上下左右
     vector<pair<int, int>> next4(int row, int col) const { return next(row, col, {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}); }
+    //! @brief 8方向
     vector<pair<int, int>> next8(int row, int col) const {
         vector<pair<int, int>> delta;
         for (int di = -1; di <= 1; ++di) {
