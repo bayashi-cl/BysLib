@@ -1,4 +1,4 @@
-#include "byslib/template/bys.hpp"
+#include "byslib/core/core.hpp"
 
 namespace bys {
 void Solver::solve() {
