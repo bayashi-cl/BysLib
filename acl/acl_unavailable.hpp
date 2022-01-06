@@ -1,4 +1,5 @@
 #pragma once
+#define IGNORE
 #include <iostream>
 #include "atcoder/math"
 #include "atcoder/modint"

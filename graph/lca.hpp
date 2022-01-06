@@ -1,6 +1,6 @@
 #pragma once
 #include "depth_first.hpp"
-#include "byslib/core/stdlib.hpp"
+#include "../core/stdlib.hpp"
 
 namespace bys {
 struct LowestCommonAncestor {

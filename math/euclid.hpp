@@ -1,5 +1,5 @@
 #pragma once
-#include "byslib/core/stdlib.hpp"
+#include "../core/stdlib.hpp"
 
 namespace bys {
 array<int, 3> ext_gcd(int a, int b) {

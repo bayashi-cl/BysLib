@@ -1,6 +1,6 @@
 #pragma once
+#include "../core/core.hpp"
 #include "edge.hpp"
-#include "byslib/core/core.hpp"
 
 namespace bys {
 struct Dijkstra {

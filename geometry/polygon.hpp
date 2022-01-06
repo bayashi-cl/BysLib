@@ -14,16 +14,16 @@ struct Polygon {
         for (int i = 0; i < n_vertex; ++i) {
             s += vertex[i].det(vertex[(i + 1) % n_vertex]);
         }
-        return s * 0.5;
+        return s;
     };
     ld area() const { return area2() * 0.5; }
     bool is_convex() const {
         int left = 0;
         int right = 0;
         for (int i = 0; i < n_vertex; ++i) {
-            int res = iSP(vertex[i], vertex[(i + 1) % n_vertex], vertex[(i + 2) % n_vertex]);
-            if (res == -1) left++;
-            if (res == 1) right++;
+            auto res = iSP(vertex[i], vertex[(i + 1) % n_vertex], vertex[(i + 2) % n_vertex]);
+            if (res == Turn::CW) left++;
+            if (res == Turn::CCW) right++;
         }
         return left == 0 || right == 0;
     }

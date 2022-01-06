@@ -1,5 +1,5 @@
 #pragma once
-#include "byslib/core/stdlib.hpp"
+#include "../core/stdlib.hpp"
 
 namespace bys::geo {
 const ld EPS = 1e-9;

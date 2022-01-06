@@ -1,5 +1,7 @@
-#include "byslib/template/bys.hpp"
+#pragma once
+#include "../core/stdlib.hpp"
 namespace bys {
+//! @brief 有理数
 struct Fraction {
     // numerator / denominator
     ll numerator, denominator;
@@ -24,10 +26,9 @@ struct Fraction {
         denominator /= g;
         return true;
     }
-    operator double() const { return (double)numerator / denominator; }
+    operator ld() const { return (ld)numerator / denominator; }
     Fraction operator+(const Fraction& rh) const {
-        return Fraction(numerator * rh.denominator + rh.numerator * denominator,
-                        denominator * rh.denominator);
+        return Fraction(numerator * rh.denominator + rh.numerator * denominator, denominator * rh.denominator);
     }
     Fraction operator+(const ll rh) const { return *this + Fraction(rh, 1); }
     Fraction operator+=(const Fraction& rh) {
@@ -39,8 +40,7 @@ struct Fraction {
         return *this;
     }
     Fraction operator-(const Fraction& rh) const {
-        return Fraction(numerator * rh.denominator - rh.numerator * denominator,
-                        denominator * rh.denominator);
+        return Fraction(numerator * rh.denominator - rh.numerator * denominator, denominator * rh.denominator);
     }
     Fraction operator-(const ll rh) const { return *this - Fraction(rh, 1); }
     Fraction operator-=(const Fraction& rh) {
@@ -51,12 +51,8 @@ struct Fraction {
         *this = *this - rh;
         return *this;
     }
-    Fraction operator*(const Fraction& rh) const {
-        return Fraction(numerator * rh.numerator, denominator * rh.denominator);
-    }
-    Fraction operator*(const ll rh) const {
-        return Fraction(numerator * rh, denominator);
-    }
+    Fraction operator*(const Fraction& rh) const { return Fraction(numerator * rh.numerator, denominator * rh.denominator); }
+    Fraction operator*(const ll rh) const { return Fraction(numerator * rh, denominator); }
     Fraction operator*=(const Fraction& rh) {
         *this = *this * rh;
         return *this;
@@ -65,9 +61,7 @@ struct Fraction {
         *this = *this * rh;
         return *this;
     }
-    Fraction operator/(const Fraction& rh) const {
-        return Fraction(numerator * rh.denominator, denominator * rh.numerator);
-    }
+    Fraction operator/(const Fraction& rh) const { return Fraction(numerator * rh.denominator, denominator * rh.numerator); }
     Fraction operator/(const ll rh) const { return *this * Fraction(1, rh); }
     Fraction operator/=(const Fraction& rh) {
         *this = *this / rh;
@@ -77,11 +71,7 @@ struct Fraction {
         *this = *this / rh;
         return *this;
     }
-    bool operator<(const Fraction& rh) const {
-        return numerator * rh.denominator < rh.numerator * denominator;
-    }
+    bool operator<(const Fraction& rh) const { return numerator * rh.denominator < rh.numerator * denominator; }
 };
-std::ostream& operator<<(std::ostream& os, const Fraction& f) {
-    return os << (double(f));
-}
+std::ostream& operator<<(std::ostream& os, const Fraction& f) { return os << (ld)f; }
 }  // namespace bys

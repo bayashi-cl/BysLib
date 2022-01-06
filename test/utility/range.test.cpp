@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
-#include "../core/core.hpp"
-#include "../utility/range.hpp"
+#include "../../utility/range.hpp"
+#include "../../core/core.hpp"
 
 namespace bys {
 vector<int> range2vec(int stop) {

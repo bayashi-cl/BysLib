@@ -1,8 +1,8 @@
 #pragma once
 #include "edge.hpp"
-#include "byslib/core/stdlib.hpp"
-#include "byslib/core/const.hpp"
-#include "byslib/utility/change.hpp"
+#include "../core/stdlib.hpp"
+#include "../core/const.hpp"
+#include "utility/change.hpp"
 
 namespace bys {
 struct WarshallFloyd {

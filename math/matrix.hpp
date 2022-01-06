@@ -1,5 +1,5 @@
 #pragma once
-#include "byslib/core/stdlib.hpp"
+#include "../core/stdlib.hpp"
 
 // TODO: geoとの連携
 
@@ -8,13 +8,14 @@ template <class T>
 struct Matrix {
     vector<vector<T>> mat;
     Matrix(int i, int j) : mat(i, vector<T>(j)), r(i), c(j) {}
+    Matrix(const vector<vector<T>>& v) : mat(v), r(v.size()), c(v[0].size()) {}
 
     vector<T>& operator[](int k) { return mat[k]; }
     int row() const { return r; }
     int col() const { return c; }
     pair<int, int> shape() const { return {r, c}; }
 
-    Matrix operator+(const Matrix<T>& rh) {
+    Matrix operator+(const Matrix<T>& rh) const {
         assert(shape() == rh.shape());
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
@@ -24,7 +25,7 @@ struct Matrix {
         }
         return res;
     }
-    Matrix operator-(const Matrix<T>& rh) {
+    Matrix operator-(const Matrix<T>& rh) const {
         assert(shape() == rh.shape());
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
@@ -34,7 +35,7 @@ struct Matrix {
         }
         return res;
     }
-    Matrix operator*(const T rh) {
+    Matrix operator*(const T rh) const {
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
             for (int j = 0; j < c; ++j) {
@@ -43,7 +44,7 @@ struct Matrix {
         }
         return res;
     }
-    Matrix operator/(const T rh) {
+    Matrix operator/(const T rh) const {
         Matrix<T> res(r, c);
         for (int i = 0; i < r; ++i) {
             for (int j = 0; j < c; ++j) {
@@ -53,7 +54,7 @@ struct Matrix {
         return res;
     }
 
-    Matrix operator*(const Matrix<T>& rh) {
+    Matrix operator*(const Matrix<T>& rh) const {
         assert(col() == rh.row());
         int k = rh.col();
         Matrix<T> res(r, k);
@@ -64,6 +65,16 @@ struct Matrix {
                 }
             }
         }
+        return res;
+    }
+    vector<T> operator*(const vector<T>& rh) const {
+        int n = rh.size();
+        assert(col() == n);
+        vector<T> res(r);
+        for (int i = 0; i < r; ++i) {
+            res[i] = std::inner_product(mat[i].begin(), mat[i].end(), rh.begin(), (T)0);
+        }
+        return res;
     }
 
     Matrix rotate90() const {

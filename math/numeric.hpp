@@ -1,5 +1,5 @@
 #pragma once
-#include "byslib/core/stdlib.hpp"
+#include "../core/stdlib.hpp"
 #include "bit.hpp"
 
 namespace bys {

@@ -55,9 +55,9 @@ ld distance(const Point<T>& p, const Line<T>& l) {
 }
 template <class T>
 ld distance(const Point<T>& p, const Segment<T>& s) {
-    if (angle_type(s.p, s.q, p) == -1) {
+    if (angle_type(s.p, s.q, p) == Angle::Obtuse) {
         return (p - s.q).norm();
-    } else if (angle_type(s.q, s.p, p) == -1) {
+    } else if (angle_type(s.q, s.p, p) == Angle::Obtuse) {
         return (p - s.p).norm();
     } else {
         return distance(p, Line(s.p, s.q));
@@ -70,18 +70,18 @@ ld distance(const Segment<T>& s, const Segment<T>& t) {
     return min({distance(s.p, t), distance(s.q, t), distance(t.p, s), distance(t.q, s)});
 }
 template <class T>
-std::pair<bool, Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
-    if (!is_cross(a, b)) return {false, Point<T>()};
+// std::pair<bool, Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
+std::optional<Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
+    if (!is_cross(a, b)) return std::nullopt;
     Point s = b.p - a.p;
-    Point res = b.p + b.to_Point() * abs(a.to_Point().det(s) / a.to_Point().det(b.to_Point()));
-    return {true, res};
+    return b.p + b.to_Point() * abs(a.to_Point().det(s) / a.to_Point().det(b.to_Point()));
 }
 template <class T>
-std::pair<bool, Point<T>> cross_point(const Segment<T>& a, const Segment<T>& b) {
-    if (!is_cross(a, b)) return {false, Point<T>()};
+// std::pair<bool, Point<T>> cross_point(const Segment<T>& a, const Segment<T>& b) {
+std::optional<Point<T>> cross_point(const Segment<T>& a, const Segment<T>& b) {
+    if (!is_cross(a, b)) return std::nullopt;
     Point s = b.p - a.p;
-    Point res = b.p + b.to_Point() * abs(a.to_Point().det(s) / a.to_Point().det(b.to_Point()));
-    return {true, res};
+    return b.p + b.to_Point() * abs(a.to_Point().det(s) / a.to_Point().det(b.to_Point()));
 }
 template <class T>
 Point<T> projection(const Point<T>& p, const Line<T>& l) {

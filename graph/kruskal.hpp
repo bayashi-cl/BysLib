@@ -2,14 +2,14 @@
 #include <atcoder/dsu>
 
 #include "edge.hpp"
-#include "byslib/core/stdlib.hpp"
+#include "../core/stdlib.hpp"
 
 namespace bys {
 struct Kruskal {
     int n_node;
     EdgeList mst;
     ll cost = 0;
-    Kruskal(EdgeList& edges, int n_tree = 1) : n_node(edges.size()) {
+    Kruskal(EdgeList& edges, int n_node, int n_tree = 1) : n_node(n_node) {
         sort(edges.begin(), edges.end());
         search(edges, n_tree);
     }
