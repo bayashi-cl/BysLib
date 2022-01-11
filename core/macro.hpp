@@ -10,4 +10,8 @@
 #endif
 //! @brief printしてreturnする。
 #define EXIT(...) { print(__VA_ARGS__); return; }
+#define CONCAT_IMPL(a, b) a##b
+#define CONCAT(a, b) CONCAT_IMPL(a, b)
+//! @brief [[maybe_unuse]]な変数を生成。
+#define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)
 // clang-format on
