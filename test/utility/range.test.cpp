@@ -1,4 +1,4 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A"
 #include "../../utility/range.hpp"
 #include "../../core/core.hpp"
 
@@ -55,14 +55,12 @@ void Solver::solve() {
     assert(range2vec_rev(-2, 2) == vr_22);
     vector<int> vr282 = {6, 4, 2};
     assert(range2vec_rev(2, 8, 2) == vr282);
-    int a, b;
-    cin >> a >> b;
-    cout << a + b << endl;
 }
 }  // namespace bys
 
 int main() {
     bys::Solver solver;
     solver.solve();
+    bys::print("Hello World");
     return 0;
 }
