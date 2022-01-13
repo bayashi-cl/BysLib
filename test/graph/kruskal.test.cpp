@@ -4,10 +4,10 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [v, e] = input<int, 2>();
+    auto [v, e] = scanner.read<int, 2>();
     EdgeList elist;
     for (int i = 0; i < e; ++i) {
-        auto [s, t, w] = input<int, 3>();
+        auto [s, t, w] = scanner.read<int, 3>();
         elist.push_back({s, t, w});
     }
     Kruskal kru(elist, v);
@@ -17,6 +17,6 @@ void Solver::solve() {
 
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

@@ -1,10 +1,8 @@
 #pragma once
-#include "io.hpp"
-
 // clang-format off
 #ifdef LOCAL
 //! @brief デバッグ用出力 ジャッジ上では何もしない。
-#define DEBUG(...) debug("[debug] line:", __LINE__, "\t", __VA_ARGS__)
+#define DEBUG(...) { std::cerr << "[debug] line: " << std::setw(4) << __LINE__; debug(__VA_ARGS__); }
 #else
 #define DEBUG(...)
 #endif

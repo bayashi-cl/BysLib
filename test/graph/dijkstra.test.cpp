@@ -4,10 +4,10 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [n, m, s, t] = input<int, 4>();
+    auto [n, m, s, t] = scanner.read<int, 4>();
     Adj graph(n);
     for (int i = 0; i < m; ++i) {
-        auto [a, b, c] = input<int, 3>();
+        auto [a, b, c] = scanner.read<int, 3>();
         graph[a].push_back({b, c});
         // graph[b].push_back({a, c});
     }
@@ -22,6 +22,6 @@ void Solver::solve() {
 
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

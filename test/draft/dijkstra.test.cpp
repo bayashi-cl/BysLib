@@ -5,7 +5,7 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [v, e, r] = input<int, 3>();
+    auto [v, e, r] = scanner.read<int, 3>();
     auto graph = read_adj_uvc(v, e, true, 0);
     Dijkstra dij(graph, r);
     for (int i = 0; i < v; ++i) print(dij.cost_str(i));
@@ -14,6 +14,6 @@ void Solver::solve() {
 
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

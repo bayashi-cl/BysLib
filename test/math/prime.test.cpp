@@ -4,7 +4,7 @@
 
 namespace bys {
 void Solver::solve() {
-    auto n = input<int>();
+    auto n = scanner.read<int>();
     cout << n << ": " << prime_factorize(n) << endl;
 }
 }  // namespace bys

@@ -6,7 +6,7 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [v, e] = input<int, 2>();
+    auto [v, e] = scanner.read<int, 2>();
     auto graph = read_elist_uvc(e, 0);
     WarshallFloyd wf(graph, v);
     for (int i : Range(v)) {
@@ -22,6 +22,6 @@ void Solver::solve() {
 }  // namespace bys
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

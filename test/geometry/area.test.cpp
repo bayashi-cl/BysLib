@@ -5,14 +5,14 @@
 
 namespace bys {
 void Solver::solve() {
-    auto n = input<int>();
-    geo::Polygon p(input<geo::Point<ld>>(n));
+    auto n = scanner.read<int>();
+    geo::Polygon p(scanner.read<geo::Point<ld>>(n));
     print(p.area());
 }
 }  // namespace bys
 
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

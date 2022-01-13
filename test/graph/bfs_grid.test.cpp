@@ -5,9 +5,9 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [h, w] = input<int, 2>();
+    auto [h, w] = scanner.read<int, 2>();
     Grid grid(h, w);
-    auto c = input<string>(h);
+    auto c = scanner.read<string>(h);
 
     Adj graph(grid.area());
     for (int i = 0; i < h; ++i) {
@@ -28,6 +28,6 @@ void Solver::solve() {
 
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

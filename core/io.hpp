@@ -1,62 +1,37 @@
 #pragma once
-#include "stdlib.hpp"
+#include "printer.hpp"
+#include "scanner.hpp"
 
 namespace bys {
-// pair
-template <class T, class U>
-std::istream& operator>>(std::istream& is, std::pair<T, U>& p) {
-    return is >> p.first >> p.second;
-}
-template <typename T, typename U>
-std::ostream& operator<<(std::ostream& os, const std::pair<T, U>& p) {
-    return os << p.first << " " << p.second;
-}
+Printer print(std::cout), debug(std::cerr);
+Scanner scanner(std::cin);
 
-// STL container
-struct is_container_impl {
-    template <typename T>
-    static auto check(T&& obj) -> decltype(obj.begin(), obj.end(), std::true_type{});
-    template <typename T>
-    static auto check(...) -> std::false_type;
-};
-template <typename T>
-class is_container : public decltype(is_container_impl::check<T>(std::declval<T>())) {};
-
-template <typename C, typename std::enable_if<is_container<C>::value && !std::is_same<C, std::string>::value &&
-                                                  !std::is_same<C, std::wstring>::value,
-                                              std::nullptr_t>::type = nullptr>
-std::ostream& operator<<(std::ostream& os, const C& container) noexcept {
-    if (container.empty()) return os;
-    std::for_each(std::begin(container), std::prev(std::end(container)), [&](auto e) { os << e << ' '; });
-    return os << *std::prev(std::end(container));
+__attribute__((constructor)) inline void io_setup() {
+    std::cin.tie(nullptr);
+    std::ios::sync_with_stdio(false);
+    std::cout << std::fixed << std::setprecision(11);
+    std::cerr << std::fixed << std::setprecision(11);
+    std::cerr << std::boolalpha;
 }
 
-template <typename C, typename std::enable_if<is_container<C>::value && !std::is_same<C, std::string>::value &&
-                                                  !std::is_same<C, std::wstring>::value,
-                                              std::nullptr_t>::type = nullptr>
-std::istream& operator>>(std::istream& is, C& container) {
-    std::for_each(std::begin(container), std::end(container), [&](auto&& e) { is >> e; });
-    return is;
-}
-
-// I/O helper
+// old i/o
 //! @brief 任意の型を1つ
 template <class T>
-inline T input() {
+[[deprecated("please use scanner")]] inline T input() {
     T n;
     cin >> n;
     return n;
 }
 //! @brief 任意の型がn要素のvector
 template <class T>
-inline vector<T> input(int n) {
+[[deprecated("please use scanner")]] inline vector<T> input(int n) {
     vector<T> res(n);
     cin >> res;
     return res;
 }
 //! @brief 任意の型がn行m列のvector
 template <class T>
-inline vector<vector<T>> input(int n, int m) {
+[[deprecated("please use scanner")]] inline vector<vector<T>> input(int n, int m) {
     vector res(n, vector<T>(m));
     cin >> res;
     return res;
@@ -64,54 +39,16 @@ inline vector<vector<T>> input(int n, int m) {
 
 //! @brief 任意の型をN個 受け取りは構造化束縛で
 template <class T, size_t N>
-inline std::array<T, N> input() {
+[[deprecated("please use scanner")]] inline std::array<T, N> input() {
     std::array<T, N> res;
     cin >> res;
     return res;
 }
 //! @brief 2つ以上の異なる型 受け取りは構造化束縛で
 template <class S, class T, class... Us>
-std::tuple<S, T, Us...> input() {
+[[deprecated("please use scanner")]] std::tuple<S, T, Us...> input() {
     std::tuple<S, T, Us...> res;
     std::apply([](auto&... e) { (cin >> ... >> e); }, res);
     return res;
-}
-//! @brief 標準入力から代入
-template <class... Ts>
-void cinto(Ts&... args) {
-    (cin >> ... >> args);
-}
-//! @brief pythonのprintっぽい挙動をする
-struct Print {
-    std::ostream& os;
-    string sep = " ", end = "\n";
-    Print(std::ostream& os) : os(os) {}
-    ~Print() { os << std::flush; }
-    void operator()() { os << end; }
-    template <class T>
-    void operator()(const T& a) {
-        os << a << end;
-    }
-    //! @brief 空白区切りで出力
-    template <class T, class... Ts>
-    void operator()(const T& a, const Ts&... b) {
-        os << a;
-        (os << ... << (os << sep, b));
-        os << end;
-    }
-    //! @brief 出力後flush インタラクティブ問題用
-    template <class... Ts>
-    void send(const Ts&... a) {
-        operator()(a...);
-        os << std::flush;
-    }
-} print(std::cout), debug(std::cerr);
-
-//! @brief cin高速化など
-inline void fastio() {
-    cin.tie(nullptr);
-    std::ios::sync_with_stdio(false);
-    cout << std::fixed << std::setprecision(11);
-    std::cerr << std::boolalpha;
 }
 }  // namespace bys

@@ -6,7 +6,7 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [v, e, r] = input<int, 3>();
+    auto [v, e, r] = scanner.read<int, 3>();
     auto graph = read_elist_uvc(e, 0);
     BellmanFord bf(graph, v, r);
     if (bf.negative_cycle) EXIT("NEGATIVE CYCLE");
@@ -15,6 +15,6 @@ void Solver::solve() {
 }  // namespace bys
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

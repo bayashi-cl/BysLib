@@ -5,8 +5,8 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [n, m] = input<int, 2>();
-    auto a = input<int>(n);
+    auto [n, m] = scanner.read<int, 2>();
+    auto a = scanner.read<int>(n);
     Osa_K osa_k(100000);
     set<int> forbid;
     for (auto&& ai : a) {
@@ -30,6 +30,6 @@ void Solver::solve() {
 
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

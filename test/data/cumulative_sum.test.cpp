@@ -4,12 +4,12 @@
 
 namespace bys {
 void Solver::solve() {
-    auto [n, q] = input<int, 2>();
-    auto a = input<ll>(n);
+    auto [n, q] = scanner.read<int, 2>();
+    auto a = scanner.read<ll>(n);
     CumulativeSum cs(a);
     cs.construct();
     for (int i = 0; i < q; ++i) {
-        auto [l, r] = input<int, 2>();
+        auto [l, r] = scanner.read<int, 2>();
         print(cs.sum(l, r));
     }
 }
@@ -17,6 +17,6 @@ void Solver::solve() {
 
 int main() {
     bys::Solver solver;
-    solver.solve(/* bys::input<int>() */);
+    solver.solve(/* bys::scanner.read<int>() */);
     return 0;
 }

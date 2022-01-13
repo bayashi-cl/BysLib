@@ -7,7 +7,7 @@ namespace bys {
 Adj read_adj_uv(int n, int m, bool directed = false, int index = 1) {
     Adj graph(n);
     for (int i = 0; i < m; ++i) {
-        auto [u, v] = input<int, 2>();
+        auto [u, v] = scanner.read<int, 2>();
         u -= index;
         v -= index;
         graph[u].push_back({v});
@@ -18,7 +18,7 @@ Adj read_adj_uv(int n, int m, bool directed = false, int index = 1) {
 Adj read_adj_uvc(int n, int m, bool directed = false, int index = 1) {
     Adj graph(n);
     for (int i = 0; i < m; ++i) {
-        auto [u, v, c] = input<int, int, ll>();
+        auto [u, v, c] = scanner.read<int, int, ll>();
         u -= index;
         v -= index;
         graph[u].push_back({v, c});
@@ -30,7 +30,7 @@ EdgeList read_elist_uv(int m, int index = 1) {
     EdgeList elist;
     elist.reserve(m);
     for (int i = 0; i < m; ++i) {
-        auto [u, v] = input<int, 2>();
+        auto [u, v] = scanner.read<int, 2>();
         u -= index;
         v -= index;
         elist.push_back({u, v, 1});
@@ -41,7 +41,7 @@ EdgeList read_elist_uvc(int m, int index = 1) {
     EdgeList elist;
     elist.reserve(m);
     for (int i = 0; i < m; ++i) {
-        auto [u, v, c] = input<int, int, ll>();
+        auto [u, v, c] = scanner.read<int, int, ll>();
         u -= index;
         v -= index;
         elist.push_back({u, v, c});
