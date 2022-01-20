@@ -1,3 +1,4 @@
+#pragma once
 #include "stdlib.hpp"
 #include "types.hpp"
 
@@ -11,12 +12,18 @@ struct Printer {
         if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {
             os << v;
         } else if constexpr (has_iterator<std::decay_t<T>>::value) {
+            string sep2;
+            if constexpr (has_iterator<std::decay_t<typename std::decay_t<T>::value_type>>::value) {
+                sep2 = _end;
+            } else {
+                sep2 = _sep;
+            }
             if (!std::empty(v)) {
-                std::for_each(std::begin(v), std::prev(std::end(v)), [&](auto&& e) {
-                    cat(e);
-                    cat(_sep);
-                });
-                cat(*std::prev(std::end(v)));
+                for (auto&& itr = std::begin(v); itr != std::prev(std::end(v)); ++itr) {
+                    cat(std::forward<typename std::decay_t<T>::value_type>(*itr));
+                    cat(sep2);
+                }
+                cat(std::forward<typename std::decay_t<T>::value_type>(*std::prev(std::end(v))));
             }
         } else if constexpr (has_tuple_interface<std::decay_t<T>>::value) {
             print_tuple(std::forward<T>(v), std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
@@ -61,7 +68,7 @@ struct Printer {
     template <std::size_t I, class T>
     inline void print_tuple_element(T&& elem) {
         if constexpr (I != 0) cat(_sep);
-        cat(elem);
+        cat(std::forward<T>(elem));
     }
     template <class Tp, std::size_t... I>
     inline void print_tuple(Tp&& tp, std::index_sequence<I...>) {

@@ -27,4 +27,10 @@ ll isqrt(ll n) {
     ll a = isqrt_aux((bit_length(n) - 1) / 2, n);
     return n < a * a ? a - 1 : a;
 }
+template <class T, typename std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t> = nullptr>
+inline bool isclose(T x, T y, T coef = 4.0) {
+    if (x == y) return true;
+    auto diff = std::abs(x - y);
+    return diff <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();
+}
 }  // namespace bys

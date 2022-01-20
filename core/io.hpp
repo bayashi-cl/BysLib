@@ -1,18 +1,19 @@
 #pragma once
+#include "stdlib.hpp"
 #include "printer.hpp"
 #include "scanner.hpp"
 
 namespace bys {
-Printer print(std::cout), debug(std::cerr);
-Scanner scanner(std::cin);
-
-__attribute__((constructor)) inline void io_setup() {
-    std::cin.tie(nullptr);
+__attribute__((constructor)) void setup_io() {
     std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
     std::cout << std::fixed << std::setprecision(11);
     std::cerr << std::fixed << std::setprecision(11);
-    std::cerr << std::boolalpha;
+    std::cout << std::boolalpha;
 }
+
+Printer print(std::cout), debug(std::cerr);
+Scanner scanner(std::cin);
 
 // old i/o
 //! @brief 任意の型を1つ

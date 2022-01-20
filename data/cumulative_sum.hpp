@@ -11,6 +11,10 @@ struct CumulativeSum {
         assert(!build);
         data[i + 1] = x;
     }
+    void add(int i, int x) {
+        assert(!build);
+        data[i + 1] += x;
+    }
     void construct() {
         assert(!build);
         std::partial_sum(data.begin(), data.end(), data.begin());

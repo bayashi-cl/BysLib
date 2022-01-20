@@ -13,6 +13,8 @@ struct Grid {
         assert(contain(row, col));
         return row * w + col;
     }
+    int index(std::pair<int, int> p) const { return index(p.first, p.second); }
+
     pair<int, int> coord(int idx) const {
         assert(0 <= idx && idx < area());
         return {idx / w, idx % w};

@@ -14,8 +14,8 @@ inline std::istream& operator>>(std::istream& is, atcoder::static_modint<MOD>& m
     m = n;
     return is;
 }
-template <int MOD>
-inline std::ostream& operator<<(std::ostream& os, const atcoder::static_modint<MOD>& m) {
+template <typename T, typename std::enable_if_t<atcoder::internal::is_modint<T>::value, std::nullptr_t> = nullptr>
+std::ostream& operator<<(std::ostream& os, const T& m) {
     return os << m.val();
 }
 }  // namespace bys
