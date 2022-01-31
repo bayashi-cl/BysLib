@@ -1,6 +1,6 @@
 #pragma once
-#include "../core/stdlib.hpp"
 #include "../core/io.hpp"
+#include "../core/stdlib.hpp"
 #include "edge.hpp"
 
 namespace bys {

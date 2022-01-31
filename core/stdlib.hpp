@@ -33,6 +33,7 @@ using ll = long long int;
 using ld = long double;
 using Pa = pair<int, int>;
 using Pall = pair<ll, ll>;
+using ibool = std::int8_t;
 template <class T>
 using uset = std::unordered_set<T>;
 template <class S, class T>

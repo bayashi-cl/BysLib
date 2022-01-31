@@ -1,11 +1,11 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
-#include "core/core.hpp"
-#include "data/cumulative_sum.hpp"
+#include "byslib/core/core.hpp"
+#include "byslib/data/cumulative_sum.hpp"
 
 namespace bys {
 void Solver::solve() {
     auto [n, q] = scanner.read<int, 2>();
-    auto a = scanner.read<ll>(n);
+    auto a = scanner.readvec<ll>(n);
     CumulativeSum cs(a);
     cs.construct();
     for (int i = 0; i < q; ++i) {

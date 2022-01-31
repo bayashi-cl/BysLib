@@ -5,7 +5,7 @@
 namespace bys {
 void Solver::solve() {
     auto n = scanner.read<int>();
-    geo::Polygon p(scanner.read<geo::Point<ld>>(n));
+    geo::Polygon p(scanner.readvec<geo::Point<ld>>(n));
     print(p.is_convex() ? 1 : 0);
 }
 }  // namespace bys

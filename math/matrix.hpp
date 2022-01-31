@@ -56,10 +56,10 @@ struct Matrix {
 
     Matrix operator*(const Matrix<T>& rh) const {
         assert(col() == rh.row());
-        int k = rh.col();
-        Matrix<T> res(r, k);
+        int d = rh.col();
+        Matrix<T> res(r, d);
         for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < k; ++j) {
+            for (int j = 0; j < d; ++j) {
                 for (int k = 0; k < c; ++k) {
                     res.mat[i][j] += mat[i][k] * rh.mat[k][j];
                 }
@@ -87,9 +87,19 @@ struct Matrix {
         return res;
     }
 
+    auto pow(ll p) const {
+        assert(r == c);
+        auto res = Matrix<T>::ident(r);
+        auto base = *this;
+        for (; p > 0; p >>= 1, base = base * base) {
+            if (p & 1) res = res * base;
+        }
+        return res;
+    }
+
     static Matrix<T> ident(int n) {
         Matrix res(n, n);
-        for (int i = 0; i < n; ++i) res.mat[i][i] = 1;
+        for (int i = 0; i < n; ++i) res.mat[i][i] = T(1);
         return res;
     }
     static Matrix<double> rotate(double theta) {

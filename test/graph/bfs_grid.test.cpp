@@ -7,7 +7,7 @@ namespace bys {
 void Solver::solve() {
     auto [h, w] = scanner.read<int, 2>();
     Grid grid(h, w);
-    auto c = scanner.read<string>(h);
+    auto c = scanner.readvec<string>(h);
 
     Adj graph(grid.area());
     for (int i = 0; i < h; ++i) {

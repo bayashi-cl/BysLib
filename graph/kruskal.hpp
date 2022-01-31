@@ -1,8 +1,7 @@
 #pragma once
-#include <atcoder/dsu>
-
-#include "edge.hpp"
 #include "../core/stdlib.hpp"
+#include "atcoder/dsu"
+#include "edge.hpp"
 
 namespace bys {
 struct Kruskal {

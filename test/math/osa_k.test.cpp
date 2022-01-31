@@ -6,7 +6,7 @@
 namespace bys {
 void Solver::solve() {
     auto [n, m] = scanner.read<int, 2>();
-    auto a = scanner.read<int>(n);
+    auto a = scanner.readvec<int>(n);
     Osa_K osa_k(100000);
     set<int> forbid;
     for (auto&& ai : a) {

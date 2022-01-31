@@ -18,12 +18,9 @@ struct Printer {
             } else {
                 sep2 = _sep;
             }
-            if (!std::empty(v)) {
-                for (auto&& itr = std::begin(v); itr != std::prev(std::end(v)); ++itr) {
-                    cat(std::forward<typename std::decay_t<T>::value_type>(*itr));
-                    cat(sep2);
-                }
-                cat(std::forward<typename std::decay_t<T>::value_type>(*std::prev(std::end(v))));
+            for (auto &&itr = std::begin(v), end = std::end(v); itr != end; ++itr) {
+                cat(*itr);
+                if (std::next(itr) != end) cat(sep2);
             }
         } else if constexpr (has_tuple_interface<std::decay_t<T>>::value) {
             print_tuple(std::forward<T>(v), std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());

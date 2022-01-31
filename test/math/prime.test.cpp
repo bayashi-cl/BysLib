@@ -1,11 +1,12 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A"
-#include "../../core/core.hpp"
-#include "../../math/prime.hpp"
+#include "byslib/core/core.hpp"
+#include "byslib/math/prime.hpp"
 
 namespace bys {
 void Solver::solve() {
     auto n = scanner.read<int>();
-    cout << n << ": " << prime_factorize(n) << endl;
+    cout << n << ": ";
+    print(prime_factorize(n));
 }
 }  // namespace bys
 

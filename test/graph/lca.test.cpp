@@ -5,7 +5,7 @@
 namespace bys {
 void Solver::solve() {
     auto [n, q] = scanner.read<int, 2>();
-    auto p = scanner.read<int>(n - 1);
+    auto p = scanner.readvec<int>(n - 1);
     Adj graph(n);
     for (int i = 0; i < n - 1; ++i) {
         graph[p[i]].push_back({i + 1});

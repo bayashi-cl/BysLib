@@ -44,6 +44,10 @@ struct CumulativeSum2D {
         assert(!build);
         data[i + 1][j + 1] = x;
     }
+    void add(int i, int j, int x) {
+        assert(!build);
+        data[i + 1][j + 1] += x;
+    }
     T get(int i, int j) const { return data[i + 1][j + 1]; }
     void construct() {
         assert(!build);
