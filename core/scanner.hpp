@@ -8,13 +8,11 @@ struct Scanner {
 
     template <class... Ts>
     void scan(Ts&... args) {
-        is_read_from_istream = true;
         (is >> ... >> args);
     }
 
     template <class T, class... Us>
     decltype(auto) read() {
-        is_read_from_istream = true;
         if constexpr (sizeof...(Us) == 0) {
             if constexpr (has_rshift_from_istream<T>::value) {
                 T res;
@@ -63,9 +61,8 @@ struct Scanner {
               typename T = std::invoke_result_t<std::decay_t<Lambda>, std::string>>
     std::vector<T> readln(
         Lambda f = [](string x) { return std::stoi(x); }, char sep = ' ') {
+        std::ws(is);
         std::string elem;
-        if (is_read_from_istream) std::getline(is, elem);
-        if (!elem.empty()) std::cerr << "\e[33mWarnig!!\e[0m Some inputs were ignored." << std::endl;
         std::getline(is, elem);
         std::stringstream ss{elem};
         std::vector<T> res;
@@ -75,7 +72,6 @@ struct Scanner {
 
    private:
     std::istream& is;
-    bool is_read_from_istream = false;
     template <class Tp, std::size_t... I>
     inline decltype(auto) read_tuple(std::index_sequence<I...>) {
         return Tp{read<typename std::tuple_element_t<I, Tp>>()...};
