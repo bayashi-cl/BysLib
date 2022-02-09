@@ -8,6 +8,7 @@
 #include <cassert>
 #include <cmath>
 #include <complex>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <iterator>
