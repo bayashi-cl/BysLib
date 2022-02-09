@@ -12,4 +12,5 @@
 #define CONCAT(a, b) CONCAT_IMPL(a, b)
 //! @brief [[maybe_unused]]な変数を生成。
 #define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)
+#define RE std::runtime_error("line: " + std::to_string(__LINE__) + ", func: " + __func__)
 // clang-format on
