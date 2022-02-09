@@ -1,39 +1,29 @@
 #include "../core/stdlib.hpp"
-#include "../graph/edge.hpp"
+#include "edge.hpp"
+#include "result.hpp"
 
 namespace bys {
-struct Dijkstra {
-    const Adj& graph;
-    int n_node;
-    vector<int> prev;
-    vector<std::optional<ll>> cost;
-    Dijkstra(const Adj& graph, int start) : graph(graph), n_node(graph.size()), prev(n_node, -1), cost(n_node) { search(start); }
+SSSPResult dijkstra(const AdjacencyList& graph, int source) {
+    using Node = std::pair<ll, std::size_t>;
+    std::size_t n = graph.size();
+    SSSPResult res(n, source);
+    std::priority_queue<Node, std::vector<Node>, std::greater<Node>> que;
+    res.cost[source] = 0;
+    que.push({0, source});
 
-    void search(int start) {
-        using Node = std::pair<ll, int>;
-        std::priority_queue<Node, vector<Node>, std::greater<Node>> que;
-        cost[start] = 0;
-        que.push({0, start});
-        while (!que.empty()) {
-            auto [c, now] = que.top();
-            que.pop();
-            if (cost[now].has_value() && cost[now] < c) continue;
-            for (auto&& next : graph[now]) {
-                ll next_cost = cost[now].value() + next.cost;
-                if (!cost[next.to].has_value() || next_cost < cost[next.to].value()) {
-                    cost[next.to] = next_cost;
-                    prev[next.to] = now;
-                    que.push({next_cost, next.to});
-                }
+    while (!que.empty()) {
+        auto [top_cost, top] = que.top();
+        que.pop();
+        if (res.cost[top] < top_cost) continue;
+        for (auto&& next : graph[top]) {
+            ll next_cost = res.cost[top] + next.weight;
+            if (next_cost < res.cost[next]) {
+                res.cost[next] = next_cost;
+                res.prev[next] = top;
+                que.push({next_cost, next});
             }
         }
     }
-    string cost_str(int i, const string& err = "INF") const {
-        if (cost[i].has_value()) {
-            return std::to_string(cost[i].value());
-        } else {
-            return err;
-        }
-    }
-};
+    return res;
+}
 }  // namespace bys
