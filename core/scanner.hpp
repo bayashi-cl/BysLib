@@ -69,6 +69,12 @@ struct Scanner {
         while (std::getline(ss, elem, sep)) res.emplace_back(f(elem));
         return res;
     }
+    std::string getline(bool skip_ws = true) {
+        if (skip_ws) std::ws(is);
+        std::string res;
+        std::getline(is, res);
+        return res;
+    }
 
    private:
     std::istream& is;

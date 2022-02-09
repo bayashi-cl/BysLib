@@ -22,4 +22,12 @@ struct Range {
         return {new_start, r.it - r.dir, -r.step};
     }
 };
+template <class T>
+Range<T> irange(T stop) {
+    return Range(stop);
+}
+template <class T>
+Range<T> irange(T start, T stop, T step = 1) {
+    return Range(start, stop, step);
+}
 }  // namespace bys

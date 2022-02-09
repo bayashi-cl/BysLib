@@ -1,7 +1,7 @@
 #pragma once
 #include "../core/const.hpp"
 #include "../core/stdlib.hpp"
-#include "byslib/utility/change.hpp"
+#include "../utility/change.hpp"
 #include "edge.hpp"
 
 namespace bys {
