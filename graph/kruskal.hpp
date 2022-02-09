@@ -1,6 +1,6 @@
 #pragma once
 #include "../core/stdlib.hpp"
-#include "atcoder/dsu"
+#include "../data/union_find.hpp"
 #include "edge.hpp"
 
 namespace bys {
@@ -13,11 +13,11 @@ struct Kruskal {
         search(edges, n_tree);
     }
     void search(const EdgeList& edges, int n_tree) {
-        atcoder::dsu uft(n_node);
+        UnionFindTree uft(n_node);
         int sz = n_node;
         for (auto&& e : edges) {
             if (uft.same(e.from, e.to)) continue;
-            uft.merge(e.from, e.to);
+            uft.unite(e.from, e.to);
             mst.push_back(e);
             cost += e.cost;
             --sz;
