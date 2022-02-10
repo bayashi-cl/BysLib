@@ -11,7 +11,7 @@ void Solver::solve() {
         graph.add_edge(s, t, d);
     }
     auto res = dijkstra(graph, s);
-    if (res.cost[t] == -1) {
+    if (res.cost[t] == LINF) {
         print(-1);
     } else {
         auto path = res.path(t);
