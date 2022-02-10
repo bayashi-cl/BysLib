@@ -2,16 +2,22 @@
 #include "../core/stdlib.hpp"
 
 namespace bys {
-int bit_length(ll x) {
+template <class T>
+int bit_width(T x) {
     int bits = 0;
     x = (x < 0) ? (-x) : x;
-    for (bits = 0; x != 0; bits++) x >>= 1;
+    for (; x != 0; bits++) x >>= 1;
     return bits;
 }
-ll bit_ceil(ll x) {
-    if (x == 0) return 1;
-    int w = bit_length(x - 1);
-    return 1 << w;
+template <class T>
+T bit_floor(T x) {
+    assert(x >= 0);
+    return x == 0 ? 0 : T(1) << (bit_width(x) - 1);
+}
+template <class T>
+T bit_ceil(ll x) {
+    assert(x >= 0);
+    return x == 0 ? 1 : T(1) << bit_width(x - 1);
 }
 
 string bin(ll n) {

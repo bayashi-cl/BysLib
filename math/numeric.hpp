@@ -24,7 +24,7 @@ ll isqrt_aux(ll c, ll n) {
 ll isqrt(ll n) {
     assert(n >= 0);
     if (n == 0) return 0;
-    ll a = isqrt_aux((bit_length(n) - 1) / 2, n);
+    ll a = isqrt_aux((bit_width(n) - 1) / 2, n);
     return n < a * a ? a - 1 : a;
 }
 template <class T, typename std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t> = nullptr>
