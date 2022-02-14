@@ -1,4 +1,10 @@
 {
+"test/data/binary_indexed_tree.test.cpp": "2022-02-15 03:08:08 +0900",
+"test/data/binary_indexed_tree_aux.test.cpp": "2022-02-15 03:08:08 +0900",
+"test/data/cumulative_sum.test.cpp": "2022-02-15 03:08:08 +0900",
+"test/data/segment_tree.test.cpp": "2022-02-15 03:08:08 +0900",
+"test/data/sparse_table.test.cpp": "2022-02-15 03:08:08 +0900",
+"test/data/union_find.test.cpp": "2022-02-15 03:08:08 +0900",
 "test/geometry/area.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/geometry/counter_clockwise.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/geometry/cross_point.test.cpp": "2022-02-09 20:18:51 +0900",
@@ -13,6 +19,9 @@
 "test/graph/kruskal.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/graph/lca.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/graph/warshallfloyd.test.cpp": "2022-02-09 20:18:51 +0900",
+"test/graphv2/dijkstra.test.cpp": "2022-02-15 03:08:08 +0900",
+"test/graphv2/lca.test.cpp": "2022-02-15 03:08:08 +0900",
+"test/graphv2/warshallfloyd.test.cpp": "2022-02-15 03:08:08 +0900",
 "test/test.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/utility/range.test.cpp": "2022-02-09 20:18:51 +0900"
 }
