@@ -1,7 +1,7 @@
 #define PROBLEM "https://atcoder.jp/contests/abc232/tasks/abc232_d"
-#include "core/core.hpp"
-#include "utility/grid.hpp"
-#include "graph/breadth_first.hpp"
+#include "../../core/core.hpp"
+#include "../../utility/grid.hpp"
+#include "../../graph/breadth_first.hpp"
 
 namespace bys {
 void Solver::solve() {

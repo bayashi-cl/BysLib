@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A"
-#include "byslib/core/core.hpp"
-#include "byslib/data/binary_indexed_tree.hpp"
+#include "../../core/core.hpp"
+#include "../../data/binary_indexed_tree.hpp"
 
 using namespace bys;
 int main() {

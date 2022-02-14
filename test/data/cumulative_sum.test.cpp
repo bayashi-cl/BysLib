@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/static_range_sum"
-#include "byslib/core/core.hpp"
-#include "byslib/data/cumulative_sum.hpp"
+#include "../../core/core.hpp"
+#include "../../data/cumulative_sum.hpp"
 
 namespace bys {
 void Solver::solve() {

@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#include "byslib/core/core.hpp"
-#include "byslib/data/union_find.hpp"
-#include "byslib/utility/change.hpp"
-#include "byslib/utility/range.hpp"
+#include "../../core/core.hpp"
+#include "../../data/union_find.hpp"
+#include "../../utility/change.hpp"
+#include "../../utility/range.hpp"
 
 namespace bys {
 void Solver::solve() {

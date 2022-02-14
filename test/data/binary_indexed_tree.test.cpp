@@ -1,9 +1,9 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B"
 
-#include "byslib/core/core.hpp"
-#include "byslib/utility/range.hpp"
-#include "byslib/utility/change.hpp"
-#include "byslib/data/binary_indexed_tree.hpp"
+#include "../../core/core.hpp"
+#include "../../utility/range.hpp"
+#include "../../utility/change.hpp"
+#include "../../data/binary_indexed_tree.hpp"
 
 namespace bys {
 void Solver::solve() {

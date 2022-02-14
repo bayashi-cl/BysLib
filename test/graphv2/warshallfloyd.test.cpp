@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_C"
 #include "../../core/core.hpp"
-#include "byslib/graphv2/warshall_floyd.hpp"
+#include "../../graphv2/warshall_floyd.hpp"
 #include "../../utility/range.hpp"
 
 namespace bys {

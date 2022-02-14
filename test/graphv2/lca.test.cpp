@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/lca"
-
-#include "core/core.hpp"
-#include "byslib/graphv2/lca.hpp"
+#include "../../core/core.hpp"
+#include "../../graphv2/lca.hpp"
 
 namespace bys {
 void Solver::solve() {

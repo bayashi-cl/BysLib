@@ -31,9 +31,9 @@ class LowestCommonAncestor {
         })(root, -1, 0);
         st.build(euler_tour);
     }
-    int lca(int a, int b) {
-        assert(0 <= a && a < n);
-        assert(0 <= b && b < n);
+    int lca(std::size_t a, std::size_t b) {
+        assert(a < n);
+        assert(b < n);
         if (pos[a] > pos[b]) std::swap(a, b);
         return st.query(pos[a], pos[b]).id;
     }

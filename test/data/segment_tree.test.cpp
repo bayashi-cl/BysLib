@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
-#include "byslib/core/core.hpp"
-#include "byslib/data/segment_tree.hpp"
-#include "byslib/math/algebra.hpp"
-#include "byslib/utility/change.hpp"
-#include "byslib/utility/range.hpp"
+#include "../../core/core.hpp"
+#include "../../data/segment_tree.hpp"
+#include "../../math/algebra.hpp"
+#include "../../utility/change.hpp"
+#include "../../utility/range.hpp"
 
 namespace bys {
 void Solver::solve() {
