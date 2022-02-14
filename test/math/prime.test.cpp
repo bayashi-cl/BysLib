@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A"
-#include "byslib/core/core.hpp"
-#include "byslib/math/prime.hpp"
+#include "../../core/core.hpp"
+#include "../../math/prime.hpp"
 
 namespace bys {
 void Solver::solve() {
