@@ -15,7 +15,7 @@ T bit_floor(T x) {
     return x == 0 ? 0 : T(1) << (bit_width(x) - 1);
 }
 template <class T>
-T bit_ceil(ll x) {
+T bit_ceil(T x) {
     assert(x >= 0);
     return x == 0 ? 1 : T(1) << bit_width(x - 1);
 }
