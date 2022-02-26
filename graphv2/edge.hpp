@@ -25,7 +25,7 @@ struct DynamicAdjacencyList {
     std::size_t _n;
 };
 struct AdjacencyList {
-    AdjacencyList(std::size_t n, std::size_t m) : _n(n), _m(m), index(n + 1) { buf.reserve(m); }
+    AdjacencyList(std::size_t n, std::size_t m) : _n(n), _m(m), index(n + 1), _build_flg(m == 0) { buf.reserve(m); }
 
     struct AdjacencyRange {
         using iterator = std::vector<Edge>::const_iterator;
@@ -35,6 +35,7 @@ struct AdjacencyList {
         iterator end() const { return _end; }
         reference operator[](std::size_t i) const { return *(_begin + i); }
         std::size_t size() const { return std::distance(_begin, _end); }
+        bool empty() const { return size() == 0; }
     };
     AdjacencyRange operator[](std::size_t i) const {
         return AdjacencyRange{data.begin() + index[i], data.begin() + index[i + 1]};
@@ -44,6 +45,7 @@ struct AdjacencyList {
         std::partial_sum(index.begin(), index.end(), index.begin());
         data.resize(_m);
         for (auto&& e : buf) data[--index[e.src]] = e;
+        _build_flg = true;
     }
     void add_edge(const Edge& e) {
         ++index[e.src];
@@ -53,10 +55,12 @@ struct AdjacencyList {
     void add_edge(std::size_t src, std::size_t dest, ll weight = 1) { add_edge(Edge(src, dest, weight)); }
     std::size_t size() const { return _n; }
     std::size_t n_edge() const { return _m; }
+    bool build_flg() const { return _build_flg; }
 
    private:
     std::size_t _n, _m;
     std::vector<Edge> buf, data;
     std::vector<std::size_t> index;
+    bool _build_flg;
 };
 }  // namespace bys
