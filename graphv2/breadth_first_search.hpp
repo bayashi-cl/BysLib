@@ -1,7 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
 #include "../core/const.hpp"
 #include "../core/macro.hpp"
+#include "../core/stdlib.hpp"
 #include "edge.hpp"
 #include "result.hpp"
 namespace bys {
@@ -22,6 +22,7 @@ SSSPResult breadth_first_search(const AdjacencyList& graph, std::size_t source) 
             }
         }
     }
+    return res;
 }
 SSSPResult zero_one_bfs(const AdjacencyList& graph, std::size_t source) {
     std::size_t n = graph.size();
@@ -46,6 +47,7 @@ SSSPResult zero_one_bfs(const AdjacencyList& graph, std::size_t source) {
             }
         }
     }
+    return res;
 }
 
 }  // namespace bys
