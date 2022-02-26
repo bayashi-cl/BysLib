@@ -1,5 +1,8 @@
 #pragma once
 // clang-format off
+/**
+ * @brief マクロ
+ */
 #ifdef LOCAL
 //! @brief デバッグ用出力 ジャッジ上では何もしない。
 #define DEBUG(...) { std::cerr << "[debug] line" << std::setw(4) << __LINE__ << ": "; debug(__VA_ARGS__); }

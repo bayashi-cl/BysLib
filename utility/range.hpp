@@ -1,7 +1,7 @@
 #pragma once
 
 namespace bys {
-//! @brief pythonのrangeと同じ挙動
+//! @brief Pythonのrange
 template <typename T>
 struct Range {
     Range(T start, T stop, T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}

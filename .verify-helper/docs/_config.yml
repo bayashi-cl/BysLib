@@ -1,0 +1,5 @@
+description: manual config test
+plugins:
+- jemoji
+- jekyll-redirect-from
+theme: jekyll-theme-midnight

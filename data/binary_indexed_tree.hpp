@@ -2,6 +2,9 @@
 #include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
 namespace bys {
+/**
+ * @brief Binary Indexed Tree
+ */
 template <class T>
 class BinaryIndexedTree {
     const int _n;

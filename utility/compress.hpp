@@ -1,14 +1,14 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
 namespace bys {
-//! @brief 座標圧縮 使う前にconstruct()
+/**
+ * @brief  座標圧縮
+ * @details 使う前にconstruct()
+ */
 template <class T>
 struct Compress {
-    vector<T> cp;
-    bool build = false;
     Compress() {}
-    Compress(vector<T>& vec) : cp(vec) {}
+    Compress(std::vector<T>& vec) : cp(vec) {}
     void add(T v) {
         assert(!build);
         cp.push_back(v);
@@ -32,5 +32,9 @@ struct Compress {
         return cp[i];
     }
     int size() const { return cp.size(); }
+
+   private:
+    std::vector<T> cp;
+    bool build = false;
 };
 }  // namespace bys

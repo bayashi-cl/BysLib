@@ -1,6 +1,9 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
+/**
+ * @brief itemsorter
+ * @details std::sortに渡すことを想定
+ */
 namespace bys {
 //! @brief I番目の要素を比較
 template <class T, std::size_t I>

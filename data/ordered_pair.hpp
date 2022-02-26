@@ -1,8 +1,10 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
 namespace bys {
-//! @brief first <= secondになるpair
+/**
+ * @brief Orderd pair
+ * @details first <= secondになるpair
+ */
 template <class T>
 struct OrderedPair : std::pair<T, T> {
     OrderedPair(T a, T b) {
