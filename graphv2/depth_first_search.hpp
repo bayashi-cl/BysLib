@@ -2,22 +2,21 @@
 #include "../core/stdlib.hpp"
 #include "edge.hpp"
 namespace bys {
-class DeapthFirstSearch {
+class DepthFirstSearch {
     const AdjacencyList& _graph;
     const std::size_t _n;
 
    public:
     std::vector<int> prev, cost;
     std::vector<std::size_t> pre_order, post_order, euler_tour;
-    DeapthFirstSearch(const AdjacencyList& graph, std::size_t root)
-        : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
+    DepthFirstSearch(const AdjacencyList& graph, std::size_t root) : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
         pre_order.reserve(_n);
         post_order.reserve(_n);
         euler_tour.reserve(2 * _n - 1);
         cost[root] = 0;
         search(root);
     }
-    DeapthFirstSearch(const AdjacencyList& graph) : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
+    DepthFirstSearch(const AdjacencyList& graph) : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
         pre_order.reserve(_n);
         post_order.reserve(_n);
         euler_tour.reserve(2 * _n - 1);
