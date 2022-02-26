@@ -92,6 +92,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
     title: graphv2/edge.hpp
+  - icon: ':heavy_check_mark:'
+    path: graphv2/lca.hpp
+    title: graphv2/lca.hpp
   - icon: ':warning:'
     path: graphv2/reader.hpp
     title: graphv2/reader.hpp
@@ -234,6 +237,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/lca.test.cpp
+    title: test/graphv2/lca.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
@@ -464,6 +470,7 @@ data:
   - graphv2/reader.hpp
   - graphv2/topological_sort.hpp
   - graphv2/warshall_floyd.hpp
+  - graphv2/lca.hpp
   - graphv2/breadth_first_search.hpp
   - graphv2/dijkstra.hpp
   - graphv2/rooted_tree.hpp
@@ -500,6 +507,7 @@ data:
   - test/data/cumulative_sum.test.cpp
   - test/data/union_find.test.cpp
   - test/graphv2/warshallfloyd.test.cpp
+  - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp
   - test/graph/bfs_grid.test.cpp
   - test/graph/warshallfloyd.test.cpp

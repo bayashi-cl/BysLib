@@ -5,10 +5,16 @@ data:
   - icon: ':warning:'
     path: graph/util.hpp
     title: graph/util.hpp
-  _extendedVerifiedWith: []
+  - icon: ':heavy_check_mark:'
+    path: graphv2/lca.hpp
+    title: graphv2/lca.hpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/lca.test.cpp
+    title: test/graphv2/lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"utility/fixpoint.hpp\"\n#include <utility>\nnamespace bys\
@@ -27,10 +33,12 @@ data:
   isVerificationFile: false
   path: utility/fixpoint.hpp
   requiredBy:
+  - graphv2/lca.hpp
   - graph/util.hpp
   timestamp: '2022-01-20 13:40:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/graphv2/lca.test.cpp
 documentation_of: utility/fixpoint.hpp
 layout: document
 redirect_from:

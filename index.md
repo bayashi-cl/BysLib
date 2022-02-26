@@ -131,7 +131,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graphv2/edge.hpp
       title: graphv2/edge.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graphv2/lca.hpp
       title: graphv2/lca.hpp
     - icon: ':warning:'
@@ -220,7 +220,7 @@ data:
     - icon: ':warning:'
       path: utility/enumerate.hpp
       title: utility/enumerate.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: utility/fixpoint.hpp
       title: utility/fixpoint.hpp
     - icon: ':heavy_check_mark:'
@@ -313,7 +313,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graphv2/dijkstra.test.cpp
       title: test/graphv2/dijkstra.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/graphv2/lca.test.cpp
       title: test/graphv2/lca.test.cpp
     - icon: ':heavy_check_mark:'

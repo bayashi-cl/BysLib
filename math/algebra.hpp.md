@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graphv2/lca.hpp
+    title: graphv2/lca.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data/segment_tree.test.cpp
@@ -9,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/sparse_table.test.cpp
     title: test/data/sparse_table.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/lca.test.cpp
+    title: test/graphv2/lca.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -33,12 +39,14 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: math/algebra.hpp
-  requiredBy: []
+  requiredBy:
+  - graphv2/lca.hpp
   timestamp: '2022-02-15 02:40:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/sparse_table.test.cpp
   - test/data/segment_tree.test.cpp
+  - test/graphv2/lca.test.cpp
 documentation_of: math/algebra.hpp
 layout: document
 redirect_from:

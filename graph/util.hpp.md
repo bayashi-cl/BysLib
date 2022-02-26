@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
     title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: utility/fixpoint.hpp
     title: utility/fixpoint.hpp
   _extendedRequiredBy: []
