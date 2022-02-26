@@ -9,7 +9,7 @@ data:
     title: data/union_find.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -51,25 +51,26 @@ data:
     \ n_tree() { return _n_tree; }\n\n   private:\n    std::size_t _n, _n_tree;\n\
     \    std::vector<int> parent;  // \u8CA0\u306A\u3089\u89AA\u3067\u3042\u308A\u305D\
     \u306E\u5024\u306F(-\u5B50\u306E\u6570)\n};\n}  // namespace bys\n#line 3 \"graph/edge.hpp\"\
-    \n\nnamespace bys {\nstruct Edge {\n    int from, to;\n    ll cost;\n\n    //!\
-    \ @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n    Edge(int to) : from(-1),\
-    \ to(to), cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\
-    \n    Edge(int to, ll cost) : from(-1), to(to), cost(cost) {}\n    //! @brief\
-    \ \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\n    Edge(int from, int to, ll cost)\
-    \ : from(from), to(to), cost(cost) {}\n    bool operator<(const Edge& rh) const\
-    \ { return cost < rh.cost; }\n    operator std::size_t() const { return to; }\n\
-    \    friend std::ostream& operator<<(std::ostream& os, const Edge& e) {\n    \
-    \    return os << \"{\" << e.from << \" -> \" << e.to << \": \" << e.cost << \"\
-    }\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n\
-    }  // namespace bys\n#line 5 \"graph/kruskal.hpp\"\n\nnamespace bys {\nstruct\
-    \ Kruskal {\n    int n_node;\n    EdgeList mst;\n    ll cost = 0;\n    Kruskal(EdgeList&\
-    \ edges, int n_node, int n_tree = 1) : n_node(n_node) {\n        sort(edges.begin(),\
-    \ edges.end());\n        search(edges, n_tree);\n    }\n    void search(const\
-    \ EdgeList& edges, int n_tree) {\n        UnionFindTree uft(n_node);\n       \
-    \ int sz = n_node;\n        for (auto&& e : edges) {\n            if (uft.same(e.from,\
-    \ e.to)) continue;\n            uft.unite(e.from, e.to);\n            mst.push_back(e);\n\
-    \            cost += e.cost;\n            --sz;\n            if (sz == n_tree)\
-    \ return;\n        }\n    }\n};\n}  // namespace bys\n"
+    \n\nnamespace bys {\n/**\n * @brief \u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\
+    \u30FC\u30C8\n */\nstruct Edge {\n    int from, to;\n    ll cost;\n\n    //! @brief\
+    \ \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n    Edge(int to) : from(-1), to(to),\
+    \ cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int\
+    \ to, ll cost) : from(-1), to(to), cost(cost) {}\n    //! @brief \u91CD\u307F\u4ED8\
+    \u304D\u4E21\u9802\u70B9\n    Edge(int from, int to, ll cost) : from(from), to(to),\
+    \ cost(cost) {}\n    bool operator<(const Edge& rh) const { return cost < rh.cost;\
+    \ }\n    operator std::size_t() const { return to; }\n    friend std::ostream&\
+    \ operator<<(std::ostream& os, const Edge& e) {\n        return os << \"{\" <<\
+    \ e.from << \" -> \" << e.to << \": \" << e.cost << \"}\";\n    }\n};\nusing Adj\
+    \ = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n}  // namespace bys\n\
+    #line 5 \"graph/kruskal.hpp\"\n\nnamespace bys {\nstruct Kruskal {\n    int n_node;\n\
+    \    EdgeList mst;\n    ll cost = 0;\n    Kruskal(EdgeList& edges, int n_node,\
+    \ int n_tree = 1) : n_node(n_node) {\n        sort(edges.begin(), edges.end());\n\
+    \        search(edges, n_tree);\n    }\n    void search(const EdgeList& edges,\
+    \ int n_tree) {\n        UnionFindTree uft(n_node);\n        int sz = n_node;\n\
+    \        for (auto&& e : edges) {\n            if (uft.same(e.from, e.to)) continue;\n\
+    \            uft.unite(e.from, e.to);\n            mst.push_back(e);\n       \
+    \     cost += e.cost;\n            --sz;\n            if (sz == n_tree) return;\n\
+    \        }\n    }\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"../data/union_find.hpp\"\
     \n#include \"edge.hpp\"\n\nnamespace bys {\nstruct Kruskal {\n    int n_node;\n\
     \    EdgeList mst;\n    ll cost = 0;\n    Kruskal(EdgeList& edges, int n_node,\
@@ -87,7 +88,7 @@ data:
   isVerificationFile: false
   path: graph/kruskal.hpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/kruskal.test.cpp

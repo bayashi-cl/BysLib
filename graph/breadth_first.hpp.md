@@ -9,7 +9,7 @@ data:
     title: core/stdlib.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,8 @@ data:
     \ bys\n#line 3 \"core/const.hpp\"\n\nnamespace bys {\nconstexpr int MOD = 998244353;\n\
     constexpr int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
     \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
-    \ bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge {\n    int from,\
+    \ bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\n/**\n * @brief \u30B0\u30E9\
+    \u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\n */\nstruct Edge {\n    int from,\
     \ to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\
     \n    Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\
     \u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to),\
@@ -114,7 +115,7 @@ data:
   isVerificationFile: false
   path: graph/breadth_first.hpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/bfs_grid.test.cpp

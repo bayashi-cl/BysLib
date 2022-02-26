@@ -91,6 +91,9 @@ data:
     path: test/graph/warshallfloyd.test.cpp
     title: test/graph/warshallfloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/graphv2/bfs_grid.test.cpp
+    title: test/graphv2/bfs_grid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
   - icon: ':heavy_check_mark:'
@@ -247,6 +250,7 @@ data:
   - test/data/segment_tree.test.cpp
   - test/data/cumulative_sum.test.cpp
   - test/data/union_find.test.cpp
+  - test/graphv2/bfs_grid.test.cpp
   - test/graphv2/warshallfloyd.test.cpp
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp

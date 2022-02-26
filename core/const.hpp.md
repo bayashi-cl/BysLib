@@ -20,9 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
-    title: graphv2/breadth_first_search.hpp
+    title: "\u5E45\u512A\u5148\u63A2\u7D22"
   - icon: ':heavy_check_mark:'
     path: graphv2/dijkstra.hpp
     title: graphv2/dijkstra.hpp
@@ -99,6 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/warshallfloyd.test.cpp
     title: test/graph/warshallfloyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/bfs_grid.test.cpp
+    title: test/graphv2/bfs_grid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
@@ -277,6 +280,7 @@ data:
   - test/data/segment_tree.test.cpp
   - test/data/cumulative_sum.test.cpp
   - test/data/union_find.test.cpp
+  - test/graphv2/bfs_grid.test.cpp
   - test/graphv2/warshallfloyd.test.cpp
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp

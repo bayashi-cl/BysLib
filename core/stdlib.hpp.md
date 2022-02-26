@@ -61,7 +61,7 @@ data:
     title: graph/dijkstra.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - icon: ':heavy_check_mark:'
     path: graph/kruskal.hpp
     title: graph/kruskal.hpp
@@ -77,9 +77,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/warshall_floyd.hpp
     title: graph/warshall_floyd.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
-    title: graphv2/breadth_first_search.hpp
+    title: "\u5E45\u512A\u5148\u63A2\u7D22"
   - icon: ':warning:'
     path: graphv2/depth_first_search.hpp
     title: graphv2/depth_first_search.hpp
@@ -142,7 +142,7 @@ data:
     title: math/prime.hpp
   - icon: ':warning:'
     path: math/sequence.hpp
-    title: "\u03A3[0, n)"
+    title: "\u6570\u5217"
   - icon: ':warning:'
     path: string/ascii.hpp
     title: string/ascii.hpp
@@ -231,6 +231,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/warshallfloyd.test.cpp
     title: test/graph/warshallfloyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/bfs_grid.test.cpp
+    title: test/graphv2/bfs_grid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
@@ -502,6 +505,7 @@ data:
   - test/data/segment_tree.test.cpp
   - test/data/cumulative_sum.test.cpp
   - test/data/union_find.test.cpp
+  - test/graphv2/bfs_grid.test.cpp
   - test/graphv2/warshallfloyd.test.cpp
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp

@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graph/bfs_grid.test.cpp
     title: test/graph/bfs_grid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/bfs_grid.test.cpp
+    title: test/graphv2/bfs_grid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -81,6 +84,7 @@ data:
   timestamp: '2022-02-09 20:16:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/graphv2/bfs_grid.test.cpp
   - test/graph/bfs_grid.test.cpp
 documentation_of: utility/grid.hpp
 layout: document

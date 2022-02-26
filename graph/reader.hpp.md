@@ -18,7 +18,7 @@ data:
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -123,34 +123,34 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 3\
-    \ \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge {\n    int from, to;\n  \
-    \  ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n   \
-    \ Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\
-    \u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to), cost(cost)\
-    \ {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\n    Edge(int\
-    \ from, int to, ll cost) : from(from), to(to), cost(cost) {}\n    bool operator<(const\
-    \ Edge& rh) const { return cost < rh.cost; }\n    operator std::size_t() const\
-    \ { return to; }\n    friend std::ostream& operator<<(std::ostream& os, const\
-    \ Edge& e) {\n        return os << \"{\" << e.from << \" -> \" << e.to << \":\
-    \ \" << e.cost << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\nusing\
-    \ EdgeList = vector<Edge>;\n}  // namespace bys\n#line 5 \"graph/reader.hpp\"\n\
-    \nnamespace bys {\nAdj read_adj_uv(int n, int m, bool directed = false, int index\
-    \ = 1) {\n    Adj graph(n);\n    for (int i = 0; i < m; ++i) {\n        auto [u,\
-    \ v] = scanner.read<int, 2>();\n        u -= index;\n        v -= index;\n   \
-    \     graph[u].push_back({v});\n        if (!directed) graph[v].push_back({u});\n\
-    \    }\n    return graph;\n}\nAdj read_adj_uvc(int n, int m, bool directed = false,\
-    \ int index = 1) {\n    Adj graph(n);\n    for (int i = 0; i < m; ++i) {\n   \
-    \     auto [u, v, c] = scanner.read<int, int, ll>();\n        u -= index;\n  \
-    \      v -= index;\n        graph[u].push_back({v, c});\n        if (!directed)\
-    \ graph[v].push_back({u, c});\n    }\n    return graph;\n}\nEdgeList read_elist_uv(int\
+    \ \"graph/edge.hpp\"\n\nnamespace bys {\n/**\n * @brief \u30B0\u30E9\u30D5\u30C6\
+    \u30F3\u30D7\u30EC\u30FC\u30C8\n */\nstruct Edge {\n    int from, to;\n    ll\
+    \ cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n    Edge(int\
+    \ to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u5358\
+    \u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to), cost(cost) {}\n  \
+    \  //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\n    Edge(int from, int\
+    \ to, ll cost) : from(from), to(to), cost(cost) {}\n    bool operator<(const Edge&\
+    \ rh) const { return cost < rh.cost; }\n    operator std::size_t() const { return\
+    \ to; }\n    friend std::ostream& operator<<(std::ostream& os, const Edge& e)\
+    \ {\n        return os << \"{\" << e.from << \" -> \" << e.to << \": \" << e.cost\
+    \ << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n\
+    }  // namespace bys\n#line 5 \"graph/reader.hpp\"\n\nnamespace bys {\nAdj read_adj_uv(int\
+    \ n, int m, bool directed = false, int index = 1) {\n    Adj graph(n);\n    for\
+    \ (int i = 0; i < m; ++i) {\n        auto [u, v] = scanner.read<int, 2>();\n \
+    \       u -= index;\n        v -= index;\n        graph[u].push_back({v});\n \
+    \       if (!directed) graph[v].push_back({u});\n    }\n    return graph;\n}\n\
+    Adj read_adj_uvc(int n, int m, bool directed = false, int index = 1) {\n    Adj\
+    \ graph(n);\n    for (int i = 0; i < m; ++i) {\n        auto [u, v, c] = scanner.read<int,\
+    \ int, ll>();\n        u -= index;\n        v -= index;\n        graph[u].push_back({v,\
+    \ c});\n        if (!directed) graph[v].push_back({u, c});\n    }\n    return\
+    \ graph;\n}\nEdgeList read_elist_uv(int m, int index = 1) {\n    EdgeList elist;\n\
+    \    elist.reserve(m);\n    for (int i = 0; i < m; ++i) {\n        auto [u, v]\
+    \ = scanner.read<int, 2>();\n        u -= index;\n        v -= index;\n      \
+    \  elist.push_back({u, v, 1});\n    }\n    return elist;\n}\nEdgeList read_elist_uvc(int\
     \ m, int index = 1) {\n    EdgeList elist;\n    elist.reserve(m);\n    for (int\
-    \ i = 0; i < m; ++i) {\n        auto [u, v] = scanner.read<int, 2>();\n      \
-    \  u -= index;\n        v -= index;\n        elist.push_back({u, v, 1});\n   \
-    \ }\n    return elist;\n}\nEdgeList read_elist_uvc(int m, int index = 1) {\n \
-    \   EdgeList elist;\n    elist.reserve(m);\n    for (int i = 0; i < m; ++i) {\n\
-    \        auto [u, v, c] = scanner.read<int, int, ll>();\n        u -= index;\n\
-    \        v -= index;\n        elist.push_back({u, v, c});\n    }\n    return elist;\n\
-    }\n}  // namespace bys\n"
+    \ i = 0; i < m; ++i) {\n        auto [u, v, c] = scanner.read<int, int, ll>();\n\
+    \        u -= index;\n        v -= index;\n        elist.push_back({u, v, c});\n\
+    \    }\n    return elist;\n}\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/io.hpp\"\n#include \"../core/stdlib.hpp\"\
     \n#include \"edge.hpp\"\n\nnamespace bys {\nAdj read_adj_uv(int n, int m, bool\
     \ directed = false, int index = 1) {\n    Adj graph(n);\n    for (int i = 0; i\
@@ -179,7 +179,7 @@ data:
   isVerificationFile: false
   path: graph/reader.hpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/warshallfloyd.test.cpp

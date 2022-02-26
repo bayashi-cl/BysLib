@@ -97,7 +97,7 @@ data:
       title: graph/dijkstra.hpp
     - icon: ':heavy_check_mark:'
       path: graph/edge.hpp
-      title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+      title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     - icon: ':heavy_check_mark:'
       path: graph/kruskal.hpp
       title: graph/kruskal.hpp
@@ -115,9 +115,9 @@ data:
       title: graph/warshall_floyd.hpp
   - name: graphv2
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graphv2/breadth_first_search.hpp
-      title: graphv2/breadth_first_search.hpp
+      title: "\u5E45\u512A\u5148\u63A2\u7D22"
     - icon: ':warning:'
       path: graphv2/depth_first_search.hpp
       title: graphv2/depth_first_search.hpp
@@ -188,7 +188,7 @@ data:
       title: math/prime.hpp
     - icon: ':warning:'
       path: math/sequence.hpp
-      title: "\u03A3[0, n)"
+      title: "\u6570\u5217"
   - name: string
     pages:
     - icon: ':warning:'
@@ -306,6 +306,9 @@ data:
       title: test/graph/warshallfloyd.test.cpp
   - name: test/graphv2
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graphv2/bfs_grid.test.cpp
+      title: test/graphv2/bfs_grid.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/graphv2/dijkstra.test.cpp
       title: test/graphv2/dijkstra.test.cpp

@@ -5,9 +5,9 @@ data:
     path: core/stdlib.hpp
     title: core/stdlib.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
-    title: graphv2/breadth_first_search.hpp
+    title: "\u5E45\u512A\u5148\u63A2\u7D22"
   - icon: ':warning:'
     path: graphv2/depth_first_search.hpp
     title: graphv2/depth_first_search.hpp
@@ -30,6 +30,9 @@ data:
     path: graphv2/warshall_floyd.hpp
     title: graphv2/warshall_floyd.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/bfs_grid.test.cpp
+    title: test/graphv2/bfs_grid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
@@ -140,6 +143,7 @@ data:
   timestamp: '2022-02-26 15:09:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/graphv2/bfs_grid.test.cpp
   - test/graphv2/warshallfloyd.test.cpp
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp

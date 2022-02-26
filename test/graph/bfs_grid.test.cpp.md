@@ -33,7 +33,7 @@ data:
     title: graph/breadth_first.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - icon: ':heavy_check_mark:'
     path: utility/grid.hpp
     title: "\u30B0\u30EA\u30C3\u30C9\u63A2\u7D22\u7BA1\u7406"
@@ -177,9 +177,10 @@ data:
     \ ++di) {\n            for (int dj = -1; dj <= 1; ++dj) {\n                if\
     \ (di == 0 && dj == 0) continue;\n                delta.push_back({di, dj});\n\
     \            }\n        }\n        return next(row, col, delta);\n    }\n};\n\
-    }  // namespace bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge\
-    \ {\n    int from, to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\
-    \u5358\u9802\u70B9\n    Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief\
+    }  // namespace bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\n/**\n * @brief\
+    \ \u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\n */\nstruct Edge {\n\
+    \    int from, to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\
+    \u9802\u70B9\n    Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief\
     \ \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1),\
     \ to(to), cost(cost) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\
     \n    Edge(int from, int to, ll cost) : from(from), to(to), cost(cost) {}\n  \
@@ -258,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/graph/bfs_grid.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/bfs_grid.test.cpp

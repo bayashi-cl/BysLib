@@ -29,17 +29,20 @@ data:
     path: core/types.hpp
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/bellman_ford.hpp
-    title: graph/bellman_ford.hpp
+    path: graphv2/breadth_first_search.hpp
+    title: "\u5E45\u512A\u5148\u63A2\u7D22"
   - icon: ':heavy_check_mark:'
-    path: graph/edge.hpp
-    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
+    path: graphv2/edge.hpp
+    title: graphv2/edge.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/reader.hpp
-    title: graph/reader.hpp
+    path: graphv2/result.hpp
+    title: Single Source Shortest Path Result
   - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: utility/change.hpp
+  - icon: ':heavy_check_mark:'
+    path: utility/grid.hpp
+    title: "\u30B0\u30EA\u30C3\u30C9\u63A2\u7D22\u7BA1\u7406"
   - icon: ':heavy_check_mark:'
     path: utility/range.hpp
     title: "Python\u306Erange"
@@ -50,10 +53,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B
+    PROBLEM: https://atcoder.jp/contests/abc232/tasks/abc232_d
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B
-  bundledCode: "#line 1 \"test/graph/bellman_ford.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
+    - https://atcoder.jp/contests/abc232/tasks/abc232_d
+  bundledCode: "#line 1 \"test/graphv2/bfs_grid.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc232/tasks/abc232_d\"\
     \n#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include\
     \ <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n#include\
     \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
@@ -161,49 +164,102 @@ data:
     \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
     \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
     \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
-    \ 2 \"utility/change.hpp\"\nnamespace bys {\ntemplate <class T>\ninline bool chmax(T&\
-    \ a, const T& b) {\n    if (a < b) {\n        a = b;\n        return 1;\n    }\n\
-    \    return 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n\
-    \    if (b < a) {\n        a = b;\n        return 1;\n    }\n    return 0;\n}\n\
-    }  // namespace bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\n/**\n * @brief\
-    \ \u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\n */\nstruct Edge {\n\
-    \    int from, to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\
-    \u9802\u70B9\n    Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief\
-    \ \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1),\
-    \ to(to), cost(cost) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\
-    \n    Edge(int from, int to, ll cost) : from(from), to(to), cost(cost) {}\n  \
-    \  bool operator<(const Edge& rh) const { return cost < rh.cost; }\n    operator\
-    \ std::size_t() const { return to; }\n    friend std::ostream& operator<<(std::ostream&\
-    \ os, const Edge& e) {\n        return os << \"{\" << e.from << \" -> \" << e.to\
-    \ << \": \" << e.cost << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\n\
-    using EdgeList = vector<Edge>;\n}  // namespace bys\n#line 6 \"graph/bellman_ford.hpp\"\
-    \n\nnamespace bys {\nstruct BellmanFord {\n    const EdgeList& graph;\n    int\
-    \ n_node;\n    vector<ll> cost;\n    bool negative_cycle;\n\n    BellmanFord(const\
-    \ EdgeList& graph, int n_node, int start) : graph(graph), n_node(n_node), cost(n_node,\
-    \ LINF) {\n        negative_cycle = search(start);\n    }\n\n    bool search(int\
-    \ start) {\n        cost[start] = 0;\n        for (int i = 0; i < n_node - 1;\
-    \ ++i) relaxing();\n        return relaxing();\n    }\n\n   private:\n    bool\
-    \ relaxing() {\n        bool res = false;\n        for (auto&& e : graph) {\n\
-    \            if (cost[e.from] == LINF) continue;\n            if (chmin(cost[e.to],\
-    \ cost[e.from] + e.cost)) res = true;\n        }\n        return res;\n    }\n\
-    };\n}  // namespace bys\n#line 5 \"graph/reader.hpp\"\n\nnamespace bys {\nAdj\
-    \ read_adj_uv(int n, int m, bool directed = false, int index = 1) {\n    Adj graph(n);\n\
-    \    for (int i = 0; i < m; ++i) {\n        auto [u, v] = scanner.read<int, 2>();\n\
-    \        u -= index;\n        v -= index;\n        graph[u].push_back({v});\n\
-    \        if (!directed) graph[v].push_back({u});\n    }\n    return graph;\n}\n\
-    Adj read_adj_uvc(int n, int m, bool directed = false, int index = 1) {\n    Adj\
-    \ graph(n);\n    for (int i = 0; i < m; ++i) {\n        auto [u, v, c] = scanner.read<int,\
-    \ int, ll>();\n        u -= index;\n        v -= index;\n        graph[u].push_back({v,\
-    \ c});\n        if (!directed) graph[v].push_back({u, c});\n    }\n    return\
-    \ graph;\n}\nEdgeList read_elist_uv(int m, int index = 1) {\n    EdgeList elist;\n\
-    \    elist.reserve(m);\n    for (int i = 0; i < m; ++i) {\n        auto [u, v]\
-    \ = scanner.read<int, 2>();\n        u -= index;\n        v -= index;\n      \
-    \  elist.push_back({u, v, 1});\n    }\n    return elist;\n}\nEdgeList read_elist_uvc(int\
-    \ m, int index = 1) {\n    EdgeList elist;\n    elist.reserve(m);\n    for (int\
-    \ i = 0; i < m; ++i) {\n        auto [u, v, c] = scanner.read<int, int, ll>();\n\
-    \        u -= index;\n        v -= index;\n        elist.push_back({u, v, c});\n\
-    \    }\n    return elist;\n}\n}  // namespace bys\n#line 2 \"utility/range.hpp\"\
-    \n\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate <typename T>\nstruct\
+    \ 3 \"graphv2/edge.hpp\"\nnamespace bys {\nstruct Edge {\n    std::size_t src,\
+    \ dest;\n    ll weight;\n    Edge() {}\n    Edge(std::size_t src, std::size_t\
+    \ dest, ll weight = 1) : src(src), dest(dest), weight(weight) {}\n    bool operator<(const\
+    \ Edge& rh) const { return weight < rh.weight; }\n    operator int() const { return\
+    \ dest; }\n    friend std::ostream& operator<<(std::ostream& os, const Edge& e)\
+    \ {\n        return os << \"{\" << e.src << \" -> \" << e.dest << \": \" << e.weight\
+    \ << \"}\";\n    }\n};\nstruct DynamicAdjacencyList {\n    std::vector<std::vector<Edge>>\
+    \ data;\n    DynamicAdjacencyList(std::size_t n) : data(n, vector<Edge>()), _n(n)\
+    \ {}\n    std::vector<vector<Edge>>::reference operator[](std::size_t i) { return\
+    \ *(data.begin() + i); }\n    const std::vector<vector<Edge>>::const_reference\
+    \ operator[](std::size_t i) const { return *(data.cbegin() + i); }\n    void add_edge(const\
+    \ Edge& e) { data[e.src].push_back(e); }\n    void add_edge(std::size_t src, std::size_t\
+    \ dest, ll weight = 1) { data[src].push_back({src, dest, weight}); }\n    std::size_t\
+    \ size() const { return _n; }\n\n   private:\n    std::size_t _n;\n};\nstruct\
+    \ AdjacencyList {\n    AdjacencyList(std::size_t n, std::size_t m) : _n(n), _m(m),\
+    \ index(n + 1), _build_flg(m == 0) { buf.reserve(m); }\n\n    struct AdjacencyRange\
+    \ {\n        using iterator = std::vector<Edge>::const_iterator;\n        using\
+    \ reference = std::vector<Edge>::const_reference;\n        iterator _begin, _end;\n\
+    \        iterator begin() const { return _begin; }\n        iterator end() const\
+    \ { return _end; }\n        reference operator[](std::size_t i) const { return\
+    \ *(_begin + i); }\n        std::size_t size() const { return std::distance(_begin,\
+    \ _end); }\n        bool empty() const { return size() == 0; }\n    };\n    AdjacencyRange\
+    \ operator[](std::size_t i) const {\n        return AdjacencyRange{data.begin()\
+    \ + index[i], data.begin() + index[i + 1]};\n    }\n\n    void build() {\n   \
+    \     std::partial_sum(index.begin(), index.end(), index.begin());\n        data.resize(_m);\n\
+    \        for (auto&& e : buf) data[--index[e.src]] = e;\n        _build_flg =\
+    \ true;\n    }\n    void add_edge(const Edge& e) {\n        ++index[e.src];\n\
+    \        buf.emplace_back(e);\n        if (buf.size() == _m) build();\n    }\n\
+    \    void add_edge(std::size_t src, std::size_t dest, ll weight = 1) { add_edge(Edge(src,\
+    \ dest, weight)); }\n    std::size_t size() const { return _n; }\n    std::size_t\
+    \ n_edge() const { return _m; }\n    bool build_flg() const { return _build_flg;\
+    \ }\n\n   private:\n    std::size_t _n, _m;\n    std::vector<Edge> buf, data;\n\
+    \    std::vector<std::size_t> index;\n    bool _build_flg;\n};\n}  // namespace\
+    \ bys\n#line 4 \"graphv2/result.hpp\"\nnamespace bys {\n/**\n * @brief Single\
+    \ Source Shortest Path Result\n * \u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\
+    \u554F\u984C\u306E\u7B54\u3048\n * \u7D4C\u8DEF\u5FA9\u5143\u3082\u3067\u304D\u308B\
+    \n */\nstruct SSSPResult {\n    std::size_t source;\n    std::vector<ll> cost;\n\
+    \    std::vector<int> prev;\n\n    SSSPResult(std::size_t _n, std::size_t _source)\
+    \ : source(_source), cost(_n, LINF), prev(_n, -1) {}\n    vector<std::size_t>\
+    \ path(int to) const {\n        vector<std::size_t> res;\n        while (to !=\
+    \ -1) {\n            res.push_back(to);\n            to = prev[to];\n        }\n\
+    \        std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\
+    struct APSPResult {\n    std::vector<std::vector<ll>> cost;\n    std::vector<std::vector<int>>\
+    \ prev;\n    APSPResult(std::size_t _n) : cost(_n, vector(_n, LINF)), prev(_n,\
+    \ vector(_n, -1)) {}\n    std::vector<std::size_t> path(int from, int to) {\n\
+    \        vector<std::size_t> res;\n        for (int now = to; now != from; now\
+    \ = prev[from][now]) {\n            res.push_back(now);\n        }\n        res.push_back(from);\n\
+    \        std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\
+    }  // namespace bys\n#line 7 \"graphv2/breadth_first_search.hpp\"\nnamespace bys\
+    \ {\n/**\n * @brief \u5E45\u512A\u5148\u63A2\u7D22\n *\n * @tparam AdjacencyList\
+    \ or DynamicAdjacencyList\n */\ntemplate <class Adj>\nSSSPResult breadth_first_search(const\
+    \ Adj& graph, std::size_t source) {\n    std::size_t n = graph.size();\n    SSSPResult\
+    \ res(n, source);\n    std::queue<std::size_t> que;\n    que.emplace(source);\n\
+    \    res.cost[source] = 0;\n    while (!que.empty()) {\n        auto top = que.front();\n\
+    \        que.pop();\n        for (auto&& next : graph[top]) {\n            if\
+    \ (res.cost[next] == LINF) {\n                res.prev[next] = top;\n        \
+    \        res.cost[next] = res.cost[top] + 1;\n                que.emplace(next.dest);\n\
+    \            }\n        }\n    }\n    return res;\n}\nSSSPResult zero_one_bfs(const\
+    \ AdjacencyList& graph, std::size_t source) {\n    std::size_t n = graph.size();\n\
+    \    SSSPResult res(n, source);\n    std::deque<std::size_t> que;\n    que.emplace_back(source);\n\
+    \    res.cost[source] = 0;\n    while (!que.empty()) {\n        auto top = que.front();\n\
+    \        que.pop_front();\n        for (auto&& next : graph[top]) {\n        \
+    \    ll next_cost = res.cost[top] + next.weight;\n            if (next_cost >=\
+    \ res.cost[next]) continue;\n            res.cost[next] = next_cost;\n       \
+    \     res.prev[next] = top;\n            if (next.weight == 0) {\n           \
+    \     que.emplace_front(next.dest);\n            } else if (next.weight == 1)\
+    \ {\n                que.emplace_back(next.dest);\n            } else {\n    \
+    \            throw RE;\n            }\n        }\n    }\n    return res;\n}\n\n\
+    }  // namespace bys\n#line 2 \"utility/change.hpp\"\nnamespace bys {\ntemplate\
+    \ <class T>\ninline bool chmax(T& a, const T& b) {\n    if (a < b) {\n       \
+    \ a = b;\n        return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline\
+    \ bool chmin(T& a, const T& b) {\n    if (b < a) {\n        a = b;\n        return\
+    \ 1;\n    }\n    return 0;\n}\n}  // namespace bys\n#line 3 \"utility/grid.hpp\"\
+    \n\nnamespace bys {\n//! @brief \u30B0\u30EA\u30C3\u30C9\u63A2\u7D22\u7BA1\u7406\
+    \nstruct Grid {\n    int h, w;\n    Grid(int row, int col) : h(row), w(col) {}\n\
+    \n    bool contain(int row, int col) const { return 0 <= row && row < h && 0 <=\
+    \ col && col < w; }\n    int area() const { return h * w; }\n    int index(int\
+    \ row, int col) const {\n        assert(contain(row, col));\n        return row\
+    \ * w + col;\n    }\n    int index(std::pair<int, int> p) const { return index(p.first,\
+    \ p.second); }\n\n    pair<int, int> coord(int idx) const {\n        assert(0\
+    \ <= idx && idx < area());\n        return {idx / w, idx % w};\n    }\n    vector<pair<int,\
+    \ int>> next(int row, int col, const vector<pair<int, int>> delta) const {\n \
+    \       assert(contain(row, col));\n        vector<pair<int, int>> res;\n    \
+    \    for (auto [di, dj] : delta) {\n            int ni = row + di;\n         \
+    \   int nj = col + dj;\n            if (contain(ni, nj)) res.push_back({ni, nj});\n\
+    \        }\n        return res;\n    }\n    //! @brief \u53F3\u30FB\u4E0B\n  \
+    \  vector<pair<int, int>> next2(int row, int col) const { return next(row, col,\
+    \ {{1, 0}, {0, 1}}); }\n    //! @brief \u4E0A\u4E0B\u5DE6\u53F3\n    vector<pair<int,\
+    \ int>> next4(int row, int col) const { return next(row, col, {{1, 0}, {-1, 0},\
+    \ {0, 1}, {0, -1}}); }\n    //! @brief 8\u65B9\u5411\n    vector<pair<int, int>>\
+    \ next8(int row, int col) const {\n        vector<pair<int, int>> delta;\n   \
+    \     for (int di = -1; di <= 1; ++di) {\n            for (int dj = -1; dj <=\
+    \ 1; ++dj) {\n                if (di == 0 && dj == 0) continue;\n            \
+    \    delta.push_back({di, dj});\n            }\n        }\n        return next(row,\
+    \ col, delta);\n    }\n};\n}  // namespace bys\n#line 2 \"utility/range.hpp\"\n\
+    \nnamespace bys {\n//! @brief Python\u306Erange\ntemplate <typename T>\nstruct\
     \ Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop), step(step),\
     \ dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop), step(1),\
     \ dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end() const {\
@@ -215,21 +271,30 @@ data:
     \ {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T>\
     \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
     \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
-    \ namespace bys\n#line 6 \"test/graph/bellman_ford.test.cpp\"\n\nnamespace bys\
-    \ {\nvoid Solver::solve() {\n    auto [v, e, r] = scanner.read<int, 3>();\n  \
-    \  auto graph = read_elist_uvc(e, 0);\n    BellmanFord bf(graph, v, r);\n    if\
-    \ (bf.negative_cycle) EXIT(\"NEGATIVE CYCLE\");\n    for (auto&& e : bf.cost)\
-    \ print(e == LINF ? \"INF\" : std::to_string(e));\n}\n}  // namespace bys\nint\
-    \ main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ namespace bys\n#line 7 \"test/graphv2/bfs_grid.test.cpp\"\n\nnamespace bys {\n\
+    void Solver::solve() {\n    auto [h, w] = scanner.read<int, 2>();\n    auto c\
+    \ = scanner.readvec<string>(h);\n    Grid grid(h, w);\n\n    DynamicAdjacencyList\
+    \ graph(grid.area());\n    for (int i : Range(h)) {\n        for (int j : Range(w))\
+    \ {\n            if (c[i][j] == '#') continue;\n            for (auto [ni, nj]\
+    \ : grid.next2(i, j)) {\n                if (c[ni][nj] == '.') graph.add_edge(grid.index(i,\
+    \ j), grid.index(ni, nj));\n            }\n        }\n    }\n    auto res = breadth_first_search(graph,\
+    \ 0);\n    ll ans = 0;\n    for (const auto d : res.cost) {\n        if (d !=\
+    \ LINF) chmax(ans, d);\n    }\n    print(ans + 1);\n}\n}  // namespace bys\n\n\
+    int main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
     \ */);\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B\"\
-    \n#include \"../../core/core.hpp\"\n#include \"../../graph/bellman_ford.hpp\"\n\
-    #include \"../../graph/reader.hpp\"\n#include \"../../utility/range.hpp\"\n\n\
-    namespace bys {\nvoid Solver::solve() {\n    auto [v, e, r] = scanner.read<int,\
-    \ 3>();\n    auto graph = read_elist_uvc(e, 0);\n    BellmanFord bf(graph, v,\
-    \ r);\n    if (bf.negative_cycle) EXIT(\"NEGATIVE CYCLE\");\n    for (auto&& e\
-    \ : bf.cost) print(e == LINF ? \"INF\" : std::to_string(e));\n}\n}  // namespace\
-    \ bys\nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc232/tasks/abc232_d\"\n#include\
+    \ \"../../core/core.hpp\"\n#include \"../../graphv2/breadth_first_search.hpp\"\
+    \n#include \"../../utility/change.hpp\"\n#include \"../../utility/grid.hpp\"\n\
+    #include \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [h, w] = scanner.read<int, 2>();\n    auto c = scanner.readvec<string>(h);\n\
+    \    Grid grid(h, w);\n\n    DynamicAdjacencyList graph(grid.area());\n    for\
+    \ (int i : Range(h)) {\n        for (int j : Range(w)) {\n            if (c[i][j]\
+    \ == '#') continue;\n            for (auto [ni, nj] : grid.next2(i, j)) {\n  \
+    \              if (c[ni][nj] == '.') graph.add_edge(grid.index(i, j), grid.index(ni,\
+    \ nj));\n            }\n        }\n    }\n    auto res = breadth_first_search(graph,\
+    \ 0);\n    ll ans = 0;\n    for (const auto d : res.cost) {\n        if (d !=\
+    \ LINF) chmax(ans, d);\n    }\n    print(ans + 1);\n}\n}  // namespace bys\n\n\
+    int main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
     \ */);\n    return 0;\n}\n"
   dependsOn:
   - core/core.hpp
@@ -241,21 +306,22 @@ data:
   - core/scanner.hpp
   - core/macro.hpp
   - core/solver.hpp
-  - graph/bellman_ford.hpp
+  - graphv2/breadth_first_search.hpp
+  - graphv2/edge.hpp
+  - graphv2/result.hpp
   - utility/change.hpp
-  - graph/edge.hpp
-  - graph/reader.hpp
+  - utility/grid.hpp
   - utility/range.hpp
   isVerificationFile: true
-  path: test/graph/bellman_ford.test.cpp
+  path: test/graphv2/bfs_grid.test.cpp
   requiredBy: []
   timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/graph/bellman_ford.test.cpp
+documentation_of: test/graphv2/bfs_grid.test.cpp
 layout: document
 redirect_from:
-- /verify/test/graph/bellman_ford.test.cpp
-- /verify/test/graph/bellman_ford.test.cpp.html
-title: test/graph/bellman_ford.test.cpp
+- /verify/test/graphv2/bfs_grid.test.cpp
+- /verify/test/graphv2/bfs_grid.test.cpp.html
+title: test/graphv2/bfs_grid.test.cpp
 ---

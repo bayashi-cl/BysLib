@@ -33,7 +33,7 @@ data:
     title: graph/dijkstra.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -152,43 +152,43 @@ data:
     \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
     \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
     \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
-    \ 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge {\n    int from, to;\n\
-    \    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n \
-    \   Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\
-    \u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to), cost(cost)\
-    \ {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\n    Edge(int\
-    \ from, int to, ll cost) : from(from), to(to), cost(cost) {}\n    bool operator<(const\
-    \ Edge& rh) const { return cost < rh.cost; }\n    operator std::size_t() const\
-    \ { return to; }\n    friend std::ostream& operator<<(std::ostream& os, const\
-    \ Edge& e) {\n        return os << \"{\" << e.from << \" -> \" << e.to << \":\
-    \ \" << e.cost << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\nusing\
-    \ EdgeList = vector<Edge>;\n}  // namespace bys\n#line 4 \"graph/dijkstra.hpp\"\
-    \n\nnamespace bys {\nstruct Dijkstra {\n    int n_node;\n    vector<int> prev;\n\
-    \    vector<ll> cost;\n\n    Dijkstra(const Adj& graph, int start, ll err_val\
-    \ = -1) : n_node(graph.size()), prev(n_node, -1), cost(n_node, LINF) {\n     \
-    \   search(graph, start);\n        std::replace(cost.begin(), cost.end(), LINF,\
-    \ err_val);\n    }\n\n    void search(const Adj& graph, int start) {\n       \
-    \ using Node = std::pair<ll, int>;\n        std::priority_queue<Node, vector<Node>,\
-    \ std::greater<Node>> que;\n        cost[start] = 0;\n        que.push({0, start});\n\
-    \        while (!que.empty()) {\n            auto top = que.top();\n         \
-    \   que.pop();\n            if (cost[top.second] < top.first) continue;\n    \
-    \        for (auto&& next : graph[top.second]) {\n                ll next_cost\
-    \ = cost[top.second] + next.cost;\n                if (next_cost < cost[next.to])\
-    \ {\n                    cost[next.to] = next_cost;\n                    prev[next.to]\
-    \ = top.second;\n                    que.push({next_cost, next.to});\n       \
-    \         }\n            }\n        }\n    }\n    vector<int> path(int to) {\n\
-    \        assert(to < n_node);\n        vector<int> res;\n        while (to !=\
-    \ -1) {\n            res.push_back(to);\n            to = prev[to];\n        }\n\
-    \        std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\
-    }  // namespace bys\n#line 4 \"test/graph/dijkstra.test.cpp\"\n\nnamespace bys\
-    \ {\nvoid Solver::solve() {\n    auto [n, m, s, t] = scanner.read<int, 4>();\n\
-    \    Adj graph(n);\n    for (int i = 0; i < m; ++i) {\n        auto [a, b, c]\
-    \ = scanner.read<int, 3>();\n        graph[a].push_back({b, c});\n        // graph[b].push_back({a,\
-    \ c});\n    }\n    Dijkstra dij(graph, s);\n    if (dij.cost[t] == -1) EXIT(-1);\n\
-    \    auto path = dij.path(t);\n    int sz = path.size();\n    print(dij.cost[t],\
-    \ sz - 1);\n    for (int i = 0; i < sz - 1; ++i) print(path[i], path[i + 1]);\n\
-    }\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/*\
-    \ bys::scanner.read<int>() */);\n    return 0;\n}\n"
+    \ 3 \"graph/edge.hpp\"\n\nnamespace bys {\n/**\n * @brief \u30B0\u30E9\u30D5\u30C6\
+    \u30F3\u30D7\u30EC\u30FC\u30C8\n */\nstruct Edge {\n    int from, to;\n    ll\
+    \ cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n    Edge(int\
+    \ to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u5358\
+    \u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to), cost(cost) {}\n  \
+    \  //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\n    Edge(int from, int\
+    \ to, ll cost) : from(from), to(to), cost(cost) {}\n    bool operator<(const Edge&\
+    \ rh) const { return cost < rh.cost; }\n    operator std::size_t() const { return\
+    \ to; }\n    friend std::ostream& operator<<(std::ostream& os, const Edge& e)\
+    \ {\n        return os << \"{\" << e.from << \" -> \" << e.to << \": \" << e.cost\
+    \ << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n\
+    }  // namespace bys\n#line 4 \"graph/dijkstra.hpp\"\n\nnamespace bys {\nstruct\
+    \ Dijkstra {\n    int n_node;\n    vector<int> prev;\n    vector<ll> cost;\n\n\
+    \    Dijkstra(const Adj& graph, int start, ll err_val = -1) : n_node(graph.size()),\
+    \ prev(n_node, -1), cost(n_node, LINF) {\n        search(graph, start);\n    \
+    \    std::replace(cost.begin(), cost.end(), LINF, err_val);\n    }\n\n    void\
+    \ search(const Adj& graph, int start) {\n        using Node = std::pair<ll, int>;\n\
+    \        std::priority_queue<Node, vector<Node>, std::greater<Node>> que;\n  \
+    \      cost[start] = 0;\n        que.push({0, start});\n        while (!que.empty())\
+    \ {\n            auto top = que.top();\n            que.pop();\n            if\
+    \ (cost[top.second] < top.first) continue;\n            for (auto&& next : graph[top.second])\
+    \ {\n                ll next_cost = cost[top.second] + next.cost;\n          \
+    \      if (next_cost < cost[next.to]) {\n                    cost[next.to] = next_cost;\n\
+    \                    prev[next.to] = top.second;\n                    que.push({next_cost,\
+    \ next.to});\n                }\n            }\n        }\n    }\n    vector<int>\
+    \ path(int to) {\n        assert(to < n_node);\n        vector<int> res;\n   \
+    \     while (to != -1) {\n            res.push_back(to);\n            to = prev[to];\n\
+    \        }\n        std::reverse(res.begin(), res.end());\n        return res;\n\
+    \    }\n};\n}  // namespace bys\n#line 4 \"test/graph/dijkstra.test.cpp\"\n\n\
+    namespace bys {\nvoid Solver::solve() {\n    auto [n, m, s, t] = scanner.read<int,\
+    \ 4>();\n    Adj graph(n);\n    for (int i = 0; i < m; ++i) {\n        auto [a,\
+    \ b, c] = scanner.read<int, 3>();\n        graph[a].push_back({b, c});\n     \
+    \   // graph[b].push_back({a, c});\n    }\n    Dijkstra dij(graph, s);\n    if\
+    \ (dij.cost[t] == -1) EXIT(-1);\n    auto path = dij.path(t);\n    int sz = path.size();\n\
+    \    print(dij.cost[t], sz - 1);\n    for (int i = 0; i < sz - 1; ++i) print(path[i],\
+    \ path[i + 1]);\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n\
+    \    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\n#include\
     \ \"core/core.hpp\"\n#include \"graph/dijkstra.hpp\"\n\nnamespace bys {\nvoid\
     \ Solver::solve() {\n    auto [n, m, s, t] = scanner.read<int, 4>();\n    Adj\
@@ -214,7 +214,7 @@ data:
   isVerificationFile: true
   path: test/graph/dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/dijkstra.test.cpp

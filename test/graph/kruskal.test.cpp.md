@@ -33,7 +33,7 @@ data:
     title: data/union_find.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - icon: ':heavy_check_mark:'
     path: graph/kruskal.hpp
     title: graph/kruskal.hpp
@@ -173,7 +173,8 @@ data:
     \ }\n    std::size_t n_tree() { return _n_tree; }\n\n   private:\n    std::size_t\
     \ _n, _n_tree;\n    std::vector<int> parent;  // \u8CA0\u306A\u3089\u89AA\u3067\
     \u3042\u308A\u305D\u306E\u5024\u306F(-\u5B50\u306E\u6570)\n};\n}  // namespace\
-    \ bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge {\n    int from,\
+    \ bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\n/**\n * @brief \u30B0\u30E9\
+    \u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\n */\nstruct Edge {\n    int from,\
     \ to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\
     \n    Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\
     \u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to),\
@@ -223,7 +224,7 @@ data:
   isVerificationFile: true
   path: test/graph/kruskal.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/kruskal.test.cpp

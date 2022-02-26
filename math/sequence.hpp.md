@@ -10,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "\u03A3[0, n)"
+    document_title: "\u6570\u5217"
     links: []
   bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
     \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
@@ -24,22 +24,24 @@ data:
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"math/sequence.hpp\"\nnamespace bys {\ntemplate <class T>\nstruct\
-    \ Arithmetic {\n    T a0, d;\n    Arithmetic(T a0, T d) : a0(a0), d(d) {}\n  \
-    \  T an(T n) { return a0 + d * n; }\n\n    //! @brief \u03A3[0, n)\n    T sn(T\
-    \ n) { return (a0 + an(n - 1)) * n / 2; }\n    //! @brief \u03A3[l, r)\n    T\
-    \ sn(T l, T r) { return sn(r) - sn(l); }\n};\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"../core/stdlib.hpp\"\nnamespace bys {\ntemplate\
-    \ <class T>\nstruct Arithmetic {\n    T a0, d;\n    Arithmetic(T a0, T d) : a0(a0),\
-    \ d(d) {}\n    T an(T n) { return a0 + d * n; }\n\n    //! @brief \u03A3[0, n)\n\
-    \    T sn(T n) { return (a0 + an(n - 1)) * n / 2; }\n    //! @brief \u03A3[l,\
-    \ r)\n    T sn(T l, T r) { return sn(r) - sn(l); }\n};\n}  // namespace bys\n"
+    \ bys\n#line 3 \"math/sequence.hpp\"\n/**\n * @brief \u6570\u5217\n *\n */\n\n\
+    namespace bys {\ntemplate <class T>\nstruct Arithmetic {\n    T a0, d;\n    Arithmetic(T\
+    \ a0, T d) : a0(a0), d(d) {}\n    T an(T n) { return a0 + d * n; }\n\n    //!\
+    \ @brief \u03A3[0, n)\n    T sn(T n) { return (a0 + an(n - 1)) * n / 2; }\n  \
+    \  //! @brief \u03A3[l, r)\n    T sn(T l, T r) { return sn(r) - sn(l); }\n};\n\
+    }  // namespace bys\n"
+  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n/**\n * @brief \u6570\u5217\
+    \n *\n */\n\nnamespace bys {\ntemplate <class T>\nstruct Arithmetic {\n    T a0,\
+    \ d;\n    Arithmetic(T a0, T d) : a0(a0), d(d) {}\n    T an(T n) { return a0 +\
+    \ d * n; }\n\n    //! @brief \u03A3[0, n)\n    T sn(T n) { return (a0 + an(n -\
+    \ 1)) * n / 2; }\n    //! @brief \u03A3[l, r)\n    T sn(T l, T r) { return sn(r)\
+    \ - sn(l); }\n};\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   isVerificationFile: false
   path: math/sequence.hpp
   requiredBy: []
-  timestamp: '2022-02-26 15:09:13+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: math/sequence.hpp
@@ -47,5 +49,5 @@ layout: document
 redirect_from:
 - /library/math/sequence.hpp
 - /library/math/sequence.hpp.html
-title: "\u03A3[0, n)"
+title: "\u6570\u5217"
 ---

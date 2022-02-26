@@ -9,7 +9,7 @@ data:
     title: core/stdlib.hpp
   - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
-    title: "\u91CD\u307F\u306A\u3057\u5358\u9802\u70B9"
+    title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: utility/change.hpp
@@ -35,7 +35,8 @@ data:
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge {\n    int from,\
+    \ bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\n/**\n * @brief \u30B0\u30E9\
+    \u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\n */\nstruct Edge {\n    int from,\
     \ to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\
     \n    Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\
     \u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to),\
@@ -96,7 +97,7 @@ data:
   isVerificationFile: false
   path: graph/warshall_floyd.hpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 20:23:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/warshallfloyd.test.cpp

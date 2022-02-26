@@ -17,11 +17,15 @@ data:
     path: graphv2/result.hpp
     title: Single Source Shortest Path Result
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/bfs_grid.test.cpp
+    title: test/graphv2/bfs_grid.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    document_title: "\u5E45\u512A\u5148\u63A2\u7D22"
     links: []
   bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
     \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
@@ -97,8 +101,32 @@ data:
     \ = prev[from][now]) {\n            res.push_back(now);\n        }\n        res.push_back(from);\n\
     \        std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\
     }  // namespace bys\n#line 7 \"graphv2/breadth_first_search.hpp\"\nnamespace bys\
-    \ {\nSSSPResult breadth_first_search(const AdjacencyList& graph, std::size_t source)\
-    \ {\n    std::size_t n = graph.size();\n    SSSPResult res(n, source);\n    std::queue<std::size_t>\
+    \ {\n/**\n * @brief \u5E45\u512A\u5148\u63A2\u7D22\n *\n * @tparam AdjacencyList\
+    \ or DynamicAdjacencyList\n */\ntemplate <class Adj>\nSSSPResult breadth_first_search(const\
+    \ Adj& graph, std::size_t source) {\n    std::size_t n = graph.size();\n    SSSPResult\
+    \ res(n, source);\n    std::queue<std::size_t> que;\n    que.emplace(source);\n\
+    \    res.cost[source] = 0;\n    while (!que.empty()) {\n        auto top = que.front();\n\
+    \        que.pop();\n        for (auto&& next : graph[top]) {\n            if\
+    \ (res.cost[next] == LINF) {\n                res.prev[next] = top;\n        \
+    \        res.cost[next] = res.cost[top] + 1;\n                que.emplace(next.dest);\n\
+    \            }\n        }\n    }\n    return res;\n}\nSSSPResult zero_one_bfs(const\
+    \ AdjacencyList& graph, std::size_t source) {\n    std::size_t n = graph.size();\n\
+    \    SSSPResult res(n, source);\n    std::deque<std::size_t> que;\n    que.emplace_back(source);\n\
+    \    res.cost[source] = 0;\n    while (!que.empty()) {\n        auto top = que.front();\n\
+    \        que.pop_front();\n        for (auto&& next : graph[top]) {\n        \
+    \    ll next_cost = res.cost[top] + next.weight;\n            if (next_cost >=\
+    \ res.cost[next]) continue;\n            res.cost[next] = next_cost;\n       \
+    \     res.prev[next] = top;\n            if (next.weight == 0) {\n           \
+    \     que.emplace_front(next.dest);\n            } else if (next.weight == 1)\
+    \ {\n                que.emplace_back(next.dest);\n            } else {\n    \
+    \            throw RE;\n            }\n        }\n    }\n    return res;\n}\n\n\
+    }  // namespace bys\n"
+  code: "#pragma once\n#include \"../core/const.hpp\"\n#include \"../core/macro.hpp\"\
+    \n#include \"../core/stdlib.hpp\"\n#include \"edge.hpp\"\n#include \"result.hpp\"\
+    \nnamespace bys {\n/**\n * @brief \u5E45\u512A\u5148\u63A2\u7D22\n *\n * @tparam\
+    \ AdjacencyList or DynamicAdjacencyList\n */\ntemplate <class Adj>\nSSSPResult\
+    \ breadth_first_search(const Adj& graph, std::size_t source) {\n    std::size_t\
+    \ n = graph.size();\n    SSSPResult res(n, source);\n    std::queue<std::size_t>\
     \ que;\n    que.emplace(source);\n    res.cost[source] = 0;\n    while (!que.empty())\
     \ {\n        auto top = que.front();\n        que.pop();\n        for (auto&&\
     \ next : graph[top]) {\n            if (res.cost[next] == LINF) {\n          \
@@ -115,27 +143,6 @@ data:
     \            } else if (next.weight == 1) {\n                que.emplace_back(next.dest);\n\
     \            } else {\n                throw RE;\n            }\n        }\n \
     \   }\n    return res;\n}\n\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"../core/const.hpp\"\n#include \"../core/macro.hpp\"\
-    \n#include \"../core/stdlib.hpp\"\n#include \"edge.hpp\"\n#include \"result.hpp\"\
-    \nnamespace bys {\nSSSPResult breadth_first_search(const AdjacencyList& graph,\
-    \ std::size_t source) {\n    std::size_t n = graph.size();\n    SSSPResult res(n,\
-    \ source);\n    std::queue<std::size_t> que;\n    que.emplace(source);\n    res.cost[source]\
-    \ = 0;\n    while (!que.empty()) {\n        auto top = que.front();\n        que.pop();\n\
-    \        for (auto&& next : graph[top]) {\n            if (res.cost[next] == LINF)\
-    \ {\n                res.prev[next] = top;\n                res.cost[next] = res.cost[top]\
-    \ + 1;\n                que.emplace(next.dest);\n            }\n        }\n  \
-    \  }\n    return res;\n}\nSSSPResult zero_one_bfs(const AdjacencyList& graph,\
-    \ std::size_t source) {\n    std::size_t n = graph.size();\n    SSSPResult res(n,\
-    \ source);\n    std::deque<std::size_t> que;\n    que.emplace_back(source);\n\
-    \    res.cost[source] = 0;\n    while (!que.empty()) {\n        auto top = que.front();\n\
-    \        que.pop_front();\n        for (auto&& next : graph[top]) {\n        \
-    \    ll next_cost = res.cost[top] + next.weight;\n            if (next_cost >=\
-    \ res.cost[next]) continue;\n            res.cost[next] = next_cost;\n       \
-    \     res.prev[next] = top;\n            if (next.weight == 0) {\n           \
-    \     que.emplace_front(next.dest);\n            } else if (next.weight == 1)\
-    \ {\n                que.emplace_back(next.dest);\n            } else {\n    \
-    \            throw RE;\n            }\n        }\n    }\n    return res;\n}\n\n\
-    }  // namespace bys\n"
   dependsOn:
   - core/const.hpp
   - core/stdlib.hpp
@@ -145,13 +152,14 @@ data:
   isVerificationFile: false
   path: graphv2/breadth_first_search.hpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-02-26 20:23:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/graphv2/bfs_grid.test.cpp
 documentation_of: graphv2/breadth_first_search.hpp
 layout: document
 redirect_from:
 - /library/graphv2/breadth_first_search.hpp
 - /library/graphv2/breadth_first_search.hpp.html
-title: graphv2/breadth_first_search.hpp
+title: "\u5E45\u512A\u5148\u63A2\u7D22"
 ---
