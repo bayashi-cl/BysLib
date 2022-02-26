@@ -28,6 +28,10 @@ struct MultiComb {
         if (r < 0 || n < r) return 0;
         return fact[n] * (factinv[r] * factinv[n - r] % mod) % mod;
     }
+    ll perm(int n, int r) {
+        if (r < 0 || n < r) return 0;
+        return fact[n] * factinv[n - r] % mod;
+    }
 };
 
 template <class T>

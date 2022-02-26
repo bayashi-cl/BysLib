@@ -25,6 +25,10 @@ AdjacencyList read_adj_uvc(std::size_t n, std::size_t m, bool directed = false, 
     }
     return graph;
 }
+AdjacencyList read_tree_uv(std::size_t n, bool directed = false, int index = 1) { return read_adj_uv(n, n - 1, directed, index); }
+AdjacencyList read_tree_uvc(std::size_t n, bool directed = false, int index = 1) {
+    return read_adj_uvc(n, n - 1, directed, index);
+}
 vector<Edge> read_elist_uv(std::size_t m, int index = 1) {
     vector<Edge> elist;
     elist.reserve(m);
