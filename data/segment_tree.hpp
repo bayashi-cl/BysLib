@@ -20,12 +20,12 @@ class SegmentTree {
         assert(l <= r);
         assert(r <= _n);
 
-        T res = A::id;
+        T left = A::id, right = A::id;
         for (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {
-            if (l & 1) res = A::op(res, data[l++]);
-            if (r & 1) res = A::op(res, data[--r]);
+            if (l & 1) left = A::op(left, data[l++]);
+            if (r & 1) right = A::op(data[--r], right);
         }
-        return res;
+        return A::op(left, right);
     }
 
     T query_all() const { return data[1]; }
