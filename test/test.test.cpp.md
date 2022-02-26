@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -137,33 +136,34 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\n\
-    struct Edge {\n    int from, to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\
-    \u3057\u5358\u9802\u70B9\n    Edge(int to) : from(-1), to(to), cost(1) {}\n  \
-    \  //! @brief \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll\
-    \ cost) : from(-1), to(to), cost(cost) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\
-    \u4E21\u9802\u70B9\n    Edge(int from, int to, ll cost) : from(from), to(to),\
-    \ cost(cost) {}\n    bool operator<(const Edge& rh) const { return cost < rh.cost;\
-    \ }\n    operator std::size_t() const { return to; }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const Edge& e) {\n        return os << \"{\" <<\
-    \ e.from << \" -> \" << e.to << \": \" << e.cost << \"}\";\n    }\n};\nusing Adj\
-    \ = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n}  // namespace bys\n\
-    #line 4 \"test/test.test.cpp\"\n\nnamespace bys {\nvoid Solver::solve() {\n  \
-    \  Edge e(1, 2, 3);\n    // cout << e << endl;\n    DEBUG(e);\n}\n}  // namespace\
-    \ bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve();\n    bys::print(\"\
-    Hello World\");\n    return 0;\n}\n"
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge {\n    int from, to;\n\
+    \    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n \
+    \   Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\
+    \u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to), cost(cost)\
+    \ {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\n    Edge(int\
+    \ from, int to, ll cost) : from(from), to(to), cost(cost) {}\n    bool operator<(const\
+    \ Edge& rh) const { return cost < rh.cost; }\n    operator std::size_t() const\
+    \ { return to; }\n    friend std::ostream& operator<<(std::ostream& os, const\
+    \ Edge& e) {\n        return os << \"{\" << e.from << \" -> \" << e.to << \":\
+    \ \" << e.cost << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\nusing\
+    \ EdgeList = vector<Edge>;\n}  // namespace bys\n#line 4 \"test/test.test.cpp\"\
+    \n\nnamespace bys {\nvoid Solver::solve() {\n    Edge e(1, 2, 3);\n    // cout\
+    \ << e << endl;\n    DEBUG(e);\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver\
+    \ solver;\n    solver.solve();\n    bys::print(\"Hello World\");\n    return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
     \n#include \"core/core.hpp\"\n#include \"graph/edge.hpp\"\n\nnamespace bys {\n\
     void Solver::solve() {\n    Edge e(1, 2, 3);\n    // cout << e << endl;\n    DEBUG(e);\n\
@@ -183,7 +183,7 @@ data:
   isVerificationFile: true
   path: test/test.test.cpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/test.test.cpp

@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -143,28 +142,29 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"graphv2/edge.hpp\"\nnamespace bys {\n\
-    struct Edge {\n    std::size_t src, dest;\n    ll weight;\n    Edge() {}\n   \
-    \ Edge(std::size_t src, std::size_t dest, ll weight = 1) : src(src), dest(dest),\
-    \ weight(weight) {}\n    bool operator<(const Edge& rh) const { return weight\
-    \ < rh.weight; }\n    operator int() const { return dest; }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const Edge& e) {\n        return os << \"{\" <<\
-    \ e.src << \" -> \" << e.dest << \": \" << e.weight << \"}\";\n    }\n};\nstruct\
-    \ DynamicAdjacencyList {\n    std::vector<std::vector<Edge>> data;\n    DynamicAdjacencyList(std::size_t\
-    \ n) : data(n, vector<Edge>()), _n(n) {}\n    std::vector<vector<Edge>>::reference\
-    \ operator[](std::size_t i) { return *(data.begin() + i); }\n    const std::vector<vector<Edge>>::const_reference\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"graphv2/edge.hpp\"\nnamespace bys {\nstruct Edge {\n    std::size_t src,\
+    \ dest;\n    ll weight;\n    Edge() {}\n    Edge(std::size_t src, std::size_t\
+    \ dest, ll weight = 1) : src(src), dest(dest), weight(weight) {}\n    bool operator<(const\
+    \ Edge& rh) const { return weight < rh.weight; }\n    operator int() const { return\
+    \ dest; }\n    friend std::ostream& operator<<(std::ostream& os, const Edge& e)\
+    \ {\n        return os << \"{\" << e.src << \" -> \" << e.dest << \": \" << e.weight\
+    \ << \"}\";\n    }\n};\nstruct DynamicAdjacencyList {\n    std::vector<std::vector<Edge>>\
+    \ data;\n    DynamicAdjacencyList(std::size_t n) : data(n, vector<Edge>()), _n(n)\
+    \ {}\n    std::vector<vector<Edge>>::reference operator[](std::size_t i) { return\
+    \ *(data.begin() + i); }\n    const std::vector<vector<Edge>>::const_reference\
     \ operator[](std::size_t i) const { return *(data.cbegin() + i); }\n    void add_edge(const\
     \ Edge& e) { data[e.src].push_back(e); }\n    void add_edge(std::size_t src, std::size_t\
     \ dest, ll weight = 1) { data[src].push_back({src, dest, weight}); }\n    std::size_t\
@@ -250,7 +250,7 @@ data:
   isVerificationFile: true
   path: test/graphv2/dijkstra.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:09:40+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graphv2/dijkstra.test.cpp

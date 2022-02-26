@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -43,7 +42,7 @@ data:
     title: utility/change.hpp
   - icon: ':heavy_check_mark:'
     path: utility/range.hpp
-    title: "python\u306Erange\u3068\u540C\u3058\u6319\u52D5"
+    title: "Python\u306Erange"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -150,28 +149,29 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"graphv2/edge.hpp\"\nnamespace bys {\n\
-    struct Edge {\n    std::size_t src, dest;\n    ll weight;\n    Edge() {}\n   \
-    \ Edge(std::size_t src, std::size_t dest, ll weight = 1) : src(src), dest(dest),\
-    \ weight(weight) {}\n    bool operator<(const Edge& rh) const { return weight\
-    \ < rh.weight; }\n    operator int() const { return dest; }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const Edge& e) {\n        return os << \"{\" <<\
-    \ e.src << \" -> \" << e.dest << \": \" << e.weight << \"}\";\n    }\n};\nstruct\
-    \ DynamicAdjacencyList {\n    std::vector<std::vector<Edge>> data;\n    DynamicAdjacencyList(std::size_t\
-    \ n) : data(n, vector<Edge>()), _n(n) {}\n    std::vector<vector<Edge>>::reference\
-    \ operator[](std::size_t i) { return *(data.begin() + i); }\n    const std::vector<vector<Edge>>::const_reference\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"graphv2/edge.hpp\"\nnamespace bys {\nstruct Edge {\n    std::size_t src,\
+    \ dest;\n    ll weight;\n    Edge() {}\n    Edge(std::size_t src, std::size_t\
+    \ dest, ll weight = 1) : src(src), dest(dest), weight(weight) {}\n    bool operator<(const\
+    \ Edge& rh) const { return weight < rh.weight; }\n    operator int() const { return\
+    \ dest; }\n    friend std::ostream& operator<<(std::ostream& os, const Edge& e)\
+    \ {\n        return os << \"{\" << e.src << \" -> \" << e.dest << \": \" << e.weight\
+    \ << \"}\";\n    }\n};\nstruct DynamicAdjacencyList {\n    std::vector<std::vector<Edge>>\
+    \ data;\n    DynamicAdjacencyList(std::size_t n) : data(n, vector<Edge>()), _n(n)\
+    \ {}\n    std::vector<vector<Edge>>::reference operator[](std::size_t i) { return\
+    \ *(data.begin() + i); }\n    const std::vector<vector<Edge>>::const_reference\
     \ operator[](std::size_t i) const { return *(data.cbegin() + i); }\n    void add_edge(const\
     \ Edge& e) { data[e.src].push_back(e); }\n    void add_edge(std::size_t src, std::size_t\
     \ dest, ll weight = 1) { data[src].push_back({src, dest, weight}); }\n    std::size_t\
@@ -227,29 +227,29 @@ data:
     \ + res.cost[k][j])) {\n                    res.prev[i][j] = res.prev[k][j];\n\
     \                }\n            }\n        }\n    }\n    return res;\n}\n}  //\
     \ namespace bys\n#line 2 \"utility/range.hpp\"\n\nnamespace bys {\n//! @brief\
-    \ python\u306Erange\u3068\u540C\u3058\u6319\u52D5\ntemplate <typename T>\nstruct\
-    \ Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop), step(step),\
-    \ dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop), step(1),\
-    \ dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end() const {\
-    \ return stop; }\n    bool operator!=(const T val) const { return (val - it) *\
-    \ dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
-    \ const { return it; }\n\n   private:\n    T it;\n    const T stop, step;\n  \
-    \  const int dir;\n\n    friend Range reversed(const Range& r) {\n        auto\
-    \ new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n        return\
-    \ {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T>\
-    \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
-    \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
-    \ namespace bys\n#line 5 \"test/graphv2/warshallfloyd.test.cpp\"\n\nnamespace\
-    \ bys {\nvoid Solver::solve() {\n    auto [v, e] = scanner.read<int, 2>();\n\n\
-    \    vector<Edge> graph;\n    graph.reserve(e);\n    for (int i = 0; i < e; ++i)\
-    \ {\n        auto [s, t, d] = scanner.read<uint, uint, ll>();\n        graph.push_back({s,\
-    \ t, d});\n    }\n    auto res = warshall_floyd(graph, v);\n    for (int i : Range(v))\
-    \ {\n        if (res.cost[i][i] < 0) EXIT(\"NEGATIVE CYCLE\");\n    }\n    auto\
-    \ dump = [&](ll x) -> string { return x == LINF ? \"INF\" : std::to_string(x);\
-    \ };\n\n    for (auto&& e : res.cost) {\n        std::for_each(e.begin(), std::prev(e.end()),\
-    \ [&](ll x) { cout << dump(x) << \" \"; });\n        cout << dump(e.back()) <<\
-    \ endl;\n    }\n}\n}  // namespace bys\nint main() {\n    bys::Solver solver;\n\
-    \    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n}\n"
+    \ Python\u306Erange\ntemplate <typename T>\nstruct Range {\n    Range(T start,\
+    \ T stop, T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 :\
+    \ -1) {}\n    Range(T stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T>\
+    \ begin() const { return *this; }\n    T end() const { return stop; }\n    bool\
+    \ operator!=(const T val) const { return (val - it) * dir > 0; }\n    void operator++()\
+    \ { it += step; }\n    const T& operator*() const { return it; }\n\n   private:\n\
+    \    T it;\n    const T stop, step;\n    const int dir;\n\n    friend Range reversed(const\
+    \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
+    \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate\
+    \ <class T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class\
+    \ T>\nRange<T> irange(T start, T stop, T step = 1) {\n    return Range(start,\
+    \ stop, step);\n}\n}  // namespace bys\n#line 5 \"test/graphv2/warshallfloyd.test.cpp\"\
+    \n\nnamespace bys {\nvoid Solver::solve() {\n    auto [v, e] = scanner.read<int,\
+    \ 2>();\n\n    vector<Edge> graph;\n    graph.reserve(e);\n    for (int i = 0;\
+    \ i < e; ++i) {\n        auto [s, t, d] = scanner.read<uint, uint, ll>();\n  \
+    \      graph.push_back({s, t, d});\n    }\n    auto res = warshall_floyd(graph,\
+    \ v);\n    for (int i : Range(v)) {\n        if (res.cost[i][i] < 0) EXIT(\"NEGATIVE\
+    \ CYCLE\");\n    }\n    auto dump = [&](ll x) -> string { return x == LINF ? \"\
+    INF\" : std::to_string(x); };\n\n    for (auto&& e : res.cost) {\n        std::for_each(e.begin(),\
+    \ std::prev(e.end()), [&](ll x) { cout << dump(x) << \" \"; });\n        cout\
+    \ << dump(e.back()) << endl;\n    }\n}\n}  // namespace bys\nint main() {\n  \
+    \  bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n  \
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_C\"\
     \n#include \"../../core/core.hpp\"\n#include \"../../graphv2/warshall_floyd.hpp\"\
     \n#include \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
@@ -281,7 +281,7 @@ data:
   isVerificationFile: true
   path: test/graphv2/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:09:40+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graphv2/warshallfloyd.test.cpp

@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: data/binary_indexed_tree.hpp
-    title: O(log N)
+    title: Binary Indexed Tree
   - icon: ':heavy_check_mark:'
     path: data/segment_tree.hpp
     title: data/segment_tree.hpp

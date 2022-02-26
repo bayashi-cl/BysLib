@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -43,7 +42,7 @@ data:
     title: utility/change.hpp
   - icon: ':heavy_check_mark:'
     path: utility/range.hpp
-    title: "python\u306Erange\u3068\u540C\u3058\u6319\u52D5"
+    title: "Python\u306Erange"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -150,73 +149,73 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\n\
-    struct Edge {\n    int from, to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\
-    \u3057\u5358\u9802\u70B9\n    Edge(int to) : from(-1), to(to), cost(1) {}\n  \
-    \  //! @brief \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll\
-    \ cost) : from(-1), to(to), cost(cost) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\
-    \u4E21\u9802\u70B9\n    Edge(int from, int to, ll cost) : from(from), to(to),\
-    \ cost(cost) {}\n    bool operator<(const Edge& rh) const { return cost < rh.cost;\
-    \ }\n    operator std::size_t() const { return to; }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const Edge& e) {\n        return os << \"{\" <<\
-    \ e.from << \" -> \" << e.to << \": \" << e.cost << \"}\";\n    }\n};\nusing Adj\
-    \ = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n}  // namespace bys\n\
-    #line 2 \"utility/change.hpp\"\nnamespace bys {\ntemplate <class T>\ninline bool\
-    \ chmax(T& a, const T& b) {\n    if (a < b) {\n        a = b;\n        return\
-    \ 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const\
-    \ T& b) {\n    if (b < a) {\n        a = b;\n        return 1;\n    }\n    return\
-    \ 0;\n}\n}  // namespace bys\n#line 6 \"graph/warshall_floyd.hpp\"\n\nnamespace\
-    \ bys {\nstruct WarshallFloyd {\n    int n_node;\n    vector<vector<ll>> cost;\n\
-    \    vector<vector<int>> prev;\n\n    WarshallFloyd(const EdgeList& graph, int\
-    \ n_node)\n        : n_node(n_node), cost(n_node, vector(n_node, LINF)), prev(n_node,\
-    \ vector(n_node, -1)) {\n        for (auto&& e : graph) cost[e.from][e.to] = e.cost;\n\
-    \        for (int i = 0; i < n_node; ++i) cost[i][i] = 0;\n        for (int i\
-    \ = 0; i < n_node; ++i) {\n            for (int j = 0; j < n_node; ++j) {\n  \
-    \              prev[i][j] = i;\n            }\n        }\n        search();\n\
-    \    }\n\n    void search() {\n        for (int k = 0; k < n_node; k++) {\n  \
-    \          for (int i = 0; i < n_node; i++) {\n                for (int j = 0;\
-    \ j < n_node; j++) {\n                    if (chmin(cost[i][j], cost[i][k] + cost[k][j]))\
-    \ {\n                        prev[i][j] = prev[k][j];\n                    }\n\
-    \                }\n            }\n        }\n    }\n    vector<int> path(int\
-    \ from, int to) {\n        vector<int> res;\n        for (int now = to; now !=\
-    \ from; now = prev[from][now]) {\n            res.push_back(now);\n        }\n\
-    \        res.push_back(from);\n        std::reverse(res.begin(), res.end());\n\
-    \        return res;\n    }\n};\n}  // namespace bys\n#line 5 \"graph/reader.hpp\"\
-    \n\nnamespace bys {\nAdj read_adj_uv(int n, int m, bool directed = false, int\
-    \ index = 1) {\n    Adj graph(n);\n    for (int i = 0; i < m; ++i) {\n       \
-    \ auto [u, v] = scanner.read<int, 2>();\n        u -= index;\n        v -= index;\n\
-    \        graph[u].push_back({v});\n        if (!directed) graph[v].push_back({u});\n\
-    \    }\n    return graph;\n}\nAdj read_adj_uvc(int n, int m, bool directed = false,\
-    \ int index = 1) {\n    Adj graph(n);\n    for (int i = 0; i < m; ++i) {\n   \
-    \     auto [u, v, c] = scanner.read<int, int, ll>();\n        u -= index;\n  \
-    \      v -= index;\n        graph[u].push_back({v, c});\n        if (!directed)\
-    \ graph[v].push_back({u, c});\n    }\n    return graph;\n}\nEdgeList read_elist_uv(int\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge {\n    int from, to;\n\
+    \    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n \
+    \   Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\
+    \u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1), to(to), cost(cost)\
+    \ {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\n    Edge(int\
+    \ from, int to, ll cost) : from(from), to(to), cost(cost) {}\n    bool operator<(const\
+    \ Edge& rh) const { return cost < rh.cost; }\n    operator std::size_t() const\
+    \ { return to; }\n    friend std::ostream& operator<<(std::ostream& os, const\
+    \ Edge& e) {\n        return os << \"{\" << e.from << \" -> \" << e.to << \":\
+    \ \" << e.cost << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\nusing\
+    \ EdgeList = vector<Edge>;\n}  // namespace bys\n#line 2 \"utility/change.hpp\"\
+    \nnamespace bys {\ntemplate <class T>\ninline bool chmax(T& a, const T& b) {\n\
+    \    if (a < b) {\n        a = b;\n        return 1;\n    }\n    return 0;\n}\n\
+    template <class T>\ninline bool chmin(T& a, const T& b) {\n    if (b < a) {\n\
+    \        a = b;\n        return 1;\n    }\n    return 0;\n}\n}  // namespace bys\n\
+    #line 6 \"graph/warshall_floyd.hpp\"\n\nnamespace bys {\nstruct WarshallFloyd\
+    \ {\n    int n_node;\n    vector<vector<ll>> cost;\n    vector<vector<int>> prev;\n\
+    \n    WarshallFloyd(const EdgeList& graph, int n_node)\n        : n_node(n_node),\
+    \ cost(n_node, vector(n_node, LINF)), prev(n_node, vector(n_node, -1)) {\n   \
+    \     for (auto&& e : graph) cost[e.from][e.to] = e.cost;\n        for (int i\
+    \ = 0; i < n_node; ++i) cost[i][i] = 0;\n        for (int i = 0; i < n_node; ++i)\
+    \ {\n            for (int j = 0; j < n_node; ++j) {\n                prev[i][j]\
+    \ = i;\n            }\n        }\n        search();\n    }\n\n    void search()\
+    \ {\n        for (int k = 0; k < n_node; k++) {\n            for (int i = 0; i\
+    \ < n_node; i++) {\n                for (int j = 0; j < n_node; j++) {\n     \
+    \               if (chmin(cost[i][j], cost[i][k] + cost[k][j])) {\n          \
+    \              prev[i][j] = prev[k][j];\n                    }\n             \
+    \   }\n            }\n        }\n    }\n    vector<int> path(int from, int to)\
+    \ {\n        vector<int> res;\n        for (int now = to; now != from; now = prev[from][now])\
+    \ {\n            res.push_back(now);\n        }\n        res.push_back(from);\n\
+    \        std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\
+    }  // namespace bys\n#line 5 \"graph/reader.hpp\"\n\nnamespace bys {\nAdj read_adj_uv(int\
+    \ n, int m, bool directed = false, int index = 1) {\n    Adj graph(n);\n    for\
+    \ (int i = 0; i < m; ++i) {\n        auto [u, v] = scanner.read<int, 2>();\n \
+    \       u -= index;\n        v -= index;\n        graph[u].push_back({v});\n \
+    \       if (!directed) graph[v].push_back({u});\n    }\n    return graph;\n}\n\
+    Adj read_adj_uvc(int n, int m, bool directed = false, int index = 1) {\n    Adj\
+    \ graph(n);\n    for (int i = 0; i < m; ++i) {\n        auto [u, v, c] = scanner.read<int,\
+    \ int, ll>();\n        u -= index;\n        v -= index;\n        graph[u].push_back({v,\
+    \ c});\n        if (!directed) graph[v].push_back({u, c});\n    }\n    return\
+    \ graph;\n}\nEdgeList read_elist_uv(int m, int index = 1) {\n    EdgeList elist;\n\
+    \    elist.reserve(m);\n    for (int i = 0; i < m; ++i) {\n        auto [u, v]\
+    \ = scanner.read<int, 2>();\n        u -= index;\n        v -= index;\n      \
+    \  elist.push_back({u, v, 1});\n    }\n    return elist;\n}\nEdgeList read_elist_uvc(int\
     \ m, int index = 1) {\n    EdgeList elist;\n    elist.reserve(m);\n    for (int\
-    \ i = 0; i < m; ++i) {\n        auto [u, v] = scanner.read<int, 2>();\n      \
-    \  u -= index;\n        v -= index;\n        elist.push_back({u, v, 1});\n   \
-    \ }\n    return elist;\n}\nEdgeList read_elist_uvc(int m, int index = 1) {\n \
-    \   EdgeList elist;\n    elist.reserve(m);\n    for (int i = 0; i < m; ++i) {\n\
-    \        auto [u, v, c] = scanner.read<int, int, ll>();\n        u -= index;\n\
-    \        v -= index;\n        elist.push_back({u, v, c});\n    }\n    return elist;\n\
-    }\n}  // namespace bys\n#line 2 \"utility/range.hpp\"\n\nnamespace bys {\n//!\
-    \ @brief python\u306Erange\u3068\u540C\u3058\u6319\u52D5\ntemplate <typename T>\n\
-    struct Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop),\
-    \ step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop),\
-    \ step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end()\
-    \ const { return stop; }\n    bool operator!=(const T val) const { return (val\
-    \ - it) * dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
+    \ i = 0; i < m; ++i) {\n        auto [u, v, c] = scanner.read<int, int, ll>();\n\
+    \        u -= index;\n        v -= index;\n        elist.push_back({u, v, c});\n\
+    \    }\n    return elist;\n}\n}  // namespace bys\n#line 2 \"utility/range.hpp\"\
+    \n\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate <typename T>\nstruct\
+    \ Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop), step(step),\
+    \ dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop), step(1),\
+    \ dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end() const {\
+    \ return stop; }\n    bool operator!=(const T val) const { return (val - it) *\
+    \ dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
     \ const { return it; }\n\n   private:\n    T it;\n    const T stop, step;\n  \
     \  const int dir;\n\n    friend Range reversed(const Range& r) {\n        auto\
     \ new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n        return\
@@ -263,7 +262,7 @@ data:
   isVerificationFile: true
   path: test/graph/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/warshallfloyd.test.cpp

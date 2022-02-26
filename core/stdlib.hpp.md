@@ -11,9 +11,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: core/io.hpp
-  - icon: ':warning:'
-    path: core/io_old.hpp
-    title: "\u4EFB\u610F\u306E\u578B\u30921\u3064"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -22,13 +19,13 @@ data:
     title: core/scanner.hpp
   - icon: ':heavy_check_mark:'
     path: data/binary_indexed_tree.hpp
-    title: O(log N)
+    title: Binary Indexed Tree
   - icon: ':heavy_check_mark:'
     path: data/cumulative_sum.hpp
     title: data/cumulative_sum.hpp
   - icon: ':warning:'
     path: data/ordered_pair.hpp
-    title: "first <= second\u306B\u306A\u308Bpair"
+    title: Orderd pair
   - icon: ':heavy_check_mark:'
     path: data/segment_tree.hpp
     title: data/segment_tree.hpp
@@ -157,7 +154,7 @@ data:
     title: "\u4E8C\u5206\u63A2\u7D22\u6CD5"
   - icon: ':warning:'
     path: utility/compress.hpp
-    title: "\u5EA7\u6A19\u5727\u7E2E \u4F7F\u3046\u524D\u306Bconstruct()"
+    title: "\u5EA7\u6A19\u5727\u7E2E"
   - icon: ':warning:'
     path: utility/enumerate.hpp
     title: utility/enumerate.hpp
@@ -166,7 +163,7 @@ data:
     title: "\u30B0\u30EA\u30C3\u30C9\u63A2\u7D22\u7BA1\u7406"
   - icon: ':warning:'
     path: utility/itemsorter.hpp
-    title: "I\u756A\u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03"
+    title: itemsorter
   - icon: ':warning:'
     path: utility/transformed.hpp
     title: utility/transformed.hpp
@@ -443,7 +440,6 @@ data:
   - core/core.hpp
   - core/scanner.hpp
   - core/const.hpp
-  - core/io_old.hpp
   - core/io.hpp
   - core/printer.hpp
   - geometry/line.hpp

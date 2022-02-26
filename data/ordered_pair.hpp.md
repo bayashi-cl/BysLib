@@ -10,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "first <= second\u306B\u306A\u308Bpair"
+    document_title: Orderd pair
     links: []
   bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
     \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
@@ -24,22 +24,22 @@ data:
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"data/ordered_pair.hpp\"\n\nnamespace bys {\n//! @brief first\
-    \ <= second\u306B\u306A\u308Bpair\ntemplate <class T>\nstruct OrderedPair : std::pair<T,\
-    \ T> {\n    OrderedPair(T a, T b) {\n        if (a > b) std::swap(a, b);\n   \
-    \     this->first = a;\n        this->second = b;\n    }\n};\n}  // namespace\
-    \ bys\n"
-  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n\nnamespace bys {\n//! @brief\
-    \ first <= second\u306B\u306A\u308Bpair\ntemplate <class T>\nstruct OrderedPair\
-    \ : std::pair<T, T> {\n    OrderedPair(T a, T b) {\n        if (a > b) std::swap(a,\
-    \ b);\n        this->first = a;\n        this->second = b;\n    }\n};\n}  // namespace\
-    \ bys\n"
+    \ bys\n#line 3 \"data/ordered_pair.hpp\"\nnamespace bys {\n/**\n * @brief Orderd\
+    \ pair\n * @details first <= second\u306B\u306A\u308Bpair\n */\ntemplate <class\
+    \ T>\nstruct OrderedPair : std::pair<T, T> {\n    OrderedPair(T a, T b) {\n  \
+    \      if (a > b) std::swap(a, b);\n        this->first = a;\n        this->second\
+    \ = b;\n    }\n};\n}  // namespace bys\n"
+  code: "#pragma once\n#include \"../core/stdlib.hpp\"\nnamespace bys {\n/**\n * @brief\
+    \ Orderd pair\n * @details first <= second\u306B\u306A\u308Bpair\n */\ntemplate\
+    \ <class T>\nstruct OrderedPair : std::pair<T, T> {\n    OrderedPair(T a, T b)\
+    \ {\n        if (a > b) std::swap(a, b);\n        this->first = a;\n        this->second\
+    \ = b;\n    }\n};\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   isVerificationFile: false
   path: data/ordered_pair.hpp
   requiredBy: []
-  timestamp: '2022-02-09 20:16:53+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: data/ordered_pair.hpp
@@ -47,5 +47,5 @@ layout: document
 redirect_from:
 - /library/data/ordered_pair.hpp
 - /library/data/ordered_pair.hpp.html
-title: "first <= second\u306B\u306A\u308Bpair"
+title: Orderd pair
 ---

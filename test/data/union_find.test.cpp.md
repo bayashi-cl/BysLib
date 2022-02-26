@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -37,7 +36,7 @@ data:
     title: utility/change.hpp
   - icon: ':heavy_check_mark:'
     path: utility/range.hpp
-    title: "python\u306Erange\u3068\u540C\u3058\u6319\u52D5"
+    title: "Python\u306Erange"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -143,34 +142,34 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"data/union_find.hpp\"\nnamespace bys\
-    \ {\nstruct UnionFindTree {\n    UnionFindTree() : _n(0) {}\n    UnionFindTree(std::size_t\
-    \ n) : _n(n), _n_tree(_n), parent(_n, -1) {}\n\n    std::size_t find(std::size_t\
-    \ a) {\n        assert(a < _n);\n        std::vector<std::size_t> path;\n    \
-    \    while (parent[a] >= 0) {\n            path.emplace_back(a);\n           \
-    \ a = parent[a];\n        }\n        for (auto&& p : path) parent[p] = a;\n  \
-    \      return a;\n    }\n    bool same(std::size_t a, std::size_t b) {\n     \
-    \   assert(a < _n);\n        assert(b < _n);\n        return find(a) == find(b);\n\
-    \    }\n    bool unite(std::size_t a, std::size_t b) {\n        assert(a < _n);\n\
-    \        assert(b < _n);\n        a = find(a);\n        b = find(b);\n       \
-    \ if (a == b) return false;\n        --_n_tree;\n        if (-parent[a] < -parent[b])\
-    \ std::swap(a, b);\n        parent[a] += parent[b];\n        parent[b] = a;\n\
-    \        return true;\n    }\n    std::map<std::size_t, std::vector<std::size_t>>\
-    \ groups() {\n        std::map<std::size_t, std::vector<std::size_t>> res;\n \
-    \       for (std::size_t i = 0; i < _n; ++i) res[find(i)].emplace_back(i);\n \
-    \       return res;\n    };\n    std::size_t size(std::size_t a) { return -parent[find(a)];\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"data/union_find.hpp\"\nnamespace bys {\nstruct UnionFindTree {\n    UnionFindTree()\
+    \ : _n(0) {}\n    UnionFindTree(std::size_t n) : _n(n), _n_tree(_n), parent(_n,\
+    \ -1) {}\n\n    std::size_t find(std::size_t a) {\n        assert(a < _n);\n \
+    \       std::vector<std::size_t> path;\n        while (parent[a] >= 0) {\n   \
+    \         path.emplace_back(a);\n            a = parent[a];\n        }\n     \
+    \   for (auto&& p : path) parent[p] = a;\n        return a;\n    }\n    bool same(std::size_t\
+    \ a, std::size_t b) {\n        assert(a < _n);\n        assert(b < _n);\n    \
+    \    return find(a) == find(b);\n    }\n    bool unite(std::size_t a, std::size_t\
+    \ b) {\n        assert(a < _n);\n        assert(b < _n);\n        a = find(a);\n\
+    \        b = find(b);\n        if (a == b) return false;\n        --_n_tree;\n\
+    \        if (-parent[a] < -parent[b]) std::swap(a, b);\n        parent[a] += parent[b];\n\
+    \        parent[b] = a;\n        return true;\n    }\n    std::map<std::size_t,\
+    \ std::vector<std::size_t>> groups() {\n        std::map<std::size_t, std::vector<std::size_t>>\
+    \ res;\n        for (std::size_t i = 0; i < _n; ++i) res[find(i)].emplace_back(i);\n\
+    \        return res;\n    };\n    std::size_t size(std::size_t a) { return -parent[find(a)];\
     \ }\n    std::size_t n_tree() { return _n_tree; }\n\n   private:\n    std::size_t\
     \ _n, _n_tree;\n    std::vector<int> parent;  // \u8CA0\u306A\u3089\u89AA\u3067\
     \u3042\u308A\u305D\u306E\u5024\u306F(-\u5B50\u306E\u6570)\n};\n}  // namespace\
@@ -179,25 +178,25 @@ data:
     \ 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const\
     \ T& b) {\n    if (b < a) {\n        a = b;\n        return 1;\n    }\n    return\
     \ 0;\n}\n}  // namespace bys\n#line 2 \"utility/range.hpp\"\n\nnamespace bys {\n\
-    //! @brief python\u306Erange\u3068\u540C\u3058\u6319\u52D5\ntemplate <typename\
-    \ T>\nstruct Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop),\
-    \ step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop),\
-    \ step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end()\
-    \ const { return stop; }\n    bool operator!=(const T val) const { return (val\
-    \ - it) * dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
-    \ const { return it; }\n\n   private:\n    T it;\n    const T stop, step;\n  \
-    \  const int dir;\n\n    friend Range reversed(const Range& r) {\n        auto\
-    \ new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n        return\
-    \ {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T>\
-    \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
-    \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
-    \ namespace bys\n#line 7 \"test/data/union_find.test.cpp\"\n\nnamespace bys {\n\
-    void Solver::solve() {\n    auto [n, q] = scanner.read<int, 2>();\n    auto que\
-    \ = scanner.readvec<array<int, 3>>(q);\n    UnionFindTree uft(n);\n    for (auto&&\
-    \ [t, u, v] : que) {\n        if (t == 0) {\n            uft.unite(u, v);\n  \
-    \      } else {\n            print(uft.same(u, v) ? 1 : 0);\n        }\n    }\n\
-    }\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/*\
-    \ bys::scanner.read<int>() */);\n    return 0;\n}\n"
+    //! @brief Python\u306Erange\ntemplate <typename T>\nstruct Range {\n    Range(T\
+    \ start, T stop, T step = 1) : it(start), stop(stop), step(step), dir(step >=\
+    \ 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop), step(1), dir(1) {}\n\
+    \    Range<T> begin() const { return *this; }\n    T end() const { return stop;\
+    \ }\n    bool operator!=(const T val) const { return (val - it) * dir > 0; }\n\
+    \    void operator++() { it += step; }\n    const T& operator*() const { return\
+    \ it; }\n\n   private:\n    T it;\n    const T stop, step;\n    const int dir;\n\
+    \n    friend Range reversed(const Range& r) {\n        auto new_start = (r.stop\
+    \ - r.dir - r.it) / r.step * r.step + r.it;\n        return {new_start, r.it -\
+    \ r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T> irange(T stop) {\n\
+    \    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T start, T stop,\
+    \ T step = 1) {\n    return Range(start, stop, step);\n}\n}  // namespace bys\n\
+    #line 7 \"test/data/union_find.test.cpp\"\n\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    auto que = scanner.readvec<array<int,\
+    \ 3>>(q);\n    UnionFindTree uft(n);\n    for (auto&& [t, u, v] : que) {\n   \
+    \     if (t == 0) {\n            uft.unite(u, v);\n        } else {\n        \
+    \    print(uft.same(u, v) ? 1 : 0);\n        }\n    }\n}\n}  // namespace bys\n\
+    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ */);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
     \ \"../../core/core.hpp\"\n#include \"../../data/union_find.hpp\"\n#include \"\
     ../../utility/change.hpp\"\n#include \"../../utility/range.hpp\"\n\nnamespace\
@@ -223,7 +222,7 @@ data:
   isVerificationFile: true
   path: test/data/union_find.test.cpp
   requiredBy: []
-  timestamp: '2022-02-15 03:08:08+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/union_find.test.cpp

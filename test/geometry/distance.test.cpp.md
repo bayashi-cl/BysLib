@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -144,65 +143,66 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"geometry/base.hpp\"\n\nnamespace bys::geo\
-    \ {\nconst ld EPS = 1e-9;\nconst ld PI = std::acos(-1.0);\nconst ld TAU = PI *\
-    \ 2;\nint sgn(ld a) { return (a < -EPS) ? -1 : (a > EPS) ? 1 : 0; }\nbool isclose(ld\
-    \ a, ld b) { return sgn(a - b) == 0; }\nld radian(ld degree) { return degree *\
-    \ (PI / 180.0); }\nld degree(ld theta) { return theta * (180.0 / PI); }\n}  //\
-    \ namespace bys::geo\n#line 3 \"geometry/point.hpp\"\n\nnamespace bys::geo {\n\
-    //! @brief \u70B9/\u30D9\u30AF\u30C8\u30EB\ntemplate <class T>\nstruct Point {\n\
-    \    T x, y;\n    Point() : x(0.0), y(0.0) {}\n    Point(T x, T y) : x(x), y(y)\
-    \ {}\n    // clang-format off\n    friend std::istream& operator>>(std::istream&\
-    \ is, Point& v) { return is >> v.x >> v.y; }\n    friend std::ostream& operator<<(std::ostream&\
-    \ os, const Point& v) { return os << v.x << ' ' << v.y; }\n    Point operator+()\
-    \ const { return *this; }\n    Point operator-() const { return Point(-x, -y);\
-    \ }\n    Point operator+(const Point& rh) const { return Point(x + rh.x, y + rh.y);\
-    \ }\n    Point operator-(const Point& rh) const { return Point(x - rh.x, y - rh.y);\
-    \ }\n    Point operator*(const T rh) const { return Point(x * rh, y * rh); }\n\
-    \    Point operator/(const T rh) const { return Point(x / rh, y / rh); }\n   \
-    \ Point operator+=(const Point& rh) { x += rh.x; y += rh.y; return *this; }\n\
-    \    Point operator-=(const Point& rh) { x -= rh.x; y -= rh.y; return *this; }\n\
-    \    Point operator*=(const T rh) { x *= rh; y *= rh; return *this; }\n    Point\
-    \ operator/=(const T rh) { x /= rh; y /= rh; return *this; }\n    bool operator==(const\
-    \ Point& rh) const { return isclose(x, rh.x) && isclose(y, rh.y); }\n    bool\
-    \ operator!=(const Point& rh) const { return !(*this == rh); }\n    // clang-format\
-    \ on\n\n    T norm2() const { return x * x + y * y; }\n    ld norm() const { return\
-    \ std::sqrt(norm2()); }\n    Point normalized() const { return Point(x / norm(),\
-    \ y / norm()); }\n    ld angle() const { return std::atan2(y, x); }\n    Point\
-    \ rotate(ld theta) const {\n        ld ct = std::cos(theta), st = std::sin(theta);\n\
-    \        return Point(x * ct - y * st, x * st + y * ct);\n    }\n    //! @brief\
-    \ \u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u7528\u300245\u5EA6\u56DE\u8EE2\
-    \u3057\u3066\u221A2\u500D\u3059\u308B\n    Point manhattan_rotate() const { return\
-    \ Point(x - y, x + y); }\n    T dot(const Point& rh) const { return x * rh.x +\
-    \ y * rh.y; }\n    T det(const Point& rh) const { return x * rh.y - y * rh.x;\
-    \ }\n    Point normal() const { return Point(-normalized().y, normalized().x);\
-    \ }\n    Point projection(const Point& to) const { return to * (dot(to) / to.norm2());\
-    \ }\n    int quadrant() const {\n        if (sgn(y) >= 0) return sgn(x) >= 0 ?\
-    \ 1 : 2;\n        return sgn(x) >= 0 ? 4 : 3;\n    }\n    // \u504F\u89D2\u30BD\
-    \u30FC\u30C8\u7528\n    bool operator<(const Point& rh) const {\n        int q\
-    \ = quadrant(), rhq = rh.quadrant();\n        if (q != rhq) return q < rhq;\n\
-    \        return sgn(det(rh)) > 0;\n    }\n    bool operator<=(const Point& rh)\
-    \ const {\n        int q = quadrant(), rhq = rh.quadrant();\n        if (q !=\
-    \ rhq) return q < rhq;\n        return sgn(det(rh)) >= 0;\n    }\n};\n\ntemplate\
-    \ <class T>\nbool compx(Point<T>& a, Point<T>& b) {\n    return a.x < b.x;\n}\n\
-    template <class T>\nbool compy(Point<T>& a, Point<T>& b) {\n    return a.y < b.y;\n\
-    }\n\nenum class Turn { Back = -2, CW, Middle, CCW, Front };\n/**\n * @brief \u8FBA\
-    \u306E\u66F2\u304C\u308B\u65B9\u5411\n * @return\n * +1: CCW ab->bc\u304C\u5DE6\
-    \u306B\u66F2\u304C\u308B\n * -1: CW  ab->bc\u304C\u53F3\u306B\u66F2\u304C\u308B\
-    \n * +2: Front  ab\u306E\u524D\u65B9\n * -2: Back   ab\u306E\u5F8C\u65B9\n * \
-    \ 0: Middle ab\u4E0A\n */\ntemplate <class T>\nTurn iSP(const Point<T>& a, const\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"geometry/base.hpp\"\n\nnamespace bys::geo {\nconst ld EPS = 1e-9;\nconst\
+    \ ld PI = std::acos(-1.0);\nconst ld TAU = PI * 2;\nint sgn(ld a) { return (a\
+    \ < -EPS) ? -1 : (a > EPS) ? 1 : 0; }\nbool isclose(ld a, ld b) { return sgn(a\
+    \ - b) == 0; }\nld radian(ld degree) { return degree * (PI / 180.0); }\nld degree(ld\
+    \ theta) { return theta * (180.0 / PI); }\n}  // namespace bys::geo\n#line 3 \"\
+    geometry/point.hpp\"\n\nnamespace bys::geo {\n//! @brief \u70B9/\u30D9\u30AF\u30C8\
+    \u30EB\ntemplate <class T>\nstruct Point {\n    T x, y;\n    Point() : x(0.0),\
+    \ y(0.0) {}\n    Point(T x, T y) : x(x), y(y) {}\n    // clang-format off\n  \
+    \  friend std::istream& operator>>(std::istream& is, Point& v) { return is >>\
+    \ v.x >> v.y; }\n    friend std::ostream& operator<<(std::ostream& os, const Point&\
+    \ v) { return os << v.x << ' ' << v.y; }\n    Point operator+() const { return\
+    \ *this; }\n    Point operator-() const { return Point(-x, -y); }\n    Point operator+(const\
+    \ Point& rh) const { return Point(x + rh.x, y + rh.y); }\n    Point operator-(const\
+    \ Point& rh) const { return Point(x - rh.x, y - rh.y); }\n    Point operator*(const\
+    \ T rh) const { return Point(x * rh, y * rh); }\n    Point operator/(const T rh)\
+    \ const { return Point(x / rh, y / rh); }\n    Point operator+=(const Point& rh)\
+    \ { x += rh.x; y += rh.y; return *this; }\n    Point operator-=(const Point& rh)\
+    \ { x -= rh.x; y -= rh.y; return *this; }\n    Point operator*=(const T rh) {\
+    \ x *= rh; y *= rh; return *this; }\n    Point operator/=(const T rh) { x /= rh;\
+    \ y /= rh; return *this; }\n    bool operator==(const Point& rh) const { return\
+    \ isclose(x, rh.x) && isclose(y, rh.y); }\n    bool operator!=(const Point& rh)\
+    \ const { return !(*this == rh); }\n    // clang-format on\n\n    T norm2() const\
+    \ { return x * x + y * y; }\n    ld norm() const { return std::sqrt(norm2());\
+    \ }\n    Point normalized() const { return Point(x / norm(), y / norm()); }\n\
+    \    ld angle() const { return std::atan2(y, x); }\n    Point rotate(ld theta)\
+    \ const {\n        ld ct = std::cos(theta), st = std::sin(theta);\n        return\
+    \ Point(x * ct - y * st, x * st + y * ct);\n    }\n    //! @brief \u30DE\u30F3\
+    \u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u7528\u300245\u5EA6\u56DE\u8EE2\u3057\u3066\
+    \u221A2\u500D\u3059\u308B\n    Point manhattan_rotate() const { return Point(x\
+    \ - y, x + y); }\n    T dot(const Point& rh) const { return x * rh.x + y * rh.y;\
+    \ }\n    T det(const Point& rh) const { return x * rh.y - y * rh.x; }\n    Point\
+    \ normal() const { return Point(-normalized().y, normalized().x); }\n    Point\
+    \ projection(const Point& to) const { return to * (dot(to) / to.norm2()); }\n\
+    \    int quadrant() const {\n        if (sgn(y) >= 0) return sgn(x) >= 0 ? 1 :\
+    \ 2;\n        return sgn(x) >= 0 ? 4 : 3;\n    }\n    // \u504F\u89D2\u30BD\u30FC\
+    \u30C8\u7528\n    bool operator<(const Point& rh) const {\n        int q = quadrant(),\
+    \ rhq = rh.quadrant();\n        if (q != rhq) return q < rhq;\n        return\
+    \ sgn(det(rh)) > 0;\n    }\n    bool operator<=(const Point& rh) const {\n   \
+    \     int q = quadrant(), rhq = rh.quadrant();\n        if (q != rhq) return q\
+    \ < rhq;\n        return sgn(det(rh)) >= 0;\n    }\n};\n\ntemplate <class T>\n\
+    bool compx(Point<T>& a, Point<T>& b) {\n    return a.x < b.x;\n}\ntemplate <class\
+    \ T>\nbool compy(Point<T>& a, Point<T>& b) {\n    return a.y < b.y;\n}\n\nenum\
+    \ class Turn { Back = -2, CW, Middle, CCW, Front };\n/**\n * @brief \u8FBA\u306E\
+    \u66F2\u304C\u308B\u65B9\u5411\n * @return\n * +1: CCW ab->bc\u304C\u5DE6\u306B\
+    \u66F2\u304C\u308B\n * -1: CW  ab->bc\u304C\u53F3\u306B\u66F2\u304C\u308B\n *\
+    \ +2: Front  ab\u306E\u524D\u65B9\n * -2: Back   ab\u306E\u5F8C\u65B9\n *  0:\
+    \ Middle ab\u4E0A\n */\ntemplate <class T>\nTurn iSP(const Point<T>& a, const\
     \ Point<T>& b, const Point<T>& c) {\n    int flg = sgn((b - a).det(c - a));\n\
     \    if (flg == 1) {\n        return Turn::CCW;\n    } else if (flg == -1) {\n\
     \        return Turn::CW;\n    } else {\n        if (sgn((b - a).dot(c - b)) >\
@@ -291,7 +291,7 @@ data:
   isVerificationFile: true
   path: test/geometry/distance.test.cpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/geometry/distance.test.cpp

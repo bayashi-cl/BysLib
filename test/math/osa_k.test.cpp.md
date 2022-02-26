@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -34,7 +33,7 @@ data:
     title: math/osa_k.hpp
   - icon: ':heavy_check_mark:'
     path: utility/range.hpp
-    title: "python\u306Erange\u3068\u540C\u3058\u6319\u52D5"
+    title: "Python\u306Erange"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -140,62 +139,62 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"math/osa_k.hpp\"\n\nnamespace bys {\n\
-    struct Osa_K {\n    int mx;\n    vector<int> spf;  // smallest prime factor\n\
-    \    Osa_K(int n) : mx(n), spf(n + 1) {\n        std::iota(spf.begin(), spf.end(),\
-    \ 0);\n        sieve();\n    }\n\n    void sieve() {\n        for (int i = 2;\
-    \ i <= mx; i += 2) spf[i] = 2;\n        for (int p = 3; p * p <= mx; p += 2) {\n\
-    \            if (spf[p] != p) continue;\n            for (int k = p * p; k <=\
-    \ mx; k += p) {\n                if (spf[k] == k) spf[k] = p;\n            }\n\
-    \        }\n    }\n    bool is_prime(int n) const {\n        assert(n <= mx);\n\
-    \        if (n <= 1) return false;\n        return spf[n] == n;\n    }\n    map<int,\
-    \ int> factorize(int n) const {\n        assert(n <= mx);\n        map<int, int>\
-    \ res;\n        while (n > 1) {\n            res[spf[n]]++;\n            n /=\
-    \ spf[n];\n        }\n        return res;\n    }\n    vector<int> divisor(int\
-    \ n) const {\n        vector<int> res;\n        map<int, int> factor_ = factorize(n);\n\
-    \        vector<pair<int, int>> factor(factor_.begin(), factor_.end());\n    \
-    \    int k = factor.size();\n        auto dfs = [&](auto dfs, int depth, int prod)\
-    \ {\n            if (depth == k) {\n                res.push_back(prod);\n   \
-    \             return;\n            }\n            auto [p, q] = factor[depth];\n\
-    \            for (int i = 0; i <= q; ++i) {\n                dfs(dfs, depth +\
-    \ 1, prod);\n                prod *= p;\n            }\n        };\n        dfs(dfs,\
-    \ 0, 1);\n        sort(res.begin(), res.end());\n        return res;\n    }\n\
-    };\n}  // namespace bys\n#line 2 \"utility/range.hpp\"\n\nnamespace bys {\n//!\
-    \ @brief python\u306Erange\u3068\u540C\u3058\u6319\u52D5\ntemplate <typename T>\n\
-    struct Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop),\
-    \ step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop),\
-    \ step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end()\
-    \ const { return stop; }\n    bool operator!=(const T val) const { return (val\
-    \ - it) * dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
-    \ const { return it; }\n\n   private:\n    T it;\n    const T stop, step;\n  \
-    \  const int dir;\n\n    friend Range reversed(const Range& r) {\n        auto\
-    \ new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n        return\
-    \ {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T>\
-    \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
-    \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
-    \ namespace bys\n#line 5 \"test/math/osa_k.test.cpp\"\n\nnamespace bys {\nvoid\
-    \ Solver::solve() {\n    auto [n, m] = scanner.read<int, 2>();\n    auto a = scanner.readvec<int>(n);\n\
-    \    Osa_K osa_k(100000);\n    set<int> forbid;\n    for (auto&& ai : a) {\n \
-    \       for (auto&& [k, v] : osa_k.factorize(ai)) forbid.insert(k);\n    }\n \
-    \   vector<int> ans;\n    for (int i : Range(1, m + 1)) {\n        bool flg =\
-    \ true;\n        for (auto&& [k, v] : osa_k.factorize(i)) {\n            if (forbid.find(k)\
-    \ != forbid.end()) {\n                flg = false;\n                break;\n \
-    \           }\n        }\n        if (flg) ans.push_back(i);\n    }\n    print(ans.size());\n\
-    \    for (auto&& e : ans) print(e);\n}\n}  // namespace bys\n\nint main() {\n\
-    \    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n\
-    \    return 0;\n}\n"
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"math/osa_k.hpp\"\n\nnamespace bys {\nstruct Osa_K {\n    int mx;\n    vector<int>\
+    \ spf;  // smallest prime factor\n    Osa_K(int n) : mx(n), spf(n + 1) {\n   \
+    \     std::iota(spf.begin(), spf.end(), 0);\n        sieve();\n    }\n\n    void\
+    \ sieve() {\n        for (int i = 2; i <= mx; i += 2) spf[i] = 2;\n        for\
+    \ (int p = 3; p * p <= mx; p += 2) {\n            if (spf[p] != p) continue;\n\
+    \            for (int k = p * p; k <= mx; k += p) {\n                if (spf[k]\
+    \ == k) spf[k] = p;\n            }\n        }\n    }\n    bool is_prime(int n)\
+    \ const {\n        assert(n <= mx);\n        if (n <= 1) return false;\n     \
+    \   return spf[n] == n;\n    }\n    map<int, int> factorize(int n) const {\n \
+    \       assert(n <= mx);\n        map<int, int> res;\n        while (n > 1) {\n\
+    \            res[spf[n]]++;\n            n /= spf[n];\n        }\n        return\
+    \ res;\n    }\n    vector<int> divisor(int n) const {\n        vector<int> res;\n\
+    \        map<int, int> factor_ = factorize(n);\n        vector<pair<int, int>>\
+    \ factor(factor_.begin(), factor_.end());\n        int k = factor.size();\n  \
+    \      auto dfs = [&](auto dfs, int depth, int prod) {\n            if (depth\
+    \ == k) {\n                res.push_back(prod);\n                return;\n   \
+    \         }\n            auto [p, q] = factor[depth];\n            for (int i\
+    \ = 0; i <= q; ++i) {\n                dfs(dfs, depth + 1, prod);\n          \
+    \      prod *= p;\n            }\n        };\n        dfs(dfs, 0, 1);\n      \
+    \  sort(res.begin(), res.end());\n        return res;\n    }\n};\n}  // namespace\
+    \ bys\n#line 2 \"utility/range.hpp\"\n\nnamespace bys {\n//! @brief Python\u306E\
+    range\ntemplate <typename T>\nstruct Range {\n    Range(T start, T stop, T step\
+    \ = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T\
+    \ stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T> begin() const {\
+    \ return *this; }\n    T end() const { return stop; }\n    bool operator!=(const\
+    \ T val) const { return (val - it) * dir > 0; }\n    void operator++() { it +=\
+    \ step; }\n    const T& operator*() const { return it; }\n\n   private:\n    T\
+    \ it;\n    const T stop, step;\n    const int dir;\n\n    friend Range reversed(const\
+    \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
+    \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate\
+    \ <class T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class\
+    \ T>\nRange<T> irange(T start, T stop, T step = 1) {\n    return Range(start,\
+    \ stop, step);\n}\n}  // namespace bys\n#line 5 \"test/math/osa_k.test.cpp\"\n\
+    \nnamespace bys {\nvoid Solver::solve() {\n    auto [n, m] = scanner.read<int,\
+    \ 2>();\n    auto a = scanner.readvec<int>(n);\n    Osa_K osa_k(100000);\n   \
+    \ set<int> forbid;\n    for (auto&& ai : a) {\n        for (auto&& [k, v] : osa_k.factorize(ai))\
+    \ forbid.insert(k);\n    }\n    vector<int> ans;\n    for (int i : Range(1, m\
+    \ + 1)) {\n        bool flg = true;\n        for (auto&& [k, v] : osa_k.factorize(i))\
+    \ {\n            if (forbid.find(k) != forbid.end()) {\n                flg =\
+    \ false;\n                break;\n            }\n        }\n        if (flg) ans.push_back(i);\n\
+    \    }\n    print(ans.size());\n    for (auto&& e : ans) print(e);\n}\n}  // namespace\
+    \ bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ */);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc215/tasks/abc215_d\"\n#include\
     \ \"../../core/core.hpp\"\n#include \"../../math/osa_k.hpp\"\n#include \"../../utility/range.hpp\"\
     \n\nnamespace bys {\nvoid Solver::solve() {\n    auto [n, m] = scanner.read<int,\
@@ -223,7 +222,7 @@ data:
   isVerificationFile: true
   path: test/math/osa_k.test.cpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/math/osa_k.test.cpp

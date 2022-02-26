@@ -1,49 +1,7 @@
-競プロ用ライブラリ [![Actions Status](https://github.com/bayashi-cl/byslib/workflows/verify/badge.svg)](https://github.com/bayashi-cl/byslib/actions)
+競プロ用ライブラリ
 
-* data-structure
-    - cumulative sum
-    - binary indexed tree
-    - segtree
-    - lazy-segtree
-    - union find
-* math
-    - combination
-    - osa_k
-    - linalg
-    - prime
-    - divisor
-    - bit
-    - base
-    - affine
-* graph
-    - edge
-    - bfs
-    - dfs
-    - dijkstra
-    - bellman ford
-    - warshall floyd
-    - kruskal
-    - lca
-* geometry
-    - base
-    - point
-    - line
-    - polygon
-* acl
-    - acl
-    - acl-unavailable
-* utility
-    - binary search
-    - grid
-    - range
-    - compress
-* core
-    - io
-    - stdlib
-    - macro
-    - solver
-    - timer
-    - const
+[![Actions Status](https://github.com/bayashi-cl/byslib/workflows/verify/badge.svg)](https://github.com/bayashi-cl/byslib/actions)
+[![GitHub Pages](https://img.shields.io/static/v1?label=GitHub+Pages&message=+&color=brightgreen&logo=github)](https://bayashi-cl.github.io/byslib/)
 
-
-* template.cpp
+![Badge](https://cp-logo.vercel.app/atcoder/bayashi_cl)
+![Badge](https://cp-logo.vercel.app/codeforces/bayashi_cl)

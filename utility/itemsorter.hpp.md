@@ -10,7 +10,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: "I\u756A\u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03"
+    document_title: itemsorter
     links: []
   bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
     \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
@@ -24,34 +24,36 @@ data:
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"utility/itemsorter.hpp\"\n\nnamespace bys {\n//! @brief I\u756A\
-    \u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03\ntemplate <class T, std::size_t I>\n\
-    struct ItemSorter {\n    bool operator()(const T& lh, const T& rh) { return lh[I]\
-    \ < rh[I]; }\n};\n//! @brief Tuple\u7CFB\u306EI\u756A\u76EE\u306E\u8981\u7D20\u3092\
-    \u6BD4\u8F03\ntemplate <class T, std::size_t I>\nstruct TupleSorter {\n    bool\
-    \ operator()(const T& lh, const T& rh) { return std::get<I>(lh) < std::get<I>(rh);\
-    \ }\n};\ntemplate <class T, class U>\nstruct SecondSorter {\n    bool operator()(const\
-    \ std::pair<T, U>& lh, const std::pair<T, U>& rh) {\n        return lh.second\
-    \ == rh.second ? lh.first < rh.first : lh.second < rh.second;\n    }\n};\n#define\
-    \ SORTBY(method) [](const auto& a, const auto& b) { return a.method < b.method;\
-    \ }\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n\nnamespace bys {\n//! @brief\
-    \ I\u756A\u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03\ntemplate <class T, std::size_t\
-    \ I>\nstruct ItemSorter {\n    bool operator()(const T& lh, const T& rh) { return\
-    \ lh[I] < rh[I]; }\n};\n//! @brief Tuple\u7CFB\u306EI\u756A\u76EE\u306E\u8981\u7D20\
-    \u3092\u6BD4\u8F03\ntemplate <class T, std::size_t I>\nstruct TupleSorter {\n\
-    \    bool operator()(const T& lh, const T& rh) { return std::get<I>(lh) < std::get<I>(rh);\
-    \ }\n};\ntemplate <class T, class U>\nstruct SecondSorter {\n    bool operator()(const\
-    \ std::pair<T, U>& lh, const std::pair<T, U>& rh) {\n        return lh.second\
-    \ == rh.second ? lh.first < rh.first : lh.second < rh.second;\n    }\n};\n#define\
-    \ SORTBY(method) [](const auto& a, const auto& b) { return a.method < b.method;\
-    \ }\n}  // namespace bys\n"
+    \ bys\n#line 3 \"utility/itemsorter.hpp\"\n/**\n * @brief itemsorter\n * @details\
+    \ std::sort\u306B\u6E21\u3059\u3053\u3068\u3092\u60F3\u5B9A\n */\nnamespace bys\
+    \ {\n//! @brief I\u756A\u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03\ntemplate <class\
+    \ T, std::size_t I>\nstruct ItemSorter {\n    bool operator()(const T& lh, const\
+    \ T& rh) { return lh[I] < rh[I]; }\n};\n//! @brief Tuple\u7CFB\u306EI\u756A\u76EE\
+    \u306E\u8981\u7D20\u3092\u6BD4\u8F03\ntemplate <class T, std::size_t I>\nstruct\
+    \ TupleSorter {\n    bool operator()(const T& lh, const T& rh) { return std::get<I>(lh)\
+    \ < std::get<I>(rh); }\n};\ntemplate <class T, class U>\nstruct SecondSorter {\n\
+    \    bool operator()(const std::pair<T, U>& lh, const std::pair<T, U>& rh) {\n\
+    \        return lh.second == rh.second ? lh.first < rh.first : lh.second < rh.second;\n\
+    \    }\n};\n#define SORTBY(method) [](const auto& a, const auto& b) { return a.method\
+    \ < b.method; }\n}  // namespace bys\n"
+  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n/**\n * @brief itemsorter\n\
+    \ * @details std::sort\u306B\u6E21\u3059\u3053\u3068\u3092\u60F3\u5B9A\n */\n\
+    namespace bys {\n//! @brief I\u756A\u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03\n\
+    template <class T, std::size_t I>\nstruct ItemSorter {\n    bool operator()(const\
+    \ T& lh, const T& rh) { return lh[I] < rh[I]; }\n};\n//! @brief Tuple\u7CFB\u306E\
+    I\u756A\u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03\ntemplate <class T, std::size_t\
+    \ I>\nstruct TupleSorter {\n    bool operator()(const T& lh, const T& rh) { return\
+    \ std::get<I>(lh) < std::get<I>(rh); }\n};\ntemplate <class T, class U>\nstruct\
+    \ SecondSorter {\n    bool operator()(const std::pair<T, U>& lh, const std::pair<T,\
+    \ U>& rh) {\n        return lh.second == rh.second ? lh.first < rh.first : lh.second\
+    \ < rh.second;\n    }\n};\n#define SORTBY(method) [](const auto& a, const auto&\
+    \ b) { return a.method < b.method; }\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   isVerificationFile: false
   path: utility/itemsorter.hpp
   requiredBy: []
-  timestamp: '2022-02-09 20:17:34+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/itemsorter.hpp
@@ -59,5 +61,5 @@ layout: document
 redirect_from:
 - /library/utility/itemsorter.hpp
 - /library/utility/itemsorter.hpp.html
-title: "I\u756A\u76EE\u306E\u8981\u7D20\u3092\u6BD4\u8F03"
+title: itemsorter
 ---

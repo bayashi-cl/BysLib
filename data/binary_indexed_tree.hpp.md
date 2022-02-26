@@ -19,7 +19,7 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: O(log N)
+    document_title: Binary Indexed Tree
     links: []
   bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
     \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
@@ -43,7 +43,28 @@ data:
     \ & 1 ? '1' : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
     \    return res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\n\
     inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
-    #line 4 \"data/binary_indexed_tree.hpp\"\nnamespace bys {\ntemplate <class T>\n\
+    #line 4 \"data/binary_indexed_tree.hpp\"\nnamespace bys {\n/**\n * @brief Binary\
+    \ Indexed Tree\n */\ntemplate <class T>\nclass BinaryIndexedTree {\n    const\
+    \ int _n;\n    std::vector<T> data;\n\n   public:\n    BinaryIndexedTree() : _n(0)\
+    \ {}\n    BinaryIndexedTree(int n) : _n(n), data(n + 1) {}\n    BinaryIndexedTree(const\
+    \ std::vector<T>& v) : _n(v.size()), data(_n + 1) {\n        for (int i = 0; i\
+    \ < _n; ++i) add(i, v[i]);\n    }\n\n    void add(int i, T x) {\n        assert(0\
+    \ <= i && i < _n);\n        ++i;\n        while (i <= _n) {\n            data[i]\
+    \ += x;\n            i += i & -i;\n        }\n    }\n    T sum(int r) {\n    \
+    \    assert(0 <= r && r <= _n);\n        T res = 0;\n        while (r > 0) {\n\
+    \            res += data[r];\n            r -= r & -r;\n        }\n        return\
+    \ res;\n    }\n    T sum(int l, int r) {\n        assert(0 <= l && l <= r && r\
+    \ <= _n);\n        return sum(r) - sum(l);\n    }\n\n    //! @brief O(log N)\n\
+    \    T get(int i) {\n        assert(0 <= i && i < _n);\n        return sum(i,\
+    \ i + 1);\n    }\n\n    //! @brief sum[0, r) >= x\u3068\u306A\u308B\u6700\u5C0F\
+    \u306Er\u3092\u6C42\u3081\u308B\n    int bisect(T x) {\n        if (x <= 0) return\
+    \ 0;\n        if (x > sum(_n)) return -1;\n        int res = 0;\n        for (int\
+    \ w = bit_floor(_n); w > 0; w >>= 1) {\n            if (res + w < _n && data[res\
+    \ + w] < x) {\n                x -= data[res + w];\n                res += w;\n\
+    \            }\n        }\n        return res + 1;\n    }\n};\n}  // namespace\
+    \ bys\n"
+  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"../math/bit.hpp\"\
+    \nnamespace bys {\n/**\n * @brief Binary Indexed Tree\n */\ntemplate <class T>\n\
     class BinaryIndexedTree {\n    const int _n;\n    std::vector<T> data;\n\n   public:\n\
     \    BinaryIndexedTree() : _n(0) {}\n    BinaryIndexedTree(int n) : _n(n), data(n\
     \ + 1) {}\n    BinaryIndexedTree(const std::vector<T>& v) : _n(v.size()), data(_n\
@@ -62,33 +83,13 @@ data:
     \ 1) {\n            if (res + w < _n && data[res + w] < x) {\n               \
     \ x -= data[res + w];\n                res += w;\n            }\n        }\n \
     \       return res + 1;\n    }\n};\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"../math/bit.hpp\"\
-    \nnamespace bys {\ntemplate <class T>\nclass BinaryIndexedTree {\n    const int\
-    \ _n;\n    std::vector<T> data;\n\n   public:\n    BinaryIndexedTree() : _n(0)\
-    \ {}\n    BinaryIndexedTree(int n) : _n(n), data(n + 1) {}\n    BinaryIndexedTree(const\
-    \ std::vector<T>& v) : _n(v.size()), data(_n + 1) {\n        for (int i = 0; i\
-    \ < _n; ++i) add(i, v[i]);\n    }\n\n    void add(int i, T x) {\n        assert(0\
-    \ <= i && i < _n);\n        ++i;\n        while (i <= _n) {\n            data[i]\
-    \ += x;\n            i += i & -i;\n        }\n    }\n    T sum(int r) {\n    \
-    \    assert(0 <= r && r <= _n);\n        T res = 0;\n        while (r > 0) {\n\
-    \            res += data[r];\n            r -= r & -r;\n        }\n        return\
-    \ res;\n    }\n    T sum(int l, int r) {\n        assert(0 <= l && l <= r && r\
-    \ <= _n);\n        return sum(r) - sum(l);\n    }\n\n    //! @brief O(log N)\n\
-    \    T get(int i) {\n        assert(0 <= i && i < _n);\n        return sum(i,\
-    \ i + 1);\n    }\n\n    //! @brief sum[0, r) >= x\u3068\u306A\u308B\u6700\u5C0F\
-    \u306Er\u3092\u6C42\u3081\u308B\n    int bisect(T x) {\n        if (x <= 0) return\
-    \ 0;\n        if (x > sum(_n)) return -1;\n        int res = 0;\n        for (int\
-    \ w = bit_floor(_n); w > 0; w >>= 1) {\n            if (res + w < _n && data[res\
-    \ + w] < x) {\n                x -= data[res + w];\n                res += w;\n\
-    \            }\n        }\n        return res + 1;\n    }\n};\n}  // namespace\
-    \ bys\n"
   dependsOn:
   - core/stdlib.hpp
   - math/bit.hpp
   isVerificationFile: false
   path: data/binary_indexed_tree.hpp
   requiredBy: []
-  timestamp: '2022-02-26 15:08:25+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/binary_indexed_tree.test.cpp
@@ -98,5 +99,5 @@ layout: document
 redirect_from:
 - /library/data/binary_indexed_tree.hpp
 - /library/data/binary_indexed_tree.hpp.html
-title: O(log N)
+title: Binary Indexed Tree
 ---

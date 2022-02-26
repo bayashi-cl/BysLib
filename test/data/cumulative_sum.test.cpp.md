@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -137,43 +136,43 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"data/cumulative_sum.hpp\"\n\nnamespace\
-    \ bys {\ntemplate <class T>\nstruct CumulativeSum {\n    vector<T> data;\n   \
-    \ CumulativeSum(int n) : data(n + 1){};\n    CumulativeSum(const vector<T>& v)\
-    \ : data(v.size() + 1) { std::copy(v.begin(), v.end(), std::next(data.begin()));\
-    \ };\n    void set(int i, int x) {\n        assert(!build);\n        data[i +\
-    \ 1] = x;\n    }\n    void add(int i, int x) {\n        assert(!build);\n    \
-    \    data[i + 1] += x;\n    }\n    void construct() {\n        assert(!build);\n\
-    \        std::partial_sum(data.begin(), data.end(), data.begin());\n        build\
-    \ = true;\n    }\n    // [l, r)\n    T sum(int l, int r) {\n        assert(build);\n\
-    \        if (l > r) return 0;\n        return data[r] - data[l];\n    }\n\n  \
-    \ private:\n    bool build = false;\n};\ntemplate <class T>\nstruct CumulativeSum2D\
-    \ {\n    vector<vector<T>> data;\n    CumulativeSum2D(int n, int m) : data(n +\
-    \ 1, vector<T>(m + 1)){};\n    CumulativeSum2D(const vector<vector<T>>& v) : data(v.size()\
-    \ + 1, vector<T>(v[0].size() + 1)) {\n        int n = v.size();\n        for (int\
-    \ i = 0; i < n; ++i) {\n            std::copy(v[i].begin(), v[i].end(), std::next(data[i\
-    \ + 1].begin()));\n        }\n    };\n    void set(int i, int j, int x) {\n  \
-    \      assert(!build);\n        data[i + 1][j + 1] = x;\n    }\n    void add(int\
-    \ i, int j, int x) {\n        assert(!build);\n        data[i + 1][j + 1] += x;\n\
-    \    }\n    T get(int i, int j) const { return data[i + 1][j + 1]; }\n    void\
-    \ construct() {\n        assert(!build);\n        int n = data.size();\n     \
-    \   int m = data[0].size();\n        for (int i = 1; i < n; ++i) {\n         \
-    \   for (int j = 1; j < m; ++j) {\n                data[i][j] += data[i][j - 1]\
-    \ + data[i - 1][j] - data[i - 1][j - 1];\n            }\n        }\n        build\
-    \ = true;\n    }\n    // [si, gi), [sj, gj)\n    T sum(int si, int sj, int gi,\
-    \ int gj) {\n        assert(build);\n        return (data[gi][gj] - data[si][gj]\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"data/cumulative_sum.hpp\"\n\nnamespace bys {\ntemplate <class T>\nstruct\
+    \ CumulativeSum {\n    vector<T> data;\n    CumulativeSum(int n) : data(n + 1){};\n\
+    \    CumulativeSum(const vector<T>& v) : data(v.size() + 1) { std::copy(v.begin(),\
+    \ v.end(), std::next(data.begin())); };\n    void set(int i, int x) {\n      \
+    \  assert(!build);\n        data[i + 1] = x;\n    }\n    void add(int i, int x)\
+    \ {\n        assert(!build);\n        data[i + 1] += x;\n    }\n    void construct()\
+    \ {\n        assert(!build);\n        std::partial_sum(data.begin(), data.end(),\
+    \ data.begin());\n        build = true;\n    }\n    // [l, r)\n    T sum(int l,\
+    \ int r) {\n        assert(build);\n        if (l > r) return 0;\n        return\
+    \ data[r] - data[l];\n    }\n\n   private:\n    bool build = false;\n};\ntemplate\
+    \ <class T>\nstruct CumulativeSum2D {\n    vector<vector<T>> data;\n    CumulativeSum2D(int\
+    \ n, int m) : data(n + 1, vector<T>(m + 1)){};\n    CumulativeSum2D(const vector<vector<T>>&\
+    \ v) : data(v.size() + 1, vector<T>(v[0].size() + 1)) {\n        int n = v.size();\n\
+    \        for (int i = 0; i < n; ++i) {\n            std::copy(v[i].begin(), v[i].end(),\
+    \ std::next(data[i + 1].begin()));\n        }\n    };\n    void set(int i, int\
+    \ j, int x) {\n        assert(!build);\n        data[i + 1][j + 1] = x;\n    }\n\
+    \    void add(int i, int j, int x) {\n        assert(!build);\n        data[i\
+    \ + 1][j + 1] += x;\n    }\n    T get(int i, int j) const { return data[i + 1][j\
+    \ + 1]; }\n    void construct() {\n        assert(!build);\n        int n = data.size();\n\
+    \        int m = data[0].size();\n        for (int i = 1; i < n; ++i) {\n    \
+    \        for (int j = 1; j < m; ++j) {\n                data[i][j] += data[i][j\
+    \ - 1] + data[i - 1][j] - data[i - 1][j - 1];\n            }\n        }\n    \
+    \    build = true;\n    }\n    // [si, gi), [sj, gj)\n    T sum(int si, int sj,\
+    \ int gi, int gj) {\n        assert(build);\n        return (data[gi][gj] - data[si][gj]\
     \ - data[gi][sj] + data[si][sj]);\n    }\n    // [s, g)\n    T sum(pair<int, int>\
     \ s, pair<int, int> g) { return sum(s.first, s.second, g.first, g.second); }\n\
     \n   private:\n    bool build = false;\n};\n}  // namespace bys\n#line 4 \"test/data/cumulative_sum.test.cpp\"\
@@ -205,7 +204,7 @@ data:
   isVerificationFile: true
   path: test/data/cumulative_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-02-15 03:08:08+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/cumulative_sum.test.cpp

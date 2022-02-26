@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -143,55 +142,56 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"utility/grid.hpp\"\n\nnamespace bys\
-    \ {\n//! @brief \u30B0\u30EA\u30C3\u30C9\u63A2\u7D22\u7BA1\u7406\nstruct Grid\
-    \ {\n    int h, w;\n    Grid(int row, int col) : h(row), w(col) {}\n\n    bool\
-    \ contain(int row, int col) const { return 0 <= row && row < h && 0 <= col &&\
-    \ col < w; }\n    int area() const { return h * w; }\n    int index(int row, int\
-    \ col) const {\n        assert(contain(row, col));\n        return row * w + col;\n\
-    \    }\n    int index(std::pair<int, int> p) const { return index(p.first, p.second);\
-    \ }\n\n    pair<int, int> coord(int idx) const {\n        assert(0 <= idx && idx\
-    \ < area());\n        return {idx / w, idx % w};\n    }\n    vector<pair<int,\
-    \ int>> next(int row, int col, const vector<pair<int, int>> delta) const {\n \
-    \       assert(contain(row, col));\n        vector<pair<int, int>> res;\n    \
-    \    for (auto [di, dj] : delta) {\n            int ni = row + di;\n         \
-    \   int nj = col + dj;\n            if (contain(ni, nj)) res.push_back({ni, nj});\n\
-    \        }\n        return res;\n    }\n    //! @brief \u53F3\u30FB\u4E0B\n  \
-    \  vector<pair<int, int>> next2(int row, int col) const { return next(row, col,\
-    \ {{1, 0}, {0, 1}}); }\n    //! @brief \u4E0A\u4E0B\u5DE6\u53F3\n    vector<pair<int,\
-    \ int>> next4(int row, int col) const { return next(row, col, {{1, 0}, {-1, 0},\
-    \ {0, 1}, {0, -1}}); }\n    //! @brief 8\u65B9\u5411\n    vector<pair<int, int>>\
-    \ next8(int row, int col) const {\n        vector<pair<int, int>> delta;\n   \
-    \     for (int di = -1; di <= 1; ++di) {\n            for (int dj = -1; dj <=\
-    \ 1; ++dj) {\n                if (di == 0 && dj == 0) continue;\n            \
-    \    delta.push_back({di, dj});\n            }\n        }\n        return next(row,\
-    \ col, delta);\n    }\n};\n}  // namespace bys\n#line 3 \"graph/edge.hpp\"\n\n\
-    namespace bys {\nstruct Edge {\n    int from, to;\n    ll cost;\n\n    //! @brief\
-    \ \u91CD\u307F\u306A\u3057\u5358\u9802\u70B9\n    Edge(int to) : from(-1), to(to),\
-    \ cost(1) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int\
-    \ to, ll cost) : from(-1), to(to), cost(cost) {}\n    //! @brief \u91CD\u307F\u4ED8\
-    \u304D\u4E21\u9802\u70B9\n    Edge(int from, int to, ll cost) : from(from), to(to),\
-    \ cost(cost) {}\n    bool operator<(const Edge& rh) const { return cost < rh.cost;\
-    \ }\n    operator std::size_t() const { return to; }\n    friend std::ostream&\
-    \ operator<<(std::ostream& os, const Edge& e) {\n        return os << \"{\" <<\
-    \ e.from << \" -> \" << e.to << \": \" << e.cost << \"}\";\n    }\n};\nusing Adj\
-    \ = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n}  // namespace bys\n\
-    #line 5 \"graph/breadth_first.hpp\"\n\nnamespace bys {\nstruct BreadthFirstSearch\
-    \ {\n    int n_node;\n    vector<int> prev;\n    vector<int> cost;\n\n    BreadthFirstSearch(const\
-    \ Adj& graph, int start, int err_val = -1)\n        : n_node(graph.size()), prev(n_node,\
-    \ -1), cost(n_node, INF) {\n        search(graph, start);\n        std::replace(cost.begin(),\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"utility/grid.hpp\"\n\nnamespace bys {\n//! @brief \u30B0\u30EA\u30C3\u30C9\
+    \u63A2\u7D22\u7BA1\u7406\nstruct Grid {\n    int h, w;\n    Grid(int row, int\
+    \ col) : h(row), w(col) {}\n\n    bool contain(int row, int col) const { return\
+    \ 0 <= row && row < h && 0 <= col && col < w; }\n    int area() const { return\
+    \ h * w; }\n    int index(int row, int col) const {\n        assert(contain(row,\
+    \ col));\n        return row * w + col;\n    }\n    int index(std::pair<int, int>\
+    \ p) const { return index(p.first, p.second); }\n\n    pair<int, int> coord(int\
+    \ idx) const {\n        assert(0 <= idx && idx < area());\n        return {idx\
+    \ / w, idx % w};\n    }\n    vector<pair<int, int>> next(int row, int col, const\
+    \ vector<pair<int, int>> delta) const {\n        assert(contain(row, col));\n\
+    \        vector<pair<int, int>> res;\n        for (auto [di, dj] : delta) {\n\
+    \            int ni = row + di;\n            int nj = col + dj;\n            if\
+    \ (contain(ni, nj)) res.push_back({ni, nj});\n        }\n        return res;\n\
+    \    }\n    //! @brief \u53F3\u30FB\u4E0B\n    vector<pair<int, int>> next2(int\
+    \ row, int col) const { return next(row, col, {{1, 0}, {0, 1}}); }\n    //! @brief\
+    \ \u4E0A\u4E0B\u5DE6\u53F3\n    vector<pair<int, int>> next4(int row, int col)\
+    \ const { return next(row, col, {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}); }\n    //!\
+    \ @brief 8\u65B9\u5411\n    vector<pair<int, int>> next8(int row, int col) const\
+    \ {\n        vector<pair<int, int>> delta;\n        for (int di = -1; di <= 1;\
+    \ ++di) {\n            for (int dj = -1; dj <= 1; ++dj) {\n                if\
+    \ (di == 0 && dj == 0) continue;\n                delta.push_back({di, dj});\n\
+    \            }\n        }\n        return next(row, col, delta);\n    }\n};\n\
+    }  // namespace bys\n#line 3 \"graph/edge.hpp\"\n\nnamespace bys {\nstruct Edge\
+    \ {\n    int from, to;\n    ll cost;\n\n    //! @brief \u91CD\u307F\u306A\u3057\
+    \u5358\u9802\u70B9\n    Edge(int to) : from(-1), to(to), cost(1) {}\n    //! @brief\
+    \ \u91CD\u307F\u4ED8\u304D\u5358\u9802\u70B9\n    Edge(int to, ll cost) : from(-1),\
+    \ to(to), cost(cost) {}\n    //! @brief \u91CD\u307F\u4ED8\u304D\u4E21\u9802\u70B9\
+    \n    Edge(int from, int to, ll cost) : from(from), to(to), cost(cost) {}\n  \
+    \  bool operator<(const Edge& rh) const { return cost < rh.cost; }\n    operator\
+    \ std::size_t() const { return to; }\n    friend std::ostream& operator<<(std::ostream&\
+    \ os, const Edge& e) {\n        return os << \"{\" << e.from << \" -> \" << e.to\
+    \ << \": \" << e.cost << \"}\";\n    }\n};\nusing Adj = vector<vector<Edge>>;\n\
+    using EdgeList = vector<Edge>;\n}  // namespace bys\n#line 5 \"graph/breadth_first.hpp\"\
+    \n\nnamespace bys {\nstruct BreadthFirstSearch {\n    int n_node;\n    vector<int>\
+    \ prev;\n    vector<int> cost;\n\n    BreadthFirstSearch(const Adj& graph, int\
+    \ start, int err_val = -1)\n        : n_node(graph.size()), prev(n_node, -1),\
+    \ cost(n_node, INF) {\n        search(graph, start);\n        std::replace(cost.begin(),\
     \ cost.end(), INF, err_val);\n    }\n\n    void search(const Adj& graph, int start)\
     \ {\n        cost[start] = 0;\n        std::queue<int> que;\n        que.push(start);\n\
     \        while (!que.empty()) {\n            int from = que.front();\n       \
@@ -258,7 +258,7 @@ data:
   isVerificationFile: true
   path: test/graph/bfs_grid.test.cpp
   requiredBy: []
-  timestamp: '2022-02-15 03:08:08+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/bfs_grid.test.cpp

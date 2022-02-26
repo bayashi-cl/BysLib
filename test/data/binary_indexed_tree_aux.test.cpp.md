@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -31,7 +30,7 @@ data:
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
     path: data/binary_indexed_tree.hpp
-    title: O(log N)
+    title: Binary Indexed Tree
   - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: math/bit.hpp
@@ -141,31 +140,32 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"math/bit.hpp\"\n\nnamespace bys {\n\
-    template <class T>\nint bit_width(T x) {\n    int bits = 0;\n    x = (x < 0) ?\
-    \ (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n    return bits;\n}\ntemplate\
-    \ <class T>\nT bit_floor(T x) {\n    assert(x >= 0);\n    return x == 0 ? 0 :\
-    \ T(1) << (bit_width(x) - 1);\n}\ntemplate <class T>\nT bit_ceil(T x) {\n    assert(x\
-    \ >= 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n}\n\nstring bin(ll\
-    \ n) {\n    assert(n > 0);\n    if (n == 0) return \"0\";\n    string res;\n \
-    \   while (n > 0) {\n        res.push_back(n & 1 ? '1' : '0');\n        n >>=\
-    \ 1;\n    }\n    std::reverse(res.begin(), res.end());\n    return res;\n}\ninline\
-    \ bool pop(int s, int d) { return s & (1 << d); }\ninline bool pop(ll s, int d)\
-    \ { return s & (1LL << d); }\n}  // namespace bys\n#line 4 \"data/binary_indexed_tree.hpp\"\
-    \nnamespace bys {\ntemplate <class T>\nclass BinaryIndexedTree {\n    const int\
-    \ _n;\n    std::vector<T> data;\n\n   public:\n    BinaryIndexedTree() : _n(0)\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"math/bit.hpp\"\n\nnamespace bys {\ntemplate <class T>\nint bit_width(T x)\
+    \ {\n    int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++)\
+    \ x >>= 1;\n    return bits;\n}\ntemplate <class T>\nT bit_floor(T x) {\n    assert(x\
+    \ >= 0);\n    return x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\ntemplate <class\
+    \ T>\nT bit_ceil(T x) {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) <<\
+    \ bit_width(x - 1);\n}\n\nstring bin(ll n) {\n    assert(n > 0);\n    if (n ==\
+    \ 0) return \"0\";\n    string res;\n    while (n > 0) {\n        res.push_back(n\
+    \ & 1 ? '1' : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
+    \    return res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\n\
+    inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
+    #line 4 \"data/binary_indexed_tree.hpp\"\nnamespace bys {\n/**\n * @brief Binary\
+    \ Indexed Tree\n */\ntemplate <class T>\nclass BinaryIndexedTree {\n    const\
+    \ int _n;\n    std::vector<T> data;\n\n   public:\n    BinaryIndexedTree() : _n(0)\
     \ {}\n    BinaryIndexedTree(int n) : _n(n), data(n + 1) {}\n    BinaryIndexedTree(const\
     \ std::vector<T>& v) : _n(v.size()), data(_n + 1) {\n        for (int i = 0; i\
     \ < _n; ++i) add(i, v[i]);\n    }\n\n    void add(int i, T x) {\n        assert(0\
@@ -207,7 +207,7 @@ data:
   isVerificationFile: true
   path: test/data/binary_indexed_tree_aux.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:08:25+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/binary_indexed_tree_aux.test.cpp

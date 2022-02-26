@@ -12,8 +12,7 @@ data:
     title: core/io.hpp
   - icon: ':heavy_check_mark:'
     path: core/macro.hpp
-    title: "\u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
-      \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002"
+    title: "\u30DE\u30AF\u30ED"
   - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
@@ -143,34 +142,34 @@ data:
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
     \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\
-    \u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\
-    \u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\"\
-    \ << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define\
-    \ DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define\
-    \ EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n\
-    #define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\
-    \u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n#line 2 \"core/solver.hpp\"\n\
-    \nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver() {}\n    void\
-    \ solve();\n    void solve(int rep) {\n        for (; IT <= rep; ++IT) solve();\n\
-    \    }\n};\n}  // namespace bys\n#line 3 \"data/union_find.hpp\"\nnamespace bys\
-    \ {\nstruct UnionFindTree {\n    UnionFindTree() : _n(0) {}\n    UnionFindTree(std::size_t\
-    \ n) : _n(n), _n_tree(_n), parent(_n, -1) {}\n\n    std::size_t find(std::size_t\
-    \ a) {\n        assert(a < _n);\n        std::vector<std::size_t> path;\n    \
-    \    while (parent[a] >= 0) {\n            path.emplace_back(a);\n           \
-    \ a = parent[a];\n        }\n        for (auto&& p : path) parent[p] = a;\n  \
-    \      return a;\n    }\n    bool same(std::size_t a, std::size_t b) {\n     \
-    \   assert(a < _n);\n        assert(b < _n);\n        return find(a) == find(b);\n\
-    \    }\n    bool unite(std::size_t a, std::size_t b) {\n        assert(a < _n);\n\
-    \        assert(b < _n);\n        a = find(a);\n        b = find(b);\n       \
-    \ if (a == b) return false;\n        --_n_tree;\n        if (-parent[a] < -parent[b])\
-    \ std::swap(a, b);\n        parent[a] += parent[b];\n        parent[b] = a;\n\
-    \        return true;\n    }\n    std::map<std::size_t, std::vector<std::size_t>>\
-    \ groups() {\n        std::map<std::size_t, std::vector<std::size_t>> res;\n \
-    \       for (std::size_t i = 0; i < _n; ++i) res[find(i)].emplace_back(i);\n \
-    \       return res;\n    };\n    std::size_t size(std::size_t a) { return -parent[find(a)];\
+    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
+    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
+    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
+    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
+    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
+    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
+    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
+    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
+    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
+    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
+    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
+    \ 3 \"data/union_find.hpp\"\nnamespace bys {\nstruct UnionFindTree {\n    UnionFindTree()\
+    \ : _n(0) {}\n    UnionFindTree(std::size_t n) : _n(n), _n_tree(_n), parent(_n,\
+    \ -1) {}\n\n    std::size_t find(std::size_t a) {\n        assert(a < _n);\n \
+    \       std::vector<std::size_t> path;\n        while (parent[a] >= 0) {\n   \
+    \         path.emplace_back(a);\n            a = parent[a];\n        }\n     \
+    \   for (auto&& p : path) parent[p] = a;\n        return a;\n    }\n    bool same(std::size_t\
+    \ a, std::size_t b) {\n        assert(a < _n);\n        assert(b < _n);\n    \
+    \    return find(a) == find(b);\n    }\n    bool unite(std::size_t a, std::size_t\
+    \ b) {\n        assert(a < _n);\n        assert(b < _n);\n        a = find(a);\n\
+    \        b = find(b);\n        if (a == b) return false;\n        --_n_tree;\n\
+    \        if (-parent[a] < -parent[b]) std::swap(a, b);\n        parent[a] += parent[b];\n\
+    \        parent[b] = a;\n        return true;\n    }\n    std::map<std::size_t,\
+    \ std::vector<std::size_t>> groups() {\n        std::map<std::size_t, std::vector<std::size_t>>\
+    \ res;\n        for (std::size_t i = 0; i < _n; ++i) res[find(i)].emplace_back(i);\n\
+    \        return res;\n    };\n    std::size_t size(std::size_t a) { return -parent[find(a)];\
     \ }\n    std::size_t n_tree() { return _n_tree; }\n\n   private:\n    std::size_t\
     \ _n, _n_tree;\n    std::vector<int> parent;  // \u8CA0\u306A\u3089\u89AA\u3067\
     \u3042\u308A\u305D\u306E\u5024\u306F(-\u5B50\u306E\u6570)\n};\n}  // namespace\
@@ -224,7 +223,7 @@ data:
   isVerificationFile: true
   path: test/graph/kruskal.test.cpp
   requiredBy: []
-  timestamp: '2022-02-09 20:18:51+09:00'
+  timestamp: '2022-02-26 15:56:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graph/kruskal.test.cpp
