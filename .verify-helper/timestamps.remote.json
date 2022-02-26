@@ -21,6 +21,7 @@
 "test/graph/lca.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/graph/warshallfloyd.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/graphv2/dijkstra.test.cpp": "2022-02-26 15:09:40 +0900",
+"test/graphv2/lca.test.cpp": "2022-02-26 15:15:36 +0900",
 "test/graphv2/warshallfloyd.test.cpp": "2022-02-26 15:09:40 +0900",
 "test/math/osa_k.test.cpp": "2022-02-09 20:18:51 +0900",
 "test/math/prime.test.cpp": "2022-02-15 03:41:21 +0900",
