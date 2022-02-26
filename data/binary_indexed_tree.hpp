@@ -45,6 +45,7 @@ class BinaryIndexedTree {
     //! @brief sum[0, r) >= xとなる最小のrを求める
     int bisect(T x) {
         if (x <= 0) return 0;
+        if (x > sum(_n)) return -1;
         int res = 0;
         for (int w = bit_floor(_n); w > 0; w >>= 1) {
             if (res + w < _n && data[res + w] < x) {
