@@ -179,21 +179,22 @@ data:
     \ v.end(), data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i)\
     \ data[i] = A::op(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T query(int l,\
     \ int r) const {\n        assert(0 <= l && l < _n);\n        assert(l <= r);\n\
-    \        assert(r <= _n);\n\n        T res = A::id;\n        for (l += n_leaf,\
-    \ r += n_leaf; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) res = A::op(res,\
-    \ data[l++]);\n            if (r & 1) res = A::op(res, data[--r]);\n        }\n\
-    \        return res;\n    }\n\n    T query_all() const { return data[1]; }\n\n\
-    \    void update(int i, T val) {\n        assert(0 <= i && i < _n);\n        i\
-    \ += n_leaf;\n        data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i]\
-    \ = A::op(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const\
-    \ {\n        assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n   \
-    \ }\n};\n}  // namespace bys\n#line 2 \"math/algebra.hpp\"\nnamespace bys {\n\
-    template <class T>\nstruct Add {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return a + b; }\n    static constexpr T id{0};\n};\ntemplate\
-    \ <class T>\nstruct Min {\n    using value_type = T;\n    static constexpr T op(T\
-    \ a, T b) { return std::min(a, b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n\
-    };\ntemplate <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
+    \        assert(r <= _n);\n\n        T left = A::id, right = A::id;\n        for\
+    \ (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {\n            if (l & 1)\
+    \ left = A::op(left, data[l++]);\n            if (r & 1) right = A::op(data[--r],\
+    \ right);\n        }\n        return A::op(left, right);\n    }\n\n    T query_all()\
+    \ const { return data[1]; }\n\n    void update(int i, T val) {\n        assert(0\
+    \ <= i && i < _n);\n        i += n_leaf;\n        data[i] = val;\n        for\
+    \ (i >>= 1; i > 0; i >>= 1) data[i] = A::op(data[i * 2], data[i * 2 + 1]);\n \
+    \   }\n\n    T operator[](int i) const {\n        assert(0 <= i && i < _n);\n\
+    \        return data[i + n_leaf];\n    }\n};\n}  // namespace bys\n#line 2 \"\
+    math/algebra.hpp\"\nnamespace bys {\ntemplate <class T>\nstruct Add {\n    using\
+    \ value_type = T;\n    static constexpr T op(T a, T b) { return a + b; }\n   \
+    \ static constexpr T id{0};\n};\ntemplate <class T>\nstruct Min {\n    using value_type\
+    \ = T;\n    static constexpr T op(T a, T b) { return std::min(a, b); }\n    static\
+    \ constexpr T id{std::numeric_limits<T>::max()};\n};\ntemplate <class T>\nstruct\
+    \ Max {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
     };\n}  // namespace bys\n#line 2 \"utility/change.hpp\"\nnamespace bys {\ntemplate\
     \ <class T>\ninline bool chmax(T& a, const T& b) {\n    if (a < b) {\n       \
     \ a = b;\n        return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline\
@@ -247,7 +248,7 @@ data:
   isVerificationFile: true
   path: test/data/segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
+  timestamp: '2022-02-27 04:17:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/segment_tree.test.cpp
