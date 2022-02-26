@@ -2,6 +2,9 @@
 #include "../core/stdlib.hpp"
 
 namespace bys {
+/**
+ * @brief グラフテンプレート
+ */
 struct Edge {
     int from, to;
     ll cost;

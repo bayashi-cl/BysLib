@@ -5,7 +5,13 @@
 #include "edge.hpp"
 #include "result.hpp"
 namespace bys {
-SSSPResult breadth_first_search(const AdjacencyList& graph, std::size_t source) {
+/**
+ * @brief 幅優先探索
+ *
+ * @tparam AdjacencyList or DynamicAdjacencyList
+ */
+template <class Adj>
+SSSPResult breadth_first_search(const Adj& graph, std::size_t source) {
     std::size_t n = graph.size();
     SSSPResult res(n, source);
     std::queue<std::size_t> que;

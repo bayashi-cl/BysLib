@@ -1,5 +1,5 @@
-description: manual config test
+description: procon library for c++
 plugins:
 - jemoji
 - jekyll-redirect-from
-theme: jekyll-theme-midnight
+theme: jekyll-theme-slate

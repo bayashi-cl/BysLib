@@ -1,5 +1,10 @@
 #pragma once
 #include "../core/stdlib.hpp"
+/**
+ * @brief 数列
+ *
+ */
+
 namespace bys {
 template <class T>
 struct Arithmetic {
