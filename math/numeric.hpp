@@ -8,6 +8,16 @@ constexpr ll int_pow(int a, int b) {
     for (int i = 0; i < b; ++i) res *= a;
     return res;
 }
+template <class T>
+T mod_pow(T p, T q, T mod) {
+    T res = 1 % mod;
+    p %= mod;
+    for (; q; q >>= 1) {
+        if (q & 1) res = res * p % mod;
+        p = p * p % mod;
+    }
+    return res;
+}
 ll ceildiv(ll x, ll y) { return x > 0 ? (x + y - 1) / y : x / y; }
 ll floordiv(ll x, ll y) { return x > 0 ? x / y : (x - y + 1) / y; }
 pair<ll, ll> divmod(ll x, ll y) {

@@ -1,6 +1,6 @@
 #pragma once
-#include "../core/stdlib.hpp"
 #include "../core/const.hpp"
+#include "../core/stdlib.hpp"
 
 namespace bys {
 struct MultiComb {
@@ -31,6 +31,10 @@ struct MultiComb {
     ll perm(int n, int r) {
         if (r < 0 || n < r) return 0;
         return fact[n] * factinv[n - r] % mod;
+    }
+    ll hom(int n, int r) {
+        if (n == 0 && r == 0) return 1;
+        return comb(n + r - 1, r);
     }
 };
 
