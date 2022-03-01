@@ -28,6 +28,9 @@ data:
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/combination.test.cpp
+    title: test/math/combination.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
   - icon: ':heavy_check_mark:'
@@ -73,6 +76,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/osa_k.test.cpp
+  - test/math/combination.test.cpp
   - test/utility/range.test.cpp
   - test/data/binary_indexed_tree.test.cpp
   - test/data/sparse_table.test.cpp

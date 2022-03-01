@@ -55,7 +55,9 @@ data:
     \ <= i && i < _n);\n        i += n_leaf;\n        data[i] = val;\n        for\
     \ (i >>= 1; i > 0; i >>= 1) data[i] = A::op(data[i * 2], data[i * 2 + 1]);\n \
     \   }\n\n    T operator[](int i) const {\n        assert(0 <= i && i < _n);\n\
-    \        return data[i + n_leaf];\n    }\n};\n}  // namespace bys\n"
+    \        return data[i + n_leaf];\n    }\n\n    // int bisect_from_left(int l,\
+    \ std::function<bool(S)> f) const {}\n    // int bisect_from_right(int r, std::function<bool(S)>\
+    \ f) const {}\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"../math/bit.hpp\"\
     \nnamespace bys {\ntemplate <class A>\nclass SegmentTree {\n    using T = typename\
     \ A::value_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
@@ -73,14 +75,16 @@ data:
     \ += n_leaf;\n        data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i]\
     \ = A::op(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const\
     \ {\n        assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n   \
-    \ }\n};\n}  // namespace bys\n"
+    \ }\n\n    // int bisect_from_left(int l, std::function<bool(S)> f) const {}\n\
+    \    // int bisect_from_right(int r, std::function<bool(S)> f) const {}\n};\n\
+    }  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   - math/bit.hpp
   isVerificationFile: false
   path: data/segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-02-27 04:17:32+09:00'
+  timestamp: '2022-03-02 03:13:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/segment_tree.test.cpp

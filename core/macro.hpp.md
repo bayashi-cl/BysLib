@@ -88,6 +88,9 @@ data:
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/combination.test.cpp
+    title: test/math/combination.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,6 +141,7 @@ data:
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp
+  - test/math/combination.test.cpp
   - test/geometry/area.test.cpp
   - test/geometry/counter_clockwise.test.cpp
   - test/geometry/reflection.test.cpp

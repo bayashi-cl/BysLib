@@ -8,10 +8,13 @@ data:
     path: core/stdlib.hpp
     title: core/stdlib.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/math/combination.test.cpp
+    title: test/math/combination.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
@@ -40,10 +43,12 @@ data:
     \ r) {\n        if (r < 0 || n < r) return 0;\n        return fact[n] * (factinv[r]\
     \ * factinv[n - r] % mod) % mod;\n    }\n    ll perm(int n, int r) {\n       \
     \ if (r < 0 || n < r) return 0;\n        return fact[n] * factinv[n - r] % mod;\n\
-    \    }\n};\n\ntemplate <class T>\nT comb(T n, int r) {\n    T num = 1, den = 1;\n\
-    \    for (int i = 0; i < r; ++i) {\n        num *= n - i;\n        den *= i +\
-    \ 1;\n    }\n    return num / den;\n}\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"../core/const.hpp\"\
+    \    }\n    ll hom(int n, int r) {\n        if (n == 0 && r == 0) return 1;\n\
+    \        return comb(n + r - 1, r);\n    }\n};\n\ntemplate <class T>\nT comb(T\
+    \ n, int r) {\n    T num = 1, den = 1;\n    for (int i = 0; i < r; ++i) {\n  \
+    \      num *= n - i;\n        den *= i + 1;\n    }\n    return num / den;\n}\n\
+    }  // namespace bys\n"
+  code: "#pragma once\n#include \"../core/const.hpp\"\n#include \"../core/stdlib.hpp\"\
     \n\nnamespace bys {\nstruct MultiComb {\n    int _n;\n    int mod;\n    vector<ll>\
     \ fact, factinv, inv;\n\n    MultiComb(int n, int mod = MOD) : _n(n), mod(mod)\
     \ {\n        fact.resize(_n + 1);\n        factinv.resize(_n + 1);\n        inv.resize(_n\
@@ -54,19 +59,21 @@ data:
     \    }\n\n    ll comb(int n, int r) {\n        if (r < 0 || n < r) return 0;\n\
     \        return fact[n] * (factinv[r] * factinv[n - r] % mod) % mod;\n    }\n\
     \    ll perm(int n, int r) {\n        if (r < 0 || n < r) return 0;\n        return\
-    \ fact[n] * factinv[n - r] % mod;\n    }\n};\n\ntemplate <class T>\nT comb(T n,\
-    \ int r) {\n    T num = 1, den = 1;\n    for (int i = 0; i < r; ++i) {\n     \
-    \   num *= n - i;\n        den *= i + 1;\n    }\n    return num / den;\n}\n} \
-    \ // namespace bys\n"
+    \ fact[n] * factinv[n - r] % mod;\n    }\n    ll hom(int n, int r) {\n       \
+    \ if (n == 0 && r == 0) return 1;\n        return comb(n + r - 1, r);\n    }\n\
+    };\n\ntemplate <class T>\nT comb(T n, int r) {\n    T num = 1, den = 1;\n    for\
+    \ (int i = 0; i < r; ++i) {\n        num *= n - i;\n        den *= i + 1;\n  \
+    \  }\n    return num / den;\n}\n}  // namespace bys\n"
   dependsOn:
-  - core/stdlib.hpp
   - core/const.hpp
+  - core/stdlib.hpp
   isVerificationFile: false
   path: math/combination.hpp
   requiredBy: []
-  timestamp: '2022-02-26 15:09:13+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-03-02 03:13:37+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/math/combination.test.cpp
 documentation_of: math/combination.hpp
 layout: document
 redirect_from:

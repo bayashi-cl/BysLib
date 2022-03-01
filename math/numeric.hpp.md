@@ -7,11 +7,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: math/bit.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/prime.hpp
+    title: Miller-Rabin
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/math/prime.test.cpp
+    title: test/math/prime.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
@@ -38,42 +44,49 @@ data:
     inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
     #line 4 \"math/numeric.hpp\"\n\nnamespace bys {\nconstexpr ll int_pow(int a, int\
     \ b) {\n    ll res = 1;\n    for (int i = 0; i < b; ++i) res *= a;\n    return\
-    \ res;\n}\nll ceildiv(ll x, ll y) { return x > 0 ? (x + y - 1) / y : x / y; }\n\
-    ll floordiv(ll x, ll y) { return x > 0 ? x / y : (x - y + 1) / y; }\npair<ll,\
-    \ ll> divmod(ll x, ll y) {\n    ll q = floordiv(x, y);\n    return {q, x - q *\
-    \ y};\n}\n\nll isqrt_aux(ll c, ll n) {\n    if (c == 0) return 1;\n    ll k =\
-    \ (c - 1) / 2;\n    ll a = isqrt_aux(c / 2, n >> (2 * k + 2));\n    return (a\
-    \ << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll n) {\n    assert(n >= 0);\n    if\
-    \ (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n) - 1) / 2, n);\n    return\
-    \ n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename std::enable_if_t<std::is_floating_point_v<T>,\
-    \ std::nullptr_t> = nullptr>\ninline bool isclose(T x, T y, T coef = 4.0) {\n\
-    \    if (x == y) return true;\n    auto diff = std::abs(x - y);\n    return diff\
-    \ <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n\
-    }\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"bit.hpp\"\n\nnamespace\
-    \ bys {\nconstexpr ll int_pow(int a, int b) {\n    ll res = 1;\n    for (int i\
-    \ = 0; i < b; ++i) res *= a;\n    return res;\n}\nll ceildiv(ll x, ll y) { return\
-    \ x > 0 ? (x + y - 1) / y : x / y; }\nll floordiv(ll x, ll y) { return x > 0 ?\
-    \ x / y : (x - y + 1) / y; }\npair<ll, ll> divmod(ll x, ll y) {\n    ll q = floordiv(x,\
-    \ y);\n    return {q, x - q * y};\n}\n\nll isqrt_aux(ll c, ll n) {\n    if (c\
-    \ == 0) return 1;\n    ll k = (c - 1) / 2;\n    ll a = isqrt_aux(c / 2, n >> (2\
-    \ * k + 2));\n    return (a << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll n) {\n\
-    \    assert(n >= 0);\n    if (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n)\
+    \ res;\n}\ntemplate <class T>\nT mod_pow(T p, T q, T mod) {\n    T res = 1 % mod;\n\
+    \    p %= mod;\n    for (; q; q >>= 1) {\n        if (q & 1) res = res * p % mod;\n\
+    \        p = p * p % mod;\n    }\n    return res;\n}\nll ceildiv(ll x, ll y) {\
+    \ return x > 0 ? (x + y - 1) / y : x / y; }\nll floordiv(ll x, ll y) { return\
+    \ x > 0 ? x / y : (x - y + 1) / y; }\npair<ll, ll> divmod(ll x, ll y) {\n    ll\
+    \ q = floordiv(x, y);\n    return {q, x - q * y};\n}\n\nll isqrt_aux(ll c, ll\
+    \ n) {\n    if (c == 0) return 1;\n    ll k = (c - 1) / 2;\n    ll a = isqrt_aux(c\
+    \ / 2, n >> (2 * k + 2));\n    return (a << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll\
+    \ n) {\n    assert(n >= 0);\n    if (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n)\
     \ - 1) / 2, n);\n    return n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename\
     \ std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t> = nullptr>\ninline\
     \ bool isclose(T x, T y, T coef = 4.0) {\n    if (x == y) return true;\n    auto\
     \ diff = std::abs(x - y);\n    return diff <= std::numeric_limits<T>::epsilon()\
     \ * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n}\n}  //\
     \ namespace bys\n"
+  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"bit.hpp\"\n\nnamespace\
+    \ bys {\nconstexpr ll int_pow(int a, int b) {\n    ll res = 1;\n    for (int i\
+    \ = 0; i < b; ++i) res *= a;\n    return res;\n}\ntemplate <class T>\nT mod_pow(T\
+    \ p, T q, T mod) {\n    T res = 1 % mod;\n    p %= mod;\n    for (; q; q >>= 1)\
+    \ {\n        if (q & 1) res = res * p % mod;\n        p = p * p % mod;\n    }\n\
+    \    return res;\n}\nll ceildiv(ll x, ll y) { return x > 0 ? (x + y - 1) / y :\
+    \ x / y; }\nll floordiv(ll x, ll y) { return x > 0 ? x / y : (x - y + 1) / y;\
+    \ }\npair<ll, ll> divmod(ll x, ll y) {\n    ll q = floordiv(x, y);\n    return\
+    \ {q, x - q * y};\n}\n\nll isqrt_aux(ll c, ll n) {\n    if (c == 0) return 1;\n\
+    \    ll k = (c - 1) / 2;\n    ll a = isqrt_aux(c / 2, n >> (2 * k + 2));\n   \
+    \ return (a << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll n) {\n    assert(n >=\
+    \ 0);\n    if (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n) - 1) / 2,\
+    \ n);\n    return n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename std::enable_if_t<std::is_floating_point_v<T>,\
+    \ std::nullptr_t> = nullptr>\ninline bool isclose(T x, T y, T coef = 4.0) {\n\
+    \    if (x == y) return true;\n    auto diff = std::abs(x - y);\n    return diff\
+    \ <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n\
+    }\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   - math/bit.hpp
   isVerificationFile: false
   path: math/numeric.hpp
-  requiredBy: []
-  timestamp: '2022-02-15 02:40:17+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  requiredBy:
+  - math/prime.hpp
+  timestamp: '2022-03-02 03:13:37+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/math/prime.test.cpp
 documentation_of: math/numeric.hpp
 layout: document
 redirect_from:

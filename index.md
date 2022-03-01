@@ -159,7 +159,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/bit.hpp
       title: math/bit.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/combination.hpp
       title: math/combination.hpp
     - icon: ':warning:'
@@ -174,10 +174,7 @@ data:
     - icon: ':warning:'
       path: math/matrix.hpp
       title: math/matrix.hpp
-    - icon: ':warning:'
-      path: math/monoid.hpp
-      title: math/monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: math/numeric.hpp
       title: math/numeric.hpp
     - icon: ':heavy_check_mark:'
@@ -185,7 +182,7 @@ data:
       title: math/osa_k.hpp
     - icon: ':heavy_check_mark:'
       path: math/prime.hpp
-      title: math/prime.hpp
+      title: Miller-Rabin
     - icon: ':warning:'
       path: math/sequence.hpp
       title: "\u6570\u5217"
@@ -320,6 +317,9 @@ data:
       title: test/graphv2/warshallfloyd.test.cpp
   - name: test/math
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/math/combination.test.cpp
+      title: test/math/combination.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/math/osa_k.test.cpp
       title: test/math/osa_k.test.cpp

@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graphv2/warshall_floyd.hpp
     title: graphv2/warshall_floyd.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/combination.hpp
     title: math/combination.hpp
   _extendedVerifiedWith:
@@ -111,6 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/combination.test.cpp
+    title: test/math/combination.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
@@ -263,6 +266,7 @@ data:
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp
+  - test/math/combination.test.cpp
   - test/geometry/area.test.cpp
   - test/geometry/counter_clockwise.test.cpp
   - test/geometry/reflection.test.cpp

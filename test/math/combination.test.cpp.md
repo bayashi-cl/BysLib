@@ -29,14 +29,11 @@ data:
     path: core/types.hpp
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
-    path: math/bit.hpp
-    title: math/bit.hpp
+    path: math/combination.hpp
+    title: math/combination.hpp
   - icon: ':heavy_check_mark:'
-    path: math/numeric.hpp
-    title: math/numeric.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/prime.hpp
-    title: Miller-Rabin
+    path: utility/range.hpp
+    title: "Python\u306Erange"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -44,11 +41,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
+    PROBLEM: https://yukicoder.me/problems/no/117
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
-  bundledCode: "#line 1 \"test/math/prime.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
-    \n#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include\
+    - https://yukicoder.me/problems/no/117
+  bundledCode: "#line 1 \"test/math/combination.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/117\"\
+    \n\n#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include\
     \ <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n#include\
     \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
     #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
@@ -63,9 +60,25 @@ data:
     \ bys\n#line 3 \"core/const.hpp\"\n\nnamespace bys {\nconstexpr int MOD = 998244353;\n\
     constexpr int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
     \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
-    \ bys\n#line 4 \"core/types.hpp\"\n#include <utility>\n\nnamespace bys {\ntemplate\
-    \ <class, class = void>\nstruct has_lshift_to_ostream : std::false_type {};\n\
-    template <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \ bys\n#line 4 \"math/combination.hpp\"\n\nnamespace bys {\nstruct MultiComb {\n\
+    \    int _n;\n    int mod;\n    vector<ll> fact, factinv, inv;\n\n    MultiComb(int\
+    \ n, int mod = MOD) : _n(n), mod(mod) {\n        fact.resize(_n + 1);\n      \
+    \  factinv.resize(_n + 1);\n        inv.resize(_n + 1);\n\n        fact[0] = fact[1]\
+    \ = 1;\n        factinv[0] = factinv[1] = 1;\n        inv[1] = 1;\n\n        for\
+    \ (int i = 2; i <= _n; i++) {\n            fact[i] = fact[i - 1] * i % mod;\n\
+    \            inv[i] = mod - inv[mod % i] * (mod / i) % mod;\n            factinv[i]\
+    \ = factinv[i - 1] * inv[i] % mod;\n        }\n    }\n\n    ll comb(int n, int\
+    \ r) {\n        if (r < 0 || n < r) return 0;\n        return fact[n] * (factinv[r]\
+    \ * factinv[n - r] % mod) % mod;\n    }\n    ll perm(int n, int r) {\n       \
+    \ if (r < 0 || n < r) return 0;\n        return fact[n] * factinv[n - r] % mod;\n\
+    \    }\n    ll hom(int n, int r) {\n        if (n == 0 && r == 0) return 1;\n\
+    \        return comb(n + r - 1, r);\n    }\n};\n\ntemplate <class T>\nT comb(T\
+    \ n, int r) {\n    T num = 1, den = 1;\n    for (int i = 0; i < r; ++i) {\n  \
+    \      num *= n - i;\n        den *= i + 1;\n    }\n    return num / den;\n}\n\
+    }  // namespace bys\n#line 4 \"test/math/combination.test.cpp\"\n\n#line 4 \"\
+    core/types.hpp\"\n#include <utility>\n\nnamespace bys {\ntemplate <class, class\
+    \ = void>\nstruct has_lshift_to_ostream : std::false_type {};\ntemplate <class\
+    \ T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -155,78 +168,63 @@ data:
     \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
     \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
     \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
-    \ 3 \"math/bit.hpp\"\n\nnamespace bys {\ntemplate <class T>\nint bit_width(T x)\
-    \ {\n    int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++)\
-    \ x >>= 1;\n    return bits;\n}\ntemplate <class T>\nT bit_floor(T x) {\n    assert(x\
-    \ >= 0);\n    return x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\ntemplate <class\
-    \ T>\nT bit_ceil(T x) {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) <<\
-    \ bit_width(x - 1);\n}\n\nstring bin(ll n) {\n    assert(n > 0);\n    if (n ==\
-    \ 0) return \"0\";\n    string res;\n    while (n > 0) {\n        res.push_back(n\
-    \ & 1 ? '1' : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
-    \    return res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\n\
-    inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
-    #line 4 \"math/numeric.hpp\"\n\nnamespace bys {\nconstexpr ll int_pow(int a, int\
-    \ b) {\n    ll res = 1;\n    for (int i = 0; i < b; ++i) res *= a;\n    return\
-    \ res;\n}\ntemplate <class T>\nT mod_pow(T p, T q, T mod) {\n    T res = 1 % mod;\n\
-    \    p %= mod;\n    for (; q; q >>= 1) {\n        if (q & 1) res = res * p % mod;\n\
-    \        p = p * p % mod;\n    }\n    return res;\n}\nll ceildiv(ll x, ll y) {\
-    \ return x > 0 ? (x + y - 1) / y : x / y; }\nll floordiv(ll x, ll y) { return\
-    \ x > 0 ? x / y : (x - y + 1) / y; }\npair<ll, ll> divmod(ll x, ll y) {\n    ll\
-    \ q = floordiv(x, y);\n    return {q, x - q * y};\n}\n\nll isqrt_aux(ll c, ll\
-    \ n) {\n    if (c == 0) return 1;\n    ll k = (c - 1) / 2;\n    ll a = isqrt_aux(c\
-    \ / 2, n >> (2 * k + 2));\n    return (a << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll\
-    \ n) {\n    assert(n >= 0);\n    if (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n)\
-    \ - 1) / 2, n);\n    return n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename\
-    \ std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t> = nullptr>\ninline\
-    \ bool isclose(T x, T y, T coef = 4.0) {\n    if (x == y) return true;\n    auto\
-    \ diff = std::abs(x - y);\n    return diff <= std::numeric_limits<T>::epsilon()\
-    \ * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n}\n}  //\
-    \ namespace bys\n#line 4 \"math/prime.hpp\"\nnamespace bys {\ntemplate <typename\
-    \ T>\nvector<T> prime_factorize(T n) {\n    vector<T> res;\n    while (n % 2 ==\
-    \ 0) {\n        res.push_back(2);\n        n /= 2;\n    }\n    T f = 3;\n    while\
-    \ (f * f <= n) {\n        if (n % f == 0) {\n            res.push_back(f);\n \
-    \           n /= f;\n        } else {\n            f += 2;\n        }\n    }\n\
-    \    if (n != 1) res.push_back(n);\n    return res;\n}\n//! @brief Miller-Rabin\n\
-    bool is_prime(ll n) {\n    if (n <= 1) return false;\n    if (n == 2) return true;\n\
-    \    if (n % 2 == 0) return false;\n    std::array<ll, 7> prime = {2, 325, 9375,\
-    \ 28178, 450775, 9780504, 1795265022};\n    ll s = 0, d = n - 1;\n    while (d\
-    \ % 2 == 0) {\n        ++s;\n        d >>= 1;\n    }\n    for (auto p : prime)\
-    \ {\n        if (p % n == 0) return true;\n        ll t, x = mod_pow<__int128_t>(p,\
-    \ d, n);\n        if (x != 1) {\n            for (t = 0; t < s; ++t) {\n     \
-    \           if (x == n - 1) break;\n                x = __int128_t(x) * x % n;\n\
-    \            }\n            if (t == s) return false;\n        }\n    }\n    return\
-    \ true;\n}\n}  // namespace bys\n#line 4 \"test/math/prime.test.cpp\"\n\nnamespace\
-    \ bys {\nvoid Solver::solve() {\n    auto n = scanner.read<int>();\n    cout <<\
-    \ n << \": \";\n    print(prime_factorize(n));\n}\n}  // namespace bys\n\nint\
-    \ main() {\n    bys::Solver solver;\n    solver.solve();\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
-    \n#include \"../../core/core.hpp\"\n#include \"../../math/prime.hpp\"\n\nnamespace\
-    \ bys {\nvoid Solver::solve() {\n    auto n = scanner.read<int>();\n    cout <<\
-    \ n << \": \";\n    print(prime_factorize(n));\n}\n}  // namespace bys\n\nint\
-    \ main() {\n    bys::Solver solver;\n    solver.solve();\n    return 0;\n}\n"
+    \ 2 \"utility/range.hpp\"\n\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate\
+    \ <typename T>\nstruct Range {\n    Range(T start, T stop, T step = 1) : it(start),\
+    \ stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0),\
+    \ stop(stop), step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n\
+    \    T end() const { return stop; }\n    bool operator!=(const T val) const {\
+    \ return (val - it) * dir > 0; }\n    void operator++() { it += step; }\n    const\
+    \ T& operator*() const { return it; }\n\n   private:\n    T it;\n    const T stop,\
+    \ step;\n    const int dir;\n\n    friend Range reversed(const Range& r) {\n \
+    \       auto new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n \
+    \       return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class\
+    \ T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\n\
+    Range<T> irange(T start, T stop, T step = 1) {\n    return Range(start, stop,\
+    \ step);\n}\n}  // namespace bys\n#line 7 \"test/math/combination.test.cpp\"\n\
+    \nnamespace bys {\nstd::tuple<char, int, int> parse(string s) {\n    s.pop_back();\n\
+    \    std::replace(s.begin(), s.end(), ',', ' ');\n    std::stringstream ss{s.substr(2)};\n\
+    \    int n, r;\n    ss >> n >> r;\n    return {s[0], n, r};\n}\n\nvoid Solver::solve()\
+    \ {\n    auto t = scanner.read<int>();\n    int MAX = 2'000'002;\n    MultiComb\
+    \ mc(MAX, MOD7);\n    for (UV : irange(t)) {\n        auto [c, n, k] = parse(scanner.read<string>());\n\
+    \        if (c == 'C') {\n            print(mc.comb(n, k));\n        } else if\
+    \ (c == 'P') {\n            print(mc.perm(n, k));\n        } else if (c == 'H')\
+    \ {\n            print(mc.hom(n, k));\n        }\n    }\n}\n}  // namespace bys\n\
+    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ */);\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://yukicoder.me/problems/no/117\"\n\n#include \"../../math/combination.hpp\"\
+    \n\n#include \"../../core/core.hpp\"\n#include \"../../utility/range.hpp\"\n\n\
+    namespace bys {\nstd::tuple<char, int, int> parse(string s) {\n    s.pop_back();\n\
+    \    std::replace(s.begin(), s.end(), ',', ' ');\n    std::stringstream ss{s.substr(2)};\n\
+    \    int n, r;\n    ss >> n >> r;\n    return {s[0], n, r};\n}\n\nvoid Solver::solve()\
+    \ {\n    auto t = scanner.read<int>();\n    int MAX = 2'000'002;\n    MultiComb\
+    \ mc(MAX, MOD7);\n    for (UV : irange(t)) {\n        auto [c, n, k] = parse(scanner.read<string>());\n\
+    \        if (c == 'C') {\n            print(mc.comb(n, k));\n        } else if\
+    \ (c == 'P') {\n            print(mc.perm(n, k));\n        } else if (c == 'H')\
+    \ {\n            print(mc.hom(n, k));\n        }\n    }\n}\n}  // namespace bys\n\
+    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ */);\n    return 0;\n}\n"
   dependsOn:
-  - core/core.hpp
-  - core/stdlib.hpp
+  - math/combination.hpp
   - core/const.hpp
+  - core/stdlib.hpp
+  - core/core.hpp
   - core/io.hpp
   - core/printer.hpp
   - core/types.hpp
   - core/scanner.hpp
   - core/macro.hpp
   - core/solver.hpp
-  - math/prime.hpp
-  - math/numeric.hpp
-  - math/bit.hpp
+  - utility/range.hpp
   isVerificationFile: true
-  path: test/math/prime.test.cpp
+  path: test/math/combination.test.cpp
   requiredBy: []
   timestamp: '2022-03-02 03:13:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/math/prime.test.cpp
+documentation_of: test/math/combination.test.cpp
 layout: document
 redirect_from:
-- /verify/test/math/prime.test.cpp
-- /verify/test/math/prime.test.cpp.html
-title: test/math/prime.test.cpp
+- /verify/test/math/combination.test.cpp
+- /verify/test/math/combination.test.cpp.html
+title: test/math/combination.test.cpp
 ---

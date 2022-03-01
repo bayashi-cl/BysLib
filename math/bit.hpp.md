@@ -11,9 +11,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: data/segment_tree.hpp
     title: data/segment_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: math/numeric.hpp
     title: math/numeric.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/prime.hpp
+    title: Miller-Rabin
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data/binary_indexed_tree.test.cpp
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/segment_tree.test.cpp
     title: test/data/segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/math/prime.test.cpp
+    title: test/math/prime.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -68,11 +74,13 @@ data:
   path: math/bit.hpp
   requiredBy:
   - math/numeric.hpp
+  - math/prime.hpp
   - data/binary_indexed_tree.hpp
   - data/segment_tree.hpp
   timestamp: '2022-02-15 02:40:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/math/prime.test.cpp
   - test/data/binary_indexed_tree.test.cpp
   - test/data/binary_indexed_tree_aux.test.cpp
   - test/data/segment_tree.test.cpp
