@@ -41,5 +41,8 @@ class SegmentTree {
         assert(0 <= i && i < _n);
         return data[i + n_leaf];
     }
+
+    // int bisect_from_left(int l, std::function<bool(S)> f) const {}
+    // int bisect_from_right(int r, std::function<bool(S)> f) const {}
 };
 }  // namespace bys
