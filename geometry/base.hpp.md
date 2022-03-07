@@ -47,9 +47,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: '#line 2 "core/stdlib.hpp"
-
-    #ifndef LOCAL
+  bundledCode: '#ifndef LOCAL
 
     #define NDEBUG
 
@@ -127,8 +125,6 @@ data:
     using umap = std::unordered_map<S, T>;
 
     }  // namespace bys
-
-    #line 3 "geometry/base.hpp"
 
 
     namespace bys::geo {

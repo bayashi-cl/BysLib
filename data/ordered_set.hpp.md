@@ -8,9 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: '#line 2 "data/ordered_set.hpp"
-
-    #include <ext/pb_ds/assoc_container.hpp>
+  bundledCode: '#include <ext/pb_ds/assoc_container.hpp>
 
     using namespace __gnu_pbds;
 

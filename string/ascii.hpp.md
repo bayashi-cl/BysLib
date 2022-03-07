@@ -11,9 +11,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: '#line 2 "core/stdlib.hpp"
-
-    #ifndef LOCAL
+  bundledCode: '#ifndef LOCAL
 
     #define NDEBUG
 
@@ -91,8 +89,6 @@ data:
     using umap = std::unordered_map<S, T>;
 
     }  // namespace bys
-
-    #line 3 "string/ascii.hpp"
 
     namespace bys {
 

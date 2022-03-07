@@ -47,25 +47,24 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A
-  bundledCode: "#line 1 \"test/math/prime.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
-    \n#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include\
-    \ <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n#include\
-    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
-    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
-    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
-    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
-    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
-    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"core/const.hpp\"\n\nnamespace bys {\nconstexpr int MOD = 998244353;\n\
-    constexpr int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
-    \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
-    \ bys\n#line 4 \"core/types.hpp\"\n#include <utility>\n\nnamespace bys {\ntemplate\
-    \ <class, class = void>\nstruct has_lshift_to_ostream : std::false_type {};\n\
-    template <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
+    \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
+    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n\
+    #include <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n\
+    #include <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include\
+    \ <stack>\n#include <string>\n#include <type_traits>\n#include <unordered_map>\n\
+    #include <unordered_set>\n#include <vector>\n\nnamespace bys {\nusing std::array,\
+    \ std::vector, std::string, std::set, std::map, std::pair;\nusing std::cin, std::cout,\
+    \ std::endl;\nusing std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\
+    \n// alias\nusing ll = long long int;\nusing ld = long double;\nusing Pa = pair<int,\
+    \ int>;\nusing Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class\
+    \ T>\nusing uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing\
+    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n\nnamespace bys {\nconstexpr\
+    \ int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int INF =\
+    \ std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
+    \ / 2;\n}  // namespace bys\n#include <utility>\n\nnamespace bys {\ntemplate <class,\
+    \ class = void>\nstruct has_lshift_to_ostream : std::false_type {};\ntemplate\
+    \ <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -74,11 +73,11 @@ data:
     struct has_tuple_interface<T, std::void_t<decltype(std::tuple_size<T>())>> : std::true_type\
     \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
     \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
-    \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n#line 4 \"core/printer.hpp\"\
-    \n\nnamespace bys {\nstruct Printer {\n    Printer(std::ostream& os_) : os(os_)\
-    \ {}\n    ~Printer() { os << std::flush; }\n\n    template <class T>\n    void\
-    \ cat(T&& v) {\n        if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value)\
-    \ {\n            os << v;\n        } else if constexpr (has_iterator<std::decay_t<T>>::value)\
+    \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n\nnamespace bys\
+    \ {\nstruct Printer {\n    Printer(std::ostream& os_) : os(os_) {}\n    ~Printer()\
+    \ { os << std::flush; }\n\n    template <class T>\n    void cat(T&& v) {\n   \
+    \     if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {\n       \
+    \     os << v;\n        } else if constexpr (has_iterator<std::decay_t<T>>::value)\
     \ {\n            string sep2;\n            if constexpr (has_iterator<std::decay_t<typename\
     \ std::decay_t<T>::value_type>>::value) {\n                sep2 = _end;\n    \
     \        } else {\n                sep2 = _sep;\n            }\n            for\
@@ -102,14 +101,14 @@ data:
     \ != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n    }\n    template <class\
     \ Tp, std::size_t... I>\n    inline void print_tuple(Tp&& tp, std::index_sequence<I...>)\
     \ {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
-    \ ...);\n    }\n};\n}  // namespace bys\n#line 4 \"core/scanner.hpp\"\n\nnamespace\
-    \ bys {\nstruct Scanner {\n    Scanner(std::istream& is_) : is(is_){};\n\n   \
-    \ template <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >>\
-    \ args);\n    }\n\n    template <class T, class... Us>\n    decltype(auto) read()\
-    \ {\n        if constexpr (sizeof...(Us) == 0) {\n            if constexpr (has_rshift_from_istream<T>::value)\
-    \ {\n                T res;\n                is >> res;\n                return\
-    \ res;\n            } else if constexpr (has_tuple_interface<T>::value) {\n  \
-    \              auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
+    \ ...);\n    }\n};\n}  // namespace bys\n\nnamespace bys {\nstruct Scanner {\n\
+    \    Scanner(std::istream& is_) : is(is_){};\n\n    template <class... Ts>\n \
+    \   void scan(Ts&... args) {\n        (is >> ... >> args);\n    }\n\n    template\
+    \ <class T, class... Us>\n    decltype(auto) read() {\n        if constexpr (sizeof...(Us)\
+    \ == 0) {\n            if constexpr (has_rshift_from_istream<T>::value) {\n  \
+    \              T res;\n                is >> res;\n                return res;\n\
+    \            } else if constexpr (has_tuple_interface<T>::value) {\n         \
+    \       auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
     \                return res;\n            } else if constexpr (std::is_same_v<T,\
     \ Int1>) {\n                int res;\n                is >> res;\n           \
     \     --res;\n                return res;\n            } else if constexpr (has_iterator<T>::value)\
@@ -137,68 +136,66 @@ data:
     \ res);\n        return res;\n    }\n\n   private:\n    std::istream& is;\n  \
     \  template <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
     \ {\n        return Tp{read<typename std::tuple_element_t<I, Tp>>()...};\n   \
-    \ }\n};\n}  // namespace bys\n#line 5 \"core/io.hpp\"\n\nnamespace bys {\n__attribute__((constructor))\
+    \ }\n};\n}  // namespace bys\n\nnamespace bys {\n__attribute__((constructor))\
     \ void setup_io() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
-    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
-    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
-    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
-    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
-    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
-    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
-    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
-    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
-    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
-    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
-    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
-    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
-    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
-    \ 3 \"math/bit.hpp\"\n\nnamespace bys {\ntemplate <class T>\nint bit_width(T x)\
-    \ {\n    int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++)\
-    \ x >>= 1;\n    return bits;\n}\ntemplate <class T>\nT bit_floor(T x) {\n    assert(x\
-    \ >= 0);\n    return x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\ntemplate <class\
-    \ T>\nT bit_ceil(T x) {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) <<\
-    \ bit_width(x - 1);\n}\n\nstring bin(ll n) {\n    assert(n > 0);\n    if (n ==\
-    \ 0) return \"0\";\n    string res;\n    while (n > 0) {\n        res.push_back(n\
-    \ & 1 ? '1' : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
-    \    return res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\n\
-    inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
-    #line 4 \"math/numeric.hpp\"\n\nnamespace bys {\nconstexpr ll int_pow(int a, int\
-    \ b) {\n    ll res = 1;\n    for (int i = 0; i < b; ++i) res *= a;\n    return\
-    \ res;\n}\ntemplate <class T>\nT mod_pow(T p, T q, T mod) {\n    T res = 1 % mod;\n\
-    \    p %= mod;\n    for (; q; q >>= 1) {\n        if (q & 1) res = res * p % mod;\n\
-    \        p = p * p % mod;\n    }\n    return res;\n}\nll ceildiv(ll x, ll y) {\
-    \ return x > 0 ? (x + y - 1) / y : x / y; }\nll floordiv(ll x, ll y) { return\
-    \ x > 0 ? x / y : (x - y + 1) / y; }\npair<ll, ll> divmod(ll x, ll y) {\n    ll\
-    \ q = floordiv(x, y);\n    return {q, x - q * y};\n}\n\nll isqrt_aux(ll c, ll\
-    \ n) {\n    if (c == 0) return 1;\n    ll k = (c - 1) / 2;\n    ll a = isqrt_aux(c\
-    \ / 2, n >> (2 * k + 2));\n    return (a << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll\
-    \ n) {\n    assert(n >= 0);\n    if (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n)\
-    \ - 1) / 2, n);\n    return n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename\
-    \ std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t> = nullptr>\ninline\
-    \ bool isclose(T x, T y, T coef = 4.0) {\n    if (x == y) return true;\n    auto\
-    \ diff = std::abs(x - y);\n    return diff <= std::numeric_limits<T>::epsilon()\
-    \ * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n}\n}  //\
-    \ namespace bys\n#line 4 \"math/prime.hpp\"\nnamespace bys {\ntemplate <typename\
-    \ T>\nvector<T> prime_factorize(T n) {\n    vector<T> res;\n    while (n % 2 ==\
-    \ 0) {\n        res.push_back(2);\n        n /= 2;\n    }\n    T f = 3;\n    while\
-    \ (f * f <= n) {\n        if (n % f == 0) {\n            res.push_back(f);\n \
-    \           n /= f;\n        } else {\n            f += 2;\n        }\n    }\n\
-    \    if (n != 1) res.push_back(n);\n    return res;\n}\n//! @brief Miller-Rabin\n\
-    bool is_prime(ll n) {\n    if (n <= 1) return false;\n    if (n == 2) return true;\n\
-    \    if (n % 2 == 0) return false;\n    std::array<ll, 7> prime = {2, 325, 9375,\
-    \ 28178, 450775, 9780504, 1795265022};\n    ll s = 0, d = n - 1;\n    while (d\
-    \ % 2 == 0) {\n        ++s;\n        d >>= 1;\n    }\n    for (auto p : prime)\
-    \ {\n        if (p % n == 0) return true;\n        ll t, x = mod_pow<__int128_t>(p,\
-    \ d, n);\n        if (x != 1) {\n            for (t = 0; t < s; ++t) {\n     \
-    \           if (x == n - 1) break;\n                x = __int128_t(x) * x % n;\n\
-    \            }\n            if (t == s) return false;\n        }\n    }\n    return\
-    \ true;\n}\n}  // namespace bys\n#line 4 \"test/math/prime.test.cpp\"\n\nnamespace\
-    \ bys {\nvoid Solver::solve() {\n    auto n = scanner.read<int>();\n    cout <<\
-    \ n << \": \";\n    print(prime_factorize(n));\n}\n}  // namespace bys\n\nint\
-    \ main() {\n    bys::Solver solver;\n    solver.solve();\n    return 0;\n}\n"
+    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n// clang-format\
+    \ off\n/**\n * @brief \u30DE\u30AF\u30ED\n */\n#ifdef LOCAL\n//! @brief \u30C7\
+    \u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\
+    \u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug]\
+    \ line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n\
+    #define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\
+    \n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b)\
+    \ a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
+    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
+    \ + \", func: \" + __func__)\n// clang-format on\n\nnamespace bys {\nstruct Solver\
+    \ {\n    int IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep)\
+    \ {\n        for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n\
+    \nnamespace bys {\ntemplate <class T>\nint bit_width(T x) {\n    int bits = 0;\n\
+    \    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n    return\
+    \ bits;\n}\ntemplate <class T>\nT bit_floor(T x) {\n    assert(x >= 0);\n    return\
+    \ x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\ntemplate <class T>\nT bit_ceil(T\
+    \ x) {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n\
+    }\n\nstring bin(ll n) {\n    assert(n > 0);\n    if (n == 0) return \"0\";\n \
+    \   string res;\n    while (n > 0) {\n        res.push_back(n & 1 ? '1' : '0');\n\
+    \        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n    return\
+    \ res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\ninline bool\
+    \ pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\nnamespace\
+    \ bys {\nconstexpr ll int_pow(int a, int b) {\n    ll res = 1;\n    for (int i\
+    \ = 0; i < b; ++i) res *= a;\n    return res;\n}\ntemplate <class T>\nT mod_pow(T\
+    \ p, T q, T mod) {\n    T res = 1 % mod;\n    p %= mod;\n    for (; q; q >>= 1)\
+    \ {\n        if (q & 1) res = res * p % mod;\n        p = p * p % mod;\n    }\n\
+    \    return res;\n}\nll ceildiv(ll x, ll y) { return x > 0 ? (x + y - 1) / y :\
+    \ x / y; }\nll floordiv(ll x, ll y) { return x > 0 ? x / y : (x - y + 1) / y;\
+    \ }\npair<ll, ll> divmod(ll x, ll y) {\n    ll q = floordiv(x, y);\n    return\
+    \ {q, x - q * y};\n}\n\nll isqrt_aux(ll c, ll n) {\n    if (c == 0) return 1;\n\
+    \    ll k = (c - 1) / 2;\n    ll a = isqrt_aux(c / 2, n >> (2 * k + 2));\n   \
+    \ return (a << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll n) {\n    assert(n >=\
+    \ 0);\n    if (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n) - 1) / 2,\
+    \ n);\n    return n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename std::enable_if_t<std::is_floating_point_v<T>,\
+    \ std::nullptr_t> = nullptr>\ninline bool isclose(T x, T y, T coef = 4.0) {\n\
+    \    if (x == y) return true;\n    auto diff = std::abs(x - y);\n    return diff\
+    \ <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n\
+    }\n}  // namespace bys\nnamespace bys {\ntemplate <typename T>\nvector<T> prime_factorize(T\
+    \ n) {\n    vector<T> res;\n    while (n % 2 == 0) {\n        res.push_back(2);\n\
+    \        n /= 2;\n    }\n    T f = 3;\n    while (f * f <= n) {\n        if (n\
+    \ % f == 0) {\n            res.push_back(f);\n            n /= f;\n        } else\
+    \ {\n            f += 2;\n        }\n    }\n    if (n != 1) res.push_back(n);\n\
+    \    return res;\n}\n//! @brief Miller-Rabin\nbool is_prime(ll n) {\n    if (n\
+    \ <= 1) return false;\n    if (n == 2) return true;\n    if (n % 2 == 0) return\
+    \ false;\n    std::array<ll, 7> prime = {2, 325, 9375, 28178, 450775, 9780504,\
+    \ 1795265022};\n    ll s = 0, d = n - 1;\n    while (d % 2 == 0) {\n        ++s;\n\
+    \        d >>= 1;\n    }\n    for (auto p : prime) {\n        if (p % n == 0)\
+    \ return true;\n        ll t, x = mod_pow<__int128_t>(p, d, n);\n        if (x\
+    \ != 1) {\n            for (t = 0; t < s; ++t) {\n                if (x == n -\
+    \ 1) break;\n                x = __int128_t(x) * x % n;\n            }\n     \
+    \       if (t == s) return false;\n        }\n    }\n    return true;\n}\n}  //\
+    \ namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n    auto n = scanner.read<int>();\n\
+    \    cout << n << \": \";\n    print(prime_factorize(n));\n}\n}  // namespace\
+    \ bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve();\n    return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A\"\
     \n#include \"../../core/core.hpp\"\n#include \"../../math/prime.hpp\"\n\nnamespace\
     \ bys {\nvoid Solver::solve() {\n    auto n = scanner.read<int>();\n    cout <<\

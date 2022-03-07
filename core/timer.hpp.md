@@ -8,9 +8,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"core/timer.hpp\"\n#include <chrono>\n\nnamespace bys {\n\
-    struct Timer {\n    std::chrono::time_point<std::chrono::system_clock> end;\n\
-    \    Timer(int ms) { end = std::chrono::system_clock::now() + std::chrono::milliseconds(ms);\
+  bundledCode: "#include <chrono>\n\nnamespace bys {\nstruct Timer {\n    std::chrono::time_point<std::chrono::system_clock>\
+    \ end;\n    Timer(int ms) { end = std::chrono::system_clock::now() + std::chrono::milliseconds(ms);\
     \ }\n    inline bool counting() const { return std::chrono::system_clock::now()\
     \ <= end; }\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include <chrono>\n\nnamespace bys {\nstruct Timer {\n    std::chrono::time_point<std::chrono::system_clock>\

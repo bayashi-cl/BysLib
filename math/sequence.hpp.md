@@ -12,24 +12,23 @@ data:
   attributes:
     document_title: "\u6570\u5217"
     links: []
-  bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
-    \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
-    #include <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
-    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+  bundledCode: "#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include\
+    \ <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
+    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
     using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
     \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"math/sequence.hpp\"\n/**\n * @brief \u6570\u5217\n *\n */\n\n\
-    namespace bys {\ntemplate <class T>\nstruct Arithmetic {\n    T a0, d;\n    Arithmetic(T\
-    \ a0, T d) : a0(a0), d(d) {}\n    T an(T n) { return a0 + d * n; }\n\n    //!\
-    \ @brief \u03A3[0, n)\n    T sn(T n) { return (a0 + an(n - 1)) * n / 2; }\n  \
-    \  //! @brief \u03A3[l, r)\n    T sn(T l, T r) { return sn(r) - sn(l); }\n};\n\
-    }  // namespace bys\n"
+    \ bys\n/**\n * @brief \u6570\u5217\n *\n */\n\nnamespace bys {\ntemplate <class\
+    \ T>\nstruct Arithmetic {\n    T a0, d;\n    Arithmetic(T a0, T d) : a0(a0), d(d)\
+    \ {}\n    T an(T n) { return a0 + d * n; }\n\n    //! @brief \u03A3[0, n)\n  \
+    \  T sn(T n) { return (a0 + an(n - 1)) * n / 2; }\n    //! @brief \u03A3[l, r)\n\
+    \    T sn(T l, T r) { return sn(r) - sn(l); }\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/stdlib.hpp\"\n/**\n * @brief \u6570\u5217\
     \n *\n */\n\nnamespace bys {\ntemplate <class T>\nstruct Arithmetic {\n    T a0,\
     \ d;\n    Arithmetic(T a0, T d) : a0(a0), d(d) {}\n    T an(T n) { return a0 +\

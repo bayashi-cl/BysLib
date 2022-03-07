@@ -104,9 +104,9 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n\
-    \    int IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep)\
-    \ {\n        for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n"
+  bundledCode: "\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
+    \ {}\n    void solve();\n    void solve(int rep) {\n        for (; IT <= rep;\
+    \ ++IT) solve();\n    }\n};\n}  // namespace bys\n"
   code: "#pragma once\n\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
     \ {}\n    void solve();\n    void solve(int rep) {\n        for (; IT <= rep;\
     \ ++IT) solve();\n    }\n};\n}  // namespace bys\n"

@@ -41,8 +41,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/static_range_sum
     links:
     - https://judge.yosupo.jp/problem/static_range_sum
-  bundledCode: "#line 1 \"test/data/cumulative_sum.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/static_range_sum\"\n#line 2 \"core/stdlib.hpp\"\
+  bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\
     \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
     #include <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n\
     #include <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n\
@@ -54,25 +53,25 @@ data:
     \n// alias\nusing ll = long long int;\nusing ld = long double;\nusing Pa = pair<int,\
     \ int>;\nusing Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class\
     \ T>\nusing uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing\
-    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n#line 3 \"core/const.hpp\"\
-    \n\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\n\
-    constexpr int INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF =\
-    \ std::numeric_limits<ll>::max() / 2;\n}  // namespace bys\n#line 4 \"core/types.hpp\"\
-    \n#include <utility>\n\nnamespace bys {\ntemplate <class, class = void>\nstruct\
-    \ has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T,\
-    \ std::void_t<decltype(std::declval<std::ostream&>() << std::declval<T&>())>>\
-    \ : std::true_type {};\n\ntemplate <class, class = void>\nstruct has_rshift_from_istream\
-    \ : std::false_type {};\ntemplate <class T>\nstruct has_rshift_from_istream<T,\
-    \ std::void_t<decltype(std::declval<std::istream&>() >> std::declval<T&>())>>\
-    \ : std::true_type {};\n\ntemplate <class T, class = void>\nstruct has_tuple_interface\
-    \ : std::false_type {};\ntemplate <class T>\nstruct has_tuple_interface<T, std::void_t<decltype(std::tuple_size<T>())>>\
-    \ : std::true_type {};\n\ntemplate <class, class = void>\nstruct has_iterator\
-    \ : std::false_type {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename\
-    \ T::iterator>> : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n\
-    #line 4 \"core/printer.hpp\"\n\nnamespace bys {\nstruct Printer {\n    Printer(std::ostream&\
-    \ os_) : os(os_) {}\n    ~Printer() { os << std::flush; }\n\n    template <class\
-    \ T>\n    void cat(T&& v) {\n        if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value)\
-    \ {\n            os << v;\n        } else if constexpr (has_iterator<std::decay_t<T>>::value)\
+    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n\nnamespace bys {\nconstexpr\
+    \ int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int INF =\
+    \ std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
+    \ / 2;\n}  // namespace bys\n#include <utility>\n\nnamespace bys {\ntemplate <class,\
+    \ class = void>\nstruct has_lshift_to_ostream : std::false_type {};\ntemplate\
+    \ <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
+    struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
+    \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
+    \ >> std::declval<T&>())>> : std::true_type {};\n\ntemplate <class T, class =\
+    \ void>\nstruct has_tuple_interface : std::false_type {};\ntemplate <class T>\n\
+    struct has_tuple_interface<T, std::void_t<decltype(std::tuple_size<T>())>> : std::true_type\
+    \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
+    \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
+    \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n\nnamespace bys\
+    \ {\nstruct Printer {\n    Printer(std::ostream& os_) : os(os_) {}\n    ~Printer()\
+    \ { os << std::flush; }\n\n    template <class T>\n    void cat(T&& v) {\n   \
+    \     if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {\n       \
+    \     os << v;\n        } else if constexpr (has_iterator<std::decay_t<T>>::value)\
     \ {\n            string sep2;\n            if constexpr (has_iterator<std::decay_t<typename\
     \ std::decay_t<T>::value_type>>::value) {\n                sep2 = _end;\n    \
     \        } else {\n                sep2 = _sep;\n            }\n            for\
@@ -96,14 +95,14 @@ data:
     \ != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n    }\n    template <class\
     \ Tp, std::size_t... I>\n    inline void print_tuple(Tp&& tp, std::index_sequence<I...>)\
     \ {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
-    \ ...);\n    }\n};\n}  // namespace bys\n#line 4 \"core/scanner.hpp\"\n\nnamespace\
-    \ bys {\nstruct Scanner {\n    Scanner(std::istream& is_) : is(is_){};\n\n   \
-    \ template <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >>\
-    \ args);\n    }\n\n    template <class T, class... Us>\n    decltype(auto) read()\
-    \ {\n        if constexpr (sizeof...(Us) == 0) {\n            if constexpr (has_rshift_from_istream<T>::value)\
-    \ {\n                T res;\n                is >> res;\n                return\
-    \ res;\n            } else if constexpr (has_tuple_interface<T>::value) {\n  \
-    \              auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
+    \ ...);\n    }\n};\n}  // namespace bys\n\nnamespace bys {\nstruct Scanner {\n\
+    \    Scanner(std::istream& is_) : is(is_){};\n\n    template <class... Ts>\n \
+    \   void scan(Ts&... args) {\n        (is >> ... >> args);\n    }\n\n    template\
+    \ <class T, class... Us>\n    decltype(auto) read() {\n        if constexpr (sizeof...(Us)\
+    \ == 0) {\n            if constexpr (has_rshift_from_istream<T>::value) {\n  \
+    \              T res;\n                is >> res;\n                return res;\n\
+    \            } else if constexpr (has_tuple_interface<T>::value) {\n         \
+    \       auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
     \                return res;\n            } else if constexpr (std::is_same_v<T,\
     \ Int1>) {\n                int res;\n                is >> res;\n           \
     \     --res;\n                return res;\n            } else if constexpr (has_iterator<T>::value)\
@@ -131,53 +130,52 @@ data:
     \ res);\n        return res;\n    }\n\n   private:\n    std::istream& is;\n  \
     \  template <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
     \ {\n        return Tp{read<typename std::tuple_element_t<I, Tp>>()...};\n   \
-    \ }\n};\n}  // namespace bys\n#line 5 \"core/io.hpp\"\n\nnamespace bys {\n__attribute__((constructor))\
+    \ }\n};\n}  // namespace bys\n\nnamespace bys {\n__attribute__((constructor))\
     \ void setup_io() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
-    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
-    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
-    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
-    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
-    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
-    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
-    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
-    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
-    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
-    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
-    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
-    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
-    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
-    \ 3 \"data/cumulative_sum.hpp\"\n\nnamespace bys {\ntemplate <class T>\nstruct\
-    \ CumulativeSum {\n    vector<T> data;\n    CumulativeSum(int n) : data(n + 1){};\n\
-    \    CumulativeSum(const vector<T>& v) : data(v.size() + 1) { std::copy(v.begin(),\
-    \ v.end(), std::next(data.begin())); };\n    void set(int i, int x) {\n      \
-    \  assert(!build);\n        data[i + 1] = x;\n    }\n    void add(int i, int x)\
-    \ {\n        assert(!build);\n        data[i + 1] += x;\n    }\n    void construct()\
-    \ {\n        assert(!build);\n        std::partial_sum(data.begin(), data.end(),\
-    \ data.begin());\n        build = true;\n    }\n    // [l, r)\n    T sum(int l,\
-    \ int r) {\n        assert(build);\n        if (l > r) return 0;\n        return\
-    \ data[r] - data[l];\n    }\n\n   private:\n    bool build = false;\n};\ntemplate\
-    \ <class T>\nstruct CumulativeSum2D {\n    vector<vector<T>> data;\n    CumulativeSum2D(int\
-    \ n, int m) : data(n + 1, vector<T>(m + 1)){};\n    CumulativeSum2D(const vector<vector<T>>&\
-    \ v) : data(v.size() + 1, vector<T>(v[0].size() + 1)) {\n        int n = v.size();\n\
-    \        for (int i = 0; i < n; ++i) {\n            std::copy(v[i].begin(), v[i].end(),\
-    \ std::next(data[i + 1].begin()));\n        }\n    };\n    void set(int i, int\
-    \ j, int x) {\n        assert(!build);\n        data[i + 1][j + 1] = x;\n    }\n\
-    \    void add(int i, int j, int x) {\n        assert(!build);\n        data[i\
-    \ + 1][j + 1] += x;\n    }\n    T get(int i, int j) const { return data[i + 1][j\
-    \ + 1]; }\n    void construct() {\n        assert(!build);\n        int n = data.size();\n\
-    \        int m = data[0].size();\n        for (int i = 1; i < n; ++i) {\n    \
-    \        for (int j = 1; j < m; ++j) {\n                data[i][j] += data[i][j\
-    \ - 1] + data[i - 1][j] - data[i - 1][j - 1];\n            }\n        }\n    \
-    \    build = true;\n    }\n    // [si, gi), [sj, gj)\n    T sum(int si, int sj,\
-    \ int gi, int gj) {\n        assert(build);\n        return (data[gi][gj] - data[si][gj]\
+    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n// clang-format\
+    \ off\n/**\n * @brief \u30DE\u30AF\u30ED\n */\n#ifdef LOCAL\n//! @brief \u30C7\
+    \u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\
+    \u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug]\
+    \ line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n\
+    #define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\
+    \n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b)\
+    \ a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
+    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
+    \ + \", func: \" + __func__)\n// clang-format on\n\nnamespace bys {\nstruct Solver\
+    \ {\n    int IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep)\
+    \ {\n        for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n\
+    \nnamespace bys {\ntemplate <class T>\nstruct CumulativeSum {\n    vector<T> data;\n\
+    \    CumulativeSum(int n) : data(n + 1){};\n    CumulativeSum(const vector<T>&\
+    \ v) : data(v.size() + 1) { std::copy(v.begin(), v.end(), std::next(data.begin()));\
+    \ };\n    void set(int i, int x) {\n        assert(!build);\n        data[i +\
+    \ 1] = x;\n    }\n    void add(int i, int x) {\n        assert(!build);\n    \
+    \    data[i + 1] += x;\n    }\n    void construct() {\n        assert(!build);\n\
+    \        std::partial_sum(data.begin(), data.end(), data.begin());\n        build\
+    \ = true;\n    }\n    // [l, r)\n    T sum(int l, int r) {\n        assert(build);\n\
+    \        if (l > r) return 0;\n        return data[r] - data[l];\n    }\n\n  \
+    \ private:\n    bool build = false;\n};\ntemplate <class T>\nstruct CumulativeSum2D\
+    \ {\n    vector<vector<T>> data;\n    CumulativeSum2D(int n, int m) : data(n +\
+    \ 1, vector<T>(m + 1)){};\n    CumulativeSum2D(const vector<vector<T>>& v) : data(v.size()\
+    \ + 1, vector<T>(v[0].size() + 1)) {\n        int n = v.size();\n        for (int\
+    \ i = 0; i < n; ++i) {\n            std::copy(v[i].begin(), v[i].end(), std::next(data[i\
+    \ + 1].begin()));\n        }\n    };\n    void set(int i, int j, int x) {\n  \
+    \      assert(!build);\n        data[i + 1][j + 1] = x;\n    }\n    void add(int\
+    \ i, int j, int x) {\n        assert(!build);\n        data[i + 1][j + 1] += x;\n\
+    \    }\n    T get(int i, int j) const { return data[i + 1][j + 1]; }\n    void\
+    \ construct() {\n        assert(!build);\n        int n = data.size();\n     \
+    \   int m = data[0].size();\n        for (int i = 1; i < n; ++i) {\n         \
+    \   for (int j = 1; j < m; ++j) {\n                data[i][j] += data[i][j - 1]\
+    \ + data[i - 1][j] - data[i - 1][j - 1];\n            }\n        }\n        build\
+    \ = true;\n    }\n    // [si, gi), [sj, gj)\n    T sum(int si, int sj, int gi,\
+    \ int gj) {\n        assert(build);\n        return (data[gi][gj] - data[si][gj]\
     \ - data[gi][sj] + data[si][sj]);\n    }\n    // [s, g)\n    T sum(pair<int, int>\
     \ s, pair<int, int> g) { return sum(s.first, s.second, g.first, g.second); }\n\
-    \n   private:\n    bool build = false;\n};\n}  // namespace bys\n#line 4 \"test/data/cumulative_sum.test.cpp\"\
-    \n\nnamespace bys {\nvoid Solver::solve() {\n    auto [n, q] = scanner.read<int,\
-    \ 2>();\n    auto a = scanner.readvec<ll>(n);\n    CumulativeSum cs(a);\n    cs.construct();\n\
+    \n   private:\n    bool build = false;\n};\n}  // namespace bys\n\nnamespace bys\
+    \ {\nvoid Solver::solve() {\n    auto [n, q] = scanner.read<int, 2>();\n    auto\
+    \ a = scanner.readvec<ll>(n);\n    CumulativeSum cs(a);\n    cs.construct();\n\
     \    for (int i = 0; i < q; ++i) {\n        auto [l, r] = scanner.read<int, 2>();\n\
     \        print(cs.sum(l, r));\n    }\n}\n}  // namespace bys\n\nint main() {\n\
     \    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n\

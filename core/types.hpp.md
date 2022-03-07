@@ -119,9 +119,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: '#line 2 "core/types.hpp"
-
-    #include <iostream>
+  bundledCode: '#include <iostream>
 
     #include <type_traits>
 

@@ -42,19 +42,19 @@ data:
   attributes:
     document_title: "Python\u306Erange"
     links: []
-  bundledCode: "#line 2 \"utility/range.hpp\"\n\nnamespace bys {\n//! @brief Python\u306E\
-    range\ntemplate <typename T>\nstruct Range {\n    Range(T start, T stop, T step\
-    \ = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T\
-    \ stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T> begin() const {\
-    \ return *this; }\n    T end() const { return stop; }\n    bool operator!=(const\
-    \ T val) const { return (val - it) * dir > 0; }\n    void operator++() { it +=\
-    \ step; }\n    const T& operator*() const { return it; }\n\n   private:\n    T\
-    \ it;\n    const T stop, step;\n    const int dir;\n\n    friend Range reversed(const\
-    \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
-    \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate\
-    \ <class T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class\
-    \ T>\nRange<T> irange(T start, T stop, T step = 1) {\n    return Range(start,\
-    \ stop, step);\n}\n}  // namespace bys\n"
+  bundledCode: "\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate <typename\
+    \ T>\nstruct Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop),\
+    \ step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop),\
+    \ step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end()\
+    \ const { return stop; }\n    bool operator!=(const T val) const { return (val\
+    \ - it) * dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
+    \ const { return it; }\n\n   private:\n    T it;\n    const T stop, step;\n  \
+    \  const int dir;\n\n    friend Range reversed(const Range& r) {\n        auto\
+    \ new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n        return\
+    \ {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T>\
+    \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
+    \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
+    \ namespace bys\n"
   code: "#pragma once\n\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate <typename\
     \ T>\nstruct Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop),\
     \ step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop),\

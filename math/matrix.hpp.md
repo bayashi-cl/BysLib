@@ -14,52 +14,52 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
-    \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
-    #include <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
-    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+  bundledCode: "#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include\
+    \ <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
+    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
     using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
     \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"math/matrix.hpp\"\n\n// TODO: geo\u3068\u306E\u9023\u643A\n\n\
-    namespace bys {\ntemplate <class T>\nstruct Matrix {\n    vector<vector<T>> mat;\n\
-    \    Matrix(int i, int j) : mat(i, vector<T>(j)), r(i), c(j) {}\n    Matrix(const\
-    \ vector<vector<T>>& v) : mat(v), r(v.size()), c(v[0].size()) {}\n\n    vector<T>&\
-    \ operator[](int k) { return mat[k]; }\n    int row() const { return r; }\n  \
-    \  int col() const { return c; }\n    pair<int, int> shape() const { return {r,\
-    \ c}; }\n\n    Matrix operator+(const Matrix<T>& rh) const {\n        assert(shape()\
-    \ == rh.shape());\n        Matrix<T> res(r, c);\n        for (int i = 0; i < r;\
+    \ bys\n\n// TODO: geo\u3068\u306E\u9023\u643A\n\nnamespace bys {\ntemplate <class\
+    \ T>\nstruct Matrix {\n    vector<vector<T>> mat;\n    Matrix(int i, int j) :\
+    \ mat(i, vector<T>(j)), r(i), c(j) {}\n    Matrix(const vector<vector<T>>& v)\
+    \ : mat(v), r(v.size()), c(v[0].size()) {}\n\n    vector<T>& operator[](int k)\
+    \ { return mat[k]; }\n    int row() const { return r; }\n    int col() const {\
+    \ return c; }\n    pair<int, int> shape() const { return {r, c}; }\n\n    Matrix\
+    \ operator+(const Matrix<T>& rh) const {\n        assert(shape() == rh.shape());\n\
+    \        Matrix<T> res(r, c);\n        for (int i = 0; i < r; ++i) {\n       \
+    \     for (int j = 0; j < c; ++j) {\n                res[i][j] = mat[i][j] + rh.mat[i][j];\n\
+    \            }\n        }\n        return res;\n    }\n    Matrix operator-(const\
+    \ Matrix<T>& rh) const {\n        assert(shape() == rh.shape());\n        Matrix<T>\
+    \ res(r, c);\n        for (int i = 0; i < r; ++i) {\n            for (int j =\
+    \ 0; j < c; ++j) {\n                res[i][j] = mat[i][j] - rh.mat[i][j];\n  \
+    \          }\n        }\n        return res;\n    }\n    Matrix operator*(const\
+    \ T rh) const {\n        Matrix<T> res(r, c);\n        for (int i = 0; i < r;\
     \ ++i) {\n            for (int j = 0; j < c; ++j) {\n                res[i][j]\
-    \ = mat[i][j] + rh.mat[i][j];\n            }\n        }\n        return res;\n\
-    \    }\n    Matrix operator-(const Matrix<T>& rh) const {\n        assert(shape()\
-    \ == rh.shape());\n        Matrix<T> res(r, c);\n        for (int i = 0; i < r;\
-    \ ++i) {\n            for (int j = 0; j < c; ++j) {\n                res[i][j]\
-    \ = mat[i][j] - rh.mat[i][j];\n            }\n        }\n        return res;\n\
-    \    }\n    Matrix operator*(const T rh) const {\n        Matrix<T> res(r, c);\n\
-    \        for (int i = 0; i < r; ++i) {\n            for (int j = 0; j < c; ++j)\
-    \ {\n                res[i][j] = mat[i][j] * rh;\n            }\n        }\n \
-    \       return res;\n    }\n    Matrix operator/(const T rh) const {\n       \
-    \ Matrix<T> res(r, c);\n        for (int i = 0; i < r; ++i) {\n            for\
-    \ (int j = 0; j < c; ++j) {\n                res[i][j] = mat[i][j] / rh;\n   \
-    \         }\n        }\n        return res;\n    }\n\n    Matrix operator*(const\
-    \ Matrix<T>& rh) const {\n        assert(col() == rh.row());\n        int d =\
-    \ rh.col();\n        Matrix<T> res(r, d);\n        for (int i = 0; i < r; ++i)\
-    \ {\n            for (int j = 0; j < d; ++j) {\n                for (int k = 0;\
-    \ k < c; ++k) {\n                    res.mat[i][j] += mat[i][k] * rh.mat[k][j];\n\
-    \                }\n            }\n        }\n        return res;\n    }\n   \
-    \ vector<T> operator*(const vector<T>& rh) const {\n        int n = rh.size();\n\
-    \        assert(col() == n);\n        vector<T> res(r);\n        for (int i =\
-    \ 0; i < r; ++i) {\n            res[i] = std::inner_product(mat[i].begin(), mat[i].end(),\
-    \ rh.begin(), (T)0);\n        }\n        return res;\n    }\n\n    Matrix rotate90()\
-    \ const {\n        Matrix<T> res(c, r);\n        for (int i = 0; i < r; ++i) {\n\
-    \            for (int j = 0; j < c; ++j) {\n                res.mat[j][r - i -\
-    \ 1] = mat[i][j];\n            }\n        }\n        return res;\n    }\n\n  \
-    \  auto pow(ll p) const {\n        assert(r == c);\n        auto res = Matrix<T>::ident(r);\n\
+    \ = mat[i][j] * rh;\n            }\n        }\n        return res;\n    }\n  \
+    \  Matrix operator/(const T rh) const {\n        Matrix<T> res(r, c);\n      \
+    \  for (int i = 0; i < r; ++i) {\n            for (int j = 0; j < c; ++j) {\n\
+    \                res[i][j] = mat[i][j] / rh;\n            }\n        }\n     \
+    \   return res;\n    }\n\n    Matrix operator*(const Matrix<T>& rh) const {\n\
+    \        assert(col() == rh.row());\n        int d = rh.col();\n        Matrix<T>\
+    \ res(r, d);\n        for (int i = 0; i < r; ++i) {\n            for (int j =\
+    \ 0; j < d; ++j) {\n                for (int k = 0; k < c; ++k) {\n          \
+    \          res.mat[i][j] += mat[i][k] * rh.mat[k][j];\n                }\n   \
+    \         }\n        }\n        return res;\n    }\n    vector<T> operator*(const\
+    \ vector<T>& rh) const {\n        int n = rh.size();\n        assert(col() ==\
+    \ n);\n        vector<T> res(r);\n        for (int i = 0; i < r; ++i) {\n    \
+    \        res[i] = std::inner_product(mat[i].begin(), mat[i].end(), rh.begin(),\
+    \ (T)0);\n        }\n        return res;\n    }\n\n    Matrix rotate90() const\
+    \ {\n        Matrix<T> res(c, r);\n        for (int i = 0; i < r; ++i) {\n   \
+    \         for (int j = 0; j < c; ++j) {\n                res.mat[j][r - i - 1]\
+    \ = mat[i][j];\n            }\n        }\n        return res;\n    }\n\n    auto\
+    \ pow(ll p) const {\n        assert(r == c);\n        auto res = Matrix<T>::ident(r);\n\
     \        auto base = *this;\n        for (; p > 0; p >>= 1, base = base * base)\
     \ {\n            if (p & 1) res = res * base;\n        }\n        return res;\n\
     \    }\n\n    static Matrix<T> ident(int n) {\n        Matrix res(n, n);\n   \

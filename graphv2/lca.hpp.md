@@ -26,25 +26,25 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
-    \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
-    #include <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
-    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+  bundledCode: "#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include\
+    \ <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
+    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
     using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
     \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 3 \"graphv2/edge.hpp\"\nnamespace bys {\nstruct Edge {\n    std::size_t\
-    \ src, dest;\n    ll weight;\n    Edge() {}\n    Edge(std::size_t src, std::size_t\
-    \ dest, ll weight = 1) : src(src), dest(dest), weight(weight) {}\n    bool operator<(const\
-    \ Edge& rh) const { return weight < rh.weight; }\n    operator int() const { return\
-    \ dest; }\n    friend std::ostream& operator<<(std::ostream& os, const Edge& e)\
-    \ {\n        return os << \"{\" << e.src << \" -> \" << e.dest << \": \" << e.weight\
-    \ << \"}\";\n    }\n};\nstruct DynamicAdjacencyList {\n    std::vector<std::vector<Edge>>\
+    \ bys\nnamespace bys {\nstruct Edge {\n    std::size_t src, dest;\n    ll weight;\n\
+    \    Edge() {}\n    Edge(std::size_t src, std::size_t dest, ll weight = 1) : src(src),\
+    \ dest(dest), weight(weight) {}\n    bool operator<(const Edge& rh) const { return\
+    \ weight < rh.weight; }\n    operator int() const { return dest; }\n    friend\
+    \ std::ostream& operator<<(std::ostream& os, const Edge& e) {\n        return\
+    \ os << \"{\" << e.src << \" -> \" << e.dest << \": \" << e.weight << \"}\";\n\
+    \    }\n};\nstruct DynamicAdjacencyList {\n    std::vector<std::vector<Edge>>\
     \ data;\n    DynamicAdjacencyList(std::size_t n) : data(n, vector<Edge>()), _n(n)\
     \ {}\n    std::vector<vector<Edge>>::reference operator[](std::size_t i) { return\
     \ *(data.begin() + i); }\n    const std::vector<vector<Edge>>::const_reference\
@@ -71,40 +71,37 @@ data:
     \ n_edge() const { return _m; }\n    bool build_flg() const { return _build_flg;\
     \ }\n\n   private:\n    std::size_t _n, _m;\n    std::vector<Edge> buf, data;\n\
     \    std::vector<std::size_t> index;\n    bool _build_flg;\n};\n}  // namespace\
-    \ bys\n#line 3 \"data/sparse_table.hpp\"\nnamespace bys {\ntemplate <class A>\n\
-    class SparseTable {\n    using T = typename A::value_type;\n    int n;\n    std::vector<int>\
-    \ lookup;\n    std::vector<std::vector<T>> table;\n\n   public:\n    SparseTable()\
-    \ {}\n    SparseTable(const std::vector<T>& v) { build(v); }\n\n    void build(const\
-    \ std::vector<T>& v) {\n        n = v.size();\n        lookup.resize(n + 1);\n\
-    \n        for (int i = 2; i < n + 1; ++i) lookup[i] = lookup[i >> 1] + 1;\n  \
-    \      int max_k = lookup.back();\n        table.assign(max_k + 1, std::vector<T>(n));\n\
-    \        std::copy(v.begin(), v.end(), table[0].begin());\n        for (int i\
-    \ = 1; i <= max_k; ++i) {\n            for (int j = 0; j <= n - (1 << i); ++j)\
-    \ {\n                table[i][j] = A::op(table[i - 1][j], table[i - 1][j + (1\
-    \ << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int l, int r)\
-    \ {\n        assert(0 <= l && l < r && r <= n);\n        int w = r - l;\n    \
-    \    return A::op(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);\n\
-    \    }\n};\n}  // namespace bys\n#line 2 \"utility/fixpoint.hpp\"\n#include <utility>\n\
-    namespace bys {\ntemplate <typename F>\nstruct FixPoint : F {\n    FixPoint(F&&\
-    \ f) : F{std::forward<F>(f)} {}\n    template <typename... Args>\n    decltype(auto)\
-    \ operator()(Args&&... args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \ bys\nnamespace bys {\ntemplate <class A>\nclass SparseTable {\n    using T =\
+    \ typename A::value_type;\n    int n;\n    std::vector<int> lookup;\n    std::vector<std::vector<T>>\
+    \ table;\n\n   public:\n    SparseTable() {}\n    SparseTable(const std::vector<T>&\
+    \ v) { build(v); }\n\n    void build(const std::vector<T>& v) {\n        n = v.size();\n\
+    \        lookup.resize(n + 1);\n\n        for (int i = 2; i < n + 1; ++i) lookup[i]\
+    \ = lookup[i >> 1] + 1;\n        int max_k = lookup.back();\n        table.assign(max_k\
+    \ + 1, std::vector<T>(n));\n        std::copy(v.begin(), v.end(), table[0].begin());\n\
+    \        for (int i = 1; i <= max_k; ++i) {\n            for (int j = 0; j <=\
+    \ n - (1 << i); ++j) {\n                table[i][j] = A::op(table[i - 1][j], table[i\
+    \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int\
+    \ l, int r) {\n        assert(0 <= l && l < r && r <= n);\n        int w = r -\
+    \ l;\n        return A::op(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);\n\
+    \    }\n};\n}  // namespace bys\n#include <utility>\nnamespace bys {\ntemplate\
+    \ <typename F>\nstruct FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)}\
+    \ {}\n    template <typename... Args>\n    decltype(auto) operator()(Args&&...\
+    \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\ntemplate <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f)\
-    \ {\n    return std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\n#line\
-    \ 2 \"math/algebra.hpp\"\nnamespace bys {\ntemplate <class T>\nstruct Add {\n\
-    \    using value_type = T;\n    static constexpr T op(T a, T b) { return a + b;\
-    \ }\n    static constexpr T id{0};\n};\ntemplate <class T>\nstruct Min {\n   \
-    \ using value_type = T;\n    static constexpr T op(T a, T b) { return std::min(a,\
-    \ b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n};\ntemplate\
-    \ <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr T op(T\
-    \ a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
-    };\n}  // namespace bys\n#line 6 \"graphv2/lca.hpp\"\n\nnamespace bys {\nclass\
-    \ LowestCommonAncestor {\n    struct Vertex {\n        int id, depath;\n     \
-    \   bool operator<(const Vertex& rh) const { return depath < rh.depath; }\n  \
-    \  };\n    std::size_t n;\n    SparseTable<Min<Vertex>> st;\n    std::vector<int>\
-    \ pos;\n\n   public:\n    LowestCommonAncestor(const AdjacencyList& graph, int\
-    \ root) : n(graph.size()), pos(n) {\n        std::vector<Vertex> euler_tour;\n\
-    \        euler_tour.reserve(2 * n - 1);\n        FixPoint([&](auto&& self, int\
-    \ now, int prev, int deapth) -> void {\n            pos[now] = euler_tour.size();\n\
+    \ {\n    return std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\nnamespace\
+    \ bys {\ntemplate <class T>\nstruct Add {\n    using value_type = T;\n    static\
+    \ constexpr T op(T a, T b) { return a + b; }\n    static constexpr T id{0};\n\
+    };\ntemplate <class T>\nstruct Min {\n    using value_type = T;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(a, b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n\
+    };\ntemplate <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
+    };\n}  // namespace bys\n\nnamespace bys {\nclass LowestCommonAncestor {\n   \
+    \ struct Vertex {\n        int id, depath;\n        bool operator<(const Vertex&\
+    \ rh) const { return depath < rh.depath; }\n    };\n    std::size_t n;\n    SparseTable<Min<Vertex>>\
+    \ st;\n    std::vector<int> pos;\n\n   public:\n    LowestCommonAncestor(const\
+    \ AdjacencyList& graph, int root) : n(graph.size()), pos(n) {\n        std::vector<Vertex>\
+    \ euler_tour;\n        euler_tour.reserve(2 * n - 1);\n        FixPoint([&](auto&&\
+    \ self, int now, int prev, int deapth) -> void {\n            pos[now] = euler_tour.size();\n\
     \            euler_tour.push_back({now, deapth});\n\n            for (auto&& nxt\
     \ : graph[now]) {\n                if (int(nxt.dest) == prev) continue;\n    \
     \            self(nxt.dest, now, deapth + 1);\n                euler_tour.push_back({now,\

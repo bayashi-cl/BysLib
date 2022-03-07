@@ -20,14 +20,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"math/algebra.hpp\"\nnamespace bys {\ntemplate <class T>\n\
-    struct Add {\n    using value_type = T;\n    static constexpr T op(T a, T b) {\
-    \ return a + b; }\n    static constexpr T id{0};\n};\ntemplate <class T>\nstruct\
-    \ Min {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
-    \ std::min(a, b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n\
-    };\ntemplate <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
-    };\n}  // namespace bys\n"
+  bundledCode: "namespace bys {\ntemplate <class T>\nstruct Add {\n    using value_type\
+    \ = T;\n    static constexpr T op(T a, T b) { return a + b; }\n    static constexpr\
+    \ T id{0};\n};\ntemplate <class T>\nstruct Min {\n    using value_type = T;\n\
+    \    static constexpr T op(T a, T b) { return std::min(a, b); }\n    static constexpr\
+    \ T id{std::numeric_limits<T>::max()};\n};\ntemplate <class T>\nstruct Max {\n\
+    \    using value_type = T;\n    static constexpr T op(T a, T b) { return std::max(a,\
+    \ b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n};\n}  //\
+    \ namespace bys\n"
   code: "#pragma once\nnamespace bys {\ntemplate <class T>\nstruct Add {\n    using\
     \ value_type = T;\n    static constexpr T op(T a, T b) { return a + b; }\n   \
     \ static constexpr T id{0};\n};\ntemplate <class T>\nstruct Min {\n    using value_type\

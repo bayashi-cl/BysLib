@@ -41,11 +41,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"utility/change.hpp\"\nnamespace bys {\ntemplate <class T>\n\
-    inline bool chmax(T& a, const T& b) {\n    if (a < b) {\n        a = b;\n    \
-    \    return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline bool chmin(T&\
-    \ a, const T& b) {\n    if (b < a) {\n        a = b;\n        return 1;\n    }\n\
-    \    return 0;\n}\n}  // namespace bys\n"
+  bundledCode: "namespace bys {\ntemplate <class T>\ninline bool chmax(T& a, const\
+    \ T& b) {\n    if (a < b) {\n        a = b;\n        return 1;\n    }\n    return\
+    \ 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n    if (b\
+    \ < a) {\n        a = b;\n        return 1;\n    }\n    return 0;\n}\n}  // namespace\
+    \ bys\n"
   code: "#pragma once\nnamespace bys {\ntemplate <class T>\ninline bool chmax(T& a,\
     \ const T& b) {\n    if (a < b) {\n        a = b;\n        return 1;\n    }\n\
     \    return 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n\

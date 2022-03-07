@@ -263,9 +263,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: '#line 2 "core/stdlib.hpp"
-
-    #ifndef LOCAL
+  bundledCode: '#ifndef LOCAL
 
     #define NDEBUG
 

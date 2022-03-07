@@ -17,12 +17,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"utility/fixpoint.hpp\"\n#include <utility>\nnamespace bys\
-    \ {\ntemplate <typename F>\nstruct FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)}\
-    \ {}\n    template <typename... Args>\n    decltype(auto) operator()(Args&&...\
-    \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
-    \    }\n};\ntemplate <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f)\
-    \ {\n    return std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\n"
+  bundledCode: "#include <utility>\nnamespace bys {\ntemplate <typename F>\nstruct\
+    \ FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)} {}\n    template\
+    \ <typename... Args>\n    decltype(auto) operator()(Args&&... args) const {\n\
+    \        return F::operator()(*this, std::forward<Args>(args)...);\n    }\n};\n\
+    template <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f) {\n    return\
+    \ std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\n"
   code: "#pragma once\n#include <utility>\nnamespace bys {\ntemplate <typename F>\n\
     struct FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)} {}\n    template\
     \ <typename... Args>\n    decltype(auto) operator()(Args&&... args) const {\n\

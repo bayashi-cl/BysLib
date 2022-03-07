@@ -41,36 +41,35 @@ data:
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A
-  bundledCode: "#line 1 \"test/utility/range.test.cpp\"\n#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
-    \n#line 2 \"utility/range.hpp\"\n\nnamespace bys {\n//! @brief Python\u306Erange\n\
-    template <typename T>\nstruct Range {\n    Range(T start, T stop, T step = 1)\
-    \ : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T\
-    \ stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T> begin() const {\
-    \ return *this; }\n    T end() const { return stop; }\n    bool operator!=(const\
-    \ T val) const { return (val - it) * dir > 0; }\n    void operator++() { it +=\
-    \ step; }\n    const T& operator*() const { return it; }\n\n   private:\n    T\
-    \ it;\n    const T stop, step;\n    const int dir;\n\n    friend Range reversed(const\
-    \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
-    \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate\
-    \ <class T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class\
-    \ T>\nRange<T> irange(T start, T stop, T step = 1) {\n    return Range(start,\
-    \ stop, step);\n}\n}  // namespace bys\n#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n\
-    #define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
-    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
-    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
-    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
-    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
-    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
-    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
-    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
-    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
-    \ T>;\n}  // namespace bys\n#line 3 \"core/const.hpp\"\n\nnamespace bys {\nconstexpr\
-    \ int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int INF =\
-    \ std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
-    \ / 2;\n}  // namespace bys\n#line 4 \"core/types.hpp\"\n#include <utility>\n\n\
-    namespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
+    \n\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate <typename T>\nstruct\
+    \ Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop), step(step),\
+    \ dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop), step(1),\
+    \ dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end() const {\
+    \ return stop; }\n    bool operator!=(const T val) const { return (val - it) *\
+    \ dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
+    \ const { return it; }\n\n   private:\n    T it;\n    const T stop, step;\n  \
+    \  const int dir;\n\n    friend Range reversed(const Range& r) {\n        auto\
+    \ new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n        return\
+    \ {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T>\
+    \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
+    \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
+    \ namespace bys\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n\
+    #include <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
+    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
+    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
+    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
+    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
+    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 =\
+    \ 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max() / 2;\nconstexpr\
+    \ ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace bys\n#include\
+    \ <utility>\n\nnamespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
     \ : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
@@ -80,11 +79,11 @@ data:
     struct has_tuple_interface<T, std::void_t<decltype(std::tuple_size<T>())>> : std::true_type\
     \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
     \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
-    \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n#line 4 \"core/printer.hpp\"\
-    \n\nnamespace bys {\nstruct Printer {\n    Printer(std::ostream& os_) : os(os_)\
-    \ {}\n    ~Printer() { os << std::flush; }\n\n    template <class T>\n    void\
-    \ cat(T&& v) {\n        if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value)\
-    \ {\n            os << v;\n        } else if constexpr (has_iterator<std::decay_t<T>>::value)\
+    \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n\nnamespace bys\
+    \ {\nstruct Printer {\n    Printer(std::ostream& os_) : os(os_) {}\n    ~Printer()\
+    \ { os << std::flush; }\n\n    template <class T>\n    void cat(T&& v) {\n   \
+    \     if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {\n       \
+    \     os << v;\n        } else if constexpr (has_iterator<std::decay_t<T>>::value)\
     \ {\n            string sep2;\n            if constexpr (has_iterator<std::decay_t<typename\
     \ std::decay_t<T>::value_type>>::value) {\n                sep2 = _end;\n    \
     \        } else {\n                sep2 = _sep;\n            }\n            for\
@@ -108,14 +107,14 @@ data:
     \ != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n    }\n    template <class\
     \ Tp, std::size_t... I>\n    inline void print_tuple(Tp&& tp, std::index_sequence<I...>)\
     \ {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
-    \ ...);\n    }\n};\n}  // namespace bys\n#line 4 \"core/scanner.hpp\"\n\nnamespace\
-    \ bys {\nstruct Scanner {\n    Scanner(std::istream& is_) : is(is_){};\n\n   \
-    \ template <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >>\
-    \ args);\n    }\n\n    template <class T, class... Us>\n    decltype(auto) read()\
-    \ {\n        if constexpr (sizeof...(Us) == 0) {\n            if constexpr (has_rshift_from_istream<T>::value)\
-    \ {\n                T res;\n                is >> res;\n                return\
-    \ res;\n            } else if constexpr (has_tuple_interface<T>::value) {\n  \
-    \              auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
+    \ ...);\n    }\n};\n}  // namespace bys\n\nnamespace bys {\nstruct Scanner {\n\
+    \    Scanner(std::istream& is_) : is(is_){};\n\n    template <class... Ts>\n \
+    \   void scan(Ts&... args) {\n        (is >> ... >> args);\n    }\n\n    template\
+    \ <class T, class... Us>\n    decltype(auto) read() {\n        if constexpr (sizeof...(Us)\
+    \ == 0) {\n            if constexpr (has_rshift_from_istream<T>::value) {\n  \
+    \              T res;\n                is >> res;\n                return res;\n\
+    \            } else if constexpr (has_tuple_interface<T>::value) {\n         \
+    \       auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
     \                return res;\n            } else if constexpr (std::is_same_v<T,\
     \ Int1>) {\n                int res;\n                is >> res;\n           \
     \     --res;\n                return res;\n            } else if constexpr (has_iterator<T>::value)\
@@ -143,43 +142,41 @@ data:
     \ res);\n        return res;\n    }\n\n   private:\n    std::istream& is;\n  \
     \  template <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
     \ {\n        return Tp{read<typename std::tuple_element_t<I, Tp>>()...};\n   \
-    \ }\n};\n}  // namespace bys\n#line 5 \"core/io.hpp\"\n\nnamespace bys {\n__attribute__((constructor))\
+    \ }\n};\n}  // namespace bys\n\nnamespace bys {\n__attribute__((constructor))\
     \ void setup_io() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
     \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
     \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
-    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n#line 2\
-    \ \"core/macro.hpp\"\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n\
-    \ */\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\
-    \u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define\
-    \ DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \"\
-    : \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\
-    \u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return;\
-    \ }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n\
-    //! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n#define\
-    \ UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
-    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
-    \ on\n#line 2 \"core/solver.hpp\"\n\nnamespace bys {\nstruct Solver {\n    int\
-    \ IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep) {\n   \
-    \     for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n#line\
-    \ 4 \"test/utility/range.test.cpp\"\n\nnamespace bys {\nvector<int> range2vec(int\
-    \ stop) {\n    vector<int> res;\n    for (auto&& i : Range(stop)) res.push_back(i);\n\
-    \    return res;\n}\nvector<int> range2vec(int start, int stop) {\n    vector<int>\
-    \ res;\n    for (auto&& i : Range(start, stop)) res.push_back(i);\n    return\
-    \ res;\n}\nvector<int> range2vec(int start, int stop, int step) {\n    vector<int>\
-    \ res;\n    for (auto&& i : Range(start, stop, step)) res.push_back(i);\n    return\
-    \ res;\n}\nvector<int> range2vec_rev(int stop) {\n    vector<int> res;\n    for\
-    \ (auto&& i : reversed(Range(stop))) res.push_back(i);\n    return res;\n}\nvector<int>\
-    \ range2vec_rev(int start, int stop) {\n    vector<int> res;\n    for (auto&&\
-    \ i : reversed(Range(start, stop))) res.push_back(i);\n    return res;\n}\nvector<int>\
-    \ range2vec_rev(int start, int stop, int step) {\n    vector<int> res;\n    for\
-    \ (auto&& i : reversed(Range(start, stop, step))) res.push_back(i);\n    return\
-    \ res;\n}\nvoid Solver::solve() {\n    vector<int> v5 = {0, 1, 2, 3, 4};\n   \
-    \ assert(range2vec(5) == v5);\n    vector<int> ve;\n    assert(range2vec(-1) ==\
-    \ ve);\n    vector<int> v35 = {3, 4};\n    assert(range2vec(3, 5) == v35);\n \
-    \   vector<int> v_22 = {-2, -1, 0, 1};\n    assert(range2vec(-2, 2) == v_22);\n\
-    \    vector<int> v282 = {2, 4, 6};\n    assert(range2vec(2, 8, 2) == v282);\n\n\
-    \    vector<int> vr5 = {4, 3, 2, 1, 0};\n    assert(range2vec_rev(5) == vr5);\n\
-    \    vector<int> vre;\n    assert(range2vec_rev(-1) == vre);\n    vector<int>\
+    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n// clang-format\
+    \ off\n/**\n * @brief \u30DE\u30AF\u30ED\n */\n#ifdef LOCAL\n//! @brief \u30C7\
+    \u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\
+    \u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug]\
+    \ line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n\
+    #define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\
+    \n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b)\
+    \ a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
+    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
+    \ + \", func: \" + __func__)\n// clang-format on\n\nnamespace bys {\nstruct Solver\
+    \ {\n    int IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep)\
+    \ {\n        for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n\
+    \nnamespace bys {\nvector<int> range2vec(int stop) {\n    vector<int> res;\n \
+    \   for (auto&& i : Range(stop)) res.push_back(i);\n    return res;\n}\nvector<int>\
+    \ range2vec(int start, int stop) {\n    vector<int> res;\n    for (auto&& i :\
+    \ Range(start, stop)) res.push_back(i);\n    return res;\n}\nvector<int> range2vec(int\
+    \ start, int stop, int step) {\n    vector<int> res;\n    for (auto&& i : Range(start,\
+    \ stop, step)) res.push_back(i);\n    return res;\n}\nvector<int> range2vec_rev(int\
+    \ stop) {\n    vector<int> res;\n    for (auto&& i : reversed(Range(stop))) res.push_back(i);\n\
+    \    return res;\n}\nvector<int> range2vec_rev(int start, int stop) {\n    vector<int>\
+    \ res;\n    for (auto&& i : reversed(Range(start, stop))) res.push_back(i);\n\
+    \    return res;\n}\nvector<int> range2vec_rev(int start, int stop, int step)\
+    \ {\n    vector<int> res;\n    for (auto&& i : reversed(Range(start, stop, step)))\
+    \ res.push_back(i);\n    return res;\n}\nvoid Solver::solve() {\n    vector<int>\
+    \ v5 = {0, 1, 2, 3, 4};\n    assert(range2vec(5) == v5);\n    vector<int> ve;\n\
+    \    assert(range2vec(-1) == ve);\n    vector<int> v35 = {3, 4};\n    assert(range2vec(3,\
+    \ 5) == v35);\n    vector<int> v_22 = {-2, -1, 0, 1};\n    assert(range2vec(-2,\
+    \ 2) == v_22);\n    vector<int> v282 = {2, 4, 6};\n    assert(range2vec(2, 8,\
+    \ 2) == v282);\n\n    vector<int> vr5 = {4, 3, 2, 1, 0};\n    assert(range2vec_rev(5)\
+    \ == vr5);\n    vector<int> vre;\n    assert(range2vec_rev(-1) == vre);\n    vector<int>\
     \ vr35 = {4, 3};\n    assert(range2vec_rev(3, 5) == vr35);\n    vector<int> vr_22\
     \ = {1, 0, -1, -2};\n    assert(range2vec_rev(-2, 2) == vr_22);\n    vector<int>\
     \ vr282 = {6, 4, 2};\n    assert(range2vec_rev(2, 8, 2) == vr282);\n}\n}  // namespace\

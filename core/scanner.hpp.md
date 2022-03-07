@@ -119,21 +119,21 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"core/stdlib.hpp\"\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\
-    \n#include <algorithm>\n#include <array>\n#include <cassert>\n#include <cmath>\n\
-    #include <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
-    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
-    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
-    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
-    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+  bundledCode: "#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include\
+    \ <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
+    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
     using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
     \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n#line 4 \"core/types.hpp\"\n#include <utility>\n\nnamespace bys {\ntemplate\
-    \ <class, class = void>\nstruct has_lshift_to_ostream : std::false_type {};\n\
-    template <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \ bys\n#include <utility>\n\nnamespace bys {\ntemplate <class, class = void>\n\
+    struct has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct\
+    \ has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -142,14 +142,14 @@ data:
     struct has_tuple_interface<T, std::void_t<decltype(std::tuple_size<T>())>> : std::true_type\
     \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
     \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
-    \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n#line 4 \"core/scanner.hpp\"\
-    \n\nnamespace bys {\nstruct Scanner {\n    Scanner(std::istream& is_) : is(is_){};\n\
-    \n    template <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ...\
-    \ >> args);\n    }\n\n    template <class T, class... Us>\n    decltype(auto)\
-    \ read() {\n        if constexpr (sizeof...(Us) == 0) {\n            if constexpr\
-    \ (has_rshift_from_istream<T>::value) {\n                T res;\n            \
-    \    is >> res;\n                return res;\n            } else if constexpr\
-    \ (has_tuple_interface<T>::value) {\n                auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
+    \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n\nnamespace bys\
+    \ {\nstruct Scanner {\n    Scanner(std::istream& is_) : is(is_){};\n\n    template\
+    \ <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >> args);\n\
+    \    }\n\n    template <class T, class... Us>\n    decltype(auto) read() {\n \
+    \       if constexpr (sizeof...(Us) == 0) {\n            if constexpr (has_rshift_from_istream<T>::value)\
+    \ {\n                T res;\n                is >> res;\n                return\
+    \ res;\n            } else if constexpr (has_tuple_interface<T>::value) {\n  \
+    \              auto res = read_tuple<T>(std::make_index_sequence<std::tuple_size_v<T>>());\n\
     \                return res;\n            } else if constexpr (std::is_same_v<T,\
     \ Int1>) {\n                int res;\n                is >> res;\n           \
     \     --res;\n                return res;\n            } else if constexpr (has_iterator<T>::value)\

@@ -8,9 +8,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: '#line 2 "acl/segtree_wrap.hpp"
-
-    #include <atcoder/segtree>
+  bundledCode: '#include <atcoder/segtree>
 
     namespace bys {}
 
