@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A"
-#include "core/core.hpp"
-#include "graph/edge.hpp"
+#include "../core/core.hpp"
+#include "../graph/edge.hpp"
 
 namespace bys {
 void Solver::solve() {
