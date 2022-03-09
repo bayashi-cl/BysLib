@@ -163,10 +163,10 @@ data:
     \ solver;\n    solver.solve();\n    bys::print(\"Hello World\");\n    return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
-    \n#include \"core/core.hpp\"\n#include \"graph/edge.hpp\"\n\nnamespace bys {\n\
-    void Solver::solve() {\n    Edge e(1, 2, 3);\n    // cout << e << endl;\n    DEBUG(e);\n\
-    }\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve();\n\
-    \    bys::print(\"Hello World\");\n    return 0;\n}\n"
+    \n#include \"../core/core.hpp\"\n#include \"../graph/edge.hpp\"\n\nnamespace bys\
+    \ {\nvoid Solver::solve() {\n    Edge e(1, 2, 3);\n    // cout << e << endl;\n\
+    \    DEBUG(e);\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n\
+    \    solver.solve();\n    bys::print(\"Hello World\");\n    return 0;\n}\n"
   dependsOn:
   - core/core.hpp
   - core/stdlib.hpp
@@ -181,7 +181,7 @@ data:
   isVerificationFile: true
   path: test/test.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 20:23:59+09:00'
+  timestamp: '2022-03-10 05:03:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/test.test.cpp
