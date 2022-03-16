@@ -1,5 +1,5 @@
 #pragma once
-#include "core/stdlib.hpp"
+#include "../core/stdlib.hpp"
 
 namespace bys {
 template <class T, class Lambda, typename R = std::invoke_result_t<std::decay_t<Lambda>, T>>
