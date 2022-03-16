@@ -33,6 +33,7 @@ struct Point {
         ld ct = std::cos(theta), st = std::sin(theta);
         return Point(x * ct - y * st, x * st + y * ct);
     }
+    Point rotate90() const { return Point(-y, x); }
     //! @brief マンハッタン距離用。45度回転して√2倍する
     Point manhattan_rotate() const { return Point(x - y, x + y); }
     T dot(const Point& rh) const { return x * rh.x + y * rh.y; }

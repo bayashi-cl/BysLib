@@ -70,18 +70,9 @@ ld distance(const Segment<T>& s, const Segment<T>& t) {
     return min({distance(s.p, t), distance(s.q, t), distance(t.p, s), distance(t.q, s)});
 }
 template <class T>
-// std::pair<bool, Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
 std::optional<Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
     if (!is_cross(a, b)) return std::nullopt;
-    Point s = b.p - a.p;
-    return b.p + b.to_Point() * abs(a.to_Point().det(s) / a.to_Point().det(b.to_Point()));
-}
-template <class T>
-// std::pair<bool, Point<T>> cross_point(const Segment<T>& a, const Segment<T>& b) {
-std::optional<Point<T>> cross_point(const Segment<T>& a, const Segment<T>& b) {
-    if (!is_cross(a, b)) return std::nullopt;
-    Point s = b.p - a.p;
-    return b.p + b.to_Point() * abs(a.to_Point().det(s) / a.to_Point().det(b.to_Point()));
+    return a.p + a.to_Point() * (b.p - a.p).det(b.to_Point()) / a.to_Point().det(b.to_Point());
 }
 template <class T>
 Point<T> projection(const Point<T>& p, const Line<T>& l) {
