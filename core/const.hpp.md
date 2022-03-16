@@ -142,6 +142,8 @@ data:
 
     #include <array>
 
+    #include <bitset>
+
     #include <cassert>
 
     #include <cmath>
@@ -257,7 +259,7 @@ data:
   - graph/warshall_floyd.hpp
   - graph/dijkstra.hpp
   - graph/bellman_ford.hpp
-  timestamp: '2022-02-09 20:16:53+09:00'
+  timestamp: '2022-03-16 21:14:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/prime.test.cpp

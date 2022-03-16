@@ -15,8 +15,8 @@ data:
   attributes:
     links: []
   bundledCode: "#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include\
-    \ <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
-    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
+    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
     #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
     \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
     \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
@@ -81,7 +81,7 @@ data:
   isVerificationFile: false
   path: graphv2/rooted_tree.hpp
   requiredBy: []
-  timestamp: '2022-02-26 15:09:40+09:00'
+  timestamp: '2022-03-16 21:14:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graphv2/rooted_tree.hpp

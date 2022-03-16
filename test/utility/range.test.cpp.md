@@ -55,12 +55,12 @@ data:
     \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
     \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
     \ namespace bys\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n\
-    #include <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
-    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
-    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
-    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
-    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
+    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
+    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
     using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
     \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
@@ -221,7 +221,7 @@ data:
   isVerificationFile: true
   path: test/utility/range.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
+  timestamp: '2022-03-16 21:14:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/utility/range.test.cpp

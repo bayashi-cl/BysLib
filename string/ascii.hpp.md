@@ -22,6 +22,8 @@ data:
 
     #include <array>
 
+    #include <bitset>
+
     #include <cassert>
 
     #include <cmath>
@@ -117,7 +119,7 @@ data:
   isVerificationFile: false
   path: string/ascii.hpp
   requiredBy: []
-  timestamp: '2022-02-09 20:16:53+09:00'
+  timestamp: '2022-03-16 21:14:12+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/ascii.hpp

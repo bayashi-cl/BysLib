@@ -46,22 +46,22 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_C
   bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_C\"\
     \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
-    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n\
-    #include <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n\
-    #include <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include\
-    \ <stack>\n#include <string>\n#include <type_traits>\n#include <unordered_map>\n\
-    #include <unordered_set>\n#include <vector>\n\nnamespace bys {\nusing std::array,\
-    \ std::vector, std::string, std::set, std::map, std::pair;\nusing std::cin, std::cout,\
-    \ std::endl;\nusing std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\
-    \n// alias\nusing ll = long long int;\nusing ld = long double;\nusing Pa = pair<int,\
-    \ int>;\nusing Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class\
-    \ T>\nusing uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing\
-    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n\nnamespace bys {\nconstexpr\
-    \ int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int INF =\
-    \ std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
-    \ / 2;\n}  // namespace bys\n#include <utility>\n\nnamespace bys {\ntemplate <class,\
-    \ class = void>\nstruct has_lshift_to_ostream : std::false_type {};\ntemplate\
-    \ <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
+    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
+    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
+    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
+    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
+    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 =\
+    \ 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max() / 2;\nconstexpr\
+    \ ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace bys\n#include\
+    \ <utility>\n\nnamespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
+    \ : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -175,51 +175,51 @@ data:
     \ std::sqrt(norm2()); }\n    Point normalized() const { return Point(x / norm(),\
     \ y / norm()); }\n    ld angle() const { return std::atan2(y, x); }\n    Point\
     \ rotate(ld theta) const {\n        ld ct = std::cos(theta), st = std::sin(theta);\n\
-    \        return Point(x * ct - y * st, x * st + y * ct);\n    }\n    //! @brief\
-    \ \u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u7528\u300245\u5EA6\u56DE\u8EE2\
-    \u3057\u3066\u221A2\u500D\u3059\u308B\n    Point manhattan_rotate() const { return\
-    \ Point(x - y, x + y); }\n    T dot(const Point& rh) const { return x * rh.x +\
-    \ y * rh.y; }\n    T det(const Point& rh) const { return x * rh.y - y * rh.x;\
-    \ }\n    Point normal() const { return Point(-normalized().y, normalized().x);\
-    \ }\n    Point projection(const Point& to) const { return to * (dot(to) / to.norm2());\
-    \ }\n    int quadrant() const {\n        if (sgn(y) >= 0) return sgn(x) >= 0 ?\
-    \ 1 : 2;\n        return sgn(x) >= 0 ? 4 : 3;\n    }\n    // \u504F\u89D2\u30BD\
-    \u30FC\u30C8\u7528\n    bool operator<(const Point& rh) const {\n        int q\
-    \ = quadrant(), rhq = rh.quadrant();\n        if (q != rhq) return q < rhq;\n\
-    \        return sgn(det(rh)) > 0;\n    }\n    bool operator<=(const Point& rh)\
-    \ const {\n        int q = quadrant(), rhq = rh.quadrant();\n        if (q !=\
-    \ rhq) return q < rhq;\n        return sgn(det(rh)) >= 0;\n    }\n};\n\ntemplate\
-    \ <class T>\nbool compx(Point<T>& a, Point<T>& b) {\n    return a.x < b.x;\n}\n\
-    template <class T>\nbool compy(Point<T>& a, Point<T>& b) {\n    return a.y < b.y;\n\
-    }\n\nenum class Turn { Back = -2, CW, Middle, CCW, Front };\n/**\n * @brief \u8FBA\
-    \u306E\u66F2\u304C\u308B\u65B9\u5411\n * @return\n * +1: CCW ab->bc\u304C\u5DE6\
-    \u306B\u66F2\u304C\u308B\n * -1: CW  ab->bc\u304C\u53F3\u306B\u66F2\u304C\u308B\
-    \n * +2: Front  ab\u306E\u524D\u65B9\n * -2: Back   ab\u306E\u5F8C\u65B9\n * \
-    \ 0: Middle ab\u4E0A\n */\ntemplate <class T>\nTurn iSP(const Point<T>& a, const\
-    \ Point<T>& b, const Point<T>& c) {\n    int flg = sgn((b - a).det(c - a));\n\
-    \    if (flg == 1) {\n        return Turn::CCW;\n    } else if (flg == -1) {\n\
-    \        return Turn::CW;\n    } else {\n        if (sgn((b - a).dot(c - b)) >\
-    \ 0) {\n            return Turn::Front;\n        } else if (sgn((a - b).dot(c\
-    \ - a)) > 0) {\n            return Turn::Back;\n        } else {\n           \
-    \ return Turn::Middle;\n        }\n    }\n}\n/**\n * -1: Obtuse \u920D\u89D2\n\
-    \ *  0: Right \u76F4\u89D2\n * +1: Acute \u92ED\u89D2\n */\nenum class Angle {\
-    \ Obtuse = -1, Right, Acute };\n/**\n * @brief \u89D2\u306E\u7A2E\u985E\n * @return\
-    \ Angle\n * -1: Obtuse \u920D\u89D2\n *  0: Right \u76F4\u89D2\n * +1: Acute \u92ED\
-    \u89D2\n */\ntemplate <class T>\nAngle angle_type(const Point<T>& a, const Point<T>&\
-    \ b, const Point<T>& c) {\n    int t = sgn((a - b).dot(c - b));\n    if (t ==\
-    \ -1) {\n        return Angle::Obtuse;\n    } else if (t == 0) {\n        return\
-    \ Angle::Right;\n    } else {\n        return Angle::Acute;\n    }\n}\n}  // namespace\
-    \ bys::geo\n\nnamespace bys {\nvoid Solver::solve() {\n    auto [p0, p1] = scanner.read<geo::Point<ld>,\
-    \ 2>();\n    auto q = scanner.read<int>();\n    for (int i = 0; i < q; ++i) {\n\
-    \        auto p2 = scanner.read<geo::Point<ld>>();\n        auto dir = geo::iSP(p0,\
-    \ p1, p2);\n        if (dir == geo::Turn::CCW) {\n            print(\"COUNTER_CLOCKWISE\"\
-    );\n        } else if (dir == geo::Turn::CW) {\n            print(\"CLOCKWISE\"\
-    );\n        } else if (dir == geo::Turn::Back) {\n            print(\"ONLINE_BACK\"\
-    );\n        } else if (dir == geo::Turn::Front) {\n            print(\"ONLINE_FRONT\"\
-    );\n        } else if (dir == geo::Turn::Middle) {\n            print(\"ON_SEGMENT\"\
-    );\n        }\n    }\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver\
-    \ solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n\
-    }\n"
+    \        return Point(x * ct - y * st, x * st + y * ct);\n    }\n    Point rotate90()\
+    \ const { return Point(-y, x); }\n    //! @brief \u30DE\u30F3\u30CF\u30C3\u30BF\
+    \u30F3\u8DDD\u96E2\u7528\u300245\u5EA6\u56DE\u8EE2\u3057\u3066\u221A2\u500D\u3059\
+    \u308B\n    Point manhattan_rotate() const { return Point(x - y, x + y); }\n \
+    \   T dot(const Point& rh) const { return x * rh.x + y * rh.y; }\n    T det(const\
+    \ Point& rh) const { return x * rh.y - y * rh.x; }\n    Point normal() const {\
+    \ return Point(-normalized().y, normalized().x); }\n    Point projection(const\
+    \ Point& to) const { return to * (dot(to) / to.norm2()); }\n    int quadrant()\
+    \ const {\n        if (sgn(y) >= 0) return sgn(x) >= 0 ? 1 : 2;\n        return\
+    \ sgn(x) >= 0 ? 4 : 3;\n    }\n    // \u504F\u89D2\u30BD\u30FC\u30C8\u7528\n \
+    \   bool operator<(const Point& rh) const {\n        int q = quadrant(), rhq =\
+    \ rh.quadrant();\n        if (q != rhq) return q < rhq;\n        return sgn(det(rh))\
+    \ > 0;\n    }\n    bool operator<=(const Point& rh) const {\n        int q = quadrant(),\
+    \ rhq = rh.quadrant();\n        if (q != rhq) return q < rhq;\n        return\
+    \ sgn(det(rh)) >= 0;\n    }\n};\n\ntemplate <class T>\nbool compx(Point<T>& a,\
+    \ Point<T>& b) {\n    return a.x < b.x;\n}\ntemplate <class T>\nbool compy(Point<T>&\
+    \ a, Point<T>& b) {\n    return a.y < b.y;\n}\n\nenum class Turn { Back = -2,\
+    \ CW, Middle, CCW, Front };\n/**\n * @brief \u8FBA\u306E\u66F2\u304C\u308B\u65B9\
+    \u5411\n * @return\n * +1: CCW ab->bc\u304C\u5DE6\u306B\u66F2\u304C\u308B\n *\
+    \ -1: CW  ab->bc\u304C\u53F3\u306B\u66F2\u304C\u308B\n * +2: Front  ab\u306E\u524D\
+    \u65B9\n * -2: Back   ab\u306E\u5F8C\u65B9\n *  0: Middle ab\u4E0A\n */\ntemplate\
+    \ <class T>\nTurn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c)\
+    \ {\n    int flg = sgn((b - a).det(c - a));\n    if (flg == 1) {\n        return\
+    \ Turn::CCW;\n    } else if (flg == -1) {\n        return Turn::CW;\n    } else\
+    \ {\n        if (sgn((b - a).dot(c - b)) > 0) {\n            return Turn::Front;\n\
+    \        } else if (sgn((a - b).dot(c - a)) > 0) {\n            return Turn::Back;\n\
+    \        } else {\n            return Turn::Middle;\n        }\n    }\n}\n/**\n\
+    \ * -1: Obtuse \u920D\u89D2\n *  0: Right \u76F4\u89D2\n * +1: Acute \u92ED\u89D2\
+    \n */\nenum class Angle { Obtuse = -1, Right, Acute };\n/**\n * @brief \u89D2\u306E\
+    \u7A2E\u985E\n * @return Angle\n * -1: Obtuse \u920D\u89D2\n *  0: Right \u76F4\
+    \u89D2\n * +1: Acute \u92ED\u89D2\n */\ntemplate <class T>\nAngle angle_type(const\
+    \ Point<T>& a, const Point<T>& b, const Point<T>& c) {\n    int t = sgn((a - b).dot(c\
+    \ - b));\n    if (t == -1) {\n        return Angle::Obtuse;\n    } else if (t\
+    \ == 0) {\n        return Angle::Right;\n    } else {\n        return Angle::Acute;\n\
+    \    }\n}\n}  // namespace bys::geo\n\nnamespace bys {\nvoid Solver::solve() {\n\
+    \    auto [p0, p1] = scanner.read<geo::Point<ld>, 2>();\n    auto q = scanner.read<int>();\n\
+    \    for (int i = 0; i < q; ++i) {\n        auto p2 = scanner.read<geo::Point<ld>>();\n\
+    \        auto dir = geo::iSP(p0, p1, p2);\n        if (dir == geo::Turn::CCW)\
+    \ {\n            print(\"COUNTER_CLOCKWISE\");\n        } else if (dir == geo::Turn::CW)\
+    \ {\n            print(\"CLOCKWISE\");\n        } else if (dir == geo::Turn::Back)\
+    \ {\n            print(\"ONLINE_BACK\");\n        } else if (dir == geo::Turn::Front)\
+    \ {\n            print(\"ONLINE_FRONT\");\n        } else if (dir == geo::Turn::Middle)\
+    \ {\n            print(\"ON_SEGMENT\");\n        }\n    }\n}\n}  // namespace\
+    \ bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ */);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_C\"\
     \n#include \"../../core/core.hpp\"\n#include \"../../geometry/point.hpp\"\n\n\
     namespace bys {\nvoid Solver::solve() {\n    auto [p0, p1] = scanner.read<geo::Point<ld>,\
@@ -248,7 +248,7 @@ data:
   isVerificationFile: true
   path: test/geometry/counter_clockwise.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
+  timestamp: '2022-03-16 21:14:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/geometry/counter_clockwise.test.cpp

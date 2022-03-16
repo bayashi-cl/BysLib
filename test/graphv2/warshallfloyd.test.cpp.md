@@ -55,22 +55,22 @@ data:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_C
   bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_C\"\
     \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
-    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n\
-    #include <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n\
-    #include <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include\
-    \ <stack>\n#include <string>\n#include <type_traits>\n#include <unordered_map>\n\
-    #include <unordered_set>\n#include <vector>\n\nnamespace bys {\nusing std::array,\
-    \ std::vector, std::string, std::set, std::map, std::pair;\nusing std::cin, std::cout,\
-    \ std::endl;\nusing std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\
-    \n// alias\nusing ll = long long int;\nusing ld = long double;\nusing Pa = pair<int,\
-    \ int>;\nusing Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class\
-    \ T>\nusing uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing\
-    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n\nnamespace bys {\nconstexpr\
-    \ int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int INF =\
-    \ std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
-    \ / 2;\n}  // namespace bys\n#include <utility>\n\nnamespace bys {\ntemplate <class,\
-    \ class = void>\nstruct has_lshift_to_ostream : std::false_type {};\ntemplate\
-    \ <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
+    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
+    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
+    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
+    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
+    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
+    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 =\
+    \ 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max() / 2;\nconstexpr\
+    \ ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace bys\n#include\
+    \ <utility>\n\nnamespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
+    \ : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -275,7 +275,7 @@ data:
   isVerificationFile: true
   path: test/graphv2/warshallfloyd.test.cpp
   requiredBy: []
-  timestamp: '2022-02-26 15:56:18+09:00'
+  timestamp: '2022-03-16 21:14:12+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graphv2/warshallfloyd.test.cpp

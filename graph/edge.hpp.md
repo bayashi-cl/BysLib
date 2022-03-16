@@ -61,8 +61,8 @@ data:
     document_title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     links: []
   bundledCode: "#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include\
-    \ <array>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
-    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
+    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
     #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
     \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
     \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
@@ -109,7 +109,7 @@ data:
   - graph/lca.hpp
   - graph/dijkstra.hpp
   - graph/bellman_ford.hpp
-  timestamp: '2022-02-26 20:23:59+09:00'
+  timestamp: '2022-03-16 21:14:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/test.test.cpp
