@@ -4,6 +4,11 @@ template <class T>
 struct Add {
     using value_type = T;
     static constexpr T op(T a, T b) { return a + b; }
+    static constexpr T composition(T a, T b) { return b + a; }
+    template <class S>
+    static constexpr S mapping(T a, S b) {
+        return b + a;
+    }
     static constexpr T id{0};
 };
 template <class T>
