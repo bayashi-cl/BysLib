@@ -51,22 +51,16 @@ class DualSegmentTree {
         r += n_leaf;
         push(l);
         push(r - 1);
-        for (; l < r; l >>= 1, r >>= 1) {
+        if (l & 1) data[l - n_leaf] = A::mapping(val, data[l - n_leaf]), l++;
+        if (r & 1) --r, data[r - n_leaf] = A::mapping(val, data[r - n_leaf]);
+        for (l >>= 1, r >>= 1; l < r; l >>= 1, r >>= 1) {
             if (l & 1) {
-                if (l < n_leaf) {
-                    lazy[l] = A::composition(val, lazy[l]);
-                } else {
-                    data[l - n_leaf] = A::mapping(val, data[l - n_leaf]);
-                }
+                lazy[l] = A::composition(val, lazy[l]);
                 ++l;
             }
             if (r & 1) {
                 --r;
-                if (r < n_leaf) {
-                    lazy[r] = A::composition(val, lazy[r]);
-                } else {
-                    data[r - n_leaf] = A::mapping(val, data[r - n_leaf]);
-                }
+                lazy[r] = A::composition(val, lazy[r]);
             }
         }
     }
