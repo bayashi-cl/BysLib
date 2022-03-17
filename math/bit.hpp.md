@@ -9,6 +9,9 @@ data:
     path: data/binary_indexed_tree.hpp
     title: Binary Indexed Tree
   - icon: ':heavy_check_mark:'
+    path: data/dual_segment_tree.hpp
+    title: data/dual_segment_tree.hpp
+  - icon: ':heavy_check_mark:'
     path: data/segment_tree.hpp
     title: data/segment_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/binary_indexed_tree_aux.test.cpp
     title: test/data/binary_indexed_tree_aux.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/dual_segment_tree.test.cpp
+    title: test/data/dual_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/segment_tree.test.cpp
     title: test/data/segment_tree.test.cpp
@@ -75,6 +81,7 @@ data:
   requiredBy:
   - math/numeric.hpp
   - math/prime.hpp
+  - data/dual_segment_tree.hpp
   - data/binary_indexed_tree.hpp
   - data/segment_tree.hpp
   timestamp: '2022-03-16 21:14:12+09:00'
@@ -83,6 +90,7 @@ data:
   - test/math/prime.test.cpp
   - test/data/binary_indexed_tree.test.cpp
   - test/data/binary_indexed_tree_aux.test.cpp
+  - test/data/dual_segment_tree.test.cpp
   - test/data/segment_tree.test.cpp
 documentation_of: math/bit.hpp
 layout: document

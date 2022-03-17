@@ -211,9 +211,11 @@ data:
     template <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f) {\n    return\
     \ std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\nnamespace bys {\n\
     template <class T>\nstruct Add {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return a + b; }\n    static constexpr T id{0};\n};\ntemplate\
-    \ <class T>\nstruct Min {\n    using value_type = T;\n    static constexpr T op(T\
-    \ a, T b) { return std::min(a, b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n\
+    \ T op(T a, T b) { return a + b; }\n    static constexpr T composition(T a, T\
+    \ b) { return b + a; }\n    template <class S>\n    static constexpr S mapping(T\
+    \ a, S b) {\n        return b + a;\n    }\n    static constexpr T id{0};\n};\n\
+    template <class T>\nstruct Min {\n    using value_type = T;\n    static constexpr\
+    \ T op(T a, T b) { return std::min(a, b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n\
     };\ntemplate <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr\
     \ T op(T a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
     };\n}  // namespace bys\n\nnamespace bys {\nclass LowestCommonAncestor {\n   \
@@ -265,7 +267,7 @@ data:
   isVerificationFile: true
   path: test/graphv2/lca.test.cpp
   requiredBy: []
-  timestamp: '2022-03-16 21:14:12+09:00'
+  timestamp: '2022-03-18 03:19:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graphv2/lca.test.cpp

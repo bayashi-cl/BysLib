@@ -187,11 +187,13 @@ data:
     \    return A::op(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);\n\
     \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\nstruct Add\
     \ {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return a\
-    \ + b; }\n    static constexpr T id{0};\n};\ntemplate <class T>\nstruct Min {\n\
-    \    using value_type = T;\n    static constexpr T op(T a, T b) { return std::min(a,\
-    \ b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n};\ntemplate\
-    \ <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr T op(T\
-    \ a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
+    \ + b; }\n    static constexpr T composition(T a, T b) { return b + a; }\n   \
+    \ template <class S>\n    static constexpr S mapping(T a, S b) {\n        return\
+    \ b + a;\n    }\n    static constexpr T id{0};\n};\ntemplate <class T>\nstruct\
+    \ Min {\n    using value_type = T;\n    static constexpr T op(T a, T b) { return\
+    \ std::min(a, b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n\
+    };\ntemplate <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr\
+    \ T op(T a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
     };\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n    auto [n,\
     \ q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<int>(n);\n    SparseTable<Min<int>>\
     \ st(a);\n    for (UV : irange(q)) {\n        auto [l, r] = scanner.read<int,\
@@ -224,7 +226,7 @@ data:
   isVerificationFile: true
   path: test/data/sparse_table.test.cpp
   requiredBy: []
-  timestamp: '2022-03-16 21:14:12+09:00'
+  timestamp: '2022-03-18 03:19:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/sparse_table.test.cpp

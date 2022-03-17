@@ -16,6 +16,9 @@ data:
     path: test/data/binary_indexed_tree.test.cpp
     title: test/data/binary_indexed_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/data/dual_segment_tree.test.cpp
+    title: test/data/dual_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/data/segment_tree.test.cpp
     title: test/data/segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -62,6 +65,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/binary_indexed_tree.test.cpp
+  - test/data/dual_segment_tree.test.cpp
   - test/data/sparse_table.test.cpp
   - test/data/segment_tree.test.cpp
   - test/data/union_find.test.cpp

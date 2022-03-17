@@ -29,8 +29,8 @@ data:
     path: core/types.hpp
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
-    path: data/segment_tree.hpp
-    title: data/segment_tree.hpp
+    path: data/dual_segment_tree.hpp
+    title: data/dual_segment_tree.hpp
   - icon: ':heavy_check_mark:'
     path: math/algebra.hpp
     title: math/algebra.hpp
@@ -50,51 +50,59 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_add_range_sum
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_E
     links:
-    - https://judge.yosupo.jp/problem/point_add_range_sum
-  bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
-    \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
-    #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
-    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
-    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
-    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
-    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
-    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
-    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
-    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
-    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n\nnamespace bys {\ntemplate <class T>\nint bit_width(T x) {\n    int bits\
-    \ = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n   \
-    \ return bits;\n}\ntemplate <class T>\nT bit_floor(T x) {\n    assert(x >= 0);\n\
-    \    return x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\ntemplate <class T>\n\
-    T bit_ceil(T x) {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) << bit_width(x\
-    \ - 1);\n}\n\nstring bin(ll n) {\n    assert(n > 0);\n    if (n == 0) return \"\
-    0\";\n    string res;\n    while (n > 0) {\n        res.push_back(n & 1 ? '1'\
-    \ : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
-    \    return res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\n\
-    inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
-    namespace bys {\ntemplate <class A>\nclass SegmentTree {\n    using T = typename\
-    \ A::value_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
-    \    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, A::id)\
-    \ {}\n    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
-    \ data(n_leaf * 2, A::id) {\n        std::copy(v.begin(), v.end(), data.begin()\
-    \ + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i] = A::op(data[i\
-    \ * 2], data[i * 2 + 1]);\n    }\n\n    T query(int l, int r) const {\n      \
-    \  assert(0 <= l && l < _n);\n        assert(l <= r);\n        assert(r <= _n);\n\
-    \n        T left = A::id, right = A::id;\n        for (l += n_leaf, r += n_leaf;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) left = A::op(left, data[l++]);\n\
-    \            if (r & 1) right = A::op(data[--r], right);\n        }\n        return\
-    \ A::op(left, right);\n    }\n\n    T query_all() const { return data[1]; }\n\n\
-    \    void update(int i, T val) {\n        assert(0 <= i && i < _n);\n        i\
-    \ += n_leaf;\n        data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i]\
-    \ = A::op(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const\
-    \ {\n        assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n   \
-    \ }\n\n    // int bisect_from_left(int l, std::function<bool(S)> f) const {}\n\
-    \    // int bisect_from_right(int r, std::function<bool(S)> f) const {}\n};\n\
-    }  // namespace bys\n\n\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_E
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_E\"\
+    \n#include <vector>\n\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
+    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\n\nnamespace bys {\nusing std::array,\
+    \ std::vector, std::string, std::set, std::map, std::pair;\nusing std::cin, std::cout,\
+    \ std::endl;\nusing std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\
+    \n// alias\nusing ll = long long int;\nusing ld = long double;\nusing Pa = pair<int,\
+    \ int>;\nusing Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class\
+    \ T>\nusing uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing\
+    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n\nnamespace bys {\ntemplate\
+    \ <class T>\nint bit_width(T x) {\n    int bits = 0;\n    x = (x < 0) ? (-x) :\
+    \ x;\n    for (; x != 0; bits++) x >>= 1;\n    return bits;\n}\ntemplate <class\
+    \ T>\nT bit_floor(T x) {\n    assert(x >= 0);\n    return x == 0 ? 0 : T(1) <<\
+    \ (bit_width(x) - 1);\n}\ntemplate <class T>\nT bit_ceil(T x) {\n    assert(x\
+    \ >= 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n}\n\nstring bin(ll\
+    \ n) {\n    assert(n > 0);\n    if (n == 0) return \"0\";\n    string res;\n \
+    \   while (n > 0) {\n        res.push_back(n & 1 ? '1' : '0');\n        n >>=\
+    \ 1;\n    }\n    std::reverse(res.begin(), res.end());\n    return res;\n}\ninline\
+    \ bool pop(int s, int d) { return s & (1 << d); }\ninline bool pop(ll s, int d)\
+    \ { return s & (1LL << d); }\n}  // namespace bys\nnamespace bys {\ntemplate <class\
+    \ T, class A>\nclass DualSegmentTree {\n    using L = typename A::value_type;\n\
+    \    int _n, n_leaf, logsize;\n    std::vector<L> lazy;\n    std::vector<T> data;\n\
+    \    void push(int p) {\n        for (int i = logsize; i > 0; --i) {\n       \
+    \     int a = p >> i;\n            if (lazy[a] == A::id) continue;\n         \
+    \   if (a * 2 < n_leaf) {\n                lazy[a * 2] = A::composition(lazy[a],\
+    \ lazy[a * 2]);\n                lazy[a * 2 + 1] = A::composition(lazy[a], lazy[a\
+    \ * 2 + 1]);\n\n            } else {\n                int t = a * 2 - n_leaf;\n\
+    \                data[t] = A::mapping(lazy[a], data[t]);\n                data[t\
+    \ + 1] = A::mapping(lazy[a], data[t + 1]);\n            }\n            lazy[a]\
+    \ = A::id;\n        }\n    }\n\n   public:\n    DualSegmentTree(int n, T ident)\n\
+    \        : _n(n), n_leaf(bit_ceil(_n)), logsize(bit_width(n - 1)), lazy(n_leaf,\
+    \ A::id), data(n_leaf, ident) {}\n    DualSegmentTree(const std::vector<T>& v)\n\
+    \        : _n(v.size()), n_leaf(bit_ceil(_n)), logsize(bit_width(_n - 1)), lazy(n_leaf,\
+    \ A::id), data(n_leaf) {\n        std::copy(v.begin(), v.end(), data.begin());\n\
+    \    }\n\n    T operator[](int i) const {\n        T res = data[i];\n        for\
+    \ (i = (i + n_leaf) >> 1; i > 0; i >>= 1) {\n            res = A::mapping(lazy[i],\
+    \ res);\n        }\n        return res;\n    }\n    void update(int i, T val)\
+    \ {\n        push(i + n_leaf);\n        data[i] = val;\n    }\n    void apply(int\
+    \ l, int r, T val) {\n        assert(l < r);\n        l += n_leaf;\n        r\
+    \ += n_leaf;\n        push(l);\n        push(r - 1);\n        if (l & 1) data[l\
+    \ - n_leaf] = A::mapping(val, data[l - n_leaf]), l++;\n        if (r & 1) --r,\
+    \ data[r - n_leaf] = A::mapping(val, data[r - n_leaf]);\n        for (l >>= 1,\
+    \ r >>= 1; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n            \
+    \    lazy[l] = A::composition(val, lazy[l]);\n                ++l;\n         \
+    \   }\n            if (r & 1) {\n                --r;\n                lazy[r]\
+    \ = A::composition(val, lazy[r]);\n            }\n        }\n    }\n};\n}  //\
+    \ namespace bys\n\n\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr\
     \ int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
     \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
     \ bys\n#include <utility>\n\nnamespace bys {\ntemplate <class, class = void>\n\
@@ -214,26 +222,28 @@ data:
     \ T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\n\
     Range<T> irange(T start, T stop, T step = 1) {\n    return Range(start, stop,\
     \ step);\n}\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n\
-    \    auto [n, q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<ll>(n);\n\
-    \    SegmentTree<Add<ll>> seg(a);\n    for (UV : irange(q)) {\n        auto [t,\
-    \ l, r] = scanner.read<int, 3>();\n        if (t == 0) {\n            seg.update(l,\
-    \ seg[l] + r);\n\n        } else {\n            print(seg.query(l, r));\n    \
-    \    }\n    }\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n\
-    \    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
-    #include \"../../data/segment_tree.hpp\"\n\n#include \"../../core/core.hpp\"\n\
-    #include \"../../math/algebra.hpp\"\n#include \"../../utility/change.hpp\"\n#include\
-    \ \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve() {\n   \
-    \ auto [n, q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<ll>(n);\n\
-    \    SegmentTree<Add<ll>> seg(a);\n    for (UV : irange(q)) {\n        auto [t,\
-    \ l, r] = scanner.read<int, 3>();\n        if (t == 0) {\n            seg.update(l,\
-    \ seg[l] + r);\n\n        } else {\n            print(seg.query(l, r));\n    \
-    \    }\n    }\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n\
-    \    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n}\n"
+    \    auto [n, q] = scanner.read<int, 2>();\n    DualSegmentTree<int, Add<int>>\
+    \ seg(n, 0LL);\n    for (UV : irange(q)) {\n        auto c = scanner.read<int>();\n\
+    \        if (c == 0) {\n            auto [s, t, x] = scanner.read<Int1, int, int>();\n\
+    \            seg.apply(s, t, x);\n        } else {\n            auto i = scanner.read<Int1>();\n\
+    \            print(seg[i]);\n        }\n    }\n}\n}  // namespace bys\n\nint main()\
+    \ {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n\
+    \    return 0;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_E\"\
+    \n#include \"../../data/dual_segment_tree.hpp\"\n\n#include \"../../core/core.hpp\"\
+    \n#include \"../../math/algebra.hpp\"\n#include \"../../utility/change.hpp\"\n\
+    #include \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    DualSegmentTree<int, Add<int>>\
+    \ seg(n, 0LL);\n    for (UV : irange(q)) {\n        auto c = scanner.read<int>();\n\
+    \        if (c == 0) {\n            auto [s, t, x] = scanner.read<Int1, int, int>();\n\
+    \            seg.apply(s, t, x);\n        } else {\n            auto i = scanner.read<Int1>();\n\
+    \            print(seg[i]);\n        }\n    }\n}\n}  // namespace bys\n\nint main()\
+    \ {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n\
+    \    return 0;\n}\n"
   dependsOn:
-  - data/segment_tree.hpp
-  - core/stdlib.hpp
+  - data/dual_segment_tree.hpp
   - math/bit.hpp
+  - core/stdlib.hpp
   - core/core.hpp
   - core/const.hpp
   - core/io.hpp
@@ -246,15 +256,15 @@ data:
   - utility/change.hpp
   - utility/range.hpp
   isVerificationFile: true
-  path: test/data/segment_tree.test.cpp
+  path: test/data/dual_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-03-18 03:19:38+09:00'
+  timestamp: '2022-03-18 03:24:17+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/data/segment_tree.test.cpp
+documentation_of: test/data/dual_segment_tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/data/segment_tree.test.cpp
-- /verify/test/data/segment_tree.test.cpp.html
-title: test/data/segment_tree.test.cpp
+- /verify/test/data/dual_segment_tree.test.cpp
+- /verify/test/data/dual_segment_tree.test.cpp.html
+title: test/data/dual_segment_tree.test.cpp
 ---

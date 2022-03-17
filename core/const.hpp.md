@@ -46,6 +46,9 @@ data:
     path: test/data/cumulative_sum.test.cpp
     title: test/data/cumulative_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/data/dual_segment_tree.test.cpp
+    title: test/data/dual_segment_tree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/data/segment_tree.test.cpp
     title: test/data/segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -278,6 +281,7 @@ data:
   - test/test.test.cpp
   - test/data/binary_indexed_tree.test.cpp
   - test/data/binary_indexed_tree_aux.test.cpp
+  - test/data/dual_segment_tree.test.cpp
   - test/data/sparse_table.test.cpp
   - test/data/segment_tree.test.cpp
   - test/data/cumulative_sum.test.cpp

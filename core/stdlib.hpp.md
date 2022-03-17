@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: data/cumulative_sum.hpp
     title: data/cumulative_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: data/dual_segment_tree.hpp
+    title: data/dual_segment_tree.hpp
   - icon: ':warning:'
     path: data/ordered_pair.hpp
     title: Orderd pair
@@ -177,6 +180,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/cumulative_sum.test.cpp
     title: test/data/cumulative_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/dual_segment_tree.test.cpp
+    title: test/data/dual_segment_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/segment_tree.test.cpp
     title: test/data/segment_tree.test.cpp
@@ -462,6 +468,7 @@ data:
   - utility/enumerate.hpp
   - string/zfill.hpp
   - string/ascii.hpp
+  - data/dual_segment_tree.hpp
   - data/union_find.hpp
   - data/binary_indexed_tree.hpp
   - data/ordered_pair.hpp
@@ -507,6 +514,7 @@ data:
   - test/test.test.cpp
   - test/data/binary_indexed_tree.test.cpp
   - test/data/binary_indexed_tree_aux.test.cpp
+  - test/data/dual_segment_tree.test.cpp
   - test/data/sparse_table.test.cpp
   - test/data/segment_tree.test.cpp
   - test/data/cumulative_sum.test.cpp
