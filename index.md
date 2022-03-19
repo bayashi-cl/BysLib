@@ -189,6 +189,14 @@ data:
     - icon: ':warning:'
       path: math/sequence.hpp
       title: "\u6570\u5217"
+  - name: monoid
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: monoid/mapping.hpp
+      title: monoid/mapping.hpp
+    - icon: ':heavy_check_mark:'
+      path: monoid/monoid.hpp
+      title: monoid/monoid.hpp
   - name: string
     pages:
     - icon: ':warning:'
@@ -247,11 +255,20 @@ data:
       path: test/data/cumulative_sum.test.cpp
       title: test/data/cumulative_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/dual_segment_tree.test.cpp
-      title: test/data/dual_segment_tree.test.cpp
+      path: test/data/dual_segment_tree_RAQ.test.cpp
+      title: test/data/dual_segment_tree_RAQ.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/segment_tree.test.cpp
-      title: test/data/segment_tree.test.cpp
+      path: test/data/dual_segment_tree_RUQ.test.cpp
+      title: test/data/dual_segment_tree_RUQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data/segment_tree_RMQ.test.cpp
+      title: test/data/segment_tree_RMQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data/segment_tree_RSQ.test.cpp
+      title: test/data/segment_tree_RSQ.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data/segment_tree_RSQ2.test.cpp
+      title: test/data/segment_tree_RSQ2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/data/sparse_table.test.cpp
       title: test/data/sparse_table.test.cpp

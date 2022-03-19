@@ -32,40 +32,41 @@ data:
     \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
     \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
     \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\nnamespace bys {\ntemplate <class A>\nclass SparseTable {\n    using T =\
-    \ typename A::value_type;\n    int n;\n    std::vector<int> lookup;\n    std::vector<std::vector<T>>\
-    \ table;\n\n   public:\n    SparseTable() {}\n    SparseTable(const std::vector<T>&\
-    \ v) { build(v); }\n\n    void build(const std::vector<T>& v) {\n        n = v.size();\n\
-    \        lookup.resize(n + 1);\n\n        for (int i = 2; i < n + 1; ++i) lookup[i]\
-    \ = lookup[i >> 1] + 1;\n        int max_k = lookup.back();\n        table.assign(max_k\
-    \ + 1, std::vector<T>(n));\n        std::copy(v.begin(), v.end(), table[0].begin());\n\
-    \        for (int i = 1; i <= max_k; ++i) {\n            for (int j = 0; j <=\
-    \ n - (1 << i); ++j) {\n                table[i][j] = A::op(table[i - 1][j], table[i\
-    \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int\
-    \ l, int r) {\n        assert(0 <= l && l < r && r <= n);\n        int w = r -\
-    \ l;\n        return A::op(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);\n\
-    \    }\n};\n}  // namespace bys\n"
+    \ bys\nnamespace bys {\ntemplate <class Band>\nclass SparseTable {\n    using\
+    \ T = typename Band::set_type;\n    int n;\n    std::vector<int> lookup;\n   \
+    \ std::vector<std::vector<T>> table;\n\n   public:\n    SparseTable() {}\n   \
+    \ SparseTable(const std::vector<T>& v) { build(v); }\n\n    void build(const std::vector<T>&\
+    \ v) {\n        n = v.size();\n        lookup.resize(n + 1);\n\n        for (int\
+    \ i = 2; i < n + 1; ++i) lookup[i] = lookup[i >> 1] + 1;\n        int max_k =\
+    \ lookup.back();\n        table.assign(max_k + 1, std::vector<T>(n));\n      \
+    \  std::copy(v.begin(), v.end(), table[0].begin());\n        for (int i = 1; i\
+    \ <= max_k; ++i) {\n            for (int j = 0; j <= n - (1 << i); ++j) {\n  \
+    \              table[i][j] = Band::operation(table[i - 1][j], table[i - 1][j +\
+    \ (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int l, int\
+    \ r) {\n        assert(0 <= l && l < r && r <= n);\n        int w = r - l;\n \
+    \       return Band::operation(table[lookup[w]][l], table[lookup[w]][r - (1 <<\
+    \ lookup[w])]);\n    }\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/stdlib.hpp\"\nnamespace bys {\ntemplate\
-    \ <class A>\nclass SparseTable {\n    using T = typename A::value_type;\n    int\
-    \ n;\n    std::vector<int> lookup;\n    std::vector<std::vector<T>> table;\n\n\
-    \   public:\n    SparseTable() {}\n    SparseTable(const std::vector<T>& v) {\
+    \ <class Band>\nclass SparseTable {\n    using T = typename Band::set_type;\n\
+    \    int n;\n    std::vector<int> lookup;\n    std::vector<std::vector<T>> table;\n\
+    \n   public:\n    SparseTable() {}\n    SparseTable(const std::vector<T>& v) {\
     \ build(v); }\n\n    void build(const std::vector<T>& v) {\n        n = v.size();\n\
     \        lookup.resize(n + 1);\n\n        for (int i = 2; i < n + 1; ++i) lookup[i]\
     \ = lookup[i >> 1] + 1;\n        int max_k = lookup.back();\n        table.assign(max_k\
     \ + 1, std::vector<T>(n));\n        std::copy(v.begin(), v.end(), table[0].begin());\n\
     \        for (int i = 1; i <= max_k; ++i) {\n            for (int j = 0; j <=\
-    \ n - (1 << i); ++j) {\n                table[i][j] = A::op(table[i - 1][j], table[i\
-    \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int\
-    \ l, int r) {\n        assert(0 <= l && l < r && r <= n);\n        int w = r -\
-    \ l;\n        return A::op(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);\n\
-    \    }\n};\n}  // namespace bys\n"
+    \ n - (1 << i); ++j) {\n                table[i][j] = Band::operation(table[i\
+    \ - 1][j], table[i - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\
+    \n    T query(int l, int r) {\n        assert(0 <= l && l < r && r <= n);\n  \
+    \      int w = r - l;\n        return Band::operation(table[lookup[w]][l], table[lookup[w]][r\
+    \ - (1 << lookup[w])]);\n    }\n};\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   isVerificationFile: false
   path: data/sparse_table.hpp
   requiredBy:
   - graphv2/lca.hpp
-  timestamp: '2022-03-16 21:14:12+09:00'
+  timestamp: '2022-03-19 14:12:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/sparse_table.test.cpp

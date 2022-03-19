@@ -29,11 +29,14 @@ data:
     path: core/types.hpp
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
-    path: data/sparse_table.hpp
-    title: data/sparse_table.hpp
+    path: data/segment_tree.hpp
+    title: data/segment_tree.hpp
   - icon: ':heavy_check_mark:'
     path: math/algebra.hpp
     title: math/algebra.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/bit.hpp
+    title: math/bit.hpp
   - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: utility/change.hpp
@@ -47,13 +50,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/staticrmq
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
     links:
-    - https://judge.yosupo.jp/problem/staticrmq
-  bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#ifndef\
-    \ LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n#include\
-    \ <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n#include\
-    \ <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B\"\
+    \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
+    #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
+    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
     #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
     \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
     \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
@@ -156,46 +159,44 @@ data:
     \ + \", func: \" + __func__)\n// clang-format on\n\nnamespace bys {\nstruct Solver\
     \ {\n    int IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep)\
     \ {\n        for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n\
-    \nnamespace bys {\n//! @brief Python\u306Erange\ntemplate <typename T>\nstruct\
-    \ Range {\n    Range(T start, T stop, T step = 1) : it(start), stop(stop), step(step),\
-    \ dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0), stop(stop), step(1),\
-    \ dir(1) {}\n    Range<T> begin() const { return *this; }\n    T end() const {\
-    \ return stop; }\n    bool operator!=(const T val) const { return (val - it) *\
-    \ dir > 0; }\n    void operator++() { it += step; }\n    const T& operator*()\
-    \ const { return it; }\n\n   private:\n    T it;\n    const T stop, step;\n  \
-    \  const int dir;\n\n    friend Range reversed(const Range& r) {\n        auto\
-    \ new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n        return\
-    \ {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class T>\nRange<T>\
-    \ irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\nRange<T> irange(T\
-    \ start, T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  //\
-    \ namespace bys\nnamespace bys {\ntemplate <class T>\ninline bool chmax(T& a,\
-    \ const T& b) {\n    if (a < b) {\n        a = b;\n        return 1;\n    }\n\
-    \    return 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n\
-    \    if (b < a) {\n        a = b;\n        return 1;\n    }\n    return 0;\n}\n\
-    }  // namespace bys\nnamespace bys {\ntemplate <class Band>\nclass SparseTable\
-    \ {\n    using T = typename Band::set_type;\n    int n;\n    std::vector<int>\
-    \ lookup;\n    std::vector<std::vector<T>> table;\n\n   public:\n    SparseTable()\
-    \ {}\n    SparseTable(const std::vector<T>& v) { build(v); }\n\n    void build(const\
-    \ std::vector<T>& v) {\n        n = v.size();\n        lookup.resize(n + 1);\n\
-    \n        for (int i = 2; i < n + 1; ++i) lookup[i] = lookup[i >> 1] + 1;\n  \
-    \      int max_k = lookup.back();\n        table.assign(max_k + 1, std::vector<T>(n));\n\
-    \        std::copy(v.begin(), v.end(), table[0].begin());\n        for (int i\
-    \ = 1; i <= max_k; ++i) {\n            for (int j = 0; j <= n - (1 << i); ++j)\
-    \ {\n                table[i][j] = Band::operation(table[i - 1][j], table[i -\
-    \ 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int\
-    \ l, int r) {\n        assert(0 <= l && l < r && r <= n);\n        int w = r -\
-    \ l;\n        return Band::operation(table[lookup[w]][l], table[lookup[w]][r -\
-    \ (1 << lookup[w])]);\n    }\n};\n}  // namespace bys\n#include <optional>\nnamespace\
-    \ bys {\ntemplate <class T>\nstruct Magma {\n    using set_type = T;\n    static\
-    \ constexpr set_type operation(set_type a, set_type b);\n    static constexpr\
-    \ bool commutative{false};\n};\ntemplate <class T>\nstruct Add : Magma<T> {\n\
-    \    using typename Magma<T>::set_type;\n    static constexpr set_type identity{0};\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return a +\
-    \ b; }\n    // template <class S>\n    // static constexpr void mapping(S& a,\
-    \ set_type b) {\n    //     a += b;\n    // }\n    static constexpr bool commutative{true};\n\
-    };\ntemplate <class T>\nstruct Min : Magma<T> {\n    using typename Magma<T>::set_type;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return std::min(a,\
-    \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
+    \nnamespace bys {\ntemplate <class T>\nint bit_width(T x) {\n    int bits = 0;\n\
+    \    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n    return\
+    \ bits;\n}\ntemplate <class T>\nT bit_floor(T x) {\n    assert(x >= 0);\n    return\
+    \ x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\ntemplate <class T>\nT bit_ceil(T\
+    \ x) {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n\
+    }\n\nstring bin(ll n) {\n    assert(n > 0);\n    if (n == 0) return \"0\";\n \
+    \   string res;\n    while (n > 0) {\n        res.push_back(n & 1 ? '1' : '0');\n\
+    \        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n    return\
+    \ res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\ninline bool\
+    \ pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\nnamespace\
+    \ bys {\ntemplate <class Monoid>\nclass SegmentTree {\n    using T = typename\
+    \ Monoid::set_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
+    \    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity)\
+    \ {}\n    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
+    \ data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(),\
+    \ data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i]\
+    \ = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T query(int\
+    \ l, int r) const {\n        assert(0 <= l && l < _n);\n        assert(l <= r);\n\
+    \        assert(r <= _n);\n\n        T left = Monoid::identity, right = Monoid::identity;\n\
+    \        for (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {\n         \
+    \   if (l & 1) left = Monoid::operation(left, data[l++]);\n            if (r &\
+    \ 1) right = Monoid::operation(data[--r], right);\n        }\n        return Monoid::operation(left,\
+    \ right);\n    }\n\n    T query_all() const { return data[1]; }\n\n    void update(int\
+    \ i, T val) {\n        assert(0 <= i && i < _n);\n        i += n_leaf;\n     \
+    \   data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i\
+    \ * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const {\n        assert(0\
+    \ <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n    // int bisect_from_left(int\
+    \ l, std::function<bool(S)> f) const {}\n    // int bisect_from_right(int r, std::function<bool(S)>\
+    \ f) const {}\n};\n}  // namespace bys\n#include <optional>\nnamespace bys {\n\
+    template <class T>\nstruct Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b);\n    static constexpr bool commutative{false};\n\
+    };\ntemplate <class T>\nstruct Add : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \    static constexpr set_type identity{0};\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return a + b; }\n    // template <class S>\n    // static constexpr\
+    \ void mapping(S& a, set_type b) {\n    //     a += b;\n    // }\n    static constexpr\
+    \ bool commutative{true};\n};\ntemplate <class T>\nstruct Min : Magma<T> {\n \
+    \   using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
     };\ntemplate <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return std::max(a,\
     \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
@@ -204,21 +205,39 @@ data:
     \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n    // template\
     \ <class S>\n    // static constexpr void mapping(S& a, set_type b) {\n    //\
     \     if (b.has_value()) a = b.value();\n    // }\n    static constexpr bool commutative{false};\n\
-    };\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n    auto [n,\
-    \ q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<int>(n);\n    SparseTable<Min<int>>\
-    \ st(a);\n    for (UV : irange(q)) {\n        auto [l, r] = scanner.read<int,\
-    \ 2>();\n        print(st.query(l, r));\n    }\n}\n}  // namespace bys\n\nint\
-    \ main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
-    \ */);\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
-    ../../core/core.hpp\"\n#include \"../../utility/range.hpp\"\n#include \"../../utility/change.hpp\"\
-    \n#include \"../../data/sparse_table.hpp\"\n#include \"../../math/algebra.hpp\"\
-    \n\nnamespace bys {\nvoid Solver::solve() {\n    auto [n, q] = scanner.read<int,\
-    \ 2>();\n    auto a = scanner.readvec<int>(n);\n    SparseTable<Min<int>> st(a);\n\
-    \    for (UV : irange(q)) {\n        auto [l, r] = scanner.read<int, 2>();\n \
-    \       print(st.query(l, r));\n    }\n}\n}  // namespace bys\n\nint main() {\n\
-    \    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n\
-    \    return 0;\n}\n"
+    };\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\ninline bool chmax(T&\
+    \ a, const T& b) {\n    if (a < b) {\n        a = b;\n        return 1;\n    }\n\
+    \    return 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n\
+    \    if (b < a) {\n        a = b;\n        return 1;\n    }\n    return 0;\n}\n\
+    }  // namespace bys\n\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate\
+    \ <typename T>\nstruct Range {\n    Range(T start, T stop, T step = 1) : it(start),\
+    \ stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0),\
+    \ stop(stop), step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n\
+    \    T end() const { return stop; }\n    bool operator!=(const T val) const {\
+    \ return (val - it) * dir > 0; }\n    void operator++() { it += step; }\n    const\
+    \ T& operator*() const { return it; }\n\n   private:\n    T it;\n    const T stop,\
+    \ step;\n    const int dir;\n\n    friend Range reversed(const Range& r) {\n \
+    \       auto new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n \
+    \       return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class\
+    \ T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\n\
+    Range<T> irange(T start, T stop, T step = 1) {\n    return Range(start, stop,\
+    \ step);\n}\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n\
+    \    auto [n, q] = scanner.read<int, 2>();\n    SegmentTree<Add<int>> seg(n);\n\
+    \    for (UV : irange(q)) {\n        auto [t, x, y] = scanner.read<int, 3>();\n\
+    \        if (t == 0) {\n            seg.update(x - 1, seg[x - 1] + y);\n\n   \
+    \     } else {\n            print(seg.query(x - 1, y));\n        }\n    }\n}\n\
+    }  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/*\
+    \ bys::scanner.read<int>() */);\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_B\"\
+    \n#include \"../../core/core.hpp\"\n#include \"../../data/segment_tree.hpp\"\n\
+    #include \"../../math/algebra.hpp\"\n#include \"../../utility/change.hpp\"\n#include\
+    \ \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve() {\n   \
+    \ auto [n, q] = scanner.read<int, 2>();\n    SegmentTree<Add<int>> seg(n);\n \
+    \   for (UV : irange(q)) {\n        auto [t, x, y] = scanner.read<int, 3>();\n\
+    \        if (t == 0) {\n            seg.update(x - 1, seg[x - 1] + y);\n\n   \
+    \     } else {\n            print(seg.query(x - 1, y));\n        }\n    }\n}\n\
+    }  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/*\
+    \ bys::scanner.read<int>() */);\n    return 0;\n}\n"
   dependsOn:
   - core/core.hpp
   - core/stdlib.hpp
@@ -229,20 +248,21 @@ data:
   - core/scanner.hpp
   - core/macro.hpp
   - core/solver.hpp
-  - utility/range.hpp
-  - utility/change.hpp
-  - data/sparse_table.hpp
+  - data/segment_tree.hpp
+  - math/bit.hpp
   - math/algebra.hpp
+  - utility/change.hpp
+  - utility/range.hpp
   isVerificationFile: true
-  path: test/data/sparse_table.test.cpp
+  path: test/data/segment_tree_RSQ2.test.cpp
   requiredBy: []
   timestamp: '2022-03-19 14:12:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/data/sparse_table.test.cpp
+documentation_of: test/data/segment_tree_RSQ2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/data/sparse_table.test.cpp
-- /verify/test/data/sparse_table.test.cpp.html
-title: test/data/sparse_table.test.cpp
+- /verify/test/data/segment_tree_RSQ2.test.cpp
+- /verify/test/data/segment_tree_RSQ2.test.cpp.html
+title: test/data/segment_tree_RSQ2.test.cpp
 ---

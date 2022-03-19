@@ -10,8 +10,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/data/segment_tree.test.cpp
-    title: test/data/segment_tree.test.cpp
+    path: test/data/segment_tree_RMQ.test.cpp
+    title: test/data/segment_tree_RMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/segment_tree_RSQ.test.cpp
+    title: test/data/segment_tree_RSQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/segment_tree_RSQ2.test.cpp
+    title: test/data/segment_tree_RSQ2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -39,55 +45,57 @@ data:
     \ : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
     \    return res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\n\
     inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
-    namespace bys {\ntemplate <class A>\nclass SegmentTree {\n    using T = typename\
-    \ A::value_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
-    \    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, A::id)\
+    namespace bys {\ntemplate <class Monoid>\nclass SegmentTree {\n    using T = typename\
+    \ Monoid::set_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
+    \    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity)\
     \ {}\n    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
-    \ data(n_leaf * 2, A::id) {\n        std::copy(v.begin(), v.end(), data.begin()\
-    \ + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i] = A::op(data[i\
-    \ * 2], data[i * 2 + 1]);\n    }\n\n    T query(int l, int r) const {\n      \
-    \  assert(0 <= l && l < _n);\n        assert(l <= r);\n        assert(r <= _n);\n\
-    \n        T left = A::id, right = A::id;\n        for (l += n_leaf, r += n_leaf;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) left = A::op(left, data[l++]);\n\
-    \            if (r & 1) right = A::op(data[--r], right);\n        }\n        return\
-    \ A::op(left, right);\n    }\n\n    T query_all() const { return data[1]; }\n\n\
-    \    void update(int i, T val) {\n        assert(0 <= i && i < _n);\n        i\
-    \ += n_leaf;\n        data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i]\
-    \ = A::op(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const\
-    \ {\n        assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n   \
-    \ }\n\n    // int bisect_from_left(int l, std::function<bool(S)> f) const {}\n\
-    \    // int bisect_from_right(int r, std::function<bool(S)> f) const {}\n};\n\
-    }  // namespace bys\n"
+    \ data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(),\
+    \ data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i]\
+    \ = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T query(int\
+    \ l, int r) const {\n        assert(0 <= l && l < _n);\n        assert(l <= r);\n\
+    \        assert(r <= _n);\n\n        T left = Monoid::identity, right = Monoid::identity;\n\
+    \        for (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {\n         \
+    \   if (l & 1) left = Monoid::operation(left, data[l++]);\n            if (r &\
+    \ 1) right = Monoid::operation(data[--r], right);\n        }\n        return Monoid::operation(left,\
+    \ right);\n    }\n\n    T query_all() const { return data[1]; }\n\n    void update(int\
+    \ i, T val) {\n        assert(0 <= i && i < _n);\n        i += n_leaf;\n     \
+    \   data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i\
+    \ * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const {\n        assert(0\
+    \ <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n    // int bisect_from_left(int\
+    \ l, std::function<bool(S)> f) const {}\n    // int bisect_from_right(int r, std::function<bool(S)>\
+    \ f) const {}\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"../math/bit.hpp\"\
-    \nnamespace bys {\ntemplate <class A>\nclass SegmentTree {\n    using T = typename\
-    \ A::value_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
-    \    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, A::id)\
-    \ {}\n    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
-    \ data(n_leaf * 2, A::id) {\n        std::copy(v.begin(), v.end(), data.begin()\
-    \ + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i] = A::op(data[i\
-    \ * 2], data[i * 2 + 1]);\n    }\n\n    T query(int l, int r) const {\n      \
-    \  assert(0 <= l && l < _n);\n        assert(l <= r);\n        assert(r <= _n);\n\
-    \n        T left = A::id, right = A::id;\n        for (l += n_leaf, r += n_leaf;\
-    \ l < r; l >>= 1, r >>= 1) {\n            if (l & 1) left = A::op(left, data[l++]);\n\
-    \            if (r & 1) right = A::op(data[--r], right);\n        }\n        return\
-    \ A::op(left, right);\n    }\n\n    T query_all() const { return data[1]; }\n\n\
-    \    void update(int i, T val) {\n        assert(0 <= i && i < _n);\n        i\
-    \ += n_leaf;\n        data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i]\
-    \ = A::op(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const\
-    \ {\n        assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n   \
-    \ }\n\n    // int bisect_from_left(int l, std::function<bool(S)> f) const {}\n\
-    \    // int bisect_from_right(int r, std::function<bool(S)> f) const {}\n};\n\
-    }  // namespace bys\n"
+    \nnamespace bys {\ntemplate <class Monoid>\nclass SegmentTree {\n    using T =\
+    \ typename Monoid::set_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n\
+    \   public:\n    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf\
+    \ * 2, Monoid::identity) {}\n    SegmentTree(const vector<T>& v) : _n(v.size()),\
+    \ n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(),\
+    \ v.end(), data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i)\
+    \ data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T query(int\
+    \ l, int r) const {\n        assert(0 <= l && l < _n);\n        assert(l <= r);\n\
+    \        assert(r <= _n);\n\n        T left = Monoid::identity, right = Monoid::identity;\n\
+    \        for (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {\n         \
+    \   if (l & 1) left = Monoid::operation(left, data[l++]);\n            if (r &\
+    \ 1) right = Monoid::operation(data[--r], right);\n        }\n        return Monoid::operation(left,\
+    \ right);\n    }\n\n    T query_all() const { return data[1]; }\n\n    void update(int\
+    \ i, T val) {\n        assert(0 <= i && i < _n);\n        i += n_leaf;\n     \
+    \   data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i\
+    \ * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const {\n        assert(0\
+    \ <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n    // int bisect_from_left(int\
+    \ l, std::function<bool(S)> f) const {}\n    // int bisect_from_right(int r, std::function<bool(S)>\
+    \ f) const {}\n};\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   - math/bit.hpp
   isVerificationFile: false
   path: data/segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-03-16 21:14:12+09:00'
+  timestamp: '2022-03-19 14:12:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/data/segment_tree.test.cpp
+  - test/data/segment_tree_RSQ2.test.cpp
+  - test/data/segment_tree_RMQ.test.cpp
+  - test/data/segment_tree_RSQ.test.cpp
 documentation_of: data/segment_tree.hpp
 layout: document
 redirect_from:

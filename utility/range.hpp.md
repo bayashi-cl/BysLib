@@ -7,11 +7,20 @@ data:
     path: test/data/binary_indexed_tree.test.cpp
     title: test/data/binary_indexed_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/data/dual_segment_tree.test.cpp
-    title: test/data/dual_segment_tree.test.cpp
+    path: test/data/dual_segment_tree_RAQ.test.cpp
+    title: test/data/dual_segment_tree_RAQ.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/data/segment_tree.test.cpp
-    title: test/data/segment_tree.test.cpp
+    path: test/data/dual_segment_tree_RUQ.test.cpp
+    title: test/data/dual_segment_tree_RUQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/segment_tree_RMQ.test.cpp
+    title: test/data/segment_tree_RMQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/segment_tree_RSQ.test.cpp
+    title: test/data/segment_tree_RSQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/segment_tree_RSQ2.test.cpp
+    title: test/data/segment_tree_RSQ2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/sparse_table.test.cpp
     title: test/data/sparse_table.test.cpp
@@ -82,10 +91,13 @@ data:
   - test/math/combination.test.cpp
   - test/utility/range.test.cpp
   - test/data/binary_indexed_tree.test.cpp
-  - test/data/dual_segment_tree.test.cpp
+  - test/data/segment_tree_RSQ2.test.cpp
+  - test/data/dual_segment_tree_RAQ.test.cpp
   - test/data/sparse_table.test.cpp
-  - test/data/segment_tree.test.cpp
   - test/data/union_find.test.cpp
+  - test/data/segment_tree_RMQ.test.cpp
+  - test/data/dual_segment_tree_RUQ.test.cpp
+  - test/data/segment_tree_RSQ.test.cpp
   - test/graphv2/bfs_grid.test.cpp
   - test/graphv2/warshallfloyd.test.cpp
   - test/graph/warshallfloyd.test.cpp

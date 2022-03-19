@@ -192,32 +192,43 @@ data:
     \ n_edge() const { return _m; }\n    bool build_flg() const { return _build_flg;\
     \ }\n\n   private:\n    std::size_t _n, _m;\n    std::vector<Edge> buf, data;\n\
     \    std::vector<std::size_t> index;\n    bool _build_flg;\n};\n}  // namespace\
-    \ bys\nnamespace bys {\ntemplate <class A>\nclass SparseTable {\n    using T =\
-    \ typename A::value_type;\n    int n;\n    std::vector<int> lookup;\n    std::vector<std::vector<T>>\
-    \ table;\n\n   public:\n    SparseTable() {}\n    SparseTable(const std::vector<T>&\
-    \ v) { build(v); }\n\n    void build(const std::vector<T>& v) {\n        n = v.size();\n\
-    \        lookup.resize(n + 1);\n\n        for (int i = 2; i < n + 1; ++i) lookup[i]\
-    \ = lookup[i >> 1] + 1;\n        int max_k = lookup.back();\n        table.assign(max_k\
-    \ + 1, std::vector<T>(n));\n        std::copy(v.begin(), v.end(), table[0].begin());\n\
-    \        for (int i = 1; i <= max_k; ++i) {\n            for (int j = 0; j <=\
-    \ n - (1 << i); ++j) {\n                table[i][j] = A::op(table[i - 1][j], table[i\
-    \ - 1][j + (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int\
-    \ l, int r) {\n        assert(0 <= l && l < r && r <= n);\n        int w = r -\
-    \ l;\n        return A::op(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);\n\
-    \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <typename F>\nstruct\
-    \ FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)} {}\n    template\
-    \ <typename... Args>\n    decltype(auto) operator()(Args&&... args) const {\n\
-    \        return F::operator()(*this, std::forward<Args>(args)...);\n    }\n};\n\
-    template <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f) {\n    return\
-    \ std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\nnamespace bys {\n\
-    template <class T>\nstruct Add {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return a + b; }\n    static constexpr T composition(T a, T\
-    \ b) { return b + a; }\n    template <class S>\n    static constexpr S mapping(T\
-    \ a, S b) {\n        return b + a;\n    }\n    static constexpr T id{0};\n};\n\
-    template <class T>\nstruct Min {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return std::min(a, b); }\n    static constexpr T id{std::numeric_limits<T>::max()};\n\
-    };\ntemplate <class T>\nstruct Max {\n    using value_type = T;\n    static constexpr\
-    \ T op(T a, T b) { return std::max(a, b); }\n    static constexpr T id{std::numeric_limits<T>::min()};\n\
+    \ bys\nnamespace bys {\ntemplate <class Band>\nclass SparseTable {\n    using\
+    \ T = typename Band::set_type;\n    int n;\n    std::vector<int> lookup;\n   \
+    \ std::vector<std::vector<T>> table;\n\n   public:\n    SparseTable() {}\n   \
+    \ SparseTable(const std::vector<T>& v) { build(v); }\n\n    void build(const std::vector<T>&\
+    \ v) {\n        n = v.size();\n        lookup.resize(n + 1);\n\n        for (int\
+    \ i = 2; i < n + 1; ++i) lookup[i] = lookup[i >> 1] + 1;\n        int max_k =\
+    \ lookup.back();\n        table.assign(max_k + 1, std::vector<T>(n));\n      \
+    \  std::copy(v.begin(), v.end(), table[0].begin());\n        for (int i = 1; i\
+    \ <= max_k; ++i) {\n            for (int j = 0; j <= n - (1 << i); ++j) {\n  \
+    \              table[i][j] = Band::operation(table[i - 1][j], table[i - 1][j +\
+    \ (1 << (i - 1))]);\n            }\n        }\n    }\n\n    T query(int l, int\
+    \ r) {\n        assert(0 <= l && l < r && r <= n);\n        int w = r - l;\n \
+    \       return Band::operation(table[lookup[w]][l], table[lookup[w]][r - (1 <<\
+    \ lookup[w])]);\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <typename\
+    \ F>\nstruct FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)} {}\n\
+    \    template <typename... Args>\n    decltype(auto) operator()(Args&&... args)\
+    \ const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\ntemplate <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f)\
+    \ {\n    return std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\n#include\
+    \ <optional>\nnamespace bys {\ntemplate <class T>\nstruct Magma {\n    using set_type\
+    \ = T;\n    static constexpr set_type operation(set_type a, set_type b);\n   \
+    \ static constexpr bool commutative{false};\n};\ntemplate <class T>\nstruct Add\
+    \ : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr set_type\
+    \ identity{0};\n    static constexpr set_type operation(set_type a, set_type b)\
+    \ { return a + b; }\n    // template <class S>\n    // static constexpr void mapping(S&\
+    \ a, set_type b) {\n    //     a += b;\n    // }\n    static constexpr bool commutative{true};\n\
+    };\ntemplate <class T>\nstruct Min : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return std::min(a,\
+    \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
+    };\ntemplate <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return std::max(a,\
+    \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
+    };\ntemplate <class T>\nstruct Update : Magma<T> {\n    using set_type = std::optional<T>;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
+    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n    // template\
+    \ <class S>\n    // static constexpr void mapping(S& a, set_type b) {\n    //\
+    \     if (b.has_value()) a = b.value();\n    // }\n    static constexpr bool commutative{false};\n\
     };\n}  // namespace bys\n\nnamespace bys {\nclass LowestCommonAncestor {\n   \
     \ struct Vertex {\n        int id, depath;\n        bool operator<(const Vertex&\
     \ rh) const { return depath < rh.depath; }\n    };\n    std::size_t n;\n    SparseTable<Min<Vertex>>\
@@ -267,7 +278,7 @@ data:
   isVerificationFile: true
   path: test/graphv2/lca.test.cpp
   requiredBy: []
-  timestamp: '2022-03-18 03:19:38+09:00'
+  timestamp: '2022-03-19 14:12:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graphv2/lca.test.cpp
