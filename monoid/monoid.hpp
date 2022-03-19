@@ -12,10 +12,6 @@ struct Add : Magma<T> {
     using typename Magma<T>::set_type;
     static constexpr set_type identity{0};
     static constexpr set_type operation(set_type a, set_type b) { return a + b; }
-    // template <class S>
-    // static constexpr void mapping(S& a, set_type b) {
-    //     a += b;
-    // }
     static constexpr bool commutative{true};
 };
 template <class T>
@@ -35,10 +31,5 @@ struct Update : Magma<T> {
     using set_type = std::optional<T>;
     static constexpr set_type operation(set_type a, set_type b) { return b.has_value() ? b : a; }
     static constexpr set_type identity{std::nullopt};
-    // template <class S>
-    // static constexpr void mapping(S& a, set_type b) {
-    //     if (b.has_value()) a = b.value();
-    // }
-    static constexpr bool commutative{false};
 };
 }  // namespace bys

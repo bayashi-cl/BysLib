@@ -2,17 +2,17 @@
 #include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
 namespace bys {
-template <class A>
+template <class Monoid>
 class SegmentTree {
-    using T = typename A::value_type;
+    using T = typename Monoid::set_type;
     int _n, n_leaf;
     std::vector<T> data;
 
    public:
-    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, A::id) {}
-    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)), data(n_leaf * 2, A::id) {
+    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity) {}
+    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {
         std::copy(v.begin(), v.end(), data.begin() + n_leaf);
-        for (int i = n_leaf - 1; i > 0; --i) data[i] = A::op(data[i * 2], data[i * 2 + 1]);
+        for (int i = n_leaf - 1; i > 0; --i) data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
     }
 
     T query(int l, int r) const {
@@ -20,12 +20,12 @@ class SegmentTree {
         assert(l <= r);
         assert(r <= _n);
 
-        T left = A::id, right = A::id;
+        T left = Monoid::identity, right = Monoid::identity;
         for (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {
-            if (l & 1) left = A::op(left, data[l++]);
-            if (r & 1) right = A::op(data[--r], right);
+            if (l & 1) left = Monoid::operation(left, data[l++]);
+            if (r & 1) right = Monoid::operation(data[--r], right);
         }
-        return A::op(left, right);
+        return Monoid::operation(left, right);
     }
 
     T query_all() const { return data[1]; }
@@ -34,7 +34,7 @@ class SegmentTree {
         assert(0 <= i && i < _n);
         i += n_leaf;
         data[i] = val;
-        for (i >>= 1; i > 0; i >>= 1) data[i] = A::op(data[i * 2], data[i * 2 + 1]);
+        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
     }
 
     T operator[](int i) const {

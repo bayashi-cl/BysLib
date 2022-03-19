@@ -1,9 +1,9 @@
 #pragma once
 #include "../core/stdlib.hpp"
 namespace bys {
-template <class A>
+template <class Band>
 class SparseTable {
-    using T = typename A::value_type;
+    using T = typename Band::set_type;
     int n;
     std::vector<int> lookup;
     std::vector<std::vector<T>> table;
@@ -22,7 +22,7 @@ class SparseTable {
         std::copy(v.begin(), v.end(), table[0].begin());
         for (int i = 1; i <= max_k; ++i) {
             for (int j = 0; j <= n - (1 << i); ++j) {
-                table[i][j] = A::op(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
+                table[i][j] = Band::operation(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
@@ -30,7 +30,7 @@ class SparseTable {
     T query(int l, int r) {
         assert(0 <= l && l < r && r <= n);
         int w = r - l;
-        return A::op(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);
+        return Band::operation(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);
     }
 };
 }  // namespace bys

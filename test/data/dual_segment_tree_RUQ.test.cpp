@@ -1,22 +1,21 @@
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_E"
-#include "../../data/dual_segment_tree.hpp"
-
+#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_D"
 #include "../../core/core.hpp"
-#include "../../math/algebra.hpp"
+#include "../../data/dual_segment_tree.hpp"
+#include "../../monoid/monoid.hpp"
 #include "../../utility/change.hpp"
 #include "../../utility/range.hpp"
 
 namespace bys {
 void Solver::solve() {
     auto [n, q] = scanner.read<int, 2>();
-    DualSegmentTree<int, Add<int>> seg(n, 0LL);
+    DualSegmentTree<int, Update<int>> seg(n, (1LL << 31) - 1);
     for (UV : irange(q)) {
         auto c = scanner.read<int>();
         if (c == 0) {
-            auto [s, t, x] = scanner.read<Int1, int, int>();
-            seg.apply(s, t, x);
+            auto [s, t, x] = scanner.read<int, 3>();
+            seg.apply(s, t + 1, x);
         } else {
-            auto i = scanner.read<Int1>();
+            auto i = scanner.read<int>();
             print(seg[i]);
         }
     }
