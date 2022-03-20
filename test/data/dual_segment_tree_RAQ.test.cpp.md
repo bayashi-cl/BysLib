@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/const.hpp
     title: core/const.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
     title: core/core.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/io.hpp
     title: core/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/macro.hpp
     title: "\u30DE\u30AF\u30ED"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/printer.hpp
     title: core/printer.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/scanner.hpp
     title: core/scanner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/solver.hpp
     title: core/solver.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: core/stdlib.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/types.hpp
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
     path: data/dual_segment_tree.hpp
     title: data/dual_segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/bit.hpp
     title: math/bit.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: monoid/mapping.hpp
     title: monoid/mapping.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: monoid/monoid.hpp
     title: monoid/monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/change.hpp
     title: utility/change.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/range.hpp
     title: "Python\u306Erange"
   _extendedRequiredBy: []
@@ -175,10 +175,10 @@ data:
     namespace bys {\ntemplate <class T>\nstruct Magma {\n    using set_type = T;\n\
     \    static constexpr set_type operation(set_type a, set_type b);\n    static\
     \ constexpr bool commutative{false};\n};\ntemplate <class T>\nstruct Add : Magma<T>\
-    \ {\n    using typename Magma<T>::set_type;\n    static constexpr set_type identity{0};\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return a +\
-    \ b; }\n    static constexpr bool commutative{true};\n};\ntemplate <class T>\n\
-    struct Min : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr\
+    \ {\n    using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return a + b; }\n    static constexpr set_type identity{0};\n\
+    \    static constexpr bool commutative{true};\n};\ntemplate <class T>\nstruct\
+    \ Min : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr\
     \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
     \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
     \ <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
@@ -186,43 +186,63 @@ data:
     \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
     };\ntemplate <class T>\nstruct Update : Magma<T> {\n    using set_type = std::optional<T>;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
-    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\n}  //\
-    \ namespace bys\nnamespace bys {\ntemplate <class T, class ActMonoid>\nstruct\
-    \ MappingToSet {};\ntemplate <class T, class S>\nstruct MappingToSet<T, Add<S>>\
-    \ {\n    static constexpr void mapping(T& t, typename Add<S>::set_type u) { t\
-    \ += u; }\n};\ntemplate <class T, class S>\nstruct MappingToSet<T, Update<S>>\
-    \ {\n    static constexpr void mapping(T& t, typename Update<S>::set_type u) {\n\
-    \        if (u.has_value()) t = u.value();\n    }\n};\ntemplate <class Monoid,\
-    \ class ActMonoid>\nstruct Mapping {};\n}  // namespace bys\nnamespace bys {\n\
-    template <class T, class ActMonoid, class Action = MappingToSet<T, ActMonoid>>\n\
-    struct DualSegmentTree {\n    int _n, n_leaf, logsize;\n    std::vector<typename\
-    \ ActMonoid::set_type> lazy;\n    std::vector<T> data;\n\n    void push(int p)\
-    \ {\n        for (int i = logsize; i > 0; --i) {\n            int a = p >> i;\n\
-    \            if (lazy[a] == ActMonoid::identity) continue;\n            if (a\
-    \ * 2 < n_leaf) {\n                lazy[a * 2] = ActMonoid::operation(lazy[a *\
-    \ 2], lazy[a]);\n                lazy[a * 2 + 1] = ActMonoid::operation(lazy[a\
-    \ * 2 + 1], lazy[a]);\n            } else {\n                int t = a * 2 - n_leaf;\n\
-    \                Action::mapping(data[t], lazy[a]);\n                Action::mapping(data[t\
-    \ + 1], lazy[a]);\n            }\n            lazy[a] = ActMonoid::identity;\n\
-    \        }\n    }\n\n   public:\n    DualSegmentTree(int n, T ident)\n       \
-    \ : _n(n), n_leaf(bit_ceil(_n)), logsize(bit_width(n - 1)), lazy(n_leaf, ActMonoid::identity),\
-    \ data(n_leaf, ident) {}\n    DualSegmentTree(const std::vector<T>& v)\n     \
-    \   : _n(v.size()), n_leaf(bit_ceil(_n)), logsize(bit_width(_n - 1)), lazy(n_leaf,\
-    \ ActMonoid::identity), data(n_leaf) {\n        std::copy(v.begin(), v.end(),\
-    \ data.begin());\n    }\n\n    T operator[](int i) const {\n        T res = data[i];\n\
-    \        for (i = (i + n_leaf) >> 1; i > 0; i >>= 1) {\n            Action::mapping(res,\
-    \ lazy[i]);\n        }\n        return res;\n    }\n    void update(int i, T val)\
-    \ {\n        if constexpr (!ActMonoid::commutative) {\n            push(i + n_leaf);\n\
-    \        }\n        data[i] = val;\n    }\n    void apply(int l, int r, T val)\
-    \ {\n        assert(l < r);\n        l += n_leaf;\n        r += n_leaf;\n    \
-    \    if constexpr (!ActMonoid::commutative) {\n            push(l);\n        \
-    \    push(r - 1);\n        }\n        if (l & 1) Action::mapping(data[l++ - n_leaf],\
-    \ val);\n        if (r & 1) Action::mapping(data[--r - n_leaf], val);\n      \
-    \  for (l >>= 1, r >>= 1; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n\
-    \                lazy[l] = ActMonoid::operation(lazy[l], val);\n             \
-    \   ++l;\n            }\n            if (r & 1) {\n                --r;\n    \
-    \            lazy[r] = ActMonoid::operation(lazy[r], val);\n            }\n  \
-    \      }\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\n\
+    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
+    \ <class T>\nstruct Affine : Magma<T> {\n    using set_type = std::pair<T, T>;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return {a.first\
+    \ * b.first, a.second * b.first + b.second}; }\n    static constexpr set_type\
+    \ identity{1, 0};\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T,\
+    \ class ActMonoid>\nstruct MappingToSet {\n    static constexpr void mapping(T&,\
+    \ typename ActMonoid::set_type) {\n        static_assert([] { return false; }(),\
+    \ \"mapping function does not defined.\");\n    }\n};\ntemplate <class T, class\
+    \ S>\nstruct MappingToSet<T, Add<S>> {\n    static constexpr void mapping(T& t,\
+    \ typename Add<S>::set_type u) { t += u; }\n};\ntemplate <class T, class S>\n\
+    struct MappingToSet<T, Update<S>> {\n    static constexpr void mapping(T& t, typename\
+    \ Update<S>::set_type u) {\n        if (u.has_value()) t = u.value();\n    }\n\
+    };\ntemplate <class Monoid, class ActMonoid>\nstruct Mapping {\n    static constexpr\
+    \ void mapping(typename Monoid::set_type&, typename ActMonoid::set_type, int)\
+    \ {\n        static_assert([] { return false; }(), \"mapping function does not\
+    \ defined.\");\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Min<T>,\
+    \ Update<S>> {\n    static constexpr void mapping(typename Min<T>::set_type& t,\
+    \ typename Update<S>::set_type s, int) {\n        if (s.has_value()) t = s.value();\n\
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>, Add<S>> {\n  \
+    \  static constexpr void mapping(typename Add<T>::set_type& t, typename Add<S>::set_type\
+    \ s, int w) { t += s * w; }\n};\ntemplate <class T, class S>\nstruct Mapping<Min<T>,\
+    \ Add<S>> {\n    static constexpr void mapping(typename Min<T>::set_type& t, typename\
+    \ Add<S>::set_type s, int) { t += s; }\n};\ntemplate <class T, class S>\nstruct\
+    \ Mapping<Add<T>, Update<S>> {\n    static constexpr void mapping(typename Add<T>::set_type&\
+    \ t, typename Update<S>::set_type s, int w) {\n        if (s.has_value()) t =\
+    \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
+    \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
+    \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
+    \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T, class ActMonoid,\
+    \ class Action = MappingToSet<T, ActMonoid>>\nclass DualSegmentTree {\n    int\
+    \ _n, n_leaf, logsize;\n    std::vector<typename ActMonoid::set_type> lazy;\n\
+    \    std::vector<T> data;\n\n    void push(int p) {\n        for (int i = logsize;\
+    \ i > 0; --i) {\n            int a = p >> i;\n            if (lazy[a] == ActMonoid::identity)\
+    \ continue;\n            if (a * 2 < n_leaf) {\n                lazy[a * 2] =\
+    \ ActMonoid::operation(lazy[a * 2], lazy[a]);\n                lazy[a * 2 + 1]\
+    \ = ActMonoid::operation(lazy[a * 2 + 1], lazy[a]);\n            } else {\n  \
+    \              int t = a * 2 - n_leaf;\n                Action::mapping(data[t],\
+    \ lazy[a]);\n                Action::mapping(data[t + 1], lazy[a]);\n        \
+    \    }\n            lazy[a] = ActMonoid::identity;\n        }\n    }\n\n   public:\n\
+    \    DualSegmentTree(int n, T ident)\n        : _n(n), n_leaf(bit_ceil(_n)), logsize(bit_width(n\
+    \ - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf, ident) {}\n    DualSegmentTree(const\
+    \ std::vector<T>& v)\n        : _n(v.size()), n_leaf(bit_ceil(_n)), logsize(bit_width(_n\
+    \ - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf) {\n        std::copy(v.begin(),\
+    \ v.end(), data.begin());\n    }\n\n    T operator[](int i) const {\n        T\
+    \ res = data[i];\n        for (i = (i + n_leaf) >> 1; i > 0; i >>= 1) {\n    \
+    \        Action::mapping(res, lazy[i]);\n        }\n        return res;\n    }\n\
+    \    void update(int i, T val) {\n        if constexpr (!ActMonoid::commutative)\
+    \ {\n            push(i + n_leaf);\n        }\n        data[i] = val;\n    }\n\
+    \    void apply(int l, int r, T val) {\n        assert(l < r);\n        l += n_leaf;\n\
+    \        r += n_leaf;\n        if constexpr (!ActMonoid::commutative) {\n    \
+    \        push(l);\n            push(r - 1);\n        }\n        if (l & 1) Action::mapping(data[l++\
+    \ - n_leaf], val);\n        if (r & 1) Action::mapping(data[--r - n_leaf], val);\n\
+    \        for (l >>= 1, r >>= 1; l < r; l >>= 1, r >>= 1) {\n            if (l\
+    \ & 1) {\n                lazy[l] = ActMonoid::operation(lazy[l], val);\n    \
+    \            ++l;\n            }\n            if (r & 1) {\n                --r;\n\
+    \                lazy[r] = ActMonoid::operation(lazy[r], val);\n            }\n\
+    \        }\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\n\
     inline bool chmax(T& a, const T& b) {\n    if (a < b) {\n        a = b;\n    \
     \    return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline bool chmin(T&\
     \ a, const T& b) {\n    if (b < a) {\n        a = b;\n        return 1;\n    }\n\
@@ -276,7 +296,7 @@ data:
   isVerificationFile: true
   path: test/data/dual_segment_tree_RAQ.test.cpp
   requiredBy: []
-  timestamp: '2022-03-19 14:12:49+09:00'
+  timestamp: '2022-03-20 20:42:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/dual_segment_tree_RAQ.test.cpp

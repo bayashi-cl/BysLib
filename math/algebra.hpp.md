@@ -16,9 +16,6 @@ data:
     path: test/data/segment_tree_RSQ2.test.cpp
     title: test/data/segment_tree_RSQ2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/data/sparse_table.test.cpp
-    title: test/data/sparse_table.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
   _isVerificationFailed: false
@@ -73,7 +70,6 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/segment_tree_RSQ2.test.cpp
-  - test/data/sparse_table.test.cpp
   - test/data/segment_tree_RMQ.test.cpp
   - test/data/segment_tree_RSQ.test.cpp
   - test/graphv2/lca.test.cpp

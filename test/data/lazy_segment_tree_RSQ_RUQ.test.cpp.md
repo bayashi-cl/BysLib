@@ -28,15 +28,18 @@ data:
   - icon: ':question:'
     path: core/types.hpp
     title: core/types.hpp
-  - icon: ':heavy_check_mark:'
-    path: data/segment_tree.hpp
-    title: data/segment_tree.hpp
-  - icon: ':heavy_check_mark:'
-    path: math/algebra.hpp
-    title: math/algebra.hpp
+  - icon: ':question:'
+    path: data/lazy_segment_tree.hpp
+    title: data/lazy_segment_tree.hpp
   - icon: ':question:'
     path: math/bit.hpp
     title: math/bit.hpp
+  - icon: ':question:'
+    path: monoid/mapping.hpp
+    title: monoid/mapping.hpp
+  - icon: ':question:'
+    path: monoid/monoid.hpp
+    title: monoid/monoid.hpp
   - icon: ':question:'
     path: utility/change.hpp
     title: utility/change.hpp
@@ -50,10 +53,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_I
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
-  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_I
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_I\"\
     \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
     #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
     #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
@@ -159,8 +162,8 @@ data:
     \ + \", func: \" + __func__)\n// clang-format on\n\nnamespace bys {\nstruct Solver\
     \ {\n    int IT = 1;\n    Solver() {}\n    void solve();\n    void solve(int rep)\
     \ {\n        for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n\
-    \nnamespace bys {\ntemplate <class T>\nint bit_width(T x) {\n    int bits = 0;\n\
-    \    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n    return\
+    \n\nnamespace bys {\ntemplate <class T>\nint bit_width(T x) {\n    int bits =\
+    \ 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n    return\
     \ bits;\n}\ntemplate <class T>\nT bit_floor(T x) {\n    assert(x >= 0);\n    return\
     \ x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\ntemplate <class T>\nT bit_ceil(T\
     \ x) {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n\
@@ -168,76 +171,130 @@ data:
     \   string res;\n    while (n > 0) {\n        res.push_back(n & 1 ? '1' : '0');\n\
     \        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n    return\
     \ res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\ninline bool\
-    \ pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\nnamespace\
-    \ bys {\ntemplate <class Monoid>\nclass SegmentTree {\n    using T = typename\
-    \ Monoid::set_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
-    \    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity)\
-    \ {}\n    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
-    \ data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(),\
-    \ data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i]\
-    \ = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T query(int\
-    \ l, int r) const {\n        assert(0 <= l && l < _n);\n        assert(l <= r);\n\
-    \        assert(r <= _n);\n\n        T left = Monoid::identity, right = Monoid::identity;\n\
-    \        for (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {\n         \
-    \   if (l & 1) left = Monoid::operation(left, data[l++]);\n            if (r &\
-    \ 1) right = Monoid::operation(data[--r], right);\n        }\n        return Monoid::operation(left,\
-    \ right);\n    }\n\n    T query_all() const { return data[1]; }\n\n    void update(int\
-    \ i, T val) {\n        assert(0 <= i && i < _n);\n        i += n_leaf;\n     \
-    \   data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i\
-    \ * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const {\n        assert(0\
-    \ <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n    // int bisect_from_left(int\
-    \ l, std::function<bool(S)> f) const {}\n    // int bisect_from_right(int r, std::function<bool(S)>\
-    \ f) const {}\n};\n}  // namespace bys\n#include <optional>\nnamespace bys {\n\
-    template <class T>\nstruct Magma {\n    using set_type = T;\n    static constexpr\
-    \ set_type operation(set_type a, set_type b);\n    static constexpr bool commutative{false};\n\
-    };\ntemplate <class T>\nstruct Add : Magma<T> {\n    using typename Magma<T>::set_type;\n\
-    \    static constexpr set_type identity{0};\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return a + b; }\n    // template <class S>\n    // static constexpr\
-    \ void mapping(S& a, set_type b) {\n    //     a += b;\n    // }\n    static constexpr\
-    \ bool commutative{true};\n};\ntemplate <class T>\nstruct Min : Magma<T> {\n \
-    \   using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
-    };\ntemplate <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \ pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n#include <optional>\n\
+    namespace bys {\ntemplate <class T>\nstruct Magma {\n    using set_type = T;\n\
+    \    static constexpr set_type operation(set_type a, set_type b);\n    static\
+    \ constexpr bool commutative{false};\n};\ntemplate <class T>\nstruct Add : Magma<T>\
+    \ {\n    using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return a + b; }\n    static constexpr set_type identity{0};\n\
+    \    static constexpr bool commutative{true};\n};\ntemplate <class T>\nstruct\
+    \ Min : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
+    \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
+    \ <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return std::max(a,\
     \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
     };\ntemplate <class T>\nstruct Update : Magma<T> {\n    using set_type = std::optional<T>;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
-    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n    // template\
-    \ <class S>\n    // static constexpr void mapping(S& a, set_type b) {\n    //\
-    \     if (b.has_value()) a = b.value();\n    // }\n    static constexpr bool commutative{false};\n\
-    };\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\ninline bool chmax(T&\
-    \ a, const T& b) {\n    if (a < b) {\n        a = b;\n        return 1;\n    }\n\
-    \    return 0;\n}\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n\
-    \    if (b < a) {\n        a = b;\n        return 1;\n    }\n    return 0;\n}\n\
-    }  // namespace bys\n\nnamespace bys {\n//! @brief Python\u306Erange\ntemplate\
-    \ <typename T>\nstruct Range {\n    Range(T start, T stop, T step = 1) : it(start),\
-    \ stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0),\
-    \ stop(stop), step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n\
-    \    T end() const { return stop; }\n    bool operator!=(const T val) const {\
-    \ return (val - it) * dir > 0; }\n    void operator++() { it += step; }\n    const\
-    \ T& operator*() const { return it; }\n\n   private:\n    T it;\n    const T stop,\
-    \ step;\n    const int dir;\n\n    friend Range reversed(const Range& r) {\n \
-    \       auto new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n \
-    \       return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate <class\
-    \ T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class T>\n\
-    Range<T> irange(T start, T stop, T step = 1) {\n    return Range(start, stop,\
-    \ step);\n}\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n\
-    \    auto [n, q] = scanner.read<int, 2>();\n    SegmentTree<Min<int>> seg(n);\n\
-    \    for (UV : irange(q)) {\n        auto [t, x, y] = scanner.read<int, 3>();\n\
-    \        if (t == 0) {\n            seg.update(x, y);\n\n        } else {\n  \
-    \          print(seg.query(x, y + 1));\n        }\n    }\n}\n}  // namespace bys\n\
-    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
-    \ */);\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
-    \n#include \"../../core/core.hpp\"\n#include \"../../data/segment_tree.hpp\"\n\
-    #include \"../../math/algebra.hpp\"\n#include \"../../utility/change.hpp\"\n#include\
-    \ \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve() {\n   \
-    \ auto [n, q] = scanner.read<int, 2>();\n    SegmentTree<Min<int>> seg(n);\n \
-    \   for (UV : irange(q)) {\n        auto [t, x, y] = scanner.read<int, 3>();\n\
-    \        if (t == 0) {\n            seg.update(x, y);\n\n        } else {\n  \
-    \          print(seg.query(x, y + 1));\n        }\n    }\n}\n}  // namespace bys\n\
-    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
-    \ */);\n    return 0;\n}\n"
+    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
+    \ <class T>\nstruct Affine : Magma<T> {\n    using set_type = std::pair<T, T>;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return {a.first\
+    \ * b.first, a.second * b.first + b.second}; }\n    static constexpr set_type\
+    \ identity{1, 0};\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T,\
+    \ class ActMonoid>\nstruct MappingToSet {\n    static constexpr void mapping(T&,\
+    \ typename ActMonoid::set_type) {\n        static_assert([] { return false; }(),\
+    \ \"mapping function does not defined.\");\n    }\n};\ntemplate <class T, class\
+    \ S>\nstruct MappingToSet<T, Add<S>> {\n    static constexpr void mapping(T& t,\
+    \ typename Add<S>::set_type u) { t += u; }\n};\ntemplate <class T, class S>\n\
+    struct MappingToSet<T, Update<S>> {\n    static constexpr void mapping(T& t, typename\
+    \ Update<S>::set_type u) {\n        if (u.has_value()) t = u.value();\n    }\n\
+    };\ntemplate <class Monoid, class ActMonoid>\nstruct Mapping {\n    static constexpr\
+    \ void mapping(typename Monoid::set_type&, typename ActMonoid::set_type, int)\
+    \ {\n        static_assert([] { return false; }(), \"mapping function does not\
+    \ defined.\");\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Min<T>,\
+    \ Update<S>> {\n    static constexpr void mapping(typename Min<T>::set_type& t,\
+    \ typename Update<S>::set_type s, int) {\n        if (s.has_value()) t = s.value();\n\
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>, Add<S>> {\n  \
+    \  static constexpr void mapping(typename Add<T>::set_type& t, typename Add<S>::set_type\
+    \ s, int w) { t += s * w; }\n};\ntemplate <class T, class S>\nstruct Mapping<Min<T>,\
+    \ Add<S>> {\n    static constexpr void mapping(typename Min<T>::set_type& t, typename\
+    \ Add<S>::set_type s, int) { t += s; }\n};\ntemplate <class T, class S>\nstruct\
+    \ Mapping<Add<T>, Update<S>> {\n    static constexpr void mapping(typename Add<T>::set_type&\
+    \ t, typename Update<S>::set_type s, int w) {\n        if (s.has_value()) t =\
+    \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
+    \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
+    \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
+    \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class Monoid, class\
+    \ ActMonoid, class Action = Mapping<Monoid, ActMonoid>>\nclass LazySegmentTree\
+    \ {\n    using value_type = typename Monoid::set_type;\n    using act_type = typename\
+    \ ActMonoid::set_type;\n    int _n, n_leaf, logsize;\n    std::vector<act_type>\
+    \ lazy;\n    std::vector<value_type> data;\n\n    void reload(int p) { data[p]\
+    \ = Monoid::operation(data[p * 2], data[p * 2 + 1]); }\n    void push(const int\
+    \ p) {\n        int w = n_leaf >> bit_width(p);\n        apply_segment(p * 2,\
+    \ lazy[p], w);\n        apply_segment(p * 2 + 1, lazy[p], w);\n        lazy[p]\
+    \ = ActMonoid::identity;\n    }\n    void apply_segment(const int p, act_type\
+    \ f, int w) {\n        Action::mapping(data[p], f, w);\n        if (p < n_leaf)\
+    \ lazy[p] = ActMonoid::operation(lazy[p], f);\n    }\n\n   public:\n    LazySegmentTree(int\
+    \ n)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
+    \ * 2, Monoid::identity) {}\n    LazySegmentTree(std::vector<value_type> v)\n\
+    \        : _n(v.size()),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
+    \ * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(), data.begin()\
+    \ + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) {\n            data[i]\
+    \ = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n        }\n    }\n    value_type\
+    \ operator[](int p) {\n        assert(0 <= p && p < _n);\n        p += n_leaf;\n\
+    \        for (int i = logsize; i > 0; --i) push(p >> i);\n        return data[p];\n\
+    \    }\n    void update(int p, const value_type& x) {\n        assert(0 <= p &&\
+    \ p < _n);\n        p += n_leaf;\n        for (int i = logsize; i > 0; --i) push(p\
+    \ >> i);\n        data[p] = x;\n        for (int i = 1; i <= logsize; ++i) reload(p\
+    \ >> i);\n    }\n    value_type query(int l, int r) {\n        assert(0 <= l);\n\
+    \        assert(l <= r);\n        assert(r <= _n);\n        if (l == r) return\
+    \ Monoid::identity;\n\n        l += n_leaf;\n        r += n_leaf;\n\n        for\
+    \ (int i = logsize; i > 0; i--) {\n            if (((l >> i) << i) != l) push(l\
+    \ >> i);\n            if (((r >> i) << i) != r) push((r - 1) >> i);\n        }\n\
+    \n        value_type left = Monoid::identity, right = Monoid::identity;\n    \
+    \    for (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) left = Monoid::operation(left,\
+    \ data[l++]);\n            if (r & 1) right = Monoid::operation(data[--r], right);\n\
+    \        }\n        return Monoid::operation(left, right);\n    }\n\n    // value_type\
+    \ query_all() { return data[1]; }\n    // void apply(int i, act_type f) { apply(i,\
+    \ i + 1, f); }\n\n    void apply(int l, int r, act_type f) {\n        assert(0\
+    \ <= l);\n        assert(l <= r);\n        assert(r <= _n);\n        if (l ==\
+    \ r) return;\n        l += n_leaf;\n        r += n_leaf;\n\n        for (int i\
+    \ = logsize; i > 0; i--) {\n            if (((l >> i) << i) != l) push(l >> i);\n\
+    \            if (((r >> i) << i) != r) push((r - 1) >> i);\n        }\n\n    \
+    \    int l2 = l, r2 = r;\n        int w = 1;\n        while (l2 < r2) {\n    \
+    \        if (l2 & 1) apply_segment(l2++, f, w);\n            if (r2 & 1) apply_segment(--r2,\
+    \ f, w);\n            l2 >>= 1;\n            r2 >>= 1;\n            w <<= 1;\n\
+    \        }\n\n        for (int i = 1; i <= logsize; i++) {\n            if (((l\
+    \ >> i) << i) != l) reload(l >> i);\n            if (((r >> i) << i) != r) reload((r\
+    \ - 1) >> i);\n        }\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate\
+    \ <class T>\ninline bool chmax(T& a, const T& b) {\n    if (a < b) {\n       \
+    \ a = b;\n        return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline\
+    \ bool chmin(T& a, const T& b) {\n    if (b < a) {\n        a = b;\n        return\
+    \ 1;\n    }\n    return 0;\n}\n}  // namespace bys\n\nnamespace bys {\n//! @brief\
+    \ Python\u306Erange\ntemplate <typename T>\nstruct Range {\n    Range(T start,\
+    \ T stop, T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 :\
+    \ -1) {}\n    Range(T stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T>\
+    \ begin() const { return *this; }\n    T end() const { return stop; }\n    bool\
+    \ operator!=(const T val) const { return (val - it) * dir > 0; }\n    void operator++()\
+    \ { it += step; }\n    const T& operator*() const { return it; }\n\n   private:\n\
+    \    T it;\n    const T stop, step;\n    const int dir;\n\n    friend Range reversed(const\
+    \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
+    \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate\
+    \ <class T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class\
+    \ T>\nRange<T> irange(T start, T stop, T step = 1) {\n    return Range(start,\
+    \ stop, step);\n}\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    LazySegmentTree<Add<int>,\
+    \ Update<int>> seg(n);\n    for ([[maybe_unused]] int i : irange(q)) {\n     \
+    \   auto c = scanner.read<int>();\n        if (c == 0) {\n            auto [s,\
+    \ t, x] = scanner.read<int, 3>();\n            seg.apply(s, t + 1, x);\n     \
+    \   } else {\n            auto [s, t] = scanner.read<int, 2>();\n            print(seg.query(s,\
+    \ t + 1));\n        }\n    }\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver\
+    \ solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_I\"\
+    \n#include \"../../core/core.hpp\"\n#include \"../../data/lazy_segment_tree.hpp\"\
+    \n#include \"../../monoid/monoid.hpp\"\n#include \"../../utility/change.hpp\"\n\
+    #include \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    LazySegmentTree<Add<int>,\
+    \ Update<int>> seg(n);\n    for ([[maybe_unused]] int i : irange(q)) {\n     \
+    \   auto c = scanner.read<int>();\n        if (c == 0) {\n            auto [s,\
+    \ t, x] = scanner.read<int, 3>();\n            seg.apply(s, t + 1, x);\n     \
+    \   } else {\n            auto [s, t] = scanner.read<int, 2>();\n            print(seg.query(s,\
+    \ t + 1));\n        }\n    }\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver\
+    \ solver;\n    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n\
+    }\n"
   dependsOn:
   - core/core.hpp
   - core/stdlib.hpp
@@ -248,21 +305,22 @@ data:
   - core/scanner.hpp
   - core/macro.hpp
   - core/solver.hpp
-  - data/segment_tree.hpp
+  - data/lazy_segment_tree.hpp
   - math/bit.hpp
-  - math/algebra.hpp
+  - monoid/mapping.hpp
+  - monoid/monoid.hpp
   - utility/change.hpp
   - utility/range.hpp
   isVerificationFile: true
-  path: test/data/segment_tree_RMQ.test.cpp
+  path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
   requiredBy: []
-  timestamp: '2022-03-19 14:12:49+09:00'
+  timestamp: '2022-03-20 20:42:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/data/segment_tree_RMQ.test.cpp
+documentation_of: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
 layout: document
 redirect_from:
-- /verify/test/data/segment_tree_RMQ.test.cpp
-- /verify/test/data/segment_tree_RMQ.test.cpp.html
-title: test/data/segment_tree_RMQ.test.cpp
+- /verify/test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
+- /verify/test/data/lazy_segment_tree_RSQ_RUQ.test.cpp.html
+title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
 ---

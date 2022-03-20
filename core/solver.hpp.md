@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
     title: core/core.hpp
   - icon: ':heavy_check_mark:'
@@ -24,6 +24,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/dual_segment_tree_RUQ.test.cpp
     title: test/data/dual_segment_tree_RUQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
+    title: test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+    title: test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
+    title: test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
+    title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
+  - icon: ':x:'
+    path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+    title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/segment_tree_RMQ.test.cpp
     title: test/data/segment_tree_RMQ.test.cpp
@@ -111,9 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
@@ -129,7 +144,7 @@ data:
   - core/core.hpp
   - graph/dijkstra.hpp
   timestamp: '2022-01-13 21:15:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp
@@ -147,9 +162,14 @@ data:
   - test/test.test.cpp
   - test/data/binary_indexed_tree.test.cpp
   - test/data/segment_tree_RSQ2.test.cpp
+  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+  - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
   - test/data/dual_segment_tree_RAQ.test.cpp
+  - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
+  - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
   - test/data/binary_indexed_tree_aux.test.cpp
   - test/data/sparse_table.test.cpp
+  - test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
   - test/data/cumulative_sum.test.cpp
   - test/data/union_find.test.cpp
   - test/data/segment_tree_RMQ.test.cpp

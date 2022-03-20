@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: monoid/mapping_modint.hpp
+    title: monoid/mapping_modint.hpp
+  - icon: ':x:'
+    path: monoid/monoid_modint.hpp
+    title: monoid/monoid_modint.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+    title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#include <iostream>\n#include <atcoder/math>\n#include <atcoder/modint>\n\
@@ -27,10 +36,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: acl/acl.hpp
-  requiredBy: []
+  requiredBy:
+  - monoid/monoid_modint.hpp
+  - monoid/mapping_modint.hpp
   timestamp: '2022-01-20 13:40:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
 documentation_of: acl/acl.hpp
 layout: document
 redirect_from:
