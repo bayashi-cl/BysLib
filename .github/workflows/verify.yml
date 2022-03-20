@@ -18,8 +18,8 @@ jobs:
 
     - name: Set up Python
       uses: actions/setup-python@v3
-        with:
-          python-version: "3.8"
+      with:
+        python-version: "3.8"
 
     - name: Install dependencies
       run: pip3 install git+https://github.com/bayashi-cl/verification-helper@modify
