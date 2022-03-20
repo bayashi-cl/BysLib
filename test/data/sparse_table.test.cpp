@@ -1,9 +1,10 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
+
 #include "../../core/core.hpp"
-#include "../../utility/range.hpp"
-#include "../../utility/change.hpp"
 #include "../../data/sparse_table.hpp"
-#include "../../math/algebra.hpp"
+#include "../../monoid/monoid.hpp"
+#include "../../utility/change.hpp"
+#include "../../utility/range.hpp"
 
 namespace bys {
 void Solver::solve() {

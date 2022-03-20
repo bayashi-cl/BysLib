@@ -5,7 +5,7 @@
 #include "../monoid/mapping.hpp"
 namespace bys {
 template <class T, class ActMonoid, class Action = MappingToSet<T, ActMonoid>>
-struct DualSegmentTree {
+class DualSegmentTree {
     int _n, n_leaf, logsize;
     std::vector<typename ActMonoid::set_type> lazy;
     std::vector<T> data;
