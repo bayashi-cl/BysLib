@@ -5,7 +5,6 @@
 namespace bys {
 void Solver::solve() {
     Edge e(1, 2, 3);
-    // cout << e << endl;
     DEBUG(e);
 }
 }  // namespace bys
