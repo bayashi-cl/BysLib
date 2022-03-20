@@ -1,5 +1,4 @@
 name: verify
-
 on: push
 
 jobs:
@@ -7,10 +6,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: checkout self
+      uses: actions/checkout@v3
+      with:
+        path: ${{ github.repository }}
+
+    - name: checkout ACL
+      uses: actions/checkout@v3
+      with:
+        repository: atcoder/ac-library
+        path: ac-library
 
     - name: Set up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v3
+        with:
+          python-version: "3.8"
 
     - name: Install dependencies
       run: pip3 install git+https://github.com/bayashi-cl/verification-helper@modify
@@ -21,4 +31,6 @@ jobs:
         DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
         YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
         GH_PAT: ${{ secrets.GH_PAT }}
+        CPLUS_INCLUDE_PATH: ${{ github.workspace }}/ac-library
+      working-directory: ./${{ github.repository }}
       run: oj-verify all
