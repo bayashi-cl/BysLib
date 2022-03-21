@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: core/const.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/core.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: core/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: "\u30DE\u30AF\u30ED"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: core/scanner.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: core/solver.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: core/stdlib.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
@@ -158,15 +158,14 @@ data:
     \ operator<<(std::ostream& os, const Edge& e) {\n        return os << \"{\" <<\
     \ e.from << \" -> \" << e.to << \": \" << e.cost << \"}\";\n    }\n};\nusing Adj\
     \ = vector<vector<Edge>>;\nusing EdgeList = vector<Edge>;\n}  // namespace bys\n\
-    \nnamespace bys {\nvoid Solver::solve() {\n    Edge e(1, 2, 3);\n    // cout <<\
-    \ e << endl;\n    DEBUG(e);\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver\
-    \ solver;\n    solver.solve();\n    bys::print(\"Hello World\");\n    return 0;\n\
-    }\n"
+    \nnamespace bys {\nvoid Solver::solve() {\n    Edge e(1, 2, 3);\n    DEBUG(e);\n\
+    }\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve();\n\
+    \    bys::print(\"Hello World\");\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A\"\
     \n#include \"../core/core.hpp\"\n#include \"../graph/edge.hpp\"\n\nnamespace bys\
-    \ {\nvoid Solver::solve() {\n    Edge e(1, 2, 3);\n    // cout << e << endl;\n\
-    \    DEBUG(e);\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n\
-    \    solver.solve();\n    bys::print(\"Hello World\");\n    return 0;\n}\n"
+    \ {\nvoid Solver::solve() {\n    Edge e(1, 2, 3);\n    DEBUG(e);\n}\n}  // namespace\
+    \ bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve();\n    bys::print(\"\
+    Hello World\");\n    return 0;\n}\n"
   dependsOn:
   - core/core.hpp
   - core/stdlib.hpp
@@ -181,7 +180,7 @@ data:
   isVerificationFile: true
   path: test/test.test.cpp
   requiredBy: []
-  timestamp: '2022-03-16 21:14:12+09:00'
+  timestamp: '2022-03-21 05:42:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/test.test.cpp

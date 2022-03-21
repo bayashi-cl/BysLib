@@ -5,16 +5,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: data/dual_segment_tree.hpp
     title: data/dual_segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data/lazy_segment_tree.hpp
     title: data/lazy_segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping.hpp
     title: monoid/mapping.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping_modint.hpp
     title: monoid/mapping_modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: monoid/monoid_modint.hpp
     title: monoid/monoid_modint.hpp
   _extendedVerifiedWith:
@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
     title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
     title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/sparse_table.test.cpp
     title: test/data/sparse_table.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#include <optional>\n#include <utility>\nnamespace bys {\ntemplate\
@@ -95,7 +95,7 @@ data:
   - data/dual_segment_tree.hpp
   - data/lazy_segment_tree.hpp
   timestamp: '2022-03-20 20:42:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp

@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: acl
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: acl/acl.hpp
       title: acl/acl.hpp
     - icon: ':warning:'
@@ -14,34 +14,34 @@ data:
       title: acl/segtree_wrap.hpp
   - name: core
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/const.hpp
       title: core/const.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/core.hpp
       title: core/core.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/io.hpp
       title: core/io.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/macro.hpp
       title: "\u30DE\u30AF\u30ED"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/printer.hpp
       title: core/printer.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/scanner.hpp
       title: core/scanner.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/solver.hpp
       title: core/solver.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/stdlib.hpp
       title: core/stdlib.hpp
     - icon: ':warning:'
       path: core/timer.hpp
       title: core/timer.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/types.hpp
       title: core/types.hpp
   - name: data
@@ -55,7 +55,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data/dual_segment_tree.hpp
       title: data/dual_segment_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: data/lazy_segment_tree.hpp
       title: data/lazy_segment_tree.hpp
     - icon: ':warning:'
@@ -162,7 +162,7 @@ data:
     - icon: ':warning:'
       path: math/base.hpp
       title: math/base.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/bit.hpp
       title: math/bit.hpp
     - icon: ':heavy_check_mark:'
@@ -194,16 +194,16 @@ data:
       title: "\u6570\u5217"
   - name: monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: monoid/mapping.hpp
       title: monoid/mapping.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: monoid/mapping_modint.hpp
       title: monoid/mapping_modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: monoid/monoid.hpp
       title: monoid/monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: monoid/monoid_modint.hpp
       title: monoid/monoid_modint.hpp
   - name: string
@@ -224,7 +224,7 @@ data:
     - icon: ':warning:'
       path: utility/binary_search.hpp
       title: "\u4E8C\u5206\u63A2\u7D22\u6CD5"
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/change.hpp
       title: utility/change.hpp
     - icon: ':warning:'
@@ -245,7 +245,7 @@ data:
     - icon: ':warning:'
       path: utility/itertools.hpp
       title: utility/itertools.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/range.hpp
       title: "Python\u306Erange"
     - icon: ':warning:'
@@ -281,7 +281,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
       title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
       title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
     - icon: ':heavy_check_mark:'

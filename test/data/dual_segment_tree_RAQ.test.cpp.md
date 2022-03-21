@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: core/const.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/core.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: core/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: "\u30DE\u30AF\u30ED"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: core/scanner.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: core/solver.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: core/stdlib.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: core/types.hpp
   - icon: ':heavy_check_mark:'
     path: data/dual_segment_tree.hpp
     title: data/dual_segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: math/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping.hpp
     title: monoid/mapping.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: monoid/monoid.hpp
     title: monoid/monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: utility/change.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/range.hpp
     title: "Python\u306Erange"
   _extendedRequiredBy: []

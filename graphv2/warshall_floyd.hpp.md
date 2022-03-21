@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: core/const.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: core/stdlib.hpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graphv2/result.hpp
     title: Single Source Shortest Path Result
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: utility/change.hpp
   _extendedRequiredBy: []

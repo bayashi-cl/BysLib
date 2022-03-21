@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
     title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
     title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,9 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "namespace bys {\ntemplate <class T>\ninline bool chmax(T& a, const\
@@ -86,7 +86,7 @@ data:
   - graph/warshall_floyd.hpp
   - graph/bellman_ford.hpp
   timestamp: '2021-12-29 22:40:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/binary_indexed_tree.test.cpp
   - test/data/segment_tree_RSQ2.test.cpp

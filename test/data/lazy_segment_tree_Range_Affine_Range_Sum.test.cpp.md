@@ -1,66 +1,70 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: acl/acl.hpp
     title: acl/acl.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: core/const.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/core.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: core/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: "\u30DE\u30AF\u30ED"
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: core/printer.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: core/scanner.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: core/solver.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: core/stdlib.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: core/types.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data/lazy_segment_tree.hpp
     title: data/lazy_segment_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: math/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping.hpp
     title: monoid/mapping.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping_modint.hpp
     title: monoid/mapping_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: monoid/monoid.hpp
     title: monoid/monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: monoid/monoid_modint.hpp
     title: monoid/monoid_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: utility/change.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/range.hpp
     title: "Python\u306Erange"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
-  attributes: {}
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
+    links:
+    - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \n#include <iostream>\n#include <atcoder/math>\n#include <atcoder/modint>\n\n\
     namespace bys {\nusing atcoder::pow_mod, atcoder::inv_mod;\nusing mint = atcoder::modint998244353;\n\
@@ -344,7 +348,7 @@ data:
   path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   requiredBy: []
   timestamp: '2022-03-20 20:42:55+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
 layout: document

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: core/stdlib.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: math/bit.hpp
   - icon: ':heavy_check_mark:'

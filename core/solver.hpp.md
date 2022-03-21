@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/core.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
     title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
     title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,9 +126,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
@@ -144,7 +144,7 @@ data:
   - core/core.hpp
   - graph/dijkstra.hpp
   timestamp: '2022-01-13 21:15:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/core.hpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
     title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
     title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,9 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "\u30DE\u30AF\u30ED"
     links: []
@@ -163,7 +163,7 @@ data:
   - graphv2/breadth_first_search.hpp
   - graph/dijkstra.hpp
   timestamp: '2022-02-26 15:56:18+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp

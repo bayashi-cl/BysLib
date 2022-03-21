@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping_modint.hpp
     title: monoid/mapping_modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: monoid/monoid_modint.hpp
     title: monoid/monoid_modint.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
     title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#include <iostream>\n#include <atcoder/math>\n#include <atcoder/modint>\n\
@@ -40,7 +40,7 @@ data:
   - monoid/monoid_modint.hpp
   - monoid/mapping_modint.hpp
   timestamp: '2022-01-20 13:40:31+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
 documentation_of: acl/acl.hpp

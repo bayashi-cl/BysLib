@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: core/stdlib.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: math/bit.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping.hpp
     title: monoid/mapping.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: monoid/monoid.hpp
     title: monoid/monoid.hpp
   _extendedRequiredBy: []
