@@ -14,6 +14,7 @@ namespace bys {
  */
 template <typename T, class Lambda, class... Args>
 T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
+    static_assert(std::is_same_v<std::invoke_result_t<Lambda, T, Args...>, bool>, "The function signature is invalid.");
     assert(is_ok(ok, args...));
     assert(!is_ok(ng, args...));
 
