@@ -32,6 +32,17 @@ class LazySegmentTree {
           logsize(bit_width(_n - 1)),
           lazy(n_leaf, ActMonoid::identity),
           data(n_leaf * 2, Monoid::identity) {}
+    LazySegmentTree(int n, value_type init)
+        : _n(n),
+          n_leaf(bit_ceil(_n)),
+          logsize(bit_width(_n - 1)),
+          lazy(n_leaf, ActMonoid::identity),
+          data(n_leaf * 2, Monoid::identity) {
+        std::fill_n(data.begin() + n_leaf, _n, init);
+        for (int i = n_leaf - 1; i > 0; --i) {
+            data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
+        }
+    }
     LazySegmentTree(std::vector<value_type> v)
         : _n(v.size()),
           n_leaf(bit_ceil(_n)),
@@ -78,8 +89,8 @@ class LazySegmentTree {
         return Monoid::operation(left, right);
     }
 
-    // value_type query_all() { return data[1]; }
-    // void apply(int i, act_type f) { apply(i, i + 1, f); }
+    value_type query_all() { return data[1]; }
+    void apply(int i, act_type f) { apply(i, i + 1, f); }
 
     void apply(int l, int r, act_type f) {
         assert(0 <= l);
