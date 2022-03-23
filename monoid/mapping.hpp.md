@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: data/lazy_segment_tree.hpp
     title: data/lazy_segment_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: monoid/mapping_modint.hpp
     title: monoid/mapping_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: monoid/monoid_modint.hpp
     title: monoid/monoid_modint.hpp
   _extendedVerifiedWith:
@@ -86,7 +86,10 @@ data:
     \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
     \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
     \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
-    \    }\n};\n}  // namespace bys\n"
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
+    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
+    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
+    \ bys\n"
   code: "#pragma once\n#include \"monoid.hpp\"\nnamespace bys {\ntemplate <class T,\
     \ class ActMonoid>\nstruct MappingToSet {\n    static constexpr void mapping(T&,\
     \ typename ActMonoid::set_type) {\n        static_assert([] { return false; }(),\
@@ -111,7 +114,10 @@ data:
     \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
     \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
     \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
-    \    }\n};\n}  // namespace bys\n"
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
+    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
+    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
+    \ bys\n"
   dependsOn:
   - monoid/monoid.hpp
   isVerificationFile: false
@@ -121,7 +127,7 @@ data:
   - monoid/mapping_modint.hpp
   - data/dual_segment_tree.hpp
   - data/lazy_segment_tree.hpp
-  timestamp: '2022-03-20 20:42:55+09:00'
+  timestamp: '2022-03-23 17:02:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp

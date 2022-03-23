@@ -34,21 +34,22 @@ data:
     \u308C\u308B\u5F15\u6570 \u53EF\u5909\u9577\n * @return (T): is_ok\u3092\u6E80\
     \u305F\u3059\u6700\u5927/\u5C0F\u306E\u6574\u6570\n */\ntemplate <typename T,\
     \ class Lambda, class... Args>\nT meguru_bisect(T ok, T ng, Lambda is_ok, Args...\
-    \ args) {\n    assert(is_ok(ok, args...));\n    assert(!is_ok(ng, args...));\n\
-    \n    while (std::abs(ok - ng) > 1) {\n        T mid = (ok + ng) / 2;\n      \
-    \  if (is_ok(mid, args...)) {\n            ok = mid;\n        } else {\n     \
-    \       ng = mid;\n        }\n    }\n    return ok;\n}\n/**\n * @brief \u5B9F\u6570\
-    \u306E\u4E8C\u5206\u63A2\u7D22\n *\n * @tparam Lambda\n * @tparam Args\n * @param\
-    \ ok is_ok\u3092\u6E80\u305F\u3059\u521D\u671F\u5024\n * @param ng is_ok\u3092\
-    \u6E80\u305F\u3055\u306A\u3044\u521D\u671F\u5024\n * @param rep \u30A8\u30DD\u30C3\
-    \u30AF\n * @param is_ok \u5224\u5B9A\u7528\u30E9\u30E0\u30C0\u5F0F bool(long double,\
-    \ Args...)\n * @param args is_ok\u306B\u6E21\u3055\u308C\u308B\u8FFD\u52A0\u5F15\
-    \u6570\n * @return double\n */\ntemplate <class Lambda, class... Args>\ndouble\
-    \ bisect_float(ld ok, ld ng, int rep, Lambda is_ok, Args... args) {\n    assert(is_ok(ok,\
-    \ args...));\n    assert(!is_ok(ng, args...));\n\n    for (int i = 0; i < rep;\
-    \ i++) {\n        ld mid = (ok + ng) / 2;\n        if (is_ok(mid, args...)) {\n\
-    \            ok = mid;\n        } else {\n            ng = mid;\n        }\n \
-    \   }\n    return ok;\n}\n}  // namespace bys\n"
+    \ args) {\n    static_assert(std::is_same_v<std::invoke_result_t<Lambda, T, Args...>,\
+    \ bool>, \"The function signature is invalid.\");\n    assert(is_ok(ok, args...));\n\
+    \    assert(!is_ok(ng, args...));\n\n    while (std::abs(ok - ng) > 1) {\n   \
+    \     T mid = (ok + ng) / 2;\n        if (is_ok(mid, args...)) {\n           \
+    \ ok = mid;\n        } else {\n            ng = mid;\n        }\n    }\n    return\
+    \ ok;\n}\n/**\n * @brief \u5B9F\u6570\u306E\u4E8C\u5206\u63A2\u7D22\n *\n * @tparam\
+    \ Lambda\n * @tparam Args\n * @param ok is_ok\u3092\u6E80\u305F\u3059\u521D\u671F\
+    \u5024\n * @param ng is_ok\u3092\u6E80\u305F\u3055\u306A\u3044\u521D\u671F\u5024\
+    \n * @param rep \u30A8\u30DD\u30C3\u30AF\n * @param is_ok \u5224\u5B9A\u7528\u30E9\
+    \u30E0\u30C0\u5F0F bool(long double, Args...)\n * @param args is_ok\u306B\u6E21\
+    \u3055\u308C\u308B\u8FFD\u52A0\u5F15\u6570\n * @return double\n */\ntemplate <class\
+    \ Lambda, class... Args>\ndouble bisect_float(ld ok, ld ng, int rep, Lambda is_ok,\
+    \ Args... args) {\n    assert(is_ok(ok, args...));\n    assert(!is_ok(ng, args...));\n\
+    \n    for (int i = 0; i < rep; i++) {\n        ld mid = (ok + ng) / 2;\n     \
+    \   if (is_ok(mid, args...)) {\n            ok = mid;\n        } else {\n    \
+    \        ng = mid;\n        }\n    }\n    return ok;\n}\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/stdlib.hpp\"\n\nnamespace bys {\n/**\n *\
     \ @brief \u4E8C\u5206\u63A2\u7D22\u6CD5\n * https://atcoder.jp/contests/abc205/submissions/23500985\n\
     \ * @tparam T \u521D\u671F\u5024\u3068\u8FD4\u308A\u5024\u3001is_ok\u306E\u7B2C\
@@ -59,27 +60,28 @@ data:
     \u308C\u308B\u5F15\u6570 \u53EF\u5909\u9577\n * @return (T): is_ok\u3092\u6E80\
     \u305F\u3059\u6700\u5927/\u5C0F\u306E\u6574\u6570\n */\ntemplate <typename T,\
     \ class Lambda, class... Args>\nT meguru_bisect(T ok, T ng, Lambda is_ok, Args...\
-    \ args) {\n    assert(is_ok(ok, args...));\n    assert(!is_ok(ng, args...));\n\
-    \n    while (std::abs(ok - ng) > 1) {\n        T mid = (ok + ng) / 2;\n      \
-    \  if (is_ok(mid, args...)) {\n            ok = mid;\n        } else {\n     \
-    \       ng = mid;\n        }\n    }\n    return ok;\n}\n/**\n * @brief \u5B9F\u6570\
-    \u306E\u4E8C\u5206\u63A2\u7D22\n *\n * @tparam Lambda\n * @tparam Args\n * @param\
-    \ ok is_ok\u3092\u6E80\u305F\u3059\u521D\u671F\u5024\n * @param ng is_ok\u3092\
-    \u6E80\u305F\u3055\u306A\u3044\u521D\u671F\u5024\n * @param rep \u30A8\u30DD\u30C3\
-    \u30AF\n * @param is_ok \u5224\u5B9A\u7528\u30E9\u30E0\u30C0\u5F0F bool(long double,\
-    \ Args...)\n * @param args is_ok\u306B\u6E21\u3055\u308C\u308B\u8FFD\u52A0\u5F15\
-    \u6570\n * @return double\n */\ntemplate <class Lambda, class... Args>\ndouble\
-    \ bisect_float(ld ok, ld ng, int rep, Lambda is_ok, Args... args) {\n    assert(is_ok(ok,\
-    \ args...));\n    assert(!is_ok(ng, args...));\n\n    for (int i = 0; i < rep;\
-    \ i++) {\n        ld mid = (ok + ng) / 2;\n        if (is_ok(mid, args...)) {\n\
-    \            ok = mid;\n        } else {\n            ng = mid;\n        }\n \
-    \   }\n    return ok;\n}\n}  // namespace bys\n"
+    \ args) {\n    static_assert(std::is_same_v<std::invoke_result_t<Lambda, T, Args...>,\
+    \ bool>, \"The function signature is invalid.\");\n    assert(is_ok(ok, args...));\n\
+    \    assert(!is_ok(ng, args...));\n\n    while (std::abs(ok - ng) > 1) {\n   \
+    \     T mid = (ok + ng) / 2;\n        if (is_ok(mid, args...)) {\n           \
+    \ ok = mid;\n        } else {\n            ng = mid;\n        }\n    }\n    return\
+    \ ok;\n}\n/**\n * @brief \u5B9F\u6570\u306E\u4E8C\u5206\u63A2\u7D22\n *\n * @tparam\
+    \ Lambda\n * @tparam Args\n * @param ok is_ok\u3092\u6E80\u305F\u3059\u521D\u671F\
+    \u5024\n * @param ng is_ok\u3092\u6E80\u305F\u3055\u306A\u3044\u521D\u671F\u5024\
+    \n * @param rep \u30A8\u30DD\u30C3\u30AF\n * @param is_ok \u5224\u5B9A\u7528\u30E9\
+    \u30E0\u30C0\u5F0F bool(long double, Args...)\n * @param args is_ok\u306B\u6E21\
+    \u3055\u308C\u308B\u8FFD\u52A0\u5F15\u6570\n * @return double\n */\ntemplate <class\
+    \ Lambda, class... Args>\ndouble bisect_float(ld ok, ld ng, int rep, Lambda is_ok,\
+    \ Args... args) {\n    assert(is_ok(ok, args...));\n    assert(!is_ok(ng, args...));\n\
+    \n    for (int i = 0; i < rep; i++) {\n        ld mid = (ok + ng) / 2;\n     \
+    \   if (is_ok(mid, args...)) {\n            ok = mid;\n        } else {\n    \
+    \        ng = mid;\n        }\n    }\n    return ok;\n}\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   isVerificationFile: false
   path: utility/binary_search.hpp
   requiredBy: []
-  timestamp: '2022-03-16 21:14:12+09:00'
+  timestamp: '2022-03-23 17:02:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: utility/binary_search.hpp

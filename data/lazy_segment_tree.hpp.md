@@ -99,21 +99,28 @@ data:
     \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
     \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
     \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
-    \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class Monoid, class\
-    \ ActMonoid, class Action = Mapping<Monoid, ActMonoid>>\nclass LazySegmentTree\
-    \ {\n    using value_type = typename Monoid::set_type;\n    using act_type = typename\
-    \ ActMonoid::set_type;\n    int _n, n_leaf, logsize;\n    std::vector<act_type>\
-    \ lazy;\n    std::vector<value_type> data;\n\n    void reload(int p) { data[p]\
-    \ = Monoid::operation(data[p * 2], data[p * 2 + 1]); }\n    void push(const int\
-    \ p) {\n        int w = n_leaf >> bit_width(p);\n        apply_segment(p * 2,\
-    \ lazy[p], w);\n        apply_segment(p * 2 + 1, lazy[p], w);\n        lazy[p]\
-    \ = ActMonoid::identity;\n    }\n    void apply_segment(const int p, act_type\
-    \ f, int w) {\n        Action::mapping(data[p], f, w);\n        if (p < n_leaf)\
-    \ lazy[p] = ActMonoid::operation(lazy[p], f);\n    }\n\n   public:\n    LazySegmentTree(int\
-    \ n)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
+    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
+    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
+    \ bys\nnamespace bys {\ntemplate <class Monoid, class ActMonoid, class Action\
+    \ = Mapping<Monoid, ActMonoid>>\nclass LazySegmentTree {\n    using value_type\
+    \ = typename Monoid::set_type;\n    using act_type = typename ActMonoid::set_type;\n\
+    \    int _n, n_leaf, logsize;\n    std::vector<act_type> lazy;\n    std::vector<value_type>\
+    \ data;\n\n    void reload(int p) { data[p] = Monoid::operation(data[p * 2], data[p\
+    \ * 2 + 1]); }\n    void push(const int p) {\n        int w = n_leaf >> bit_width(p);\n\
+    \        apply_segment(p * 2, lazy[p], w);\n        apply_segment(p * 2 + 1, lazy[p],\
+    \ w);\n        lazy[p] = ActMonoid::identity;\n    }\n    void apply_segment(const\
+    \ int p, act_type f, int w) {\n        Action::mapping(data[p], f, w);\n     \
+    \   if (p < n_leaf) lazy[p] = ActMonoid::operation(lazy[p], f);\n    }\n\n   public:\n\
+    \    LazySegmentTree(int n)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n\
+    \          logsize(bit_width(_n - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n\
+    \          data(n_leaf * 2, Monoid::identity) {}\n    LazySegmentTree(int n, value_type\
+    \ init)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
     \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
-    \ * 2, Monoid::identity) {}\n    LazySegmentTree(std::vector<value_type> v)\n\
-    \        : _n(v.size()),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \ * 2, Monoid::identity) {\n        std::fill_n(data.begin() + n_leaf, _n, init);\n\
+    \        for (int i = n_leaf - 1; i > 0; --i) {\n            data[i] = Monoid::operation(data[i\
+    \ * 2], data[i * 2 + 1]);\n        }\n    }\n    LazySegmentTree(std::vector<value_type>\
+    \ v)\n        : _n(v.size()),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
     \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
     \ * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(), data.begin()\
     \ + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) {\n            data[i]\
@@ -131,8 +138,8 @@ data:
     \n        value_type left = Monoid::identity, right = Monoid::identity;\n    \
     \    for (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) left = Monoid::operation(left,\
     \ data[l++]);\n            if (r & 1) right = Monoid::operation(data[--r], right);\n\
-    \        }\n        return Monoid::operation(left, right);\n    }\n\n    // value_type\
-    \ query_all() { return data[1]; }\n    // void apply(int i, act_type f) { apply(i,\
+    \        }\n        return Monoid::operation(left, right);\n    }\n\n    value_type\
+    \ query_all() { return data[1]; }\n    void apply(int i, act_type f) { apply(i,\
     \ i + 1, f); }\n\n    void apply(int l, int r, act_type f) {\n        assert(0\
     \ <= l);\n        assert(l <= r);\n        assert(r <= _n);\n        if (l ==\
     \ r) return;\n        l += n_leaf;\n        r += n_leaf;\n\n        for (int i\
@@ -158,8 +165,13 @@ data:
     \ lazy[p] = ActMonoid::operation(lazy[p], f);\n    }\n\n   public:\n    LazySegmentTree(int\
     \ n)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
     \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
-    \ * 2, Monoid::identity) {}\n    LazySegmentTree(std::vector<value_type> v)\n\
-    \        : _n(v.size()),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \ * 2, Monoid::identity) {}\n    LazySegmentTree(int n, value_type init)\n   \
+    \     : _n(n),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
+    \ * 2, Monoid::identity) {\n        std::fill_n(data.begin() + n_leaf, _n, init);\n\
+    \        for (int i = n_leaf - 1; i > 0; --i) {\n            data[i] = Monoid::operation(data[i\
+    \ * 2], data[i * 2 + 1]);\n        }\n    }\n    LazySegmentTree(std::vector<value_type>\
+    \ v)\n        : _n(v.size()),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
     \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
     \ * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(), data.begin()\
     \ + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) {\n            data[i]\
@@ -177,8 +189,8 @@ data:
     \n        value_type left = Monoid::identity, right = Monoid::identity;\n    \
     \    for (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) left = Monoid::operation(left,\
     \ data[l++]);\n            if (r & 1) right = Monoid::operation(data[--r], right);\n\
-    \        }\n        return Monoid::operation(left, right);\n    }\n\n    // value_type\
-    \ query_all() { return data[1]; }\n    // void apply(int i, act_type f) { apply(i,\
+    \        }\n        return Monoid::operation(left, right);\n    }\n\n    value_type\
+    \ query_all() { return data[1]; }\n    void apply(int i, act_type f) { apply(i,\
     \ i + 1, f); }\n\n    void apply(int l, int r, act_type f) {\n        assert(0\
     \ <= l);\n        assert(l <= r);\n        assert(r <= _n);\n        if (l ==\
     \ r) return;\n        l += n_leaf;\n        r += n_leaf;\n\n        for (int i\
@@ -198,7 +210,7 @@ data:
   isVerificationFile: false
   path: data/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-03-20 20:42:55+09:00'
+  timestamp: '2022-03-23 17:02:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp

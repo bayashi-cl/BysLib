@@ -10,8 +10,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/numeric.hpp
     title: math/numeric.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: math/modint.hpp
+    title: math/modint.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+    title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
@@ -45,61 +51,63 @@ data:
     inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
     \nnamespace bys {\nconstexpr ll int_pow(int a, int b) {\n    ll res = 1;\n   \
     \ for (int i = 0; i < b; ++i) res *= a;\n    return res;\n}\ntemplate <class T>\n\
-    T mod_pow(T p, T q, T mod) {\n    T res = 1 % mod;\n    p %= mod;\n    for (;\
-    \ q; q >>= 1) {\n        if (q & 1) res = res * p % mod;\n        p = p * p %\
-    \ mod;\n    }\n    return res;\n}\nll ceildiv(ll x, ll y) { return x > 0 ? (x\
-    \ + y - 1) / y : x / y; }\nll floordiv(ll x, ll y) { return x > 0 ? x / y : (x\
-    \ - y + 1) / y; }\npair<ll, ll> divmod(ll x, ll y) {\n    ll q = floordiv(x, y);\n\
-    \    return {q, x - q * y};\n}\n\nll isqrt_aux(ll c, ll n) {\n    if (c == 0)\
-    \ return 1;\n    ll k = (c - 1) / 2;\n    ll a = isqrt_aux(c / 2, n >> (2 * k\
-    \ + 2));\n    return (a << k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll n) {\n   \
-    \ assert(n >= 0);\n    if (n == 0) return 0;\n    ll a = isqrt_aux((bit_width(n)\
-    \ - 1) / 2, n);\n    return n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename\
-    \ std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t> = nullptr>\ninline\
-    \ bool isclose(T x, T y, T coef = 4.0) {\n    if (x == y) return true;\n    auto\
-    \ diff = std::abs(x - y);\n    return diff <= std::numeric_limits<T>::epsilon()\
-    \ * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n}\n}  //\
-    \ namespace bys\nnamespace bys {\ntemplate <typename T>\nvector<T> prime_factorize(T\
+    constexpr T mod_pow(T p, T q, T mod) {\n    T res = 1 % mod;\n    p %= mod;\n\
+    \    for (; q; q >>= 1) {\n        if (q & 1) res = res * p % mod;\n        p\
+    \ = p * p % mod;\n    }\n    return res;\n}\nll ceildiv(ll x, ll y) { return x\
+    \ > 0 ? (x + y - 1) / y : x / y; }\nll floordiv(ll x, ll y) { return x > 0 ? x\
+    \ / y : (x - y + 1) / y; }\npair<ll, ll> divmod(ll x, ll y) {\n    ll q = floordiv(x,\
+    \ y);\n    return {q, x - q * y};\n}\ntemplate <class T, class S>\nconstexpr T\
+    \ floormod(T x, S mod) {\n    x %= mod;\n    if (x < 0) x += mod;\n    return\
+    \ x;\n}\n\nll isqrt_aux(ll c, ll n) {\n    if (c == 0) return 1;\n    ll k = (c\
+    \ - 1) / 2;\n    ll a = isqrt_aux(c / 2, n >> (2 * k + 2));\n    return (a <<\
+    \ k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll n) {\n    assert(n >= 0);\n    if (n\
+    \ == 0) return 0;\n    ll a = isqrt_aux((bit_width(n) - 1) / 2, n);\n    return\
+    \ n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename std::enable_if_t<std::is_floating_point_v<T>,\
+    \ std::nullptr_t> = nullptr>\ninline bool isclose(T x, T y, T coef = 4.0) {\n\
+    \    if (x == y) return true;\n    auto diff = std::abs(x - y);\n    return diff\
+    \ <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n\
+    }\n}  // namespace bys\nnamespace bys {\ntemplate <typename T>\nvector<T> prime_factorize(T\
     \ n) {\n    vector<T> res;\n    while (n % 2 == 0) {\n        res.push_back(2);\n\
     \        n /= 2;\n    }\n    T f = 3;\n    while (f * f <= n) {\n        if (n\
     \ % f == 0) {\n            res.push_back(f);\n            n /= f;\n        } else\
     \ {\n            f += 2;\n        }\n    }\n    if (n != 1) res.push_back(n);\n\
-    \    return res;\n}\n//! @brief Miller-Rabin\nbool is_prime(ll n) {\n    if (n\
-    \ <= 1) return false;\n    if (n == 2) return true;\n    if (n % 2 == 0) return\
-    \ false;\n    std::array<ll, 7> prime = {2, 325, 9375, 28178, 450775, 9780504,\
-    \ 1795265022};\n    ll s = 0, d = n - 1;\n    while (d % 2 == 0) {\n        ++s;\n\
-    \        d >>= 1;\n    }\n    for (auto p : prime) {\n        if (p % n == 0)\
-    \ return true;\n        ll t, x = mod_pow<__int128_t>(p, d, n);\n        if (x\
-    \ != 1) {\n            for (t = 0; t < s; ++t) {\n                if (x == n -\
-    \ 1) break;\n                x = __int128_t(x) * x % n;\n            }\n     \
-    \       if (t == s) return false;\n        }\n    }\n    return true;\n}\n}  //\
-    \ namespace bys\n"
+    \    return res;\n}\n\n//! @brief Miller-Rabin\nconstexpr bool is_prime(long long\
+    \ n) {\n    if (n <= 1) return false;\n    if (n == 2 || n == 7 || n == 61) return\
+    \ true;\n    if (n % 2 == 0) return false;\n    long long d = n - 1;\n    while\
+    \ (d % 2 == 0) d >>= 1;\n    constexpr std::array<ll, 7> prime = {2, 325, 9375,\
+    \ 28178, 450775, 9780504, 1795265022};\n    for (long long p : prime) {\n    \
+    \    long long t = d;\n        long long y = mod_pow(p, t, n);\n        while\
+    \ (t != n - 1 && y != 1 && y != n - 1) {\n            y = y * y % n;\n       \
+    \     t <<= 1;\n        }\n        if (y != n - 1 && t % 2 == 0) {\n         \
+    \   return false;\n        }\n    }\n    return true;\n}\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"numeric.hpp\"\n\
     namespace bys {\ntemplate <typename T>\nvector<T> prime_factorize(T n) {\n   \
     \ vector<T> res;\n    while (n % 2 == 0) {\n        res.push_back(2);\n      \
     \  n /= 2;\n    }\n    T f = 3;\n    while (f * f <= n) {\n        if (n % f ==\
     \ 0) {\n            res.push_back(f);\n            n /= f;\n        } else {\n\
     \            f += 2;\n        }\n    }\n    if (n != 1) res.push_back(n);\n  \
-    \  return res;\n}\n//! @brief Miller-Rabin\nbool is_prime(ll n) {\n    if (n <=\
-    \ 1) return false;\n    if (n == 2) return true;\n    if (n % 2 == 0) return false;\n\
-    \    std::array<ll, 7> prime = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};\n\
-    \    ll s = 0, d = n - 1;\n    while (d % 2 == 0) {\n        ++s;\n        d >>=\
-    \ 1;\n    }\n    for (auto p : prime) {\n        if (p % n == 0) return true;\n\
-    \        ll t, x = mod_pow<__int128_t>(p, d, n);\n        if (x != 1) {\n    \
-    \        for (t = 0; t < s; ++t) {\n                if (x == n - 1) break;\n \
-    \               x = __int128_t(x) * x % n;\n            }\n            if (t ==\
-    \ s) return false;\n        }\n    }\n    return true;\n}\n}  // namespace bys\n"
+    \  return res;\n}\n\n//! @brief Miller-Rabin\nconstexpr bool is_prime(long long\
+    \ n) {\n    if (n <= 1) return false;\n    if (n == 2 || n == 7 || n == 61) return\
+    \ true;\n    if (n % 2 == 0) return false;\n    long long d = n - 1;\n    while\
+    \ (d % 2 == 0) d >>= 1;\n    constexpr std::array<ll, 7> prime = {2, 325, 9375,\
+    \ 28178, 450775, 9780504, 1795265022};\n    for (long long p : prime) {\n    \
+    \    long long t = d;\n        long long y = mod_pow(p, t, n);\n        while\
+    \ (t != n - 1 && y != 1 && y != n - 1) {\n            y = y * y % n;\n       \
+    \     t <<= 1;\n        }\n        if (y != n - 1 && t % 2 == 0) {\n         \
+    \   return false;\n        }\n    }\n    return true;\n}\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   - math/numeric.hpp
   - math/bit.hpp
   isVerificationFile: false
   path: math/prime.hpp
-  requiredBy: []
-  timestamp: '2022-03-16 21:14:12+09:00'
+  requiredBy:
+  - math/modint.hpp
+  timestamp: '2022-03-23 17:02:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/prime.test.cpp
+  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
 documentation_of: math/prime.hpp
 layout: document
 redirect_from:

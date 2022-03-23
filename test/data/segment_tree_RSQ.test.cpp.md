@@ -54,12 +54,12 @@ data:
     links:
     - https://judge.yosupo.jp/problem/point_add_range_sum
   bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\
-    \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
-    #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
-    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
-    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
-    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
+    \n#include <cassert>\n#include <type_traits>\n#include <vector>\n\n#ifndef LOCAL\n\
+    #define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
+    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
+    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
+    \ <string>\n#include <unordered_map>\n#include <unordered_set>\n\nnamespace bys\
     \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
     using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
     \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
@@ -76,30 +76,56 @@ data:
     \ : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
     \    return res;\n}\ninline bool pop(int s, int d) { return s & (1 << d); }\n\
     inline bool pop(ll s, int d) { return s & (1LL << d); }\n}  // namespace bys\n\
-    namespace bys {\ntemplate <class Monoid>\nclass SegmentTree {\n    using T = typename\
-    \ Monoid::set_type;\n    int _n, n_leaf;\n    std::vector<T> data;\n\n   public:\n\
-    \    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity)\
-    \ {}\n    SegmentTree(const vector<T>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
-    \ data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(),\
-    \ data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i]\
-    \ = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    T query(int\
-    \ l, int r) const {\n        assert(0 <= l && l < _n);\n        assert(l <= r);\n\
-    \        assert(r <= _n);\n\n        T left = Monoid::identity, right = Monoid::identity;\n\
-    \        for (l += n_leaf, r += n_leaf; l < r; l >>= 1, r >>= 1) {\n         \
-    \   if (l & 1) left = Monoid::operation(left, data[l++]);\n            if (r &\
-    \ 1) right = Monoid::operation(data[--r], right);\n        }\n        return Monoid::operation(left,\
-    \ right);\n    }\n\n    T query_all() const { return data[1]; }\n\n    void update(int\
-    \ i, T val) {\n        assert(0 <= i && i < _n);\n        i += n_leaf;\n     \
-    \   data[i] = val;\n        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i\
-    \ * 2], data[i * 2 + 1]);\n    }\n\n    T operator[](int i) const {\n        assert(0\
-    \ <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n    // int bisect_from_left(int\
-    \ l, std::function<bool(S)> f) const {}\n    // int bisect_from_right(int r, std::function<bool(S)>\
-    \ f) const {}\n};\n}  // namespace bys\n\n\nnamespace bys {\nconstexpr int MOD\
-    \ = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
-    \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
-    \ bys\n#include <utility>\n\nnamespace bys {\ntemplate <class, class = void>\n\
-    struct has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct\
-    \ has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    namespace bys {\ntemplate <class Monoid>\nclass SegmentTree {\n    using value_type\
+    \ = typename Monoid::set_type;\n    int _n, n_leaf;\n    std::vector<value_type>\
+    \ data;\n\n   public:\n    SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf\
+    \ * 2, Monoid::identity) {}\n    SegmentTree(const vector<value_type>& v) : _n(v.size()),\
+    \ n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(),\
+    \ v.end(), data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i)\
+    \ data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    value_type\
+    \ query(int l, int r) const {\n        assert(0 <= l && l < _n);\n        assert(l\
+    \ <= r);\n        assert(r <= _n);\n\n        value_type left = Monoid::identity,\
+    \ right = Monoid::identity;\n        for (l += n_leaf, r += n_leaf; l < r; l >>=\
+    \ 1, r >>= 1) {\n            if (l & 1) left = Monoid::operation(left, data[l++]);\n\
+    \            if (r & 1) right = Monoid::operation(data[--r], right);\n       \
+    \ }\n        return Monoid::operation(left, right);\n    }\n\n    value_type query_all()\
+    \ const { return data[1]; }\n\n    void update(int i, value_type val) {\n    \
+    \    assert(0 <= i && i < _n);\n        i += n_leaf;\n        data[i] = val;\n\
+    \        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i * 2],\
+    \ data[i * 2 + 1]);\n    }\n\n    value_type operator[](int i) const {\n     \
+    \   assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n   \
+    \ // f(query(l, r)) == true \u3068\u306A\u308B\u6700\u5927\u306Er\n    template\
+    \ <class Lambda, class... Args>\n    int bisect_from_left(int l, Lambda f, Args...\
+    \ args) const {\n        static_assert(std::is_same_v<std::invoke_result_t<Lambda,\
+    \ value_type, Args...>, bool>,\n                      \"The function signature\
+    \ is invalid.\");\n        assert(0 <= l && l < _n);\n        assert(f(Monoid::identity,\
+    \ args...));\n        l += n_leaf;\n        value_type sm = Monoid::identity;\n\
+    \        do {\n            l /= l & -l;\n            if (!f(Monoid::operation(sm,\
+    \ data[l]), args...)) {\n                while (l < n_leaf) {\n              \
+    \      l *= 2;\n                    if (value_type op = Monoid::operation(sm,\
+    \ data[l]); f(op, args...)) {\n                        sm = op;\n            \
+    \            ++l;\n                    }\n                }\n                return\
+    \ l - n_leaf;\n            }\n            sm = Monoid::operation(sm, data[l]);\n\
+    \            ++l;\n        } while ((l & -l) != l);\n        return _n;\n    }\n\
+    \n    // f(query(l, r)) == true \u3068\u306A\u308B\u6700\u5C0F\u306El\n    template\
+    \ <class Lambda, class... Args>\n    int bisect_from_right(int r, Lambda f, Args...\
+    \ args) const {\n        static_assert(std::is_same_v<std::invoke_result_t<Lambda,\
+    \ value_type, Args...>, bool>,\n                      \"The function signature\
+    \ is invalid.\");\n        assert(0 <= r && r <= _n);\n        assert(f(Monoid::identity,\
+    \ args...));\n        if (r == 0) return 0;\n        r += n_leaf;\n        value_type\
+    \ sm = Monoid::identity;\n        do {\n            --r;\n            while (r\
+    \ > 1 && (r % 2)) r >>= 1;\n            if (!f(Monoid::operation(data[r], sm)))\
+    \ {\n                while (r < n_leaf) {\n                    r = (2 * r + 1);\n\
+    \                    if (value_type op = Monoid::operation(data[r], sm); f(op,\
+    \ args...)) {\n                        sm = op;\n                        --r;\n\
+    \                    }\n                }\n                return r + 1 - n_leaf;\n\
+    \            }\n            sm = op(data[r], sm);\n        } while ((r & -r) !=\
+    \ r);\n        return 0;\n    }\n};\n}  // namespace bys\n\n\nnamespace bys {\n\
+    constexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int\
+    \ INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
+    \ / 2;\n}  // namespace bys\n#include <utility>\n\nnamespace bys {\ntemplate <class,\
+    \ class = void>\nstruct has_lshift_to_ostream : std::false_type {};\ntemplate\
+    \ <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -241,8 +267,8 @@ data:
     \    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n}\n"
   dependsOn:
   - data/segment_tree.hpp
-  - core/stdlib.hpp
   - math/bit.hpp
+  - core/stdlib.hpp
   - core/core.hpp
   - core/const.hpp
   - core/io.hpp
@@ -257,7 +283,7 @@ data:
   isVerificationFile: true
   path: test/data/segment_tree_RSQ.test.cpp
   requiredBy: []
-  timestamp: '2022-03-19 14:12:49+09:00'
+  timestamp: '2022-03-23 17:02:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/segment_tree_RSQ.test.cpp

@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: acl/acl.hpp
-    title: acl/acl.hpp
-  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: core/const.hpp
   - icon: ':heavy_check_mark:'
@@ -38,17 +35,20 @@ data:
     path: math/bit.hpp
     title: math/bit.hpp
   - icon: ':heavy_check_mark:'
+    path: math/modint.hpp
+    title: math/modint.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/numeric.hpp
+    title: math/numeric.hpp
+  - icon: ':heavy_check_mark:'
+    path: math/prime.hpp
+    title: Miller-Rabin
+  - icon: ':heavy_check_mark:'
     path: monoid/mapping.hpp
     title: monoid/mapping.hpp
   - icon: ':heavy_check_mark:'
-    path: monoid/mapping_modint.hpp
-    title: monoid/mapping_modint.hpp
-  - icon: ':heavy_check_mark:'
     path: monoid/monoid.hpp
     title: monoid/monoid.hpp
-  - icon: ':heavy_check_mark:'
-    path: monoid/monoid_modint.hpp
-    title: monoid/monoid_modint.hpp
   - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: utility/change.hpp
@@ -66,16 +66,9 @@ data:
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include <iostream>\n#include <atcoder/math>\n#include <atcoder/modint>\n\n\
-    namespace bys {\nusing atcoder::pow_mod, atcoder::inv_mod;\nusing mint = atcoder::modint998244353;\n\
-    using mint7 = atcoder::modint1000000007;\ntemplate <int MOD>\ninline std::istream&\
-    \ operator>>(std::istream& is, atcoder::static_modint<MOD>& m) {\n    long long\
-    \ int n;\n    is >> n;\n    m = n;\n    return is;\n}\ntemplate <typename T, typename\
-    \ std::enable_if_t<atcoder::internal::is_modint<T>::value, std::nullptr_t> = nullptr>\n\
-    std::ostream& operator<<(std::ostream& os, const T& m) {\n    return os << m.val();\n\
-    }\n}  // namespace bys\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n\
-    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
-    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iterator>\n\
+    \n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <algorithm>\n#include <array>\n\
+    #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
+    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
     #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
     \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
     \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
@@ -230,21 +223,28 @@ data:
     \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
     \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
     \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
-    \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class Monoid, class\
-    \ ActMonoid, class Action = Mapping<Monoid, ActMonoid>>\nclass LazySegmentTree\
-    \ {\n    using value_type = typename Monoid::set_type;\n    using act_type = typename\
-    \ ActMonoid::set_type;\n    int _n, n_leaf, logsize;\n    std::vector<act_type>\
-    \ lazy;\n    std::vector<value_type> data;\n\n    void reload(int p) { data[p]\
-    \ = Monoid::operation(data[p * 2], data[p * 2 + 1]); }\n    void push(const int\
-    \ p) {\n        int w = n_leaf >> bit_width(p);\n        apply_segment(p * 2,\
-    \ lazy[p], w);\n        apply_segment(p * 2 + 1, lazy[p], w);\n        lazy[p]\
-    \ = ActMonoid::identity;\n    }\n    void apply_segment(const int p, act_type\
-    \ f, int w) {\n        Action::mapping(data[p], f, w);\n        if (p < n_leaf)\
-    \ lazy[p] = ActMonoid::operation(lazy[p], f);\n    }\n\n   public:\n    LazySegmentTree(int\
-    \ n)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
+    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
+    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
+    \ bys\nnamespace bys {\ntemplate <class Monoid, class ActMonoid, class Action\
+    \ = Mapping<Monoid, ActMonoid>>\nclass LazySegmentTree {\n    using value_type\
+    \ = typename Monoid::set_type;\n    using act_type = typename ActMonoid::set_type;\n\
+    \    int _n, n_leaf, logsize;\n    std::vector<act_type> lazy;\n    std::vector<value_type>\
+    \ data;\n\n    void reload(int p) { data[p] = Monoid::operation(data[p * 2], data[p\
+    \ * 2 + 1]); }\n    void push(const int p) {\n        int w = n_leaf >> bit_width(p);\n\
+    \        apply_segment(p * 2, lazy[p], w);\n        apply_segment(p * 2 + 1, lazy[p],\
+    \ w);\n        lazy[p] = ActMonoid::identity;\n    }\n    void apply_segment(const\
+    \ int p, act_type f, int w) {\n        Action::mapping(data[p], f, w);\n     \
+    \   if (p < n_leaf) lazy[p] = ActMonoid::operation(lazy[p], f);\n    }\n\n   public:\n\
+    \    LazySegmentTree(int n)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n\
+    \          logsize(bit_width(_n - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n\
+    \          data(n_leaf * 2, Monoid::identity) {}\n    LazySegmentTree(int n, value_type\
+    \ init)\n        : _n(n),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
     \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
-    \ * 2, Monoid::identity) {}\n    LazySegmentTree(std::vector<value_type> v)\n\
-    \        : _n(v.size()),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
+    \ * 2, Monoid::identity) {\n        std::fill_n(data.begin() + n_leaf, _n, init);\n\
+    \        for (int i = n_leaf - 1; i > 0; --i) {\n            data[i] = Monoid::operation(data[i\
+    \ * 2], data[i * 2 + 1]);\n        }\n    }\n    LazySegmentTree(std::vector<value_type>\
+    \ v)\n        : _n(v.size()),\n          n_leaf(bit_ceil(_n)),\n          logsize(bit_width(_n\
     \ - 1)),\n          lazy(n_leaf, ActMonoid::identity),\n          data(n_leaf\
     \ * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(), data.begin()\
     \ + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) {\n            data[i]\
@@ -262,8 +262,8 @@ data:
     \n        value_type left = Monoid::identity, right = Monoid::identity;\n    \
     \    for (; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) left = Monoid::operation(left,\
     \ data[l++]);\n            if (r & 1) right = Monoid::operation(data[--r], right);\n\
-    \        }\n        return Monoid::operation(left, right);\n    }\n\n    // value_type\
-    \ query_all() { return data[1]; }\n    // void apply(int i, act_type f) { apply(i,\
+    \        }\n        return Monoid::operation(left, right);\n    }\n\n    value_type\
+    \ query_all() { return data[1]; }\n    void apply(int i, act_type f) { apply(i,\
     \ i + 1, f); }\n\n    void apply(int l, int r, act_type f) {\n        assert(0\
     \ <= l);\n        assert(l <= r);\n        assert(r <= _n);\n        if (l ==\
     \ r) return;\n        l += n_leaf;\n        r += n_leaf;\n\n        for (int i\
@@ -274,59 +274,116 @@ data:
     \ f, w);\n            l2 >>= 1;\n            r2 >>= 1;\n            w <<= 1;\n\
     \        }\n\n        for (int i = 1; i <= logsize; i++) {\n            if (((l\
     \ >> i) << i) != l) reload(l >> i);\n            if (((r >> i) << i) != r) reload((r\
-    \ - 1) >> i);\n        }\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate\
-    \ <class T>\nstruct AddModint : Magma<T> {\n    using typename Magma<T>::set_type;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return a +\
-    \ b; }\n    static inline const set_type identity = {0};\n    static constexpr\
-    \ bool commutative{true};\n};\ntemplate <class T>\nstruct AffineModint : Magma<T>\
-    \ {\n    using set_type = std::pair<T, T>;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return {a.first * b.first, a.second * b.first + b.second};\
-    \ }\n    static inline const set_type identity = {1, 0};\n};\n}  // namespace\
-    \ bys\nnamespace bys {\ntemplate <class T, class S>\nstruct Mapping<AddModint<T>,\
-    \ AffineModint<S>> {\n    static void mapping(typename AddModint<T>::set_type&\
-    \ t, typename AffineModint<S>::set_type s, int w) {\n        t = t * s.first +\
-    \ w * s.second;\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class\
-    \ T>\ninline bool chmax(T& a, const T& b) {\n    if (a < b) {\n        a = b;\n\
-    \        return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline bool chmin(T&\
-    \ a, const T& b) {\n    if (b < a) {\n        a = b;\n        return 1;\n    }\n\
-    \    return 0;\n}\n}  // namespace bys\n\nnamespace bys {\n//! @brief Python\u306E\
-    range\ntemplate <typename T>\nstruct Range {\n    Range(T start, T stop, T step\
-    \ = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T\
-    \ stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T> begin() const {\
-    \ return *this; }\n    T end() const { return stop; }\n    bool operator!=(const\
-    \ T val) const { return (val - it) * dir > 0; }\n    void operator++() { it +=\
-    \ step; }\n    const T& operator*() const { return it; }\n\n   private:\n    T\
-    \ it;\n    const T stop, step;\n    const int dir;\n\n    friend Range reversed(const\
+    \ - 1) >> i);\n        }\n    }\n};\n}  // namespace bys\n#include <cstdint>\n\
+    \n\nnamespace bys {\nconstexpr ll int_pow(int a, int b) {\n    ll res = 1;\n \
+    \   for (int i = 0; i < b; ++i) res *= a;\n    return res;\n}\ntemplate <class\
+    \ T>\nconstexpr T mod_pow(T p, T q, T mod) {\n    T res = 1 % mod;\n    p %= mod;\n\
+    \    for (; q; q >>= 1) {\n        if (q & 1) res = res * p % mod;\n        p\
+    \ = p * p % mod;\n    }\n    return res;\n}\nll ceildiv(ll x, ll y) { return x\
+    \ > 0 ? (x + y - 1) / y : x / y; }\nll floordiv(ll x, ll y) { return x > 0 ? x\
+    \ / y : (x - y + 1) / y; }\npair<ll, ll> divmod(ll x, ll y) {\n    ll q = floordiv(x,\
+    \ y);\n    return {q, x - q * y};\n}\ntemplate <class T, class S>\nconstexpr T\
+    \ floormod(T x, S mod) {\n    x %= mod;\n    if (x < 0) x += mod;\n    return\
+    \ x;\n}\n\nll isqrt_aux(ll c, ll n) {\n    if (c == 0) return 1;\n    ll k = (c\
+    \ - 1) / 2;\n    ll a = isqrt_aux(c / 2, n >> (2 * k + 2));\n    return (a <<\
+    \ k) + (n >> (k + 2)) / a;\n}\nll isqrt(ll n) {\n    assert(n >= 0);\n    if (n\
+    \ == 0) return 0;\n    ll a = isqrt_aux((bit_width(n) - 1) / 2, n);\n    return\
+    \ n < a * a ? a - 1 : a;\n}\ntemplate <class T, typename std::enable_if_t<std::is_floating_point_v<T>,\
+    \ std::nullptr_t> = nullptr>\ninline bool isclose(T x, T y, T coef = 4.0) {\n\
+    \    if (x == y) return true;\n    auto diff = std::abs(x - y);\n    return diff\
+    \ <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n\
+    }\n}  // namespace bys\nnamespace bys {\ntemplate <typename T>\nvector<T> prime_factorize(T\
+    \ n) {\n    vector<T> res;\n    while (n % 2 == 0) {\n        res.push_back(2);\n\
+    \        n /= 2;\n    }\n    T f = 3;\n    while (f * f <= n) {\n        if (n\
+    \ % f == 0) {\n            res.push_back(f);\n            n /= f;\n        } else\
+    \ {\n            f += 2;\n        }\n    }\n    if (n != 1) res.push_back(n);\n\
+    \    return res;\n}\n\n//! @brief Miller-Rabin\nconstexpr bool is_prime(long long\
+    \ n) {\n    if (n <= 1) return false;\n    if (n == 2 || n == 7 || n == 61) return\
+    \ true;\n    if (n % 2 == 0) return false;\n    long long d = n - 1;\n    while\
+    \ (d % 2 == 0) d >>= 1;\n    constexpr std::array<ll, 7> prime = {2, 325, 9375,\
+    \ 28178, 450775, 9780504, 1795265022};\n    for (long long p : prime) {\n    \
+    \    long long t = d;\n        long long y = mod_pow(p, t, n);\n        while\
+    \ (t != n - 1 && y != 1 && y != n - 1) {\n            y = y * y % n;\n       \
+    \     t <<= 1;\n        }\n        if (y != n - 1 && t % 2 == 0) {\n         \
+    \   return false;\n        }\n    }\n    return true;\n}\n}  // namespace bys\n\
+    namespace bys {\ntemplate <unsigned int Modulo>\nclass ModInt {\n    unsigned\
+    \ int _v;\n\n   public:\n    static constexpr unsigned int mod = Modulo;\n   \
+    \ static_assert(is_prime(mod), \"Modulo need to be prime.\");\n    static_assert(mod\
+    \ < std::numeric_limits<unsigned int>::max(), \"Modulo need to <2^32\");\n\n \
+    \   constexpr ModInt() noexcept : _v(0) {}\n    template <class T, std::enable_if_t<std::is_unsigned_v<T>,\
+    \ std::nullptr_t> = nullptr>\n    constexpr ModInt(T v) noexcept : _v(v % mod)\
+    \ {}\n    template <class T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t>\
+    \ = nullptr>\n    constexpr ModInt(T v) noexcept : _v(floormod(v, mod)) {}\n\n\
+    \    constexpr ModInt pow(ll n) const noexcept {\n        ModInt res = 1, p =\
+    \ *this;\n        while (n) {\n            if (n & 1) res *= p;\n            p\
+    \ *= p;\n            n >>= 1;\n        }\n        return res;\n    }\n    constexpr\
+    \ ModInt inv() const noexcept { return pow(mod - 2); }\n\n    constexpr ModInt&\
+    \ operator+=(const ModInt rhs) noexcept {\n        _v += rhs._v;\n        if (_v\
+    \ >= mod) _v -= mod;\n        return *this;\n    }\n    constexpr ModInt& operator-=(const\
+    \ ModInt rhs) noexcept {\n        if (rhs._v > _v) _v += mod;\n        _v -= rhs._v;\n\
+    \        return *this;\n    }\n    constexpr ModInt& operator*=(const ModInt rhs)\
+    \ noexcept {\n        unsigned long long z = _v;\n        z *= rhs._v;\n     \
+    \   _v = (unsigned int)(z % mod);\n        return *this;\n    }\n    constexpr\
+    \ ModInt& operator/=(const ModInt rhs) noexcept { return *this = *this * rhs.inv();\
+    \ }\n\n    constexpr ModInt& operator+() const noexcept { return *this; }\n  \
+    \  constexpr ModInt& operator-() const noexcept { return ModInt() - *this; }\n\
+    \    constexpr ModInt& operator++() noexcept {\n        _v++;\n        if (_v\
+    \ == mod) _v = 0;\n        return *this;\n    }\n    constexpr ModInt& operator--()\
+    \ noexcept {\n        if (_v == 0) _v = mod;\n        --_v;\n        return *this;\n\
+    \    }\n    constexpr ModInt operator++(int) noexcept {\n        ModInt res =\
+    \ *this;\n        ++*this;\n        return res;\n    }\n    constexpr ModInt operator--(int)\
+    \ noexcept {\n        ModInt res = *this;\n        --*this;\n        return res;\n\
+    \    }\n\n    friend constexpr ModInt operator+(const ModInt& lhs, const ModInt&\
+    \ rhs) noexcept { return ModInt(lhs) += rhs; }\n    friend constexpr ModInt operator-(const\
+    \ ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) -= rhs; }\n  \
+    \  friend constexpr ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept\
+    \ { return ModInt(lhs) *= rhs; }\n    friend constexpr ModInt operator/(const\
+    \ ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) /= rhs; }\n  \
+    \  friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept\
+    \ { return lhs._v == rhs._v; }\n    friend constexpr bool operator!=(const ModInt&\
+    \ lhs, const ModInt& rhs) noexcept { return lhs._v != rhs._v; }\n\n    friend\
+    \ std::istream& operator>>(std::istream& is, ModInt& m) noexcept { return is >>\
+    \ m._v; }\n    friend std::ostream& operator<<(std::ostream& os, const ModInt&\
+    \ m) noexcept { return os << m._v; }\n};\nusing Mint = ModInt<998244353>;\nusing\
+    \ Mint7 = ModInt<1000000007>;\n}  // namespace bys\nnamespace bys {\ntemplate\
+    \ <class T>\ninline bool chmax(T& a, const T& b) {\n    if (a < b) {\n       \
+    \ a = b;\n        return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline\
+    \ bool chmin(T& a, const T& b) {\n    if (b < a) {\n        a = b;\n        return\
+    \ 1;\n    }\n    return 0;\n}\n}  // namespace bys\n\nnamespace bys {\n//! @brief\
+    \ Python\u306Erange\ntemplate <typename T>\nstruct Range {\n    Range(T start,\
+    \ T stop, T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 :\
+    \ -1) {}\n    Range(T stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T>\
+    \ begin() const { return *this; }\n    T end() const { return stop; }\n    bool\
+    \ operator!=(const T val) const { return (val - it) * dir > 0; }\n    void operator++()\
+    \ { it += step; }\n    const T& operator*() const { return it; }\n\n   private:\n\
+    \    T it;\n    const T stop, step;\n    const int dir;\n\n    friend Range reversed(const\
     \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
     \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\ntemplate\
     \ <class T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\ntemplate <class\
     \ T>\nRange<T> irange(T start, T stop, T step = 1) {\n    return Range(start,\
     \ stop, step);\n}\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<mint>(n);\n\
-    \    LazySegmentTree<AddModint<mint>, AffineModint<mint>, Mapping<AddModint<mint>,\
-    \ AffineModint<mint>>> seg(a);\n    for (UV : irange(q)) {\n        auto t = scanner.read<int>();\n\
-    \        if (t == 0) {\n            auto [l, r] = scanner.read<int, 2>();\n  \
-    \          auto [b, c] = scanner.read<mint, 2>();\n            seg.apply(l, r,\
-    \ {b, c});\n        } else {\n            auto [l, r] = scanner.read<int, 2>();\n\
+    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<Mint>(n);\n\
+    \    LazySegmentTree<Add<Mint>, Affine<Mint>> seg(a);\n    for (UV : irange(q))\
+    \ {\n        auto t = scanner.read<int>();\n        if (t == 0) {\n          \
+    \  auto [l, r, b, c] = scanner.read<int, 4>();\n            seg.apply(l, r, {b,\
+    \ c});\n        } else {\n            auto [l, r] = scanner.read<int, 2>();\n\
     \            print(seg.query(l, r));\n        }\n    }\n}\n}  // namespace bys\n\
     \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
     \ */);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include \"../../acl/acl.hpp\"\n#include \"../../core/core.hpp\"\n#include \"\
-    ../../data/lazy_segment_tree.hpp\"\n#include \"../../monoid/mapping_modint.hpp\"\
-    \n#include \"../../monoid/monoid_modint.hpp\"\n#include \"../../utility/change.hpp\"\
-    \n#include \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<mint>(n);\n\
-    \    LazySegmentTree<AddModint<mint>, AffineModint<mint>, Mapping<AddModint<mint>,\
-    \ AffineModint<mint>>> seg(a);\n    for (UV : irange(q)) {\n        auto t = scanner.read<int>();\n\
-    \        if (t == 0) {\n            auto [l, r] = scanner.read<int, 2>();\n  \
-    \          auto [b, c] = scanner.read<mint, 2>();\n            seg.apply(l, r,\
-    \ {b, c});\n        } else {\n            auto [l, r] = scanner.read<int, 2>();\n\
+    \n#include \"../../core/core.hpp\"\n#include \"../../data/lazy_segment_tree.hpp\"\
+    \n#include \"../../math/modint.hpp\"\n#include \"../../monoid/mapping.hpp\"\n\
+    #include \"../../monoid/monoid.hpp\"\n#include \"../../utility/change.hpp\"\n\
+    #include \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<Mint>(n);\n\
+    \    LazySegmentTree<Add<Mint>, Affine<Mint>> seg(a);\n    for (UV : irange(q))\
+    \ {\n        auto t = scanner.read<int>();\n        if (t == 0) {\n          \
+    \  auto [l, r, b, c] = scanner.read<int, 4>();\n            seg.apply(l, r, {b,\
+    \ c});\n        } else {\n            auto [l, r] = scanner.read<int, 2>();\n\
     \            print(seg.query(l, r));\n        }\n    }\n}\n}  // namespace bys\n\
     \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
     \ */);\n    return 0;\n}\n"
   dependsOn:
-  - acl/acl.hpp
   - core/core.hpp
   - core/stdlib.hpp
   - core/const.hpp
@@ -340,14 +397,15 @@ data:
   - math/bit.hpp
   - monoid/mapping.hpp
   - monoid/monoid.hpp
-  - monoid/mapping_modint.hpp
-  - monoid/monoid_modint.hpp
+  - math/modint.hpp
+  - math/prime.hpp
+  - math/numeric.hpp
   - utility/change.hpp
   - utility/range.hpp
   isVerificationFile: true
   path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   requiredBy: []
-  timestamp: '2022-03-20 20:42:55+09:00'
+  timestamp: '2022-03-23 17:02:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp

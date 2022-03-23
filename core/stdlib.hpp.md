@@ -138,6 +138,9 @@ data:
     path: math/matrix.hpp
     title: math/matrix.hpp
   - icon: ':heavy_check_mark:'
+    path: math/modint.hpp
+    title: math/modint.hpp
+  - icon: ':heavy_check_mark:'
     path: math/numeric.hpp
     title: math/numeric.hpp
   - icon: ':heavy_check_mark:'
@@ -466,6 +469,7 @@ data:
   isVerificationFile: false
   path: core/stdlib.hpp
   requiredBy:
+  - math/modint.hpp
   - math/euclid.hpp
   - math/numeric.hpp
   - math/affine.hpp

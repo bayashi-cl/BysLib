@@ -18,6 +18,9 @@ data:
     path: data/segment_tree.hpp
     title: data/segment_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: math/modint.hpp
+    title: math/modint.hpp
+  - icon: ':heavy_check_mark:'
     path: math/numeric.hpp
     title: math/numeric.hpp
   - icon: ':heavy_check_mark:'
@@ -106,6 +109,7 @@ data:
   isVerificationFile: false
   path: math/bit.hpp
   requiredBy:
+  - math/modint.hpp
   - math/numeric.hpp
   - math/prime.hpp
   - data/dual_segment_tree.hpp

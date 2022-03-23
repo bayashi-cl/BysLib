@@ -214,35 +214,38 @@ data:
     \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
     \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
     \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
-    \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T, class ActMonoid,\
-    \ class Action = MappingToSet<T, ActMonoid>>\nclass DualSegmentTree {\n    int\
-    \ _n, n_leaf, logsize;\n    std::vector<typename ActMonoid::set_type> lazy;\n\
-    \    std::vector<T> data;\n\n    void push(int p) {\n        for (int i = logsize;\
-    \ i > 0; --i) {\n            int a = p >> i;\n            if (lazy[a] == ActMonoid::identity)\
-    \ continue;\n            if (a * 2 < n_leaf) {\n                lazy[a * 2] =\
-    \ ActMonoid::operation(lazy[a * 2], lazy[a]);\n                lazy[a * 2 + 1]\
-    \ = ActMonoid::operation(lazy[a * 2 + 1], lazy[a]);\n            } else {\n  \
-    \              int t = a * 2 - n_leaf;\n                Action::mapping(data[t],\
-    \ lazy[a]);\n                Action::mapping(data[t + 1], lazy[a]);\n        \
-    \    }\n            lazy[a] = ActMonoid::identity;\n        }\n    }\n\n   public:\n\
-    \    DualSegmentTree(int n, T ident)\n        : _n(n), n_leaf(bit_ceil(_n)), logsize(bit_width(n\
-    \ - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf, ident) {}\n    DualSegmentTree(const\
-    \ std::vector<T>& v)\n        : _n(v.size()), n_leaf(bit_ceil(_n)), logsize(bit_width(_n\
-    \ - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf) {\n        std::copy(v.begin(),\
-    \ v.end(), data.begin());\n    }\n\n    T operator[](int i) const {\n        T\
-    \ res = data[i];\n        for (i = (i + n_leaf) >> 1; i > 0; i >>= 1) {\n    \
-    \        Action::mapping(res, lazy[i]);\n        }\n        return res;\n    }\n\
-    \    void update(int i, T val) {\n        if constexpr (!ActMonoid::commutative)\
-    \ {\n            push(i + n_leaf);\n        }\n        data[i] = val;\n    }\n\
-    \    void apply(int l, int r, T val) {\n        assert(l < r);\n        l += n_leaf;\n\
-    \        r += n_leaf;\n        if constexpr (!ActMonoid::commutative) {\n    \
-    \        push(l);\n            push(r - 1);\n        }\n        if (l & 1) Action::mapping(data[l++\
-    \ - n_leaf], val);\n        if (r & 1) Action::mapping(data[--r - n_leaf], val);\n\
-    \        for (l >>= 1, r >>= 1; l < r; l >>= 1, r >>= 1) {\n            if (l\
-    \ & 1) {\n                lazy[l] = ActMonoid::operation(lazy[l], val);\n    \
-    \            ++l;\n            }\n            if (r & 1) {\n                --r;\n\
-    \                lazy[r] = ActMonoid::operation(lazy[r], val);\n            }\n\
-    \        }\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\n\
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
+    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
+    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
+    \ bys\nnamespace bys {\ntemplate <class T, class ActMonoid, class Action = MappingToSet<T,\
+    \ ActMonoid>>\nclass DualSegmentTree {\n    int _n, n_leaf, logsize;\n    std::vector<typename\
+    \ ActMonoid::set_type> lazy;\n    std::vector<T> data;\n\n    void push(int p)\
+    \ {\n        for (int i = logsize; i > 0; --i) {\n            int a = p >> i;\n\
+    \            if (lazy[a] == ActMonoid::identity) continue;\n            if (a\
+    \ * 2 < n_leaf) {\n                lazy[a * 2] = ActMonoid::operation(lazy[a *\
+    \ 2], lazy[a]);\n                lazy[a * 2 + 1] = ActMonoid::operation(lazy[a\
+    \ * 2 + 1], lazy[a]);\n            } else {\n                int t = a * 2 - n_leaf;\n\
+    \                Action::mapping(data[t], lazy[a]);\n                Action::mapping(data[t\
+    \ + 1], lazy[a]);\n            }\n            lazy[a] = ActMonoid::identity;\n\
+    \        }\n    }\n\n   public:\n    DualSegmentTree(int n, T ident)\n       \
+    \ : _n(n), n_leaf(bit_ceil(_n)), logsize(bit_width(n - 1)), lazy(n_leaf, ActMonoid::identity),\
+    \ data(n_leaf, ident) {}\n    DualSegmentTree(const std::vector<T>& v)\n     \
+    \   : _n(v.size()), n_leaf(bit_ceil(_n)), logsize(bit_width(_n - 1)), lazy(n_leaf,\
+    \ ActMonoid::identity), data(n_leaf) {\n        std::copy(v.begin(), v.end(),\
+    \ data.begin());\n    }\n\n    T operator[](int i) const {\n        T res = data[i];\n\
+    \        for (i = (i + n_leaf) >> 1; i > 0; i >>= 1) {\n            Action::mapping(res,\
+    \ lazy[i]);\n        }\n        return res;\n    }\n    void update(int i, T val)\
+    \ {\n        if constexpr (!ActMonoid::commutative) {\n            push(i + n_leaf);\n\
+    \        }\n        data[i] = val;\n    }\n    void apply(int l, int r, T val)\
+    \ {\n        assert(l < r);\n        l += n_leaf;\n        r += n_leaf;\n    \
+    \    if constexpr (!ActMonoid::commutative) {\n            push(l);\n        \
+    \    push(r - 1);\n        }\n        if (l & 1) Action::mapping(data[l++ - n_leaf],\
+    \ val);\n        if (r & 1) Action::mapping(data[--r - n_leaf], val);\n      \
+    \  for (l >>= 1, r >>= 1; l < r; l >>= 1, r >>= 1) {\n            if (l & 1) {\n\
+    \                lazy[l] = ActMonoid::operation(lazy[l], val);\n             \
+    \   ++l;\n            }\n            if (r & 1) {\n                --r;\n    \
+    \            lazy[r] = ActMonoid::operation(lazy[r], val);\n            }\n  \
+    \      }\n    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\n\
     inline bool chmax(T& a, const T& b) {\n    if (a < b) {\n        a = b;\n    \
     \    return 1;\n    }\n    return 0;\n}\ntemplate <class T>\ninline bool chmin(T&\
     \ a, const T& b) {\n    if (b < a) {\n        a = b;\n        return 1;\n    }\n\
@@ -296,7 +299,7 @@ data:
   isVerificationFile: true
   path: test/data/dual_segment_tree_RAQ.test.cpp
   requiredBy: []
-  timestamp: '2022-03-20 20:42:55+09:00'
+  timestamp: '2022-03-23 17:02:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/dual_segment_tree_RAQ.test.cpp

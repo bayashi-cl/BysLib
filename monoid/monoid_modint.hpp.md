@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: acl/acl.hpp
     title: acl/acl.hpp
   - icon: ':heavy_check_mark:'
@@ -11,16 +11,13 @@ data:
     path: monoid/monoid.hpp
     title: monoid/monoid.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: monoid/mapping_modint.hpp
     title: monoid/mapping_modint.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
-    title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#include <iostream>\n#include <atcoder/math>\n#include <atcoder/modint>\n\
@@ -72,14 +69,17 @@ data:
     \ s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
     \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
     \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
-    \    }\n};\n}  // namespace bys\nnamespace bys {\ntemplate <class T>\nstruct AddModint\
-    \ : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr set_type\
-    \ operation(set_type a, set_type b) { return a + b; }\n    static inline const\
-    \ set_type identity = {0};\n    static constexpr bool commutative{true};\n};\n\
-    template <class T>\nstruct AffineModint : Magma<T> {\n    using set_type = std::pair<T,\
-    \ T>;\n    static constexpr set_type operation(set_type a, set_type b) { return\
-    \ {a.first * b.first, a.second * b.first + b.second}; }\n    static inline const\
-    \ set_type identity = {1, 0};\n};\n}  // namespace bys\n"
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
+    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
+    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
+    \ bys\nnamespace bys {\ntemplate <class T>\nstruct AddModint : Magma<T> {\n  \
+    \  using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return a + b; }\n    static inline const set_type identity\
+    \ = {0};\n    static constexpr bool commutative{true};\n};\ntemplate <class T>\n\
+    struct AffineModint : Magma<T> {\n    using set_type = std::pair<T, T>;\n    static\
+    \ constexpr set_type operation(set_type a, set_type b) { return {a.first * b.first,\
+    \ a.second * b.first + b.second}; }\n    static inline const set_type identity\
+    \ = {1, 0};\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../acl/acl.hpp\"\n#include \"mapping.hpp\"\nnamespace\
     \ bys {\ntemplate <class T>\nstruct AddModint : Magma<T> {\n    using typename\
     \ Magma<T>::set_type;\n    static constexpr set_type operation(set_type a, set_type\
@@ -97,10 +97,9 @@ data:
   path: monoid/monoid_modint.hpp
   requiredBy:
   - monoid/mapping_modint.hpp
-  timestamp: '2022-03-20 20:42:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+  timestamp: '2022-03-23 17:02:26+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: monoid/monoid_modint.hpp
 layout: document
 redirect_from:

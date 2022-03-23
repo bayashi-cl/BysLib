@@ -3,7 +3,7 @@ data:
   libraryCategories:
   - name: acl
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: acl/acl.hpp
       title: acl/acl.hpp
     - icon: ':warning:'
@@ -181,6 +181,9 @@ data:
       path: math/matrix.hpp
       title: math/matrix.hpp
     - icon: ':heavy_check_mark:'
+      path: math/modint.hpp
+      title: math/modint.hpp
+    - icon: ':heavy_check_mark:'
       path: math/numeric.hpp
       title: math/numeric.hpp
     - icon: ':heavy_check_mark:'
@@ -197,13 +200,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: monoid/mapping.hpp
       title: monoid/mapping.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: monoid/mapping_modint.hpp
       title: monoid/mapping_modint.hpp
     - icon: ':heavy_check_mark:'
       path: monoid/monoid.hpp
       title: monoid/monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
       path: monoid/monoid_modint.hpp
       title: monoid/monoid_modint.hpp
   - name: string

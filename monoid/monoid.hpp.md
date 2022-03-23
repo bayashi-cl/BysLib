@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: monoid/mapping.hpp
     title: monoid/mapping.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: monoid/mapping_modint.hpp
     title: monoid/mapping_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: monoid/monoid_modint.hpp
     title: monoid/monoid_modint.hpp
   _extendedVerifiedWith:
