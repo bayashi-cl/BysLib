@@ -9,7 +9,7 @@ constexpr ll int_pow(int a, int b) {
     return res;
 }
 template <class T>
-T mod_pow(T p, T q, T mod) {
+constexpr T mod_pow(T p, T q, T mod) {
     T res = 1 % mod;
     p %= mod;
     for (; q; q >>= 1) {
@@ -23,6 +23,12 @@ ll floordiv(ll x, ll y) { return x > 0 ? x / y : (x - y + 1) / y; }
 pair<ll, ll> divmod(ll x, ll y) {
     ll q = floordiv(x, y);
     return {q, x - q * y};
+}
+template <class T, class S>
+constexpr T floormod(T x, S mod) {
+    x %= mod;
+    if (x < 0) x += mod;
+    return x;
 }
 
 ll isqrt_aux(ll c, ll n) {

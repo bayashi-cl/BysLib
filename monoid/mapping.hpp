@@ -49,4 +49,10 @@ struct Mapping<Add<T>, Affine<S>> {
         t = t * s.first + w * s.second;
     }
 };
+template <class T, class S>
+struct Mapping<Max<T>, Update<S>> {
+    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type s, int) {
+        if (s.has_value()) t = s.value();
+    }
+};
 }  // namespace bys
