@@ -2,57 +2,69 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: algorithm/run_length.hpp
+    title: Run Length Encoding
+  - icon: ':question:'
     path: core/const.hpp
-    title: core/const.hpp
-  - icon: ':heavy_check_mark:'
+    title: Const
+  - icon: ':question:'
     path: core/core.hpp
-    title: core/core.hpp
-  - icon: ':heavy_check_mark:'
+    title: core/all
+  - icon: ':question:'
     path: core/io.hpp
-    title: core/io.hpp
-  - icon: ':heavy_check_mark:'
+    title: I/O
+  - icon: ':question:'
     path: core/printer.hpp
-    title: core/printer.hpp
-  - icon: ':heavy_check_mark:'
+    title: Output
+  - icon: ':question:'
     path: core/scanner.hpp
-    title: core/scanner.hpp
+    title: Input
+  - icon: ':question:'
+    path: core/solver.hpp
+    title: Solver
+  - icon: ':question:'
+    path: core/types.hpp
+    title: Types
   - icon: ':heavy_check_mark:'
     path: data/binary_indexed_tree.hpp
     title: Binary Indexed Tree
   - icon: ':heavy_check_mark:'
     path: data/cumulative_sum.hpp
-    title: data/cumulative_sum.hpp
+    title: Cumulative Sum
   - icon: ':heavy_check_mark:'
     path: data/dual_segment_tree.hpp
-    title: data/dual_segment_tree.hpp
+    title: Dual Segment Tree
   - icon: ':heavy_check_mark:'
     path: data/lazy_segment_tree.hpp
-    title: data/lazy_segment_tree.hpp
+    title: Lazy Segment Tree
   - icon: ':warning:'
     path: data/ordered_pair.hpp
-    title: Orderd pair
+    title: Orderd Pair
   - icon: ':heavy_check_mark:'
     path: data/segment_tree.hpp
-    title: data/segment_tree.hpp
+    title: Segment Tree
   - icon: ':heavy_check_mark:'
     path: data/sparse_table.hpp
-    title: data/sparse_table.hpp
+    title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: data/union_find.hpp
-    title: data/union_find.hpp
+    title: Union Find Tree
+  - icon: ':warning:'
+    path: dp/inversion.hpp
+    title: dp/inversion.hpp
   - icon: ':heavy_check_mark:'
     path: geometry/base.hpp
-    title: geometry/base.hpp
+    title: Base
   - icon: ':heavy_check_mark:'
     path: geometry/line.hpp
-    title: "\u76F4\u7DDA"
+    title: Line
   - icon: ':heavy_check_mark:'
     path: geometry/point.hpp
-    title: "\u70B9/\u30D9\u30AF\u30C8\u30EB"
+    title: Point
   - icon: ':heavy_check_mark:'
     path: geometry/polygon.hpp
-    title: geometry/polygon.hpp
+    title: Polygon
   - icon: ':heavy_check_mark:'
     path: graph/bellman_ford.hpp
     title: graph/bellman_ford.hpp
@@ -65,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.hpp
     title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - icon: ':heavy_check_mark:'
@@ -85,97 +97,109 @@ data:
     title: graph/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
-    title: "\u5E45\u512A\u5148\u63A2\u7D22"
+    title: Breadth First Search
   - icon: ':warning:'
     path: graphv2/depth_first_search.hpp
-    title: graphv2/depth_first_search.hpp
+    title: Depth First Search
   - icon: ':heavy_check_mark:'
     path: graphv2/dijkstra.hpp
-    title: graphv2/dijkstra.hpp
+    title: Dijkstra
   - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
-    title: graphv2/edge.hpp
+    title: Edge
   - icon: ':heavy_check_mark:'
     path: graphv2/lca.hpp
-    title: graphv2/lca.hpp
+    title: Lowest Common Ancestor
   - icon: ':warning:'
     path: graphv2/reader.hpp
-    title: graphv2/reader.hpp
+    title: Reader
   - icon: ':heavy_check_mark:'
     path: graphv2/result.hpp
-    title: Single Source Shortest Path Result
+    title: Shortest Path Result
   - icon: ':warning:'
     path: graphv2/rooted_tree.hpp
-    title: graphv2/rooted_tree.hpp
+    title: Rooted tree
   - icon: ':warning:'
     path: graphv2/topological_sort.hpp
-    title: graphv2/topological_sort.hpp
+    title: Topological Sort
   - icon: ':heavy_check_mark:'
     path: graphv2/warshall_floyd.hpp
-    title: graphv2/warshall_floyd.hpp
+    title: Warshall Floyd
   - icon: ':warning:'
     path: math/affine.hpp
-    title: math/affine.hpp
+    title: Affine Transformation
   - icon: ':warning:'
     path: math/base.hpp
-    title: math/base.hpp
-  - icon: ':heavy_check_mark:'
+    title: Base conversion
+  - icon: ':question:'
     path: math/bit.hpp
-    title: math/bit.hpp
+    title: Bit
   - icon: ':heavy_check_mark:'
     path: math/combination.hpp
-    title: math/combination.hpp
+    title: Binomial Coefficient
   - icon: ':warning:'
     path: math/divisor.hpp
-    title: math/divisor.hpp
-  - icon: ':warning:'
+    title: Divisor
+  - icon: ':heavy_check_mark:'
     path: math/euclid.hpp
-    title: math/euclid.hpp
+    title: Extended Euclidean Algorithm
   - icon: ':warning:'
     path: math/fraction.hpp
-    title: "\u6709\u7406\u6570"
+    title: Fraction
   - icon: ':warning:'
     path: math/matrix.hpp
-    title: math/matrix.hpp
+    title: Matrix
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
-    title: math/modint.hpp
-  - icon: ':heavy_check_mark:'
+    title: Modint
+  - icon: ':question:'
     path: math/numeric.hpp
-    title: math/numeric.hpp
+    title: Numeric
   - icon: ':heavy_check_mark:'
     path: math/osa_k.hpp
-    title: math/osa_k.hpp
-  - icon: ':heavy_check_mark:'
+    title: Osa-k
+  - icon: ':question:'
     path: math/prime.hpp
-    title: Miller-Rabin
+    title: Prime
   - icon: ':warning:'
     path: math/sequence.hpp
-    title: "\u6570\u5217"
+    title: Sequence
   - icon: ':warning:'
     path: string/ascii.hpp
-    title: string/ascii.hpp
+    title: Alphabet
   - icon: ':warning:'
-    path: string/zfill.hpp
-    title: string/zfill.hpp
+    path: string/str.hpp
+    title: Python::str
   - icon: ':warning:'
     path: utility/binary_search.hpp
-    title: "\u4E8C\u5206\u63A2\u7D22\u6CD5"
+    title: Binary Search
+  - icon: ':heavy_check_mark:'
+    path: utility/change.hpp
+    title: chmin/chmax
   - icon: ':warning:'
     path: utility/compress.hpp
-    title: "\u5EA7\u6A19\u5727\u7E2E"
+    title: Coordinate Compression
   - icon: ':warning:'
     path: utility/enumerate.hpp
-    title: utility/enumerate.hpp
+    title: Python::enumerate
+  - icon: ':heavy_check_mark:'
+    path: utility/fixpoint.hpp
+    title: FixPoint
   - icon: ':heavy_check_mark:'
     path: utility/grid.hpp
-    title: "\u30B0\u30EA\u30C3\u30C9\u63A2\u7D22\u7BA1\u7406"
+    title: Grid Manager
   - icon: ':warning:'
     path: utility/itemsorter.hpp
-    title: itemsorter
+    title: ItemSorter
+  - icon: ':warning:'
+    path: utility/itertools.hpp
+    title: Python::itertools
+  - icon: ':question:'
+    path: utility/range.hpp
+    title: Python::range
   - icon: ':warning:'
     path: utility/transformed.hpp
-    title: utility/transformed.hpp
+    title: Transformed
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data/binary_indexed_tree.test.cpp
@@ -186,6 +210,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/cumulative_sum.test.cpp
     title: test/data/cumulative_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/cumulative_sum_2D.test.cpp
+    title: test/data/cumulative_sum_2D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/dual_segment_tree_RAQ.test.cpp
     title: test/data/dual_segment_tree_RAQ.test.cpp
@@ -283,188 +310,52 @@ data:
     path: test/math/combination.test.cpp
     title: test/math/combination.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/euclid.test.cpp
+    title: test/math/euclid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
+    document_title: STL Template
     links: []
-  bundledCode: '#ifndef LOCAL
-
-    #define NDEBUG
-
-    #endif
-
-
-    #include <algorithm>
-
-    #include <array>
-
-    #include <bitset>
-
-    #include <cassert>
-
-    #include <cmath>
-
-    #include <complex>
-
-    #include <functional>
-
-    #include <iomanip>
-
-    #include <iostream>
-
-    #include <iterator>
-
-    #include <limits>
-
-    #include <map>
-
-    #include <numeric>
-
-    #include <queue>
-
-    #include <set>
-
-    #include <stack>
-
-    #include <string>
-
-    #include <type_traits>
-
-    #include <unordered_map>
-
-    #include <unordered_set>
-
-    #include <vector>
-
-
-    namespace bys {
-
-    using std::array, std::vector, std::string, std::set, std::map, std::pair;
-
-    using std::cin, std::cout, std::endl;
-
-    using std::min, std::max, std::sort, std::reverse, std::abs, std::pow;
-
-
-    // alias
-
-    using ll = long long int;
-
-    using ld = long double;
-
-    using Pa = pair<int, int>;
-
-    using Pall = pair<ll, ll>;
-
-    using ibool = std::int8_t;
-
-    template <class T>
-
-    using uset = std::unordered_set<T>;
-
-    template <class S, class T>
-
-    using umap = std::unordered_map<S, T>;
-
-    }  // namespace bys
-
-    '
-  code: '#pragma once
-
-    #ifndef LOCAL
-
-    #define NDEBUG
-
-    #endif
-
-
-    #include <algorithm>
-
-    #include <array>
-
-    #include <bitset>
-
-    #include <cassert>
-
-    #include <cmath>
-
-    #include <complex>
-
-    #include <functional>
-
-    #include <iomanip>
-
-    #include <iostream>
-
-    #include <iterator>
-
-    #include <limits>
-
-    #include <map>
-
-    #include <numeric>
-
-    #include <queue>
-
-    #include <set>
-
-    #include <stack>
-
-    #include <string>
-
-    #include <type_traits>
-
-    #include <unordered_map>
-
-    #include <unordered_set>
-
-    #include <vector>
-
-
-    namespace bys {
-
-    using std::array, std::vector, std::string, std::set, std::map, std::pair;
-
-    using std::cin, std::cout, std::endl;
-
-    using std::min, std::max, std::sort, std::reverse, std::abs, std::pow;
-
-
-    // alias
-
-    using ll = long long int;
-
-    using ld = long double;
-
-    using Pa = pair<int, int>;
-
-    using Pall = pair<ll, ll>;
-
-    using ibool = std::int8_t;
-
-    template <class T>
-
-    using uset = std::unordered_set<T>;
-
-    template <class S, class T>
-
-    using umap = std::unordered_map<S, T>;
-
-    }  // namespace bys
-
-    '
+  bundledCode: "/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
+    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
+    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
+    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
+    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
+    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
+    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
+    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
+    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
+    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
+    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
+    \ T>;\n}  // namespace bys\n"
+  code: "#pragma once\n/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief\
+    \ STL Template\n */\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n\
+    #include <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n\
+    #include <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include\
+    \ <stack>\n#include <string>\n#include <type_traits>\n#include <unordered_map>\n\
+    #include <unordered_set>\n#include <vector>\n\nnamespace bys {\nusing std::array,\
+    \ std::vector, std::string, std::set, std::map, std::pair;\nusing std::cin, std::cout,\
+    \ std::endl;\nusing std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\
+    \n// alias\nusing ll = long long int;\nusing ld = long double;\nusing Pa = pair<int,\
+    \ int>;\nusing Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class\
+    \ T>\nusing uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing\
+    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n"
   dependsOn: []
   isVerificationFile: false
   path: core/stdlib.hpp
@@ -485,19 +376,25 @@ data:
   - core/core.hpp
   - core/scanner.hpp
   - core/const.hpp
+  - core/solver.hpp
   - core/io.hpp
   - core/printer.hpp
+  - core/types.hpp
   - geometry/line.hpp
   - geometry/point.hpp
   - geometry/polygon.hpp
   - geometry/base.hpp
+  - utility/fixpoint.hpp
   - utility/itemsorter.hpp
+  - utility/itertools.hpp
   - utility/binary_search.hpp
   - utility/transformed.hpp
   - utility/grid.hpp
   - utility/compress.hpp
+  - utility/range.hpp
   - utility/enumerate.hpp
-  - string/zfill.hpp
+  - utility/change.hpp
+  - string/str.hpp
   - string/ascii.hpp
   - data/dual_segment_tree.hpp
   - data/union_find.hpp
@@ -507,6 +404,7 @@ data:
   - data/lazy_segment_tree.hpp
   - data/segment_tree.hpp
   - data/sparse_table.hpp
+  - algorithm/run_length.hpp
   - graphv2/edge.hpp
   - graphv2/depth_first_search.hpp
   - graphv2/result.hpp
@@ -517,6 +415,7 @@ data:
   - graphv2/breadth_first_search.hpp
   - graphv2/dijkstra.hpp
   - graphv2/rooted_tree.hpp
+  - dp/inversion.hpp
   - graph/edge.hpp
   - graph/depth_first.hpp
   - graph/reader.hpp
@@ -527,12 +426,13 @@ data:
   - graph/lca.hpp
   - graph/dijkstra.hpp
   - graph/bellman_ford.hpp
-  timestamp: '2022-03-16 21:14:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-28 23:40:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp
   - test/math/combination.test.cpp
+  - test/math/euclid.test.cpp
   - test/geometry/area.test.cpp
   - test/geometry/counter_clockwise.test.cpp
   - test/geometry/reflection.test.cpp
@@ -548,6 +448,7 @@ data:
   - test/data/segment_tree_RSQ2.test.cpp
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+  - test/data/cumulative_sum_2D.test.cpp
   - test/data/dual_segment_tree_RAQ.test.cpp
   - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
   - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
@@ -574,5 +475,5 @@ layout: document
 redirect_from:
 - /library/core/stdlib.hpp
 - /library/core/stdlib.hpp.html
-title: core/stdlib.hpp
+title: STL Template
 ---

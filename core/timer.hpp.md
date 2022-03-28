@@ -7,12 +7,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
+    document_title: Timer
     links: []
-  bundledCode: "#include <chrono>\n\nnamespace bys {\nstruct Timer {\n    std::chrono::time_point<std::chrono::system_clock>\
+  bundledCode: "/**\n * @file timer.hpp\n * @author bayashi_cl\n * @brief Timer\n\
+    \ */\n#include <chrono>\nnamespace bys {\nstruct Timer {\n    std::chrono::time_point<std::chrono::system_clock>\
     \ end;\n    Timer(int ms) { end = std::chrono::system_clock::now() + std::chrono::milliseconds(ms);\
     \ }\n    inline bool counting() const { return std::chrono::system_clock::now()\
     \ <= end; }\n};\n}  // namespace bys\n"
-  code: "#pragma once\n#include <chrono>\n\nnamespace bys {\nstruct Timer {\n    std::chrono::time_point<std::chrono::system_clock>\
+  code: "#pragma once\n/**\n * @file timer.hpp\n * @author bayashi_cl\n * @brief Timer\n\
+    \ */\n#include <chrono>\nnamespace bys {\nstruct Timer {\n    std::chrono::time_point<std::chrono::system_clock>\
     \ end;\n    Timer(int ms) { end = std::chrono::system_clock::now() + std::chrono::milliseconds(ms);\
     \ }\n    inline bool counting() const { return std::chrono::system_clock::now()\
     \ <= end; }\n};\n}  // namespace bys\n"
@@ -20,7 +23,7 @@ data:
   isVerificationFile: false
   path: core/timer.hpp
   requiredBy: []
-  timestamp: '2021-12-30 14:46:37+09:00'
+  timestamp: '2022-03-28 23:40:03+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: core/timer.hpp
@@ -28,5 +31,5 @@ layout: document
 redirect_from:
 - /library/core/timer.hpp
 - /library/core/timer.hpp.html
-title: core/timer.hpp
+title: Timer
 ---

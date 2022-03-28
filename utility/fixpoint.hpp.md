@@ -1,13 +1,16 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: core/stdlib.hpp
+    title: STL Template
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/util.hpp
     title: graph/util.hpp
   - icon: ':heavy_check_mark:'
     path: graphv2/lca.hpp
-    title: graphv2/lca.hpp
+    title: Lowest Common Ancestor
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/graphv2/lca.test.cpp
@@ -16,26 +19,43 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#include <utility>\nnamespace bys {\ntemplate <typename F>\nstruct\
-    \ FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)} {}\n    template\
-    \ <typename... Args>\n    decltype(auto) operator()(Args&&... args) const {\n\
-    \        return F::operator()(*this, std::forward<Args>(args)...);\n    }\n};\n\
-    template <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f) {\n    return\
-    \ std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\n"
-  code: "#pragma once\n#include <utility>\nnamespace bys {\ntemplate <typename F>\n\
-    struct FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)} {}\n    template\
-    \ <typename... Args>\n    decltype(auto) operator()(Args&&... args) const {\n\
-    \        return F::operator()(*this, std::forward<Args>(args)...);\n    }\n};\n\
-    template <typename F>\ninline FixPoint<std::decay_t<F>> fix(F&& f) {\n    return\
-    \ std::forward<std::decay_t<F>>(f);\n}\n}  // namespace bys\n"
-  dependsOn: []
+    document_title: FixPoint
+    links:
+    - https://koturn.hatenablog.com/entry/2018/06/10/060000
+  bundledCode: "/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
+    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
+    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
+    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
+    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
+    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
+    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
+    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
+    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
+    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
+    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
+    \ T>;\n}  // namespace bys\n/**\n * @file fixpoint.hpp\n * @author bayashi_cl\n\
+    \ * @brief FixPoint\n */\nnamespace bys {\n/**\n * @brief \u30E9\u30E0\u30C0\u518D\
+    \u5E30\n *\n * See: https://koturn.hatenablog.com/entry/2018/06/10/060000\n */\n\
+    template <typename F>\nstruct FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)}\
+    \ {}\n    template <typename... Args>\n    decltype(auto) operator()(Args&&...\
+    \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n}  // namespace bys\n"
+  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n/**\n * @file fixpoint.hpp\n\
+    \ * @author bayashi_cl\n * @brief FixPoint\n */\nnamespace bys {\n/**\n * @brief\
+    \ \u30E9\u30E0\u30C0\u518D\u5E30\n *\n * See: https://koturn.hatenablog.com/entry/2018/06/10/060000\n\
+    \ */\ntemplate <typename F>\nstruct FixPoint : F {\n    FixPoint(F&& f) : F{std::forward<F>(f)}\
+    \ {}\n    template <typename... Args>\n    decltype(auto) operator()(Args&&...\
+    \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \    }\n};\n}  // namespace bys\n"
+  dependsOn:
+  - core/stdlib.hpp
   isVerificationFile: false
   path: utility/fixpoint.hpp
   requiredBy:
   - graphv2/lca.hpp
   - graph/util.hpp
-  timestamp: '2022-01-20 13:40:31+09:00'
+  timestamp: '2022-03-28 23:40:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graphv2/lca.test.cpp
@@ -44,5 +64,5 @@ layout: document
 redirect_from:
 - /library/utility/fixpoint.hpp
 - /library/utility/fixpoint.hpp.html
-title: utility/fixpoint.hpp
+title: FixPoint
 ---

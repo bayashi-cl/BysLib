@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
-    title: core/stdlib.hpp
+    title: STL Template
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
-    title: core/core.hpp
+    title: core/all
   - icon: ':heavy_check_mark:'
     path: graph/bellman_ford.hpp
     title: graph/bellman_ford.hpp
@@ -22,19 +22,19 @@ data:
     title: graph/warshall_floyd.hpp
   - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
-    title: "\u5E45\u512A\u5148\u63A2\u7D22"
+    title: Breadth First Search
   - icon: ':heavy_check_mark:'
     path: graphv2/dijkstra.hpp
-    title: graphv2/dijkstra.hpp
+    title: Dijkstra
   - icon: ':heavy_check_mark:'
     path: graphv2/result.hpp
-    title: Single Source Shortest Path Result
+    title: Shortest Path Result
   - icon: ':heavy_check_mark:'
     path: graphv2/warshall_floyd.hpp
-    title: graphv2/warshall_floyd.hpp
+    title: Warshall Floyd
   - icon: ':heavy_check_mark:'
     path: math/combination.hpp
-    title: math/combination.hpp
+    title: Binomial Coefficient
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data/binary_indexed_tree.test.cpp
@@ -45,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/cumulative_sum.test.cpp
     title: test/data/cumulative_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/cumulative_sum_2D.test.cpp
+    title: test/data/cumulative_sum_2D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/dual_segment_tree_RAQ.test.cpp
     title: test/data/dual_segment_tree_RAQ.test.cpp
@@ -142,135 +145,48 @@ data:
     path: test/math/combination.test.cpp
     title: test/math/combination.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/euclid.test.cpp
+    title: test/math/euclid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
+    document_title: Const
     links: []
-  bundledCode: '#ifndef LOCAL
-
-    #define NDEBUG
-
-    #endif
-
-
-    #include <algorithm>
-
-    #include <array>
-
-    #include <bitset>
-
-    #include <cassert>
-
-    #include <cmath>
-
-    #include <complex>
-
-    #include <functional>
-
-    #include <iomanip>
-
-    #include <iostream>
-
-    #include <iterator>
-
-    #include <limits>
-
-    #include <map>
-
-    #include <numeric>
-
-    #include <queue>
-
-    #include <set>
-
-    #include <stack>
-
-    #include <string>
-
-    #include <type_traits>
-
-    #include <unordered_map>
-
-    #include <unordered_set>
-
-    #include <vector>
-
-
-    namespace bys {
-
-    using std::array, std::vector, std::string, std::set, std::map, std::pair;
-
-    using std::cin, std::cout, std::endl;
-
-    using std::min, std::max, std::sort, std::reverse, std::abs, std::pow;
-
-
-    // alias
-
-    using ll = long long int;
-
-    using ld = long double;
-
-    using Pa = pair<int, int>;
-
-    using Pall = pair<ll, ll>;
-
-    using ibool = std::int8_t;
-
-    template <class T>
-
-    using uset = std::unordered_set<T>;
-
-    template <class S, class T>
-
-    using umap = std::unordered_map<S, T>;
-
-    }  // namespace bys
-
-
-    namespace bys {
-
-    constexpr int MOD = 998244353;
-
-    constexpr int MOD7 = 1000000007;
-
-    constexpr int INF = std::numeric_limits<int>::max() / 2;
-
-    constexpr ll LINF = std::numeric_limits<ll>::max() / 2;
-
-    }  // namespace bys
-
-    '
-  code: '#pragma once
-
-    #include "stdlib.hpp"
-
-
-    namespace bys {
-
-    constexpr int MOD = 998244353;
-
-    constexpr int MOD7 = 1000000007;
-
-    constexpr int INF = std::numeric_limits<int>::max() / 2;
-
-    constexpr ll LINF = std::numeric_limits<ll>::max() / 2;
-
-    }  // namespace bys
-
-    '
+  bundledCode: "/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
+    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
+    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
+    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
+    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
+    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
+    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
+    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
+    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
+    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
+    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
+    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
+    \ T>;\n}  // namespace bys\n/**\n * @file const.hpp\n * @author bayashi_cl\n *\
+    \ @brief Const\n */\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr\
+    \ int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
+    \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
+    \ bys\n"
+  code: "#pragma once\n#include \"stdlib.hpp\"\n/**\n * @file const.hpp\n * @author\
+    \ bayashi_cl\n * @brief Const\n */\nnamespace bys {\nconstexpr int MOD = 998244353;\n\
+    constexpr int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
+    \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
+    \ bys\n"
   dependsOn:
   - core/stdlib.hpp
   isVerificationFile: false
@@ -286,12 +202,13 @@ data:
   - graph/warshall_floyd.hpp
   - graph/dijkstra.hpp
   - graph/bellman_ford.hpp
-  timestamp: '2022-03-16 21:14:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-28 23:40:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp
   - test/math/combination.test.cpp
+  - test/math/euclid.test.cpp
   - test/geometry/area.test.cpp
   - test/geometry/counter_clockwise.test.cpp
   - test/geometry/reflection.test.cpp
@@ -307,6 +224,7 @@ data:
   - test/data/segment_tree_RSQ2.test.cpp
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+  - test/data/cumulative_sum_2D.test.cpp
   - test/data/dual_segment_tree_RAQ.test.cpp
   - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
   - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
@@ -333,5 +251,5 @@ layout: document
 redirect_from:
 - /library/core/const.hpp
 - /library/core/const.hpp.html
-title: core/const.hpp
+title: Const
 ---

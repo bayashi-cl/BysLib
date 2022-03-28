@@ -12,38 +12,51 @@ data:
     - icon: ':warning:'
       path: acl/segtree_wrap.hpp
       title: acl/segtree_wrap.hpp
-  - name: core
+  - name: algebra
     pages:
     - icon: ':heavy_check_mark:'
+      path: algebra/mapping.hpp
+      title: Mapping
+    - icon: ':heavy_check_mark:'
+      path: algebra/monoid.hpp
+      title: Monoid
+  - name: algorithm
+    pages:
+    - icon: ':warning:'
+      path: algorithm/run_length.hpp
+      title: Run Length Encoding
+  - name: core
+    pages:
+    - icon: ':question:'
       path: core/const.hpp
-      title: core/const.hpp
-    - icon: ':heavy_check_mark:'
+      title: Const
+    - icon: ':question:'
       path: core/core.hpp
-      title: core/core.hpp
-    - icon: ':heavy_check_mark:'
+      title: core/all
+    - icon: ':question:'
       path: core/io.hpp
-      title: core/io.hpp
-    - icon: ':heavy_check_mark:'
+      title: I/O
+    - icon: ':question:'
       path: core/macro.hpp
-      title: "\u30DE\u30AF\u30ED"
-    - icon: ':heavy_check_mark:'
+      title: Macro
+    - icon: ':question:'
       path: core/printer.hpp
-      title: core/printer.hpp
-    - icon: ':heavy_check_mark:'
+      title: Output
+    - icon: ':question:'
       path: core/scanner.hpp
-      title: core/scanner.hpp
-    - icon: ':heavy_check_mark:'
+      title: Input
+    - icon: ':question:'
       path: core/solver.hpp
-      title: core/solver.hpp
-    - icon: ':heavy_check_mark:'
+      title: Solver
+    - icon: ':question:'
       path: core/stdlib.hpp
-      title: core/stdlib.hpp
+      title: STL Template
     - icon: ':warning:'
       path: core/timer.hpp
-      title: core/timer.hpp
-    - icon: ':heavy_check_mark:'
+      title: Timer
+    - icon: ':question:'
       path: core/types.hpp
-      title: core/types.hpp
+      title: Types
   - name: data
     pages:
     - icon: ':heavy_check_mark:'
@@ -51,42 +64,47 @@ data:
       title: Binary Indexed Tree
     - icon: ':heavy_check_mark:'
       path: data/cumulative_sum.hpp
-      title: data/cumulative_sum.hpp
+      title: Cumulative Sum
     - icon: ':heavy_check_mark:'
       path: data/dual_segment_tree.hpp
-      title: data/dual_segment_tree.hpp
+      title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
       path: data/lazy_segment_tree.hpp
-      title: data/lazy_segment_tree.hpp
+      title: Lazy Segment Tree
     - icon: ':warning:'
       path: data/ordered_pair.hpp
-      title: Orderd pair
+      title: Orderd Pair
     - icon: ':warning:'
       path: data/ordered_set.hpp
-      title: data/ordered_set.hpp
+      title: Ordered Set
     - icon: ':heavy_check_mark:'
       path: data/segment_tree.hpp
-      title: data/segment_tree.hpp
+      title: Segment Tree
     - icon: ':heavy_check_mark:'
       path: data/sparse_table.hpp
-      title: data/sparse_table.hpp
+      title: Sparse Table
     - icon: ':heavy_check_mark:'
       path: data/union_find.hpp
-      title: data/union_find.hpp
+      title: Union Find Tree
+  - name: dp
+    pages:
+    - icon: ':warning:'
+      path: dp/inversion.hpp
+      title: dp/inversion.hpp
   - name: geometry
     pages:
     - icon: ':heavy_check_mark:'
       path: geometry/base.hpp
-      title: geometry/base.hpp
+      title: Base
     - icon: ':heavy_check_mark:'
       path: geometry/line.hpp
-      title: "\u76F4\u7DDA"
+      title: Line
     - icon: ':heavy_check_mark:'
       path: geometry/point.hpp
-      title: "\u70B9/\u30D9\u30AF\u30C8\u30EB"
+      title: Point
     - icon: ':heavy_check_mark:'
       path: geometry/polygon.hpp
-      title: geometry/polygon.hpp
+      title: Polygon
   - name: graph
     pages:
     - icon: ':heavy_check_mark:'
@@ -101,7 +119,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/edge.hpp
       title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     - icon: ':heavy_check_mark:'
@@ -123,100 +141,83 @@ data:
     pages:
     - icon: ':heavy_check_mark:'
       path: graphv2/breadth_first_search.hpp
-      title: "\u5E45\u512A\u5148\u63A2\u7D22"
+      title: Breadth First Search
     - icon: ':warning:'
       path: graphv2/depth_first_search.hpp
-      title: graphv2/depth_first_search.hpp
+      title: Depth First Search
     - icon: ':heavy_check_mark:'
       path: graphv2/dijkstra.hpp
-      title: graphv2/dijkstra.hpp
+      title: Dijkstra
     - icon: ':heavy_check_mark:'
       path: graphv2/edge.hpp
-      title: graphv2/edge.hpp
+      title: Edge
     - icon: ':heavy_check_mark:'
       path: graphv2/lca.hpp
-      title: graphv2/lca.hpp
+      title: Lowest Common Ancestor
     - icon: ':warning:'
       path: graphv2/reader.hpp
-      title: graphv2/reader.hpp
+      title: Reader
     - icon: ':heavy_check_mark:'
       path: graphv2/result.hpp
-      title: Single Source Shortest Path Result
+      title: Shortest Path Result
     - icon: ':warning:'
       path: graphv2/rooted_tree.hpp
-      title: graphv2/rooted_tree.hpp
+      title: Rooted tree
     - icon: ':warning:'
       path: graphv2/topological_sort.hpp
-      title: graphv2/topological_sort.hpp
+      title: Topological Sort
     - icon: ':heavy_check_mark:'
       path: graphv2/warshall_floyd.hpp
-      title: graphv2/warshall_floyd.hpp
+      title: Warshall Floyd
   - name: math
     pages:
     - icon: ':warning:'
       path: math/affine.hpp
-      title: math/affine.hpp
-    - icon: ':heavy_check_mark:'
-      path: math/algebra.hpp
-      title: math/algebra.hpp
+      title: Affine Transformation
     - icon: ':warning:'
       path: math/base.hpp
-      title: math/base.hpp
-    - icon: ':heavy_check_mark:'
+      title: Base conversion
+    - icon: ':question:'
       path: math/bit.hpp
-      title: math/bit.hpp
+      title: Bit
     - icon: ':heavy_check_mark:'
       path: math/combination.hpp
-      title: math/combination.hpp
+      title: Binomial Coefficient
     - icon: ':warning:'
       path: math/divisor.hpp
-      title: math/divisor.hpp
-    - icon: ':warning:'
+      title: Divisor
+    - icon: ':heavy_check_mark:'
       path: math/euclid.hpp
-      title: math/euclid.hpp
+      title: Extended Euclidean Algorithm
     - icon: ':warning:'
       path: math/fraction.hpp
-      title: "\u6709\u7406\u6570"
+      title: Fraction
     - icon: ':warning:'
       path: math/matrix.hpp
-      title: math/matrix.hpp
+      title: Matrix
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
-      title: math/modint.hpp
-    - icon: ':heavy_check_mark:'
+      title: Modint
+    - icon: ':question:'
       path: math/numeric.hpp
-      title: math/numeric.hpp
+      title: Numeric
     - icon: ':heavy_check_mark:'
       path: math/osa_k.hpp
-      title: math/osa_k.hpp
-    - icon: ':heavy_check_mark:'
+      title: Osa-k
+    - icon: ':question:'
       path: math/prime.hpp
-      title: Miller-Rabin
+      title: Prime
     - icon: ':warning:'
       path: math/sequence.hpp
-      title: "\u6570\u5217"
-  - name: monoid
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: monoid/mapping.hpp
-      title: monoid/mapping.hpp
-    - icon: ':warning:'
-      path: monoid/mapping_modint.hpp
-      title: monoid/mapping_modint.hpp
-    - icon: ':heavy_check_mark:'
-      path: monoid/monoid.hpp
-      title: monoid/monoid.hpp
-    - icon: ':warning:'
-      path: monoid/monoid_modint.hpp
-      title: monoid/monoid_modint.hpp
+      title: Sequence
   - name: string
     pages:
     - icon: ':warning:'
       path: string/ascii.hpp
-      title: string/ascii.hpp
+      title: Alphabet
     - icon: ':warning:'
-      path: string/zfill.hpp
-      title: string/zfill.hpp
+      path: string/str.hpp
+      title: Python::str
   - name: .
     pages:
     - icon: ':warning:'
@@ -226,34 +227,34 @@ data:
     pages:
     - icon: ':warning:'
       path: utility/binary_search.hpp
-      title: "\u4E8C\u5206\u63A2\u7D22\u6CD5"
+      title: Binary Search
     - icon: ':heavy_check_mark:'
       path: utility/change.hpp
-      title: utility/change.hpp
+      title: chmin/chmax
     - icon: ':warning:'
       path: utility/compress.hpp
-      title: "\u5EA7\u6A19\u5727\u7E2E"
+      title: Coordinate Compression
     - icon: ':warning:'
       path: utility/enumerate.hpp
-      title: utility/enumerate.hpp
+      title: Python::enumerate
     - icon: ':heavy_check_mark:'
       path: utility/fixpoint.hpp
-      title: utility/fixpoint.hpp
+      title: FixPoint
     - icon: ':heavy_check_mark:'
       path: utility/grid.hpp
-      title: "\u30B0\u30EA\u30C3\u30C9\u63A2\u7D22\u7BA1\u7406"
+      title: Grid Manager
     - icon: ':warning:'
       path: utility/itemsorter.hpp
-      title: itemsorter
+      title: ItemSorter
     - icon: ':warning:'
       path: utility/itertools.hpp
-      title: utility/itertools.hpp
-    - icon: ':heavy_check_mark:'
+      title: Python::itertools
+    - icon: ':question:'
       path: utility/range.hpp
-      title: "Python\u306Erange"
+      title: Python::range
     - icon: ':warning:'
       path: utility/transformed.hpp
-      title: utility/transformed.hpp
+      title: Transformed
   verificationCategories:
   - name: test/data
     pages:
@@ -266,6 +267,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data/cumulative_sum.test.cpp
       title: test/data/cumulative_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data/cumulative_sum_2D.test.cpp
+      title: test/data/cumulative_sum_2D.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/data/dual_segment_tree_RAQ.test.cpp
       title: test/data/dual_segment_tree_RAQ.test.cpp
@@ -371,19 +375,22 @@ data:
       path: test/math/combination.test.cpp
       title: test/math/combination.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/math/euclid.test.cpp
+      title: test/math/euclid.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/math/osa_k.test.cpp
       title: test/math/osa_k.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/prime.test.cpp
       title: test/math/prime.test.cpp
   - name: test
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/test.test.cpp
       title: test/test.test.cpp
   - name: test/utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/utility/range.test.cpp
       title: test/utility/range.test.cpp
 layout: toppage

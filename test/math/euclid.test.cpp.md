@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: algebra/monoid.hpp
-    title: Monoid
   - icon: ':question:'
     path: core/const.hpp
     title: Const
@@ -32,11 +29,8 @@ data:
     path: core/types.hpp
     title: Types
   - icon: ':heavy_check_mark:'
-    path: data/segment_tree.hpp
-    title: Segment Tree
-  - icon: ':question:'
-    path: math/bit.hpp
-    title: Bit
+    path: math/euclid.hpp
+    title: Extended Euclidean Algorithm
   - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: chmin/chmax
@@ -50,36 +44,15 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
-  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
-    \n#include <optional>\n#include <utility>\n/**\n * @file monoid.hpp\n * @author\
-    \ bayashi_cl\n * @brief Monoid\n *\n * \u30E2\u30CE\u30A4\u30C9\n */\nnamespace\
-    \ bys {\ntemplate <class T>\nstruct Magma {\n    using set_type = T;\n    static\
-    \ constexpr set_type operation(set_type a, set_type b);\n    static constexpr\
-    \ bool commutative{false};\n};\ntemplate <class T>\nstruct Add : Magma<T> {\n\
-    \    using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return a + b; }\n    static constexpr set_type identity{0};\n\
-    \    static constexpr bool commutative{true};\n};\ntemplate <class T>\nstruct\
-    \ Min : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr\
-    \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
-    \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
-    \ <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return std::max(a,\
-    \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
-    };\ntemplate <class T>\nstruct Update : Magma<T> {\n    using set_type = std::optional<T>;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
-    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
-    \ <class T>\nstruct Affine : Magma<T> {\n    using set_type = std::pair<T, T>;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return {a.first\
-    \ * b.first, a.second * b.first + b.second}; }\n    static constexpr set_type\
-    \ identity{1, 0};\n};\n}  // namespace bys\n/**\n * @file core.hpp\n * @author\
-    \ bayashi_cl\n * @brief core/all\n * \n * C++ library for competitive programming\
-    \ by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n * Document\
-    \ : https://bayashi-cl.github.io/byslib/\n */\n/**\n * @file stdlib.hpp\n * @author\
-    \ bayashi_cl\n * @brief STL Template\n */\n#include <algorithm>\n#include <array>\n\
-    #include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E\"\
+    \n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n * \n * C++\
+    \ library for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
+    \ * Document : https://bayashi-cl.github.io/byslib/\n */\n/**\n * @file stdlib.hpp\n\
+    \ * @author bayashi_cl\n * @brief STL Template\n */\n#include <algorithm>\n#include\
+    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
     #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
     #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
     \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
@@ -201,78 +174,22 @@ data:
     \ * @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n  \
     \  Solver() {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\
     \u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <=\
-    \ rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n/**\n * @file bit.hpp\n\
-    \ * @author bayashi_cl\n * @brief Bit\n * @note c++20\u3067<bit>\u304C\u8FFD\u52A0\
-    \u3055\u308C\u308B\n */\nnamespace bys {\n/**\n * @brief bit\u5E45\n *\n * bit_width(x)\
-    \ - 1  < log2(x) <= bit_width(x)\n */\ntemplate <class T>\nconstexpr int bit_width(T\
-    \ x) {\n    int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++)\
-    \ x >>= 1;\n    return bits;\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\u4E0B\u3052\
-    \ntemplate <class T>\nconstexpr T bit_floor(T x) {\n    assert(x >= 0);\n    return\
-    \ x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\
-    \u4E0A\u3052\ntemplate <class T>\nconstexpr T bit_ceil(T x) {\n    assert(x >=\
-    \ 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n}\n//! @brief 2\u9032\
-    \u6587\u5B57\u5217\u306B\u5909\u63DB\ntemplate <class T>\nstd::string bin(T n)\
-    \ {\n    assert(n > 0);\n    if (n == 0) return \"0\";\n    std::string res;\n\
-    \    while (n > 0) {\n        res.push_back(n & 1 ? '1' : '0');\n        n >>=\
-    \ 1;\n    }\n    std::reverse(res.begin(), res.end());\n    return res;\n}\n//!\
-    \ @brief d bit\u76EE\u304C\u7ACB\u3063\u3066\u3044\u308B\u304B\ntemplate <class\
-    \ T>\nconstexpr bool pop(T s, int d) {\n    return s & (T(1) << d);\n}\n}  //\
-    \ namespace bys\n/**\n * @file segment_tree.hpp\n * @author bayashi_cl\n * @brief\
-    \ Segment Tree\n */\nnamespace bys {\n/**\n * @brief \u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728\n *\n * \u4E00\u70B9\u66F4\u65B0: O(logN)\n * \u533A\u9593\u53D6\u5F97\
-    : O(logN)\n *\n * @tparam Monoid \u30E2\u30CE\u30A4\u30C9\n */\ntemplate <class\
-    \ Monoid>\nclass SegmentTree {\n    using value_type = typename Monoid::set_type;\n\
-    \    int _n, n_leaf;\n    std::vector<value_type> data;\n\n   public:\n    SegmentTree(int\
-    \ n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity) {}\n   \
-    \ SegmentTree(const vector<value_type>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
-    \ data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(),\
-    \ data.begin() + n_leaf);\n        for (int i = n_leaf - 1; i > 0; --i) data[i]\
-    \ = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    value_type\
-    \ query(int l, int r) const {\n        assert(0 <= l && l < _n);\n        assert(l\
-    \ <= r);\n        assert(r <= _n);\n\n        value_type left = Monoid::identity,\
-    \ right = Monoid::identity;\n        for (l += n_leaf, r += n_leaf; l < r; l >>=\
-    \ 1, r >>= 1) {\n            if (l & 1) left = Monoid::operation(left, data[l++]);\n\
-    \            if (r & 1) right = Monoid::operation(data[--r], right);\n       \
-    \ }\n        return Monoid::operation(left, right);\n    }\n\n    value_type query_all()\
-    \ const { return data[1]; }\n\n    void update(int i, value_type val) {\n    \
-    \    assert(0 <= i && i < _n);\n        i += n_leaf;\n        data[i] = val;\n\
-    \        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i * 2],\
-    \ data[i * 2 + 1]);\n    }\n\n    value_type operator[](int i) const {\n     \
-    \   assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n   \
-    \ // f(query(l, r)) == true \u3068\u306A\u308B\u6700\u5927\u306Er\n    template\
-    \ <class Lambda, class... Args>\n    int bisect_from_left(int l, Lambda f, Args...\
-    \ args) const {\n        static_assert(std::is_same_v<std::invoke_result_t<Lambda,\
-    \ value_type, Args...>, bool>,\n                      \"The function signature\
-    \ is invalid.\");\n        assert(0 <= l && l < _n);\n        assert(f(Monoid::identity,\
-    \ args...));\n        l += n_leaf;\n        value_type sm = Monoid::identity;\n\
-    \        do {\n            l /= l & -l;\n            if (!f(Monoid::operation(sm,\
-    \ data[l]), args...)) {\n                while (l < n_leaf) {\n              \
-    \      l *= 2;\n                    if (value_type op = Monoid::operation(sm,\
-    \ data[l]); f(op, args...)) {\n                        sm = op;\n            \
-    \            ++l;\n                    }\n                }\n                return\
-    \ l - n_leaf;\n            }\n            sm = Monoid::operation(sm, data[l]);\n\
-    \            ++l;\n        } while ((l & -l) != l);\n        return _n;\n    }\n\
-    \n    // f(query(l, r)) == true \u3068\u306A\u308B\u6700\u5C0F\u306El\n    template\
-    \ <class Lambda, class... Args>\n    int bisect_from_right(int r, Lambda f, Args...\
-    \ args) const {\n        static_assert(std::is_same_v<std::invoke_result_t<Lambda,\
-    \ value_type, Args...>, bool>,\n                      \"The function signature\
-    \ is invalid.\");\n        assert(0 <= r && r <= _n);\n        assert(f(Monoid::identity,\
-    \ args...));\n        if (r == 0) return 0;\n        r += n_leaf;\n        value_type\
-    \ sm = Monoid::identity;\n        do {\n            --r;\n            while (r\
-    \ > 1 && (r % 2)) r >>= 1;\n            if (!f(Monoid::operation(data[r], sm)))\
-    \ {\n                while (r < n_leaf) {\n                    r = (2 * r + 1);\n\
-    \                    if (value_type op = Monoid::operation(data[r], sm); f(op,\
-    \ args...)) {\n                        sm = op;\n                        --r;\n\
-    \                    }\n                }\n                return r + 1 - n_leaf;\n\
-    \            }\n            sm = op(data[r], sm);\n        } while ((r & -r) !=\
-    \ r);\n        return 0;\n    }\n};\n}  // namespace bys\n/**\n * @file change.hpp\n\
-    \ * @author bayashi_cl\n * @brief chmin/chmax\n */\nnamespace bys {\n/**\n * @brief\
-    \ \u6700\u5927\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\
-    \u305F\u3068\u304D\n */\ntemplate <class T>\ninline bool chmax(T& a, const T&\
-    \ b) {\n    return a < b ? a = b, true : false;\n}\n/**\n * @brief \u6700\u5C0F\
-    \u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\
-    \u304D\n */\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n    return\
-    \ a > b ? a = b, true : false;\n}\n}  // namespace bys\n/**\n * @file range.hpp\n\
+    \ rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n/**\n * @file euclid.hpp\n\
+    \ * @author bayashi_cl\n * @brief Extended Euclidean Algorithm\n */\nnamespace\
+    \ bys {\n/**\n * @brief \u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\
+    \u4E92\u9664\u6CD5\n *\n * ax + by = gcd(a, b) \u3092\u6E80\u305F\u3059 (x, y)\
+    \ \u3092\u6C42\u3081\u308B\n * See: https://qiita.com/drken/items/b97ff231e43bce50199a\n\
+    \ *\n * @return std::tuple<int, int, int> {d, x, y} s.t. ax + by = d\n */\ntemplate\
+    \ <class T>\nstd::tuple<T, T, T> ext_gcd(T a, T b) {\n    if (b == 0) return {a,\
+    \ 1, T(0)};\n    auto [d, y, x] = ext_gcd(b, a % b);\n    y -= (a / b) * x;\n\
+    \    return {d, x, y};\n}\n}  // namespace bys\n/**\n * @file change.hpp\n * @author\
+    \ bayashi_cl\n * @brief chmin/chmax\n */\nnamespace bys {\n/**\n * @brief \u6700\
+    \u5927\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\
+    \u3068\u304D\n */\ntemplate <class T>\ninline bool chmax(T& a, const T& b) {\n\
+    \    return a < b ? a = b, true : false;\n}\n/**\n * @brief \u6700\u5C0F\u5024\
+    \u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\
+    \n */\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n    return a\
+    \ > b ? a = b, true : false;\n}\n}  // namespace bys\n/**\n * @file range.hpp\n\
     \ * @author bayashi_cl\n * @brief Python::range\n *\n * Python\u518D\u73FE\u30B7\
     \u30EA\u30FC\u30BA range\u7DE8\n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n\
     \ */\nnamespace bys {\ntemplate <typename T>\nclass Range {\n    T it;\n    const\
@@ -287,25 +204,18 @@ data:
     \ @brief range(stop)\ntemplate <class T>\nRange<T> irange(T stop) {\n    return\
     \ Range(stop);\n}\n//! @brief range(start, stop[, step])\ntemplate <class T>\n\
     Range<T> irange(T start, T stop, T step = 1) {\n    return Range(start, stop,\
-    \ step);\n}\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n\
-    \    auto [n, q] = scanner.read<int, 2>();\n    SegmentTree<Min<int>> seg(n);\n\
-    \    for (UV : irange(q)) {\n        auto [t, x, y] = scanner.read<int, 3>();\n\
-    \        if (t == 0) {\n            seg.update(x, y);\n\n        } else {\n  \
-    \          print(seg.query(x, y + 1));\n        }\n    }\n}\n}  // namespace bys\n\
-    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
-    \ */);\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
-    \n#include \"../../algebra/monoid.hpp\"\n#include \"../../core/core.hpp\"\n#include\
-    \ \"../../data/segment_tree.hpp\"\n#include \"../../utility/change.hpp\"\n#include\
-    \ \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve() {\n   \
-    \ auto [n, q] = scanner.read<int, 2>();\n    SegmentTree<Min<int>> seg(n);\n \
-    \   for (UV : irange(q)) {\n        auto [t, x, y] = scanner.read<int, 3>();\n\
-    \        if (t == 0) {\n            seg.update(x, y);\n\n        } else {\n  \
-    \          print(seg.query(x, y + 1));\n        }\n    }\n}\n}  // namespace bys\n\
+    \ step);\n}\n}  // namespace bys\nnamespace bys {\nvoid Solver::solve() {\n  \
+    \  auto [a, b] = scanner.read<int, 2>();\n    auto [d, x, y] = ext_gcd(a, b);\n\
+    \    print(x, y);\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n\
+    \    solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E\"\
+    \n#include \"../../core/core.hpp\"\n#include \"../../math/euclid.hpp\"\n#include\
+    \ \"../../utility/change.hpp\"\n#include \"../../utility/range.hpp\"\nnamespace\
+    \ bys {\nvoid Solver::solve() {\n    auto [a, b] = scanner.read<int, 2>();\n \
+    \   auto [d, x, y] = ext_gcd(a, b);\n    print(x, y);\n}\n}  // namespace bys\n\
     \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
     \ */);\n    return 0;\n}\n"
   dependsOn:
-  - algebra/monoid.hpp
   - core/core.hpp
   - core/stdlib.hpp
   - core/const.hpp
@@ -315,20 +225,19 @@ data:
   - core/scanner.hpp
   - core/macro.hpp
   - core/solver.hpp
-  - data/segment_tree.hpp
-  - math/bit.hpp
+  - math/euclid.hpp
   - utility/change.hpp
   - utility/range.hpp
   isVerificationFile: true
-  path: test/data/segment_tree_RMQ.test.cpp
+  path: test/math/euclid.test.cpp
   requiredBy: []
   timestamp: '2022-03-28 23:40:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/data/segment_tree_RMQ.test.cpp
+documentation_of: test/math/euclid.test.cpp
 layout: document
 redirect_from:
-- /verify/test/data/segment_tree_RMQ.test.cpp
-- /verify/test/data/segment_tree_RMQ.test.cpp.html
-title: test/data/segment_tree_RMQ.test.cpp
+- /verify/test/math/euclid.test.cpp
+- /verify/test/math/euclid.test.cpp.html
+title: test/math/euclid.test.cpp
 ---

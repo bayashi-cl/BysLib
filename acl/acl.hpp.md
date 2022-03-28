@@ -1,13 +1,7 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: monoid/mapping_modint.hpp
-    title: monoid/mapping_modint.hpp
-  - icon: ':warning:'
-    path: monoid/monoid_modint.hpp
-    title: monoid/monoid_modint.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -33,9 +27,7 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: acl/acl.hpp
-  requiredBy:
-  - monoid/monoid_modint.hpp
-  - monoid/mapping_modint.hpp
+  requiredBy: []
   timestamp: '2022-01-20 13:40:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

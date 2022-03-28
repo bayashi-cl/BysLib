@@ -2,15 +2,15 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
-    title: core/core.hpp
+    title: core/all
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
   - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
-    title: "\u5E45\u512A\u5148\u63A2\u7D22"
+    title: Breadth First Search
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/data/binary_indexed_tree.test.cpp
@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/cumulative_sum.test.cpp
     title: test/data/cumulative_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/data/cumulative_sum_2D.test.cpp
+    title: test/data/cumulative_sum_2D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/data/dual_segment_tree_RAQ.test.cpp
     title: test/data/dual_segment_tree_RAQ.test.cpp
@@ -118,43 +121,48 @@ data:
     path: test/math/combination.test.cpp
     title: test/math/combination.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/math/euclid.test.cpp
+    title: test/math/euclid.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    document_title: "\u30DE\u30AF\u30ED"
+    document_title: Macro
     links: []
-  bundledCode: "// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n */\n#ifdef\
-    \ LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\
-    \u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...)\
-    \ { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__);\
-    \ }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\
-    \u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a,\
-    \ b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
-    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n"
-  code: "#pragma once\n// clang-format off\n/**\n * @brief \u30DE\u30AF\u30ED\n */\n\
-    #ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\
-    \u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...)\
-    \ { std::cerr << \"[debug] line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__);\
-    \ }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\
-    \u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a,\
-    \ b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
-    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
-    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
-    \ + \", func: \" + __func__)\n// clang-format on\n"
+  bundledCode: "/**\n * @file macro.hpp\n * @author bayashi_cl\n * @brief Macro\n\
+    \ */\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\
+    \u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\
+    \u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4)\
+    \ << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n\
+    //! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__);\
+    \ return; }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a,\
+    \ b)\n//! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n\
+    #define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n"
+  code: "#pragma once\n/**\n * @file macro.hpp\n * @author bayashi_cl\n * @brief Macro\n\
+    \ */\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\u30B0\u7528\
+    \u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\u3057\u306A\
+    \u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\" << std::setw(4)\
+    \ << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n#endif\n\
+    //! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__);\
+    \ return; }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a,\
+    \ b)\n//! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\u6210\u3002\n\
+    #define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n#define RE std::runtime_error(\"\
+    line: \" + std::to_string(__LINE__) + \", func: \" + __func__)\n// clang-format\
+    \ on\n"
   dependsOn: []
   isVerificationFile: false
   path: core/macro.hpp
@@ -162,12 +170,13 @@ data:
   - core/core.hpp
   - graphv2/breadth_first_search.hpp
   - graph/dijkstra.hpp
-  timestamp: '2022-02-26 15:56:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-03-28 23:40:03+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/math/prime.test.cpp
   - test/math/osa_k.test.cpp
   - test/math/combination.test.cpp
+  - test/math/euclid.test.cpp
   - test/geometry/area.test.cpp
   - test/geometry/counter_clockwise.test.cpp
   - test/geometry/reflection.test.cpp
@@ -183,6 +192,7 @@ data:
   - test/data/segment_tree_RSQ2.test.cpp
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+  - test/data/cumulative_sum_2D.test.cpp
   - test/data/dual_segment_tree_RAQ.test.cpp
   - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
   - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
@@ -209,5 +219,5 @@ layout: document
 redirect_from:
 - /library/core/macro.hpp
 - /library/core/macro.hpp.html
-title: "\u30DE\u30AF\u30ED"
+title: Macro
 ---

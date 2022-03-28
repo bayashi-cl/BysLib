@@ -4,27 +4,19 @@ data:
   - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
+  - icon: ':heavy_check_mark:'
+    path: data/binary_indexed_tree.hpp
+    title: Binary Indexed Tree
   - icon: ':question:'
     path: math/bit.hpp
     title: Bit
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: dp/inversion.hpp
-    title: dp/inversion.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/data/binary_indexed_tree.test.cpp
-    title: test/data/binary_indexed_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/data/binary_indexed_tree_aux.test.cpp
-    title: test/data/binary_indexed_tree_aux.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    document_title: Binary Indexed Tree
-    links:
-    - https://algo-logic.info/binary-indexed-tree/
+    links: []
   bundledCode: "/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
     \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
     #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
@@ -74,46 +66,30 @@ data:
     \ -1;\n        int res = 0;\n        for (int w = bit_floor(_n); w > 0; w >>=\
     \ 1) {\n            if (res + w < _n && data[res + w] < x) {\n               \
     \ x -= data[res + w];\n                res += w;\n            }\n        }\n \
-    \       return res + 1;\n    }\n};\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"../core/stdlib.hpp\"\n#include \"../math/bit.hpp\"\
-    \n/**\n * @file binary_indexed_tree.hpp\n * @author bayashi_cl\n * @brief Binary\
-    \ Indexed Tree\n */\nnamespace bys {\n/**\n * @brief Binary Indexed Tree\n *\n\
-    \ * \u4E00\u70B9\u66F4\u65B0: O(logN)\n * \u533A\u9593\u548C: O(logN)\n * See:\
-    \ https://algo-logic.info/binary-indexed-tree/\n */\ntemplate <class T>\nclass\
-    \ BinaryIndexedTree {\n    const int _n;\n    std::vector<T> data;\n\n   public:\n\
-    \    BinaryIndexedTree() : _n(0) {}\n    BinaryIndexedTree(int n) : _n(n), data(n\
-    \ + 1) {}\n    BinaryIndexedTree(const std::vector<T>& v) : _n(v.size()), data(_n\
-    \ + 1) {\n        for (int i = 0; i < _n; ++i) add(i, v[i]);\n    }\n\n    void\
-    \ add(int i, T x) {\n        assert(0 <= i && i < _n);\n        ++i;\n       \
-    \ while (i <= _n) {\n            data[i] += x;\n            i += i & -i;\n   \
-    \     }\n    }\n    T sum(int r) {\n        assert(0 <= r && r <= _n);\n     \
-    \   T res = 0;\n        while (r > 0) {\n            res += data[r];\n       \
-    \     r -= r & -r;\n        }\n        return res;\n    }\n    T sum(int l, int\
-    \ r) {\n        assert(0 <= l && l <= r && r <= _n);\n        return sum(r) -\
-    \ sum(l);\n    }\n\n    //! @brief O(log N)\n    T get(int i) {\n        assert(0\
-    \ <= i && i < _n);\n        return sum(i, i + 1);\n    }\n\n    //! @brief sum[0,\
-    \ r) >= x\u3068\u306A\u308B\u6700\u5C0F\u306Er\u3092\u6C42\u3081\u308B\n    int\
-    \ bisect(T x) {\n        if (x <= 0) return 0;\n        if (x > sum(_n)) return\
-    \ -1;\n        int res = 0;\n        for (int w = bit_floor(_n); w > 0; w >>=\
-    \ 1) {\n            if (res + w < _n && data[res + w] < x) {\n               \
-    \ x -= data[res + w];\n                res += w;\n            }\n        }\n \
-    \       return res + 1;\n    }\n};\n}  // namespace bys\n"
+    \       return res + 1;\n    }\n};\n}  // namespace bys\nnamespace bys {\nlong\
+    \ long inversion(const vector<int>& v) {\n    int sz = *std::max_element(v.begin(),\
+    \ v.end()) + 1;\n    BinaryIndexedTree<int> bit(sz);\n    ll res = 0;\n    for\
+    \ (auto e : v) {\n        bit.add(e, 1);\n        res += bit.sum(e + 1, sz);\n\
+    \    }\n    return res;\n}\n}  // namespace bys\n"
+  code: "#pragma once\n#include \"../data/binary_indexed_tree.hpp\"\nnamespace bys\
+    \ {\nlong long inversion(const vector<int>& v) {\n    int sz = *std::max_element(v.begin(),\
+    \ v.end()) + 1;\n    BinaryIndexedTree<int> bit(sz);\n    ll res = 0;\n    for\
+    \ (auto e : v) {\n        bit.add(e, 1);\n        res += bit.sum(e + 1, sz);\n\
+    \    }\n    return res;\n}\n}  // namespace bys\n"
   dependsOn:
+  - data/binary_indexed_tree.hpp
   - core/stdlib.hpp
   - math/bit.hpp
   isVerificationFile: false
-  path: data/binary_indexed_tree.hpp
-  requiredBy:
-  - dp/inversion.hpp
+  path: dp/inversion.hpp
+  requiredBy: []
   timestamp: '2022-03-28 23:40:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/data/binary_indexed_tree.test.cpp
-  - test/data/binary_indexed_tree_aux.test.cpp
-documentation_of: data/binary_indexed_tree.hpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: dp/inversion.hpp
 layout: document
 redirect_from:
-- /library/data/binary_indexed_tree.hpp
-- /library/data/binary_indexed_tree.hpp.html
-title: Binary Indexed Tree
+- /library/dp/inversion.hpp
+- /library/dp/inversion.hpp.html
+title: dp/inversion.hpp
 ---
