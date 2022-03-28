@@ -1,7 +1,19 @@
 #pragma once
 #include "../core/stdlib.hpp"
 #include "numeric.hpp"
+/**
+ * @file prime.hpp
+ * @author bayashi_cl
+ * @brief Prime
+ */
 namespace bys {
+
+/**
+ * @brief 素因数分解
+ *
+ * 試し割り法
+ * O(√n)
+ */
 template <typename T>
 vector<T> prime_factorize(T n) {
     vector<T> res;
@@ -22,7 +34,13 @@ vector<T> prime_factorize(T n) {
     return res;
 }
 
-//! @brief Miller-Rabin
+/**
+ * @brief Miller-Rabin素数判定
+ *
+ * 2^64以下なら正確に判定できる
+ * See: https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
+ * See: https://miller-rabin.appspot.com
+ */
 constexpr bool is_prime(long long n) {
     if (n <= 1) return false;
     if (n == 2 || n == 7 || n == 61) return true;

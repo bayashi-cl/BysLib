@@ -1,12 +1,23 @@
 #pragma once
 #include "../core/const.hpp"
 #include "../core/stdlib.hpp"
-
+/**
+ * @file combination.hpp
+ * @author bayashi_cl
+ * @brief Binomial Coefficient
+ */
 namespace bys {
+/**
+ * @brief 複数クエリ二項係数
+ *
+ * 前処理 O(n)
+ * クエリ O(1)
+ * See: https://drken1215.hatenablog.com/entry/2018/06/08/210000
+ */
 struct MultiComb {
     int _n;
     int mod;
-    vector<ll> fact, factinv, inv;
+    std::vector<ll> fact, factinv, inv;
 
     MultiComb(int n, int mod = MOD) : _n(n), mod(mod) {
         fact.resize(_n + 1);
@@ -38,8 +49,15 @@ struct MultiComb {
     }
 };
 
+/**
+ * @brief nCr
+ *
+ * O(min(n, (n - r)))
+ *
+ * @param n Modintも渡せる
+ */
 template <class T>
-T comb(T n, int r) {
+constexpr T comb(T n, int r) {
     T num = 1, den = 1;
     for (int i = 0; i < r; ++i) {
         num *= n - i;

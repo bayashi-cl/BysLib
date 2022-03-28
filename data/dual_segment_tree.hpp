@@ -1,9 +1,26 @@
 #pragma once
-#include <vector>
-
+#include "../algebra/mapping.hpp"
+#include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
-#include "../monoid/mapping.hpp"
+/**
+ * @file dual_segment_tree.hpp
+ * @author bayashi_cl
+ * @brief Dual Segment Tree
+ *
+ * 双対セグ木
+ */
 namespace bys {
+/**
+ * @brief 双対セグメント木
+ *
+ * 区間更新: O(logN)
+ * 一点取得: O(logN)
+ * See: https://kmyk.github.io/blog/blog/2019/02/22/dual-segment-tree/
+ *
+ * @tparam T 要素型
+ * @tparam ActMonoid 作用素モノイド
+ * @tparam Action Tに対する作用関数オブジェクト
+ */
 template <class T, class ActMonoid, class Action = MappingToSet<T, ActMonoid>>
 class DualSegmentTree {
     int _n, n_leaf, logsize;

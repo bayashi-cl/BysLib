@@ -1,10 +1,26 @@
 #pragma once
-#include <cassert>
-#include <vector>
-
+/**
+ * @file lazy_segment_tree.hpp
+ * @author bayashi_cl
+ * @brief Lazy Segment Tree
+ */
+#include "../algebra/mapping.hpp"
+#include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
-#include "../monoid/mapping.hpp"
 namespace bys {
+/**
+ * @brief 遅延伝播セグメント木
+ *
+ * 区間更新: O(logN)
+ * 区間クエリ: O(logN)
+ * 一点取得: O(logN)
+ * See: https://ikatakos.com/pot/programming_algorithm/data_structure/segment_tree/lazy_segment_tree
+ *
+ * @tparam Monoid モノイド
+ * @tparam ActMonoid 作用素モノイド
+ * @tparam Action 作用関数オブジェクト 区間の幅も渡される
+ * @todo 二分探索: O(logN)
+ */
 template <class Monoid, class ActMonoid, class Action = Mapping<Monoid, ActMonoid>>
 class LazySegmentTree {
     using value_type = typename Monoid::set_type;

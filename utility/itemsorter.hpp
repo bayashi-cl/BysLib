@@ -1,25 +1,43 @@
 #pragma once
 #include "../core/stdlib.hpp"
 /**
- * @brief itemsorter
- * @details std::sortに渡すことを想定
+ * @file itemsorter.hpp
+ * @author bayashi_cl
+ * @brief ItemSorter
+ *
+ * sort関数の第三引数に渡すことで"vectorの2番目の要素でソート"、"pairのsecond
+ * を基準としてソート"等の操作ができる。
  */
 namespace bys {
-//! @brief I番目の要素を比較
-template <class T, std::size_t I>
+//! @brief IterableのI番目の要素を比較
+template <std::size_t I>
 struct ItemSorter {
-    bool operator()(const T& lh, const T& rh) { return lh[I] < rh[I]; }
+    template <class T>
+    constexpr bool operator()(const T& lh, const T& rh) const {
+        return lh[I] < rh[I];
+    }
 };
-//! @brief Tuple系のI番目の要素を比較
-template <class T, std::size_t I>
+
+//! @brief Tuple-likeのI番目の要素を比較
+template <std::size_t I>
 struct TupleSorter {
-    bool operator()(const T& lh, const T& rh) { return std::get<I>(lh) < std::get<I>(rh); }
+    template <class T>
+    bool operator()(const T& lh, const T& rh) {
+        return std::get<I>(lh) < std::get<I>(rh);
+    }
 };
-template <class T, class U>
+
+//! @brief std::pairをsecond -> firstの順で比較
 struct SecondSorter {
+    template <class T, class U>
     bool operator()(const std::pair<T, U>& lh, const std::pair<T, U>& rh) {
         return lh.second == rh.second ? lh.first < rh.first : lh.second < rh.second;
     }
 };
-#define SORTBY(method) [](const auto& a, const auto& b) { return a.method < b.method; }
+
+/**
+ * @def SORTBY(member)
+ * classをメンバで比較
+ */
+#define SORTBY(member) [](const auto& a, const auto& b) { return a.member < b.member; }
 }  // namespace bys

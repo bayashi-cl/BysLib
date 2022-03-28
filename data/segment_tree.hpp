@@ -1,10 +1,20 @@
 #pragma once
-#include <cassert>
-#include <type_traits>
-#include <vector>
-
+#include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
+/**
+ * @file segment_tree.hpp
+ * @author bayashi_cl
+ * @brief Segment Tree
+ */
 namespace bys {
+/**
+ * @brief セグメント木
+ *
+ * 一点更新: O(logN)
+ * 区間取得: O(logN)
+ *
+ * @tparam Monoid モノイド
+ */
 template <class Monoid>
 class SegmentTree {
     using value_type = typename Monoid::set_type;

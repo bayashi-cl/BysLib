@@ -1,16 +1,23 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
+/**
+ * @file binary_search.hpp
+ * @author bayashi_cl
+ * @brief Binary Search
+ *
+ * 二分探索法
+ */
 namespace bys {
 /**
- * @brief 二分探索法
- * https://atcoder.jp/contests/abc205/submissions/23500985
- * @tparam T 初期値と返り値、is_okの第一引数 int or long long intを想定
- * @param ok (T): is_okを満たす初期値
- * @param ng (T): is_okを満たさない初期値
- * @param is_ok (bool()): 判定用ラムダ式
- * @param args... (Args...): is_okに渡される引数 可変長
- * @return (T): is_okを満たす最大/小の整数
+ * @brief 抽象化めぐる式二分探索
+ *
+ * See: https://twitter.com/meguru_comp/status/697008509376835584
+ *
+ * @param ok is_okがTrueとなる初期値
+ * @param ng is_okがFalseとなる初期値
+ * @param is_ok 判定用関数
+ * @param args is_okに追加で渡される引数 可変長
+ * @return T is_okを満たす最大/小の整数
  */
 template <typename T, class Lambda, class... Args>
 T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
@@ -28,20 +35,20 @@ T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
     }
     return ok;
 }
+
 /**
- * @brief 実数の二分探索
+ * @brief 実数範囲の二分探索
  *
- * @tparam Lambda
- * @tparam Args
- * @param ok is_okを満たす初期値
- * @param ng is_okを満たさない初期値
- * @param rep エポック
- * @param is_ok 判定用ラムダ式 bool(long double, Args...)
- * @param args is_okに渡される追加引数
- * @return double
+ * @param ok is_okがTrueとなる初期値
+ * @param ng is_okがFalseとなる初期値
+ * @param rep 繰り返し回数 100回程度?
+ * @param is_ok 判定用関数
+ * @param args is_okに追加で渡される引数 可変長
+ * @return double is_okを満たす最大/小の実数
  */
 template <class Lambda, class... Args>
-double bisect_float(ld ok, ld ng, int rep, Lambda is_ok, Args... args) {
+ld bisect_float(ld ok, ld ng, int rep, Lambda is_ok, Args... args) {
+    static_assert(std::is_same_v<std::invoke_result_t<Lambda, ld, Args...>, bool>, "The function signature is invalid.");
     assert(is_ok(ok, args...));
     assert(!is_ok(ng, args...));
 

@@ -1,17 +1,27 @@
 #pragma once
 #include "../core/stdlib.hpp"
+/**
+ * @file compress.hpp
+ * @author bayashi_cl
+ * @brief Coordinate Compression
+ *
+ * 座標圧縮
+ */
 namespace bys {
 /**
- * @brief  座標圧縮
- * @details 使う前にconstruct()
+ * @brief 座標圧縮
  */
 template <class T>
-struct Compress {
+class Compress {
+    std::vector<T> cp;
+    bool build = false;
+
+   public:
     Compress() {}
-    Compress(std::vector<T>& vec) : cp(vec) {}
+    Compress(const std::vector<T>& vec) : cp(vec) { construct(); }
     void add(T v) {
         assert(!build);
-        cp.push_back(v);
+        cp.emplace_back(v);
     }
     void construct() {
         assert(!build);
@@ -27,14 +37,10 @@ struct Compress {
         return std::distance(cp.begin(), itr);
     }
     //! @brief 解凍された値を取得 O(1)
-    T unzip(int i) {
+    T unzip(int i) const {
         assert(build);
         return cp[i];
     }
-    int size() const { return cp.size(); }
-
-   private:
-    std::vector<T> cp;
-    bool build = false;
+    std::size_t size() const { return cp.size(); }
 };
 }  // namespace bys

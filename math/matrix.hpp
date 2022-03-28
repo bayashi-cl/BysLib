@@ -1,9 +1,13 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
-// TODO: geoとの連携
-
+/**
+ * @file matrix.hpp
+ * @author bayashi_cl
+ * @brief Matrix
+ * @todo geoとの連携
+ */
 namespace bys {
+//! @brief 行列
 template <class T>
 struct Matrix {
     vector<vector<T>> mat;

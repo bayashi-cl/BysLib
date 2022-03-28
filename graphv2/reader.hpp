@@ -2,7 +2,15 @@
 #include "../core/io.hpp"
 #include "../core/stdlib.hpp"
 #include "edge.hpp"
+/**
+ * @file reader.hpp
+ * @author bayashi_cl
+ * @brief Reader
+ *
+ * グラフ入力
+ */
 namespace bys {
+//! @brief 重みなし隣接リスト
 AdjacencyList read_adj_uv(std::size_t n, std::size_t m, bool directed = false, int index = 1) {
     AdjacencyList graph(n, directed ? m : 2 * m);
     for (std::size_t i = 0; i < m; ++i) {
@@ -14,6 +22,7 @@ AdjacencyList read_adj_uv(std::size_t n, std::size_t m, bool directed = false, i
     }
     return graph;
 }
+//! @brief 重みつき隣接リスト
 AdjacencyList read_adj_uvc(std::size_t n, std::size_t m, bool directed = false, int index = 1) {
     AdjacencyList graph(n, directed ? m : 2 * m);
     for (std::size_t i = 0; i < m; ++i) {
@@ -25,10 +34,13 @@ AdjacencyList read_adj_uvc(std::size_t n, std::size_t m, bool directed = false, 
     }
     return graph;
 }
+//! @brief 重みなし隣接リスト（木）
 AdjacencyList read_tree_uv(std::size_t n, bool directed = false, int index = 1) { return read_adj_uv(n, n - 1, directed, index); }
+//! @brief 重みつき隣接リスト（木）
 AdjacencyList read_tree_uvc(std::size_t n, bool directed = false, int index = 1) {
     return read_adj_uvc(n, n - 1, directed, index);
 }
+//! @brief 重みなし辺リスト
 vector<Edge> read_elist_uv(std::size_t m, int index = 1) {
     vector<Edge> elist;
     elist.reserve(m);
@@ -40,6 +52,7 @@ vector<Edge> read_elist_uv(std::size_t m, int index = 1) {
     }
     return elist;
 }
+//! @brief 重みつき辺リスト
 vector<Edge> read_elist_uvc(std::size_t m, int index = 1) {
     vector<Edge> elist;
     elist.reserve(m);

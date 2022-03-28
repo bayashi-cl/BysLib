@@ -1,6 +1,20 @@
 #pragma once
 #include "../core/stdlib.hpp"
+/**
+ * @file sparse_table.hpp
+ * @author bayashi_cl
+ * @brief Sparse Table
+ */
 namespace bys {
+/**
+ * @brief Sparse Table
+ *
+ * 構築: O(NlogN)
+ * クエリ: O(1)
+ * See: https://ikatakos.com/pot/programming_algorithm/data_structure/sparse_table
+ *
+ * @tparam Band モノイドで冪等性があるもの
+ */
 template <class Band>
 class SparseTable {
     using T = typename Band::set_type;

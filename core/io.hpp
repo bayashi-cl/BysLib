@@ -1,8 +1,12 @@
 #pragma once
-#include "stdlib.hpp"
 #include "printer.hpp"
 #include "scanner.hpp"
-
+#include "stdlib.hpp"
+/**
+ * @file io.hpp
+ * @author bayashi_cl
+ * @brief I/O
+ */
 namespace bys {
 __attribute__((constructor)) void setup_io() {
     std::ios::sync_with_stdio(false);

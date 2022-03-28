@@ -1,11 +1,14 @@
 #pragma once
 #include "../core/stdlib.hpp"
 /**
- * @brief 数列
+ * @file sequence.hpp
+ * @author bayashi_cl
+ * @brief Sequence
  *
+ * 数列
  */
-
 namespace bys {
+//! @brief 等差数列
 template <class T>
 struct Arithmetic {
     T a0, d;

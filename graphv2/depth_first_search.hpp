@@ -1,22 +1,30 @@
 #pragma once
 #include "../core/stdlib.hpp"
 #include "edge.hpp"
+/**
+ * @file depth_first_search.hpp
+ * @author bayashi_cl
+ * @brief Depth First Search
+ *
+ * 深さ優先探索
+ */
 namespace bys {
+template <class Adj>
 class DepthFirstSearch {
-    const AdjacencyList& _graph;
+    const Adj& _graph;
     const std::size_t _n;
 
    public:
     std::vector<int> prev, cost;
     std::vector<std::size_t> pre_order, post_order, euler_tour;
-    DepthFirstSearch(const AdjacencyList& graph, std::size_t root) : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
+    DepthFirstSearch(const Adj& graph, std::size_t root) : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
         pre_order.reserve(_n);
         post_order.reserve(_n);
         euler_tour.reserve(2 * _n - 1);
         cost[root] = 0;
         search(root);
     }
-    DepthFirstSearch(const AdjacencyList& graph) : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
+    DepthFirstSearch(const Adj& graph) : _graph(graph), _n(graph.size()), prev(_n, -1), cost(_n, -1) {
         pre_order.reserve(_n);
         post_order.reserve(_n);
         euler_tour.reserve(2 * _n - 1);

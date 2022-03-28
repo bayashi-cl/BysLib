@@ -1,6 +1,13 @@
 #pragma once
 #include "../core/stdlib.hpp"
+/**
+ * @file edge.hpp
+ * @author bayashi_cl
+ * @brief Edge
+ * @todo concept
+ */
 namespace bys {
+//! @brief 辺
 struct Edge {
     std::size_t src, dest;
     ll weight;
@@ -12,6 +19,7 @@ struct Edge {
         return os << "{" << e.src << " -> " << e.dest << ": " << e.weight << "}";
     }
 };
+//! @brief 隣接リスト
 struct DynamicAdjacencyList {
     std::vector<std::vector<Edge>> data;
     DynamicAdjacencyList(std::size_t n) : data(n, vector<Edge>()), _n(n) {}
@@ -24,6 +32,12 @@ struct DynamicAdjacencyList {
    private:
     std::size_t _n;
 };
+/**
+ * @brief 隣接リスト
+ *
+ * CSR形式
+ * See: https://qiita.com/Nachia/items/d420c08b333296f54526
+ */
 struct AdjacencyList {
     AdjacencyList(std::size_t n, std::size_t m) : _n(n), _m(m), index(n + 1), _build_flg(m == 0) { buf.reserve(m); }
 

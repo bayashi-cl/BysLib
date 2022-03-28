@@ -1,6 +1,10 @@
 #pragma once
 #include "matrix.hpp"
-
+/**
+ * @file affine.hpp
+ * @author bayashi_cl
+ * @brief Affine Transformation
+ */
 namespace bys::affine {
 Matrix<ll> ident() { return Matrix<ll>({{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}); }
 Matrix<ll> rot_cw() { return Matrix<ll>({{0, -1, 0}, {1, 0, 0}, {0, 0, 1}}); }
@@ -19,5 +23,4 @@ pair<ll, ll> transform(const Matrix<ll>& mat, ll x, ll y) {
     vector<ll> res = mat * v;
     return {res[0], res[1]};
 }
-
 }  // namespace bys::affine

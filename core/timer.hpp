@@ -1,6 +1,10 @@
 #pragma once
+/**
+ * @file timer.hpp
+ * @author bayashi_cl
+ * @brief Timer
+ */
 #include <chrono>
-
 namespace bys {
 struct Timer {
     std::chrono::time_point<std::chrono::system_clock> end;

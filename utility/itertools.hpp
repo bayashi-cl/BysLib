@@ -1,10 +1,19 @@
 #pragma once
-#include <array>
-#include <iostream>
-#include <numeric>
-#include <vector>
-
+#include "../core/stdlib.hpp"
+/**
+ * @file itertools.hpp
+ * @author bayashi_cl
+ * @brief Python::itertools
+ *
+ * Python再現シリーズ itertools編
+ * See: https://docs.python.org/ja/3/library/itertools.html
+ */
 namespace bys {
+/**
+ * @brief itertools.conbination()
+ *
+ * 入力の要素からなる長さrの部分列を返す。
+ */
 template <class T>
 class Combinations {
     const std::vector<T> pool;
@@ -46,6 +55,11 @@ class Combinations {
     }
     const std::vector<T>& operator*() const { return comb; }
 };
+/**
+ * @brief itertools.combinations(range(n), r)
+ *
+ * [0, n) からR個を選ぶ組み合わせ全探索
+ */
 template <std::size_t R>
 class IndexCombinations {
     std::array<std::size_t, R> indices;

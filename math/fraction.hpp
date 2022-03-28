@@ -1,5 +1,10 @@
 #pragma once
 #include "../core/stdlib.hpp"
+/**
+ * @file fraction.hpp
+ * @author bayashi_cl
+ * @brief Fraction
+ */
 namespace bys {
 //! @brief 有理数
 struct Fraction {

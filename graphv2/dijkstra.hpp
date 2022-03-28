@@ -1,9 +1,20 @@
+#pragma once
 #include "../core/stdlib.hpp"
 #include "edge.hpp"
 #include "result.hpp"
-
+/**
+ * @file dijkstra.hpp
+ * @author bayashi_cl
+ * @brief Dijkstra
+ */
 namespace bys {
-SSSPResult dijkstra(const AdjacencyList& graph, int source) {
+/**
+ * @brief ダイクストラ
+ *
+ * O(Elog(V))
+ */
+template <class Adj>
+SSSPResult dijkstra(const Adj& graph, int source) {
     using Node = std::pair<ll, std::size_t>;
     std::size_t n = graph.size();
     SSSPResult res(n, source);

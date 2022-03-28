@@ -1,6 +1,10 @@
 #pragma once
 #include "base.hpp"
-
+/**
+ * @file point.hpp
+ * @author bayashi_cl
+ * @brief Point
+ */
 namespace bys::geo {
 //! @brief 点/ベクトル
 template <class T>
@@ -25,10 +29,15 @@ struct Point {
     bool operator!=(const Point& rh) const { return !(*this == rh); }
     // clang-format on
 
+    //! @brief ノルム^2
     T norm2() const { return x * x + y * y; }
+    //! @brief ノルム
     ld norm() const { return std::sqrt(norm2()); }
+    //! @brief 単位ベクトル
     Point normalized() const { return Point(x / norm(), y / norm()); }
+    //! @brief 偏角
     ld angle() const { return std::atan2(y, x); }
+    //! @brief 回転
     Point rotate(ld theta) const {
         ld ct = std::cos(theta), st = std::sin(theta);
         return Point(x * ct - y * st, x * st + y * ct);
@@ -36,15 +45,20 @@ struct Point {
     Point rotate90() const { return Point(-y, x); }
     //! @brief マンハッタン距離用。45度回転して√2倍する
     Point manhattan_rotate() const { return Point(x - y, x + y); }
+    //! @brief 内積
     T dot(const Point& rh) const { return x * rh.x + y * rh.y; }
+    //! @brief 外積
     T det(const Point& rh) const { return x * rh.y - y * rh.x; }
+    //! @brief 法線ベクトル
     Point normal() const { return Point(-normalized().y, normalized().x); }
+    //! @brief 正射影ベクトル
     Point projection(const Point& to) const { return to * (dot(to) / to.norm2()); }
+    //! @brief 象限
     int quadrant() const {
         if (sgn(y) >= 0) return sgn(x) >= 0 ? 1 : 2;
         return sgn(x) >= 0 ? 4 : 3;
     }
-    // 偏角ソート用
+    //! @brief 偏角ソート用
     bool operator<(const Point& rh) const {
         int q = quadrant(), rhq = rh.quadrant();
         if (q != rhq) return q < rhq;
@@ -65,17 +79,20 @@ template <class T>
 bool compy(Point<T>& a, Point<T>& b) {
     return a.y < b.y;
 }
-
-enum class Turn { Back = -2, CW, Middle, CCW, Front };
-/**
- * @brief 辺の曲がる方向
- * @return
- * +1: CCW ab->bcが左に曲がる
- * -1: CW  ab->bcが右に曲がる
- * +2: Front  abの前方
- * -2: Back   abの後方
- *  0: Middle ab上
- */
+//! @brief 曲がる方向
+enum class Turn {
+    //! abの後方
+    Back = -2,
+    //! ab->bcが右に曲がる
+    CW = -1,
+    //! ab上
+    Middle = 0,
+    //! ab->bcが左に曲がる
+    CCW = 1,
+    //! abの前方
+    Front = 2,
+};
+//! @brief 辺の曲がる方向
 template <class T>
 Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int flg = sgn((b - a).det(c - a));
@@ -93,19 +110,16 @@ Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
         }
     }
 }
-/**
- * -1: Obtuse 鈍角
- *  0: Right 直角
- * +1: Acute 鋭角
- */
-enum class Angle { Obtuse = -1, Right, Acute };
-/**
- * @brief 角の種類
- * @return Angle
- * -1: Obtuse 鈍角
- *  0: Right 直角
- * +1: Acute 鋭角
- */
+enum class Angle {
+    //! 鈍角
+    Obtuse = -1,
+    //! 直角
+    Right = 0,
+    //! 鋭角
+    Acute = 1,
+};
+
+//! @brief 角の種類
 template <class T>
 Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int t = sgn((a - b).dot(c - b));

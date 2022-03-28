@@ -1,10 +1,16 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
+/**
+ * @file cumulative_sum.hpp
+ * @author bayashi_cl
+ * @brief Cumulative Sum
+ *
+ * 累積和
+ */
 namespace bys {
 template <class T>
 struct CumulativeSum {
-    vector<T> data;
+    std::vector<T> data;
     CumulativeSum(int n) : data(n + 1){};
     CumulativeSum(const vector<T>& v) : data(v.size() + 1) { std::copy(v.begin(), v.end(), std::next(data.begin())); };
     void set(int i, int x) {
@@ -20,8 +26,9 @@ struct CumulativeSum {
         std::partial_sum(data.begin(), data.end(), data.begin());
         build = true;
     }
+    T operator[](int p) const { return data[p + 1]; }
     // [l, r)
-    T sum(int l, int r) {
+    T sum(int l, int r) const {
         assert(build);
         if (l > r) return 0;
         return data[r] - data[l];
@@ -32,7 +39,7 @@ struct CumulativeSum {
 };
 template <class T>
 struct CumulativeSum2D {
-    vector<vector<T>> data;
+    std::vector<std::vector<T>> data;
     CumulativeSum2D(int n, int m) : data(n + 1, vector<T>(m + 1)){};
     CumulativeSum2D(const vector<vector<T>>& v) : data(v.size() + 1, vector<T>(v[0].size() + 1)) {
         int n = v.size();

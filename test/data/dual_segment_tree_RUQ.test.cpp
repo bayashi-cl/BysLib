@@ -1,7 +1,7 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_D"
+#include "../../algebra/monoid.hpp"
 #include "../../core/core.hpp"
 #include "../../data/dual_segment_tree.hpp"
-#include "../../monoid/monoid.hpp"
 #include "../../utility/change.hpp"
 #include "../../utility/range.hpp"
 

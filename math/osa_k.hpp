@@ -1,7 +1,20 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
+/**
+ * @file osa_k.hpp
+ * @author bayashi_cl
+ * @brief Osa-k
+ */
 namespace bys {
+/**
+ * @brief osa_k法
+ *
+ * 素因数分解もできる
+ * See: https://osak.jp/diary/diary_201310.html#20131017
+ * See: https://qiita.com/rsk0315_h4x/items/ff3b542a4468679fb409
+ *
+ * @todo c++20でvectorもconstexpr化できるようになる
+ */
 struct Osa_K {
     int mx;
     vector<int> spf;  // smallest prime factor

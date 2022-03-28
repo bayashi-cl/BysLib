@@ -1,8 +1,12 @@
 #pragma once
-#include <iostream>
-#include <type_traits>
-#include <utility>
-
+#include "stdlib.hpp"
+/**
+ * @file types.hpp
+ * @author bayashi_cl
+ * @brief Types
+ *
+ * type_traits拡張
+ */
 namespace bys {
 template <class, class = void>
 struct has_lshift_to_ostream : std::false_type {};

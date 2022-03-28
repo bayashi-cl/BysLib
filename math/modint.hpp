@@ -1,11 +1,21 @@
 #pragma once
-#include <cstdint>
-#include <iostream>
-#include <limits>
-#include <type_traits>
-
+#include "../core/stdlib.hpp"
 #include "prime.hpp"
+/**
+ * @file modint.hpp
+ * @author bayashi_cl
+ * @brief Modint
+ */
 namespace bys {
+/**
+ * @brief ModInt
+ *
+ * ac-libraryのmodintをconstexpr化したもの
+ * See: https://atcoder.github.io/ac-library/document_ja/modint.html
+ *
+ * @tparam Modulo (今の所)素数
+ * @todo 非素数modへの対応
+ */
 template <unsigned int Modulo>
 class ModInt {
     unsigned int _v;
@@ -13,7 +23,7 @@ class ModInt {
    public:
     static constexpr unsigned int mod = Modulo;
     static_assert(is_prime(mod), "Modulo need to be prime.");
-    static_assert(mod < std::numeric_limits<unsigned int>::max(), "Modulo need to <2^32");
+    static_assert(mod < (std::numeric_limits<unsigned int>::max() >> 1), "Modulo need to be <2^31.");
 
     constexpr ModInt() noexcept : _v(0) {}
     template <class T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>

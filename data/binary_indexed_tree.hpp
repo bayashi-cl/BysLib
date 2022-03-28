@@ -1,9 +1,18 @@
 #pragma once
 #include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
+/**
+ * @file binary_indexed_tree.hpp
+ * @author bayashi_cl
+ * @brief Binary Indexed Tree
+ */
 namespace bys {
 /**
  * @brief Binary Indexed Tree
+ *
+ * 一点更新: O(logN)
+ * 区間和: O(logN)
+ * See: https://algo-logic.info/binary-indexed-tree/
  */
 template <class T>
 class BinaryIndexedTree {

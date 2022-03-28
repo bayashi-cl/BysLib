@@ -1,8 +1,9 @@
 #pragma once
-#ifndef LOCAL
-#define NDEBUG
-#endif
-
+/**
+ * @file stdlib.hpp
+ * @author bayashi_cl
+ * @brief STL Template
+ */
 #include <algorithm>
 #include <array>
 #include <bitset>

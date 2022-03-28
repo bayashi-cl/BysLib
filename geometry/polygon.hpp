@@ -1,13 +1,19 @@
 #pragma once
 #include "point.hpp"
-
+/**
+ * @file polygon.hpp
+ * @author bayashi_cl
+ * @brief Polygon
+ */
 namespace bys::geo {
+//! @brief 多角形
 template <class T>
 struct Polygon {
     int n_vertex;
     std::vector<Point<T>> vertex;
     Polygon(std::initializer_list<Point<T>> init) : n_vertex(init.size()), vertex(init.begin(), init.end()) {}
     Polygon(std::vector<Point<T>> vertex) : n_vertex(vertex.size()), vertex(vertex) {}
+    //! @brief 面積*2
     T area2() const {
         if (n_vertex < 3) return 0;
         ld s = 0.0;
@@ -16,7 +22,9 @@ struct Polygon {
         }
         return s;
     };
+    //! @brief 面積
     ld area() const { return area2() * 0.5; }
+    //! @brief 凸判定
     bool is_convex() const {
         int left = 0;
         int right = 0;

@@ -1,6 +1,13 @@
 #pragma once
 #include <optional>
 #include <utility>
+/**
+ * @file monoid.hpp
+ * @author bayashi_cl
+ * @brief Monoid
+ *
+ * モノイド
+ */
 namespace bys {
 template <class T>
 struct Magma {

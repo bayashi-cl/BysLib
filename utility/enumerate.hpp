@@ -1,5 +1,13 @@
 #pragma once
 #include "../core/stdlib.hpp"
+/**
+ * @file enumerate.hpp
+ * @author bayashi_cl
+ * @brief Python::enumerate
+ *
+ * Python再現シリーズ enumerate編
+ * See: https://docs.python.org/ja/3/library/functions.html#enumerate
+ */
 namespace bys {
 template <class Iterator>
 class Enumerate {
@@ -22,11 +30,22 @@ class Enumerate {
     auto begin() const { return EnumerateIterator(_begin, _idx); }
     auto end() const { return EnumerateIterator(_end, _idx + std::distance(_begin, _end)); }
 };
-
+/**
+ * @brief enumerate
+ *
+ * @param iterable 対象
+ * @param start indexの初期値
+ */
 template <class Iterable>
 auto enumerate(Iterable& iterable, int start = 0) {
     return Enumerate(std::begin(iterable), std::end(iterable), start);
 }
+/**
+ * @brief const enumerate
+ *
+ * @param iterable 対象
+ * @param start indexの初期値
+ */
 template <class Iterable>
 auto cenumerate(Iterable& iterable, int start = 0) {
     return Enumerate(std::cbegin(iterable), std::cend(iterable), start);

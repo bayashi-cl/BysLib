@@ -1,10 +1,15 @@
 #pragma once
-#include "../core/stdlib.hpp"
 #include "../core/const.hpp"
+#include "../core/stdlib.hpp"
+/**
+ * @file result.hpp
+ * @author bayashi_cl
+ * @brief Shortest Path Result
+ */
 namespace bys {
 /**
- * @brief Single Source Shortest Path Result
- * 単一始点最短経路問題の答え
+ * @brief 単一始点最短経路
+ *
  * 経路復元もできる
  */
 struct SSSPResult {
@@ -23,6 +28,11 @@ struct SSSPResult {
         return res;
     }
 };
+/**
+ * @brief 全頂点対間最短経路
+ *
+ * 経路復元もできる
+ */
 struct APSPResult {
     std::vector<std::vector<ll>> cost;
     std::vector<std::vector<int>> prev;

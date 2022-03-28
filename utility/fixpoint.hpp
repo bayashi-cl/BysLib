@@ -1,6 +1,16 @@
 #pragma once
-#include <utility>
+#include "../core/stdlib.hpp"
+/**
+ * @file fixpoint.hpp
+ * @author bayashi_cl
+ * @brief FixPoint
+ */
 namespace bys {
+/**
+ * @brief ラムダ再帰
+ *
+ * See: https://koturn.hatenablog.com/entry/2018/06/10/060000
+ */
 template <typename F>
 struct FixPoint : F {
     FixPoint(F&& f) : F{std::forward<F>(f)} {}
@@ -9,8 +19,4 @@ struct FixPoint : F {
         return F::operator()(*this, std::forward<Args>(args)...);
     }
 };
-template <typename F>
-inline FixPoint<std::decay_t<F>> fix(F&& f) {
-    return std::forward<std::decay_t<F>>(f);
-}
 }  // namespace bys

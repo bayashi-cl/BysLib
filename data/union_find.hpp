@@ -1,6 +1,12 @@
 #pragma once
 #include "../core/stdlib.hpp"
+/**
+ * @file union_find.hpp
+ * @author bayashi_cl
+ * @brief Union Find Tree
+ */
 namespace bys {
+//! @brief Union Find Tree
 struct UnionFindTree {
     UnionFindTree() : _n(0) {}
     UnionFindTree(std::size_t n) : _n(n), _n_tree(_n), parent(_n, -1) {}

@@ -1,8 +1,10 @@
 #pragma once
-// clang-format off
 /**
- * @brief マクロ
+ * @file macro.hpp
+ * @author bayashi_cl
+ * @brief Macro
  */
+// clang-format off
 #ifdef LOCAL
 //! @brief デバッグ用出力 ジャッジ上では何もしない。
 #define DEBUG(...) { std::cerr << "[debug] line" << std::setw(4) << __LINE__ << ": "; debug(__VA_ARGS__); }

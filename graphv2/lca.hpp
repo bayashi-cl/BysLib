@@ -1,10 +1,23 @@
 #pragma once
-#include "edge.hpp"
+/**
+ * @file lca.hpp
+ * @author bayashi_cl
+ * @brief Lowest Common Ancestor
+ *
+ * 最近共通祖先
+ */
+#include "../algebra/monoid.hpp"
 #include "../data/sparse_table.hpp"
 #include "../utility/fixpoint.hpp"
-#include "../math/algebra.hpp"
-
+#include "edge.hpp"
 namespace bys {
+/**
+ * @brief 最近共通祖先
+ *
+ * Sparse TableによるEulerTour + RmQ
+ * 構築   O(N logN)
+ * クエリ O(1)
+ */
 class LowestCommonAncestor {
     struct Vertex {
         int id, depath;
@@ -15,7 +28,8 @@ class LowestCommonAncestor {
     std::vector<int> pos;
 
    public:
-    LowestCommonAncestor(const AdjacencyList& graph, int root) : n(graph.size()), pos(n) {
+    template <class Adj>
+    LowestCommonAncestor(const Adj& graph, int root) : n(graph.size()), pos(n) {
         std::vector<Vertex> euler_tour;
         euler_tour.reserve(2 * n - 1);
         FixPoint([&](auto&& self, int now, int prev, int deapth) -> void {

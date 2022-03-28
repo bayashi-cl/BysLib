@@ -1,8 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
-#include "../../data/segment_tree.hpp"
-
+#include "../../algebra/monoid.hpp"
 #include "../../core/core.hpp"
-#include "../../math/algebra.hpp"
+#include "../../data/segment_tree.hpp"
 #include "../../utility/change.hpp"
 #include "../../utility/range.hpp"
 

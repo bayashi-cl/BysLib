@@ -4,11 +4,23 @@
 #include "../core/stdlib.hpp"
 #include "edge.hpp"
 #include "result.hpp"
+/**
+ * @file breadth_first_search.hpp
+ * @author bayashi_cl
+ * @brief Breadth First Search
+ *
+ * 幅優先探索
+ */
 namespace bys {
 /**
  * @brief 幅優先探索
  *
- * @tparam AdjacencyList or DynamicAdjacencyList
+ * O(V + E)
+ *
+ * @param graph AdjacencyList or DynamicAdjacencyList
+ * @param source 始点
+ * @return SSSPResult
+ * @todo 多始点対応
  */
 template <class Adj>
 SSSPResult breadth_first_search(const Adj& graph, std::size_t source) {
@@ -30,7 +42,17 @@ SSSPResult breadth_first_search(const Adj& graph, std::size_t source) {
     }
     return res;
 }
-SSSPResult zero_one_bfs(const AdjacencyList& graph, std::size_t source) {
+/**
+ * @brief 01BFS
+ *
+ * O(V + E)
+ *
+ * @param graph AdjacencyList or DynamicAdjacencyList
+ * @param source 始点
+ * @return SSSPResult
+ */
+template <class Adj>
+SSSPResult zero_one_bfs(const Adj& graph, std::size_t source) {
     std::size_t n = graph.size();
     SSSPResult res(n, source);
     std::deque<std::size_t> que;
@@ -55,5 +77,4 @@ SSSPResult zero_one_bfs(const AdjacencyList& graph, std::size_t source) {
     }
     return res;
 }
-
 }  // namespace bys

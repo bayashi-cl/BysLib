@@ -1,29 +1,42 @@
 #pragma once
 #include "../core/stdlib.hpp"
-
+/**
+ * @file bit.hpp
+ * @author bayashi_cl
+ * @brief Bit
+ * @note c++20で<bit>が追加される
+ */
 namespace bys {
+/**
+ * @brief bit幅
+ *
+ * bit_width(x) - 1  < log2(x) <= bit_width(x)
+ */
 template <class T>
-int bit_width(T x) {
+constexpr int bit_width(T x) {
     int bits = 0;
     x = (x < 0) ? (-x) : x;
     for (; x != 0; bits++) x >>= 1;
     return bits;
 }
+//! @brief 2冪に切り下げ
 template <class T>
-T bit_floor(T x) {
+constexpr T bit_floor(T x) {
     assert(x >= 0);
     return x == 0 ? 0 : T(1) << (bit_width(x) - 1);
 }
+//! @brief 2冪に切り上げ
 template <class T>
-T bit_ceil(T x) {
+constexpr T bit_ceil(T x) {
     assert(x >= 0);
     return x == 0 ? 1 : T(1) << bit_width(x - 1);
 }
-
-string bin(ll n) {
+//! @brief 2進文字列に変換
+template <class T>
+std::string bin(T n) {
     assert(n > 0);
     if (n == 0) return "0";
-    string res;
+    std::string res;
     while (n > 0) {
         res.push_back(n & 1 ? '1' : '0');
         n >>= 1;
@@ -31,6 +44,9 @@ string bin(ll n) {
     std::reverse(res.begin(), res.end());
     return res;
 }
-inline bool pop(int s, int d) { return s & (1 << d); }
-inline bool pop(ll s, int d) { return s & (1LL << d); }
+//! @brief d bit目が立っているか
+template <class T>
+constexpr bool pop(T s, int d) {
+    return s & (T(1) << d);
+}
 }  // namespace bys

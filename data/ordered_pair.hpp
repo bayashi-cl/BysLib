@@ -1,10 +1,12 @@
 #pragma once
+/**
+ * @file ordered_pair.hpp
+ * @author bayashi_cl
+ * @brief Orderd Pair
+ */
 #include "../core/stdlib.hpp"
 namespace bys {
-/**
- * @brief Orderd pair
- * @details first <= secondになるpair
- */
+//! @brief first <= secondになるpair
 template <class T>
 struct OrderedPair : std::pair<T, T> {
     OrderedPair(T a, T b) {

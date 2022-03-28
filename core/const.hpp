@@ -1,6 +1,10 @@
 #pragma once
 #include "stdlib.hpp"
-
+/**
+ * @file const.hpp
+ * @author bayashi_cl
+ * @brief Const
+ */
 namespace bys {
 constexpr int MOD = 998244353;
 constexpr int MOD7 = 1000000007;

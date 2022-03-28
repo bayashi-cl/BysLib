@@ -1,9 +1,26 @@
 #pragma once
 #include "stdlib.hpp"
 #include "types.hpp"
-
+/**
+ * @file printer.hpp
+ * @author bayashi_cl
+ * @brief Output
+ */
 namespace bys {
-struct Printer {
+class Printer {
+    std::ostream& os;
+    std::string _sep = " ", _end = "\n";
+    template <std::size_t I, class T>
+    inline void print_tuple_element(T&& elem) {
+        if constexpr (I != 0) cat(_sep);
+        cat(std::forward<T>(elem));
+    }
+    template <class Tp, std::size_t... I>
+    inline void print_tuple(Tp&& tp, std::index_sequence<I...>) {
+        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))), ...);
+    }
+
+   public:
     Printer(std::ostream& os_) : os(os_) {}
     ~Printer() { os << std::flush; }
 
@@ -40,36 +57,26 @@ struct Printer {
         cat(_sep);
         print(std::forward<Ts>(args)...);
     }
+    //! @brief 空白区切りで出力
     template <class... Ts>
     void operator()(Ts&&... args) {
         print(std::forward<Ts>(args)...);
     }
 
     void flush() { os << std::flush; }
+    //! @brief 出力後にflush
     template <class... Ts>
     void send(Ts&&... args) {
         print(std::forward<Ts>(args)...);
         flush();
     }
 
+    //! @brief 区切り文字と終端文字を設定
     Printer set(string sep_ = " ", string end_ = "\n") {
         _sep = sep_;
         _end = end_;
         return *this;
     }
     void lf() { cat(_end); }
-
-   private:
-    std::ostream& os;
-    std::string _sep = " ", _end = "\n";
-    template <std::size_t I, class T>
-    inline void print_tuple_element(T&& elem) {
-        if constexpr (I != 0) cat(_sep);
-        cat(std::forward<T>(elem));
-    }
-    template <class Tp, std::size_t... I>
-    inline void print_tuple(Tp&& tp, std::index_sequence<I...>) {
-        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))), ...);
-    }
 };
 }  // namespace bys

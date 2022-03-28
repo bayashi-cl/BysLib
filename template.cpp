@@ -1,4 +1,9 @@
+// template
+#ifndef LOCAL
+#define NDEBUG
+#endif
 #include "byslib/core/core.hpp"
+// libraries
 #include "byslib/utility/change.hpp"
 #include "byslib/utility/range.hpp"
 

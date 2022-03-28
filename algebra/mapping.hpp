@@ -1,5 +1,12 @@
 #pragma once
 #include "monoid.hpp"
+/**
+ * @file mapping.hpp
+ * @author bayashi_cl
+ * @brief Mapping
+ *
+ * 遅延セグ木 作用素
+ */
 namespace bys {
 template <class T, class ActMonoid>
 struct MappingToSet {

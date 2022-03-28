@@ -1,6 +1,12 @@
 #pragma once
 #include "point.hpp"
 
+/**
+ * @file line.hpp
+ * @author bayashi_cl
+ * @brief Line
+ * @todo 半直線の実装
+ */
 namespace bys::geo {
 template <class T>
 //! @brief 直線
@@ -74,17 +80,14 @@ std::optional<Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
     if (!is_cross(a, b)) return std::nullopt;
     return a.p + a.to_Point() * (b.p - a.p).det(b.to_Point()) / a.to_Point().det(b.to_Point());
 }
+//! @brief 垂線の足
 template <class T>
 Point<T> projection(const Point<T>& p, const Line<T>& l) {
     return (p - l.p).projection(l.to_Point()) + l.p;
 }
+//! @brief 線対称の点
 template <class T>
 Point<T> reflection(const Point<T>& p, const Line<T>& l) {
     return p + (projection(p, l) - p) * 2;
 }
 }  // namespace bys::geo
-
-/**
- * @todo 半直線の実装
- *
- */
