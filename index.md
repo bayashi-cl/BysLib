@@ -27,34 +27,34 @@ data:
       title: Run Length Encoding
   - name: core
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/const.hpp
       title: Const
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/core.hpp
       title: core/all
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/io.hpp
       title: I/O
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/macro.hpp
       title: Macro
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/printer.hpp
       title: Output
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/scanner.hpp
       title: Input
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/solver.hpp
       title: Solver
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/stdlib.hpp
       title: STL Template
     - icon: ':warning:'
       path: core/timer.hpp
       title: Timer
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: core/types.hpp
       title: Types
   - name: data
@@ -119,7 +119,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/edge.hpp
       title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     - icon: ':heavy_check_mark:'
@@ -177,7 +177,7 @@ data:
     - icon: ':warning:'
       path: math/base.hpp
       title: Base conversion
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/bit.hpp
       title: Bit
     - icon: ':heavy_check_mark:'
@@ -198,13 +198,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: Modint
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/numeric.hpp
       title: Numeric
     - icon: ':heavy_check_mark:'
       path: math/osa_k.hpp
       title: Osa-k
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: math/prime.hpp
       title: Prime
     - icon: ':warning:'
@@ -249,7 +249,7 @@ data:
     - icon: ':warning:'
       path: utility/itertools.hpp
       title: Python::itertools
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: utility/range.hpp
       title: Python::range
     - icon: ':warning:'
@@ -380,17 +380,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/math/osa_k.test.cpp
       title: test/math/osa_k.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/math/prime.test.cpp
       title: test/math/prime.test.cpp
   - name: test
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/test.test.cpp
       title: test/test.test.cpp
   - name: test/utility
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/utility/range.test.cpp
       title: test/utility/range.test.cpp
 layout: toppage

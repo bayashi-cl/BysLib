@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: Bit
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/numeric.hpp
     title: Numeric
   _extendedRequiredBy:
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
     title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Prime
     links:
@@ -133,7 +133,7 @@ data:
   requiredBy:
   - math/modint.hpp
   timestamp: '2022-03-28 23:40:03+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/math/prime.test.cpp
   - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
