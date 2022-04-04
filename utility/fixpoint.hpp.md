@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/util.hpp
     title: graph/util.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/lca.hpp
     title: Lowest Common Ancestor
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: FixPoint
     links:
@@ -55,7 +55,7 @@ data:
   - graphv2/lca.hpp
   - graph/util.hpp
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graphv2/lca.test.cpp
 documentation_of: utility/fixpoint.hpp

@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/all
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: Types
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/range.hpp
     title: Python::range
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/lesson/2/ITP1/1/ITP1_1_A
@@ -245,7 +245,7 @@ data:
   path: test/utility/range.test.cpp
   requiredBy: []
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/utility/range.test.cpp
 layout: document

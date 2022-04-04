@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: Types
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/all
   - icon: ':heavy_check_mark:'
@@ -123,39 +123,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graphv2/bellman_ford.test.cpp
     title: test/graphv2/bellman_ford.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/bfs_grid.test.cpp
     title: test/graphv2/bfs_grid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/combination.test.cpp
     title: test/math/combination.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/euclid.test.cpp
     title: test/math/euclid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: I/O
     links: []
@@ -284,7 +284,7 @@ data:
   - graph/dijkstra.hpp
   - graph/reader.hpp
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp

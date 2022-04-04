@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/all
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: Types
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data/sparse_table.hpp
     title: Sparse Table
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
     title: Edge
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/lca.hpp
     title: Lowest Common Ancestor
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/fixpoint.hpp
     title: FixPoint
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -311,7 +311,7 @@ data:
   path: test/graphv2/lca.test.cpp
   requiredBy: []
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graphv2/lca.test.cpp
 layout: document

@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/all
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: Types
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
     title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   _extendedRequiredBy: []

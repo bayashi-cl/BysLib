@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data/sparse_table.hpp
     title: Sparse Table
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
     title: Edge
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/fixpoint.hpp
     title: FixPoint
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Lowest Common Ancestor
     links: []
@@ -165,7 +165,7 @@ data:
   path: graphv2/lca.hpp
   requiredBy: []
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graphv2/lca.test.cpp
 documentation_of: graphv2/lca.hpp

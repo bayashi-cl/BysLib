@@ -5,25 +5,25 @@ data:
   - icon: ':warning:'
     path: algorithm/run_length.hpp
     title: Run Length Encoding
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/all
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: Types
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data/segment_tree.hpp
     title: Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: data/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dijkstra.hpp
     title: graph/dijkstra.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/edge.hpp
     title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
   - icon: ':heavy_check_mark:'
@@ -98,28 +98,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: graphv2/bellman_ford.hpp
     title: Bellman Ford
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
     title: Breadth First Search
   - icon: ':warning:'
     path: graphv2/depth_first_search.hpp
     title: Depth First Search
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/dijkstra.hpp
     title: Dijkstra
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
     title: Edge
   - icon: ':warning:'
     path: graphv2/kruskal.hpp
     title: Kruskal
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/lca.hpp
     title: Lowest Common Ancestor
   - icon: ':warning:'
     path: graphv2/reader.hpp
     title: Reader
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/result.hpp
     title: Shortest Path Result
   - icon: ':warning:'
@@ -128,7 +128,7 @@ data:
   - icon: ':warning:'
     path: graphv2/topological_sort.hpp
     title: Topological Sort
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/warshall_floyd.hpp
     title: Warshall Floyd
   - icon: ':warning:'
@@ -137,16 +137,16 @@ data:
   - icon: ':warning:'
     path: math/base.hpp
     title: Base conversion
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: Bit
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/combination.hpp
     title: Binomial Coefficient
   - icon: ':warning:'
     path: math/divisor.hpp
     title: Divisor
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/euclid.hpp
     title: Extended Euclidean Algorithm
   - icon: ':warning:'
@@ -158,13 +158,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/numeric.hpp
     title: Numeric
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: math/osa_k.hpp
     title: Osa-k
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/prime.hpp
     title: Prime
   - icon: ':warning:'
@@ -179,7 +179,7 @@ data:
   - icon: ':warning:'
     path: utility/binary_search.hpp
     title: Binary Search
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: chmin/chmax
   - icon: ':warning:'
@@ -188,10 +188,10 @@ data:
   - icon: ':warning:'
     path: utility/enumerate.hpp
     title: Python::enumerate
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: utility/fixpoint.hpp
     title: FixPoint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/grid.hpp
     title: Grid Manager
   - icon: ':warning:'
@@ -200,7 +200,7 @@ data:
   - icon: ':warning:'
     path: utility/itertools.hpp
     title: Python::itertools
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/range.hpp
     title: Python::range
   - icon: ':warning:'
@@ -303,39 +303,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/graphv2/bellman_ford.test.cpp
     title: test/graphv2/bellman_ford.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/bfs_grid.test.cpp
     title: test/graphv2/bfs_grid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/combination.test.cpp
     title: test/math/combination.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/euclid.test.cpp
     title: test/math/euclid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: STL Template
     links: []
@@ -438,7 +438,7 @@ data:
   - utility/itemsorter.hpp
   - utility/change.hpp
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp

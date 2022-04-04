@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
     title: Edge
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/result.hpp
     title: Shortest Path Result
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/bfs_grid.test.cpp
     title: test/graphv2/bfs_grid.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Breadth First Search
     links: []
@@ -168,7 +168,7 @@ data:
   path: graphv2/breadth_first_search.hpp
   requiredBy: []
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graphv2/bfs_grid.test.cpp
 documentation_of: graphv2/breadth_first_search.hpp

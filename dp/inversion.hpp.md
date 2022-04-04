@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
   - icon: ':heavy_check_mark:'
     path: data/binary_indexed_tree.hpp
     title: Binary Indexed Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: math/bit.hpp
     title: Bit
   _extendedRequiredBy: []

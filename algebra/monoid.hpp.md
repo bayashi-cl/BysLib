@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: data/lazy_segment_tree.hpp
     title: Lazy Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/lca.hpp
     title: Lowest Common Ancestor
   _extendedVerifiedWith:
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/data/sparse_table.test.cpp
     title: test/data/sparse_table.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Monoid
     links: []
@@ -106,7 +106,7 @@ data:
   - data/dual_segment_tree.hpp
   - data/lazy_segment_tree.hpp
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graphv2/lca.test.cpp
   - test/data/dual_segment_tree_RAQ.test.cpp

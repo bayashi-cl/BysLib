@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
     title: Edge
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/result.hpp
     title: Shortest Path Result
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: chmin/chmax
   _extendedRequiredBy: []

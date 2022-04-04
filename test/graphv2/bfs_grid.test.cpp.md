@@ -1,56 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/const.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/core.hpp
     title: core/all
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: core/types.hpp
     title: Types
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/breadth_first_search.hpp
     title: Breadth First Search
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/edge.hpp
     title: Edge
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graphv2/result.hpp
     title: Shortest Path Result
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/change.hpp
     title: chmin/chmax
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/grid.hpp
     title: Grid Manager
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: utility/range.hpp
     title: Python::range
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc232/tasks/abc232_d
@@ -355,7 +355,7 @@ data:
   path: test/graphv2/bfs_grid.test.cpp
   requiredBy: []
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/graphv2/bfs_grid.test.cpp
 layout: document
