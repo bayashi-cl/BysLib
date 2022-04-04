@@ -30,5 +30,15 @@
 "test/graph/kruskal.test.cpp": "2022-04-04 23:07:30 +0900",
 "test/graph/lca.test.cpp": "2022-04-04 23:07:30 +0900",
 "test/graph/warshallfloyd.test.cpp": "2022-04-04 23:07:30 +0900",
-"test/graphv2/bellman_ford.test.cpp": "2022-04-04 23:07:30 +0900"
+"test/graphv2/bellman_ford.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/graphv2/bfs_grid.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/graphv2/dijkstra.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/graphv2/lca.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/graphv2/warshallfloyd.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/math/combination.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/math/euclid.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/math/osa_k.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/math/prime.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/test.test.cpp": "2022-04-04 23:07:30 +0900",
+"test/utility/range.test.cpp": "2022-04-04 23:07:30 +0900"
 }
