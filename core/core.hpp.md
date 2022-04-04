@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/const.hpp
     title: Const
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/io.hpp
     title: I/O
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/printer.hpp
     title: Output
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/types.hpp
     title: Types
   _extendedRequiredBy:
@@ -124,66 +124,68 @@ data:
     path: test/graph/warshallfloyd.test.cpp
     title: test/graph/warshallfloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/graphv2/bellman_ford.test.cpp
+    title: test/graphv2/bellman_ford.test.cpp
+  - icon: ':x:'
     path: test/graphv2/bfs_grid.test.cpp
     title: test/graphv2/bfs_grid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/combination.test.cpp
     title: test/math/combination.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/euclid.test.cpp
     title: test/math/euclid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: core/all
     links:
     - https://bayashi-cl.github.io/byslib/
     - https://github.com/bayashi-cl/byslib
   bundledCode: "/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n\
-    \ * \n * C++ library for competitive programming by bayashi_cl\n * Repository:\
+    \ *\n * C++ library for competitive programming by bayashi_cl\n * Repository:\
     \ https://github.com/bayashi-cl/byslib\n * Document : https://bayashi-cl.github.io/byslib/\n\
-    \ */\n/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
-    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
-    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
-    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
-    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
-    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
-    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
-    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
-    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
-    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
-    \ T>;\n}  // namespace bys\n/**\n * @file const.hpp\n * @author bayashi_cl\n *\
-    \ @brief Const\n */\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr\
+    \ */\n#ifndef LOCAL\n#define NDEBUG\n#endif\n/**\n * @file stdlib.hpp\n * @brief\
+    \ STL Template\n */\n#include <algorithm>\n#include <array>\n#include <bitset>\n\
+    #include <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n\
+    #include <iomanip>\n#include <iostream>\n#include <iterator>\n#include <limits>\n\
+    #include <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include\
+    \ <stack>\n#include <string>\n#include <type_traits>\n#include <unordered_map>\n\
+    #include <unordered_set>\n#include <vector>\n\nnamespace bys {\nusing std::array,\
+    \ std::vector, std::string, std::set, std::map, std::pair;\nusing std::cin, std::cout,\
+    \ std::endl;\nusing std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\
+    \n// alias\nusing ll = long long int;\nusing ld = long double;\nusing Pa = pair<int,\
+    \ int>;\nusing Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class\
+    \ T>\nusing uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing\
+    \ umap = std::unordered_map<S, T>;\n}  // namespace bys\n/**\n * @file const.hpp\n\
+    \ * @brief Const\n */\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr\
     \ int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
     \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
-    \ bys\n/**\n * @file types.hpp\n * @author bayashi_cl\n * @brief Types\n *\n *\
-    \ type_traits\u62E1\u5F35\n */\nnamespace bys {\ntemplate <class, class = void>\n\
-    struct has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct\
-    \ has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \ bys\n/**\n * @file types.hpp\n * @brief Types\n *\n * type_traits\u62E1\u5F35\
+    \n */\nnamespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
+    \ : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -193,12 +195,12 @@ data:
     \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
     \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
     \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n/**\n * @file\
-    \ printer.hpp\n * @author bayashi_cl\n * @brief Output\n */\nnamespace bys {\n\
-    class Printer {\n    std::ostream& os;\n    std::string _sep = \" \", _end = \"\
-    \\n\";\n    template <std::size_t I, class T>\n    inline void print_tuple_element(T&&\
-    \ elem) {\n        if constexpr (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n\
-    \    }\n    template <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&&\
-    \ tp, std::index_sequence<I...>) {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
+    \ printer.hpp\n * @brief Output\n */\nnamespace bys {\nclass Printer {\n    std::ostream&\
+    \ os;\n    std::string _sep = \" \", _end = \"\\n\";\n    template <std::size_t\
+    \ I, class T>\n    inline void print_tuple_element(T&& elem) {\n        if constexpr\
+    \ (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n    }\n    template\
+    \ <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&& tp, std::index_sequence<I...>)\
+    \ {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
     \ ...);\n    }\n\n   public:\n    Printer(std::ostream& os_) : os(os_) {}\n  \
     \  ~Printer() { os << std::flush; }\n\n    template <class T>\n    void cat(T&&\
     \ v) {\n        if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {\n\
@@ -223,9 +225,9 @@ data:
     \ \u533A\u5207\u308A\u6587\u5B57\u3068\u7D42\u7AEF\u6587\u5B57\u3092\u8A2D\u5B9A\
     \n    Printer set(string sep_ = \" \", string end_ = \"\\n\") {\n        _sep\
     \ = sep_;\n        _end = end_;\n        return *this;\n    }\n    void lf() {\
-    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @author\
-    \ bayashi_cl\n * @brief Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream&\
-    \ is;\n    template <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
+    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @brief\
+    \ Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream& is;\n    template\
+    \ <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
     \ {\n        return Tp{read<typename std::tuple_element_t<I, Tp>>()...};\n   \
     \ }\n\n   public:\n    Scanner(std::istream& is_) : is(is_){};\n\n    template\
     \ <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >> args);\n\
@@ -269,34 +271,34 @@ data:
     \u6539\u884C\u3092\u8AAD\u307F\u98DB\u3070\u3059\n     */\n    std::string getline(bool\
     \ skip_ws = true) {\n        if (skip_ws) std::ws(is);\n        std::string res;\n\
     \        std::getline(is, res);\n        return res;\n    }\n};\n}  // namespace\
-    \ bys\n/**\n * @file io.hpp\n * @author bayashi_cl\n * @brief I/O\n */\nnamespace\
-    \ bys {\n__attribute__((constructor)) void setup_io() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    std::cout << std::fixed << std::setprecision(11);\n\
-    \    std::cerr << std::fixed << std::setprecision(11);\n    std::cerr << std::boolalpha;\n\
-    }\n\nPrinter print(std::cout), debug(std::cerr);\nScanner scanner(std::cin);\n\
-    }  // namespace bys\n/**\n * @file macro.hpp\n * @author bayashi_cl\n * @brief\
-    \ Macro\n */\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\
-    \u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\
-    \u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\" <<\
-    \ std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n\
-    #endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define EXIT(...)\
-    \ { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a,\
-    \ b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\
-    \u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n\
-    #define RE std::runtime_error(\"line: \" + std::to_string(__LINE__) + \", func:\
-    \ \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n * @author bayashi_cl\n\
-    \ * @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n  \
-    \  Solver() {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\
-    \u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <=\
-    \ rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n"
+    \ bys\n/**\n * @file io.hpp\n * @brief I/O\n */\nnamespace bys {\n__attribute__((constructor))\
+    \ void setup_io() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
+    \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
+    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n/**\n *\
+    \ @file macro.hpp\n * @brief Macro\n */\n// clang-format off\n#ifdef LOCAL\n//!\
+    \ @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
+    \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr\
+    \ << \"[debug] line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__);\
+    \ }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\
+    \u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a,\
+    \ b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
+    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
+    \ + \", func: \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n *\
+    \ @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
+    \ {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
+    \u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <= rep; ++IT)\
+    \ solve();\n    }\n};\n}  // namespace bys\n"
   code: "#pragma once\n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n\
-    \ * \n * C++ library for competitive programming by bayashi_cl\n * Repository:\
+    \ *\n * C++ library for competitive programming by bayashi_cl\n * Repository:\
     \ https://github.com/bayashi-cl/byslib\n * Document : https://bayashi-cl.github.io/byslib/\n\
-    \ */\n#include \"stdlib.hpp\"\n#include \"const.hpp\"\n#include \"io.hpp\"\n#include\
-    \ \"macro.hpp\"\n#include \"solver.hpp\"\n"
+    \ */\n#ifndef LOCAL\n#define NDEBUG\n#endif\n#include \"const.hpp\"\n#include\
+    \ \"io.hpp\"\n#include \"macro.hpp\"\n#include \"solver.hpp\"\n#include \"stdlib.hpp\"\
+    \n"
   dependsOn:
-  - core/stdlib.hpp
   - core/const.hpp
+  - core/stdlib.hpp
   - core/io.hpp
   - core/printer.hpp
   - core/types.hpp
@@ -307,50 +309,51 @@ data:
   path: core/core.hpp
   requiredBy:
   - graph/dijkstra.hpp
-  timestamp: '2022-03-28 23:40:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-04-04 23:07:30+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/math/prime.test.cpp
-  - test/math/osa_k.test.cpp
-  - test/math/combination.test.cpp
-  - test/math/euclid.test.cpp
-  - test/geometry/area.test.cpp
-  - test/geometry/counter_clockwise.test.cpp
-  - test/geometry/reflection.test.cpp
-  - test/geometry/parallel_orthogonal.test.cpp
-  - test/geometry/distance.test.cpp
-  - test/geometry/is_convex.test.cpp
-  - test/geometry/projection.test.cpp
-  - test/geometry/intersection.test.cpp
-  - test/geometry/cross_point.test.cpp
-  - test/utility/range.test.cpp
-  - test/test.test.cpp
-  - test/data/binary_indexed_tree.test.cpp
-  - test/data/segment_tree_RSQ2.test.cpp
-  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
-  - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
-  - test/data/cumulative_sum_2D.test.cpp
-  - test/data/dual_segment_tree_RAQ.test.cpp
-  - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
-  - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-  - test/data/binary_indexed_tree_aux.test.cpp
-  - test/data/sparse_table.test.cpp
-  - test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
-  - test/data/cumulative_sum.test.cpp
-  - test/data/union_find.test.cpp
-  - test/data/segment_tree_RMQ.test.cpp
-  - test/data/dual_segment_tree_RUQ.test.cpp
-  - test/data/segment_tree_RSQ.test.cpp
-  - test/graphv2/bfs_grid.test.cpp
-  - test/graphv2/warshallfloyd.test.cpp
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp
-  - test/graph/bfs_grid.test.cpp
-  - test/graph/warshallfloyd.test.cpp
+  - test/graphv2/bellman_ford.test.cpp
+  - test/graphv2/bfs_grid.test.cpp
+  - test/graphv2/warshallfloyd.test.cpp
+  - test/test.test.cpp
   - test/graph/lca.test.cpp
-  - test/graph/kruskal.test.cpp
   - test/graph/dijkstra.test.cpp
   - test/graph/bellman_ford.test.cpp
+  - test/graph/kruskal.test.cpp
+  - test/graph/bfs_grid.test.cpp
+  - test/graph/warshallfloyd.test.cpp
+  - test/data/binary_indexed_tree_aux.test.cpp
+  - test/data/dual_segment_tree_RAQ.test.cpp
+  - test/data/dual_segment_tree_RUQ.test.cpp
+  - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
+  - test/data/union_find.test.cpp
+  - test/data/binary_indexed_tree.test.cpp
+  - test/data/sparse_table.test.cpp
+  - test/data/segment_tree_RSQ2.test.cpp
+  - test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
+  - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
+  - test/data/segment_tree_RMQ.test.cpp
+  - test/data/segment_tree_RSQ.test.cpp
+  - test/data/cumulative_sum_2D.test.cpp
+  - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+  - test/data/cumulative_sum.test.cpp
+  - test/geometry/area.test.cpp
+  - test/geometry/parallel_orthogonal.test.cpp
+  - test/geometry/counter_clockwise.test.cpp
+  - test/geometry/is_convex.test.cpp
+  - test/geometry/cross_point.test.cpp
+  - test/geometry/reflection.test.cpp
+  - test/geometry/distance.test.cpp
+  - test/geometry/projection.test.cpp
+  - test/geometry/intersection.test.cpp
+  - test/math/prime.test.cpp
+  - test/math/euclid.test.cpp
+  - test/math/combination.test.cpp
+  - test/math/osa_k.test.cpp
+  - test/utility/range.test.cpp
 documentation_of: core/core.hpp
 layout: document
 redirect_from:

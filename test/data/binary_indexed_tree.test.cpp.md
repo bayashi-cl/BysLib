@@ -1,43 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/const.hpp
     title: Const
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
     title: core/all
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/io.hpp
     title: I/O
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/printer.hpp
     title: Output
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/types.hpp
     title: Types
   - icon: ':heavy_check_mark:'
     path: data/binary_indexed_tree.hpp
     title: Binary Indexed Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/bit.hpp
     title: Bit
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/change.hpp
     title: chmin/chmax
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/range.hpp
     title: Python::range
   _extendedRequiredBy: []
@@ -51,28 +51,28 @@ data:
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B
   bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B\"\
-    \n\n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n * \n *\
+    \n\n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n *\n *\
     \ C++ library for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
-    \ * Document : https://bayashi-cl.github.io/byslib/\n */\n/**\n * @file stdlib.hpp\n\
-    \ * @author bayashi_cl\n * @brief STL Template\n */\n#include <algorithm>\n#include\
-    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
-    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
-    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
-    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
-    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
-    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
-    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
-    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
-    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n/**\n * @file const.hpp\n * @author bayashi_cl\n * @brief Const\n */\n\
-    namespace bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\n\
-    constexpr int INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF =\
-    \ std::numeric_limits<ll>::max() / 2;\n}  // namespace bys\n/**\n * @file types.hpp\n\
-    \ * @author bayashi_cl\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\n\
-    namespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
-    \ : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \ * Document : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
+    \ NDEBUG\n#endif\n/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n#include\
+    \ <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n#include\
+    \ <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include <string>\n\
+    #include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n#include\
+    \ <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string, std::set,\
+    \ std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing std::min,\
+    \ std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\nusing ll\
+    \ = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\nusing\
+    \ Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
+    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
+    \ T>;\n}  // namespace bys\n/**\n * @file const.hpp\n * @brief Const\n */\nnamespace\
+    \ bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr\
+    \ int INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
+    \ / 2;\n}  // namespace bys\n/**\n * @file types.hpp\n * @brief Types\n *\n *\
+    \ type_traits\u62E1\u5F35\n */\nnamespace bys {\ntemplate <class, class = void>\n\
+    struct has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct\
+    \ has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -82,12 +82,12 @@ data:
     \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
     \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
     \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n/**\n * @file\
-    \ printer.hpp\n * @author bayashi_cl\n * @brief Output\n */\nnamespace bys {\n\
-    class Printer {\n    std::ostream& os;\n    std::string _sep = \" \", _end = \"\
-    \\n\";\n    template <std::size_t I, class T>\n    inline void print_tuple_element(T&&\
-    \ elem) {\n        if constexpr (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n\
-    \    }\n    template <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&&\
-    \ tp, std::index_sequence<I...>) {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
+    \ printer.hpp\n * @brief Output\n */\nnamespace bys {\nclass Printer {\n    std::ostream&\
+    \ os;\n    std::string _sep = \" \", _end = \"\\n\";\n    template <std::size_t\
+    \ I, class T>\n    inline void print_tuple_element(T&& elem) {\n        if constexpr\
+    \ (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n    }\n    template\
+    \ <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&& tp, std::index_sequence<I...>)\
+    \ {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
     \ ...);\n    }\n\n   public:\n    Printer(std::ostream& os_) : os(os_) {}\n  \
     \  ~Printer() { os << std::flush; }\n\n    template <class T>\n    void cat(T&&\
     \ v) {\n        if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {\n\
@@ -112,9 +112,9 @@ data:
     \ \u533A\u5207\u308A\u6587\u5B57\u3068\u7D42\u7AEF\u6587\u5B57\u3092\u8A2D\u5B9A\
     \n    Printer set(string sep_ = \" \", string end_ = \"\\n\") {\n        _sep\
     \ = sep_;\n        _end = end_;\n        return *this;\n    }\n    void lf() {\
-    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @author\
-    \ bayashi_cl\n * @brief Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream&\
-    \ is;\n    template <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
+    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @brief\
+    \ Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream& is;\n    template\
+    \ <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
     \ {\n        return Tp{read<typename std::tuple_element_t<I, Tp>>()...};\n   \
     \ }\n\n   public:\n    Scanner(std::istream& is_) : is(is_){};\n\n    template\
     \ <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >> args);\n\
@@ -158,54 +158,52 @@ data:
     \u6539\u884C\u3092\u8AAD\u307F\u98DB\u3070\u3059\n     */\n    std::string getline(bool\
     \ skip_ws = true) {\n        if (skip_ws) std::ws(is);\n        std::string res;\n\
     \        std::getline(is, res);\n        return res;\n    }\n};\n}  // namespace\
-    \ bys\n/**\n * @file io.hpp\n * @author bayashi_cl\n * @brief I/O\n */\nnamespace\
-    \ bys {\n__attribute__((constructor)) void setup_io() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    std::cout << std::fixed << std::setprecision(11);\n\
-    \    std::cerr << std::fixed << std::setprecision(11);\n    std::cerr << std::boolalpha;\n\
-    }\n\nPrinter print(std::cout), debug(std::cerr);\nScanner scanner(std::cin);\n\
-    }  // namespace bys\n/**\n * @file macro.hpp\n * @author bayashi_cl\n * @brief\
-    \ Macro\n */\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\
-    \u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\
-    \u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\" <<\
-    \ std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n\
-    #endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define EXIT(...)\
-    \ { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a,\
-    \ b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\
-    \u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n\
-    #define RE std::runtime_error(\"line: \" + std::to_string(__LINE__) + \", func:\
-    \ \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n * @author bayashi_cl\n\
-    \ * @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n  \
-    \  Solver() {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\
-    \u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <=\
-    \ rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n/**\n * @file range.hpp\n\
-    \ * @author bayashi_cl\n * @brief Python::range\n *\n * Python\u518D\u73FE\u30B7\
-    \u30EA\u30FC\u30BA range\u7DE8\n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n\
-    \ */\nnamespace bys {\ntemplate <typename T>\nclass Range {\n    T it;\n    const\
-    \ T stop, step;\n    const int dir;\n\n   public:\n    Range(T start, T stop,\
-    \ T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n\
-    \    Range(T stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T> begin()\
-    \ const { return *this; }\n    T end() const { return stop; }\n    bool operator!=(const\
-    \ T val) const { return (val - it) * dir > 0; }\n    void operator++() { it +=\
-    \ step; }\n    const T& operator*() const { return it; }\n\n    friend Range reversed(const\
-    \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
-    \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\n//!\
-    \ @brief range(stop)\ntemplate <class T>\nRange<T> irange(T stop) {\n    return\
-    \ Range(stop);\n}\n//! @brief range(start, stop[, step])\ntemplate <class T>\n\
-    Range<T> irange(T start, T stop, T step = 1) {\n    return Range(start, stop,\
-    \ step);\n}\n}  // namespace bys\n/**\n * @file change.hpp\n * @author bayashi_cl\n\
-    \ * @brief chmin/chmax\n */\nnamespace bys {\n/**\n * @brief \u6700\u5927\u5024\
-    \u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\
-    \n */\ntemplate <class T>\ninline bool chmax(T& a, const T& b) {\n    return a\
-    \ < b ? a = b, true : false;\n}\n/**\n * @brief \u6700\u5C0F\u5024\u3067\u66F4\
-    \u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\n */\ntemplate\
-    \ <class T>\ninline bool chmin(T& a, const T& b) {\n    return a > b ? a = b,\
-    \ true : false;\n}\n}  // namespace bys\n/**\n * @file bit.hpp\n * @author bayashi_cl\n\
-    \ * @brief Bit\n * @note c++20\u3067<bit>\u304C\u8FFD\u52A0\u3055\u308C\u308B\n\
-    \ */\nnamespace bys {\n/**\n * @brief bit\u5E45\n *\n * bit_width(x) - 1  < log2(x)\
-    \ <= bit_width(x)\n */\ntemplate <class T>\nconstexpr int bit_width(T x) {\n \
-    \   int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>=\
-    \ 1;\n    return bits;\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\u4E0B\u3052\n\
-    template <class T>\nconstexpr T bit_floor(T x) {\n    assert(x >= 0);\n    return\
+    \ bys\n/**\n * @file io.hpp\n * @brief I/O\n */\nnamespace bys {\n__attribute__((constructor))\
+    \ void setup_io() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
+    \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
+    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n/**\n *\
+    \ @file macro.hpp\n * @brief Macro\n */\n// clang-format off\n#ifdef LOCAL\n//!\
+    \ @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
+    \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr\
+    \ << \"[debug] line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__);\
+    \ }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\
+    \u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a,\
+    \ b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
+    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
+    \ + \", func: \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n *\
+    \ @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
+    \ {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
+    \u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <= rep; ++IT)\
+    \ solve();\n    }\n};\n}  // namespace bys\n/**\n * @file range.hpp\n * @brief\
+    \ Python::range\n *\n * Python\u518D\u73FE\u30B7\u30EA\u30FC\u30BA range\u7DE8\
+    \n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n */\nnamespace\
+    \ bys {\ntemplate <typename T>\nclass Range {\n    T it;\n    const T stop, step;\n\
+    \    const int dir;\n\n   public:\n    Range(T start, T stop, T step = 1) : it(start),\
+    \ stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n    Range(T stop) : it(0),\
+    \ stop(stop), step(1), dir(1) {}\n    Range<T> begin() const { return *this; }\n\
+    \    T end() const { return stop; }\n    bool operator!=(const T val) const {\
+    \ return (val - it) * dir > 0; }\n    void operator++() { it += step; }\n    const\
+    \ T& operator*() const { return it; }\n\n    friend Range reversed(const Range&\
+    \ r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;\n\
+    \        return {new_start, r.it - r.dir, -r.step};\n    }\n};\n//! @brief range(stop)\n\
+    template <class T>\nRange<T> irange(T stop) {\n    return Range(stop);\n}\n//!\
+    \ @brief range(start, stop[, step])\ntemplate <class T>\nRange<T> irange(T start,\
+    \ T stop, T step = 1) {\n    return Range(start, stop, step);\n}\n}  // namespace\
+    \ bys\n/**\n * @file change.hpp\n * @brief chmin/chmax\n */\nnamespace bys {\n\
+    /**\n * @brief \u6700\u5927\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\
+    \u3055\u308C\u305F\u3068\u304D\n */\ntemplate <class T>\ninline bool chmax(T&\
+    \ a, const T& b) {\n    return a < b ? a = b, true : false;\n}\n/**\n * @brief\
+    \ \u6700\u5C0F\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\
+    \u305F\u3068\u304D\n */\ntemplate <class T>\ninline bool chmin(T& a, const T&\
+    \ b) {\n    return a > b ? a = b, true : false;\n}\n}  // namespace bys\n/**\n\
+    \ * @file bit.hpp\n * @brief Bit\n * @note c++20\u3067<bit>\u304C\u8FFD\u52A0\u3055\
+    \u308C\u308B\n */\nnamespace bys {\n/**\n * @brief bit\u5E45\n *\n * bit_width(x)\
+    \ - 1  < log2(x) <= bit_width(x)\n */\ntemplate <class T>\nconstexpr int bit_width(T\
+    \ x) {\n    int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++)\
+    \ x >>= 1;\n    return bits;\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\u4E0B\u3052\
+    \ntemplate <class T>\nconstexpr T bit_floor(T x) {\n    assert(x >= 0);\n    return\
     \ x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\
     \u4E0A\u3052\ntemplate <class T>\nconstexpr T bit_ceil(T x) {\n    assert(x >=\
     \ 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n}\n//! @brief 2\u9032\
@@ -215,21 +213,20 @@ data:
     \ 1;\n    }\n    std::reverse(res.begin(), res.end());\n    return res;\n}\n//!\
     \ @brief d bit\u76EE\u304C\u7ACB\u3063\u3066\u3044\u308B\u304B\ntemplate <class\
     \ T>\nconstexpr bool pop(T s, int d) {\n    return s & (T(1) << d);\n}\n}  //\
-    \ namespace bys\n/**\n * @file binary_indexed_tree.hpp\n * @author bayashi_cl\n\
-    \ * @brief Binary Indexed Tree\n */\nnamespace bys {\n/**\n * @brief Binary Indexed\
-    \ Tree\n *\n * \u4E00\u70B9\u66F4\u65B0: O(logN)\n * \u533A\u9593\u548C: O(logN)\n\
-    \ * See: https://algo-logic.info/binary-indexed-tree/\n */\ntemplate <class T>\n\
-    class BinaryIndexedTree {\n    const int _n;\n    std::vector<T> data;\n\n   public:\n\
-    \    BinaryIndexedTree() : _n(0) {}\n    BinaryIndexedTree(int n) : _n(n), data(n\
-    \ + 1) {}\n    BinaryIndexedTree(const std::vector<T>& v) : _n(v.size()), data(_n\
-    \ + 1) {\n        for (int i = 0; i < _n; ++i) add(i, v[i]);\n    }\n\n    void\
-    \ add(int i, T x) {\n        assert(0 <= i && i < _n);\n        ++i;\n       \
-    \ while (i <= _n) {\n            data[i] += x;\n            i += i & -i;\n   \
-    \     }\n    }\n    T sum(int r) {\n        assert(0 <= r && r <= _n);\n     \
-    \   T res = 0;\n        while (r > 0) {\n            res += data[r];\n       \
-    \     r -= r & -r;\n        }\n        return res;\n    }\n    T sum(int l, int\
-    \ r) {\n        assert(0 <= l && l <= r && r <= _n);\n        return sum(r) -\
-    \ sum(l);\n    }\n\n    //! @brief O(log N)\n    T get(int i) {\n        assert(0\
+    \ namespace bys\n/**\n * @file binary_indexed_tree.hpp\n * @brief Binary Indexed\
+    \ Tree\n */\nnamespace bys {\n/**\n * @brief Binary Indexed Tree\n *\n * \u4E00\
+    \u70B9\u66F4\u65B0: O(logN)\n * \u533A\u9593\u548C: O(logN)\n * See: https://algo-logic.info/binary-indexed-tree/\n\
+    \ */\ntemplate <class T>\nclass BinaryIndexedTree {\n    const int _n;\n    std::vector<T>\
+    \ data;\n\n   public:\n    BinaryIndexedTree() : _n(0) {}\n    BinaryIndexedTree(int\
+    \ n) : _n(n), data(n + 1) {}\n    BinaryIndexedTree(const std::vector<T>& v) :\
+    \ _n(v.size()), data(_n + 1) {\n        for (int i = 0; i < _n; ++i) add(i, v[i]);\n\
+    \    }\n\n    void add(int i, T x) {\n        assert(0 <= i && i < _n);\n    \
+    \    ++i;\n        while (i <= _n) {\n            data[i] += x;\n            i\
+    \ += i & -i;\n        }\n    }\n    T sum(int r) {\n        assert(0 <= r && r\
+    \ <= _n);\n        T res = 0;\n        while (r > 0) {\n            res += data[r];\n\
+    \            r -= r & -r;\n        }\n        return res;\n    }\n    T sum(int\
+    \ l, int r) {\n        assert(0 <= l && l <= r && r <= _n);\n        return sum(r)\
+    \ - sum(l);\n    }\n\n    //! @brief O(log N)\n    T get(int i) {\n        assert(0\
     \ <= i && i < _n);\n        return sum(i, i + 1);\n    }\n\n    //! @brief sum[0,\
     \ r) >= x\u3068\u306A\u308B\u6700\u5C0F\u306Er\u3092\u6C42\u3081\u308B\n    int\
     \ bisect(T x) {\n        if (x <= 0) return 0;\n        if (x > sum(_n)) return\
@@ -256,8 +253,8 @@ data:
     \ */);\n    return 0;\n}\n"
   dependsOn:
   - core/core.hpp
-  - core/stdlib.hpp
   - core/const.hpp
+  - core/stdlib.hpp
   - core/io.hpp
   - core/printer.hpp
   - core/types.hpp
@@ -271,7 +268,7 @@ data:
   isVerificationFile: true
   path: test/data/binary_indexed_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-03-28 23:40:03+09:00'
+  timestamp: '2022-04-04 23:07:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/binary_indexed_tree.test.cpp

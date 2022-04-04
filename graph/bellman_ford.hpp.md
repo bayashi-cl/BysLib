@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/const.hpp
     title: Const
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/edge.hpp
     title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/change.hpp
     title: chmin/chmax
   _extendedRequiredBy: []
@@ -23,23 +23,22 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
-    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
-    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
-    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
-    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
-    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
-    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
-    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
-    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
-    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
-    \ T>;\n}  // namespace bys\n/**\n * @file const.hpp\n * @author bayashi_cl\n *\
-    \ @brief Const\n */\nnamespace bys {\nconstexpr int MOD = 998244353;\nconstexpr\
-    \ int MOD7 = 1000000007;\nconstexpr int INF = std::numeric_limits<int>::max()\
-    \ / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max() / 2;\n}  // namespace\
-    \ bys\n/**\n * @file change.hpp\n * @author bayashi_cl\n * @brief chmin/chmax\n\
+  bundledCode: "/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
+    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
+    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
+    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
+    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
+    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
+    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n/**\n * @file const.hpp\n * @brief Const\n */\nnamespace bys {\nconstexpr\
+    \ int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr int INF =\
+    \ std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
+    \ / 2;\n}  // namespace bys\n/**\n * @file change.hpp\n * @brief chmin/chmax\n\
     \ */\nnamespace bys {\n/**\n * @brief \u6700\u5927\u5024\u3067\u66F4\u65B0\n *\
     \ @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\n */\ntemplate <class\
     \ T>\ninline bool chmax(T& a, const T& b) {\n    return a < b ? a = b, true :\
@@ -86,7 +85,7 @@ data:
   isVerificationFile: false
   path: graph/bellman_ford.hpp
   requiredBy: []
-  timestamp: '2022-03-28 23:40:03+09:00'
+  timestamp: '2022-04-04 23:07:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/bellman_ford.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
   - icon: ':heavy_check_mark:'
@@ -24,26 +24,25 @@ data:
   attributes:
     document_title: Polygon
     links: []
-  bundledCode: "/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
-    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
-    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
-    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
-    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
-    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
-    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
-    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
-    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
-    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
-    \ T>;\n}  // namespace bys\n/**\n * @file base.hpp\n * @author bayashi_cl\n *\
-    \ @brief Base\n */\n//! @brief \u5E7E\u4F55\nnamespace bys::geo {\nconst ld EPS\
-    \ = 1e-9;\nconst ld PI = std::acos(-1.0);\nconst ld TAU = PI * 2;\nint sgn(ld\
-    \ a) { return (a < -EPS) ? -1 : (a > EPS) ? 1 : 0; }\nbool isclose(ld a, ld b)\
-    \ { return sgn(a - b) == 0; }\n//! @brief \u5EA6\u6570\u6CD5 -> \u5F27\u5EA6\u6CD5\
-    \nld radian(ld degree) { return degree * (PI / 180.0); }\n//! @brief \u5F27\u5EA6\
-    \u6CD5 -> \u5EA6\u6570\u6CD5\nld degree(ld theta) { return theta * (180.0 / PI);\
-    \ }\n}  // namespace bys::geo\n/**\n * @file point.hpp\n * @author bayashi_cl\n\
+  bundledCode: "/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
+    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
+    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
+    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
+    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
+    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
+    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n/**\n * @file base.hpp\n * @brief Base\n */\n//! @brief \u5E7E\u4F55\n\
+    namespace bys::geo {\nconst ld EPS = 1e-9;\nconst ld PI = std::acos(-1.0);\nconst\
+    \ ld TAU = PI * 2;\nint sgn(ld a) { return (a < -EPS) ? -1 : (a > EPS) ? 1 : 0;\
+    \ }\nbool isclose(ld a, ld b) { return sgn(a - b) == 0; }\n//! @brief \u5EA6\u6570\
+    \u6CD5 -> \u5F27\u5EA6\u6CD5\nld radian(ld degree) { return degree * (PI / 180.0);\
+    \ }\n//! @brief \u5F27\u5EA6\u6CD5 -> \u5EA6\u6570\u6CD5\nld degree(ld theta)\
+    \ { return theta * (180.0 / PI); }\n}  // namespace bys::geo\n/**\n * @file point.hpp\n\
     \ * @brief Point\n */\nnamespace bys::geo {\n//! @brief \u70B9/\u30D9\u30AF\u30C8\
     \u30EB\ntemplate <class T>\nstruct Point {\n    T x, y;\n    Point() : x(0.0),\
     \ y(0.0) {}\n    Point(T x, T y) : x(x), y(y) {}\n    // clang-format off\n  \
@@ -103,14 +102,13 @@ data:
     \ Point<T>& b, const Point<T>& c) {\n    int t = sgn((a - b).dot(c - b));\n  \
     \  if (t == -1) {\n        return Angle::Obtuse;\n    } else if (t == 0) {\n \
     \       return Angle::Right;\n    } else {\n        return Angle::Acute;\n   \
-    \ }\n}\n}  // namespace bys::geo\n/**\n * @file polygon.hpp\n * @author bayashi_cl\n\
-    \ * @brief Polygon\n */\nnamespace bys::geo {\n//! @brief \u591A\u89D2\u5F62\n\
-    template <class T>\nstruct Polygon {\n    int n_vertex;\n    std::vector<Point<T>>\
-    \ vertex;\n    Polygon(std::initializer_list<Point<T>> init) : n_vertex(init.size()),\
-    \ vertex(init.begin(), init.end()) {}\n    Polygon(std::vector<Point<T>> vertex)\
-    \ : n_vertex(vertex.size()), vertex(vertex) {}\n    //! @brief \u9762\u7A4D*2\n\
-    \    T area2() const {\n        if (n_vertex < 3) return 0;\n        ld s = 0.0;\n\
-    \        for (int i = 0; i < n_vertex; ++i) {\n            s += vertex[i].det(vertex[(i\
+    \ }\n}\n}  // namespace bys::geo\n/**\n * @file polygon.hpp\n * @brief Polygon\n\
+    \ */\nnamespace bys::geo {\n//! @brief \u591A\u89D2\u5F62\ntemplate <class T>\n\
+    struct Polygon {\n    int n_vertex;\n    std::vector<Point<T>> vertex;\n    Polygon(std::initializer_list<Point<T>>\
+    \ init) : n_vertex(init.size()), vertex(init.begin(), init.end()) {}\n    Polygon(std::vector<Point<T>>\
+    \ vertex) : n_vertex(vertex.size()), vertex(vertex) {}\n    //! @brief \u9762\u7A4D\
+    *2\n    T area2() const {\n        if (n_vertex < 3) return 0;\n        ld s =\
+    \ 0.0;\n        for (int i = 0; i < n_vertex; ++i) {\n            s += vertex[i].det(vertex[(i\
     \ + 1) % n_vertex]);\n        }\n        return s;\n    };\n    //! @brief \u9762\
     \u7A4D\n    ld area() const { return area2() * 0.5; }\n    //! @brief \u51F8\u5224\
     \u5B9A\n    bool is_convex() const {\n        int left = 0;\n        int right\
@@ -118,18 +116,18 @@ data:
     \ vertex[(i + 1) % n_vertex], vertex[(i + 2) % n_vertex]);\n            if (res\
     \ == Turn::CW) left++;\n            if (res == Turn::CCW) right++;\n        }\n\
     \        return left == 0 || right == 0;\n    }\n};\n}  // namespace bys::geo\n"
-  code: "#pragma once\n#include \"point.hpp\"\n/**\n * @file polygon.hpp\n * @author\
-    \ bayashi_cl\n * @brief Polygon\n */\nnamespace bys::geo {\n//! @brief \u591A\u89D2\
-    \u5F62\ntemplate <class T>\nstruct Polygon {\n    int n_vertex;\n    std::vector<Point<T>>\
-    \ vertex;\n    Polygon(std::initializer_list<Point<T>> init) : n_vertex(init.size()),\
-    \ vertex(init.begin(), init.end()) {}\n    Polygon(std::vector<Point<T>> vertex)\
-    \ : n_vertex(vertex.size()), vertex(vertex) {}\n    //! @brief \u9762\u7A4D*2\n\
-    \    T area2() const {\n        if (n_vertex < 3) return 0;\n        ld s = 0.0;\n\
-    \        for (int i = 0; i < n_vertex; ++i) {\n            s += vertex[i].det(vertex[(i\
-    \ + 1) % n_vertex]);\n        }\n        return s;\n    };\n    //! @brief \u9762\
-    \u7A4D\n    ld area() const { return area2() * 0.5; }\n    //! @brief \u51F8\u5224\
-    \u5B9A\n    bool is_convex() const {\n        int left = 0;\n        int right\
-    \ = 0;\n        for (int i = 0; i < n_vertex; ++i) {\n            auto res = iSP(vertex[i],\
+  code: "#pragma once\n#include \"point.hpp\"\n/**\n * @file polygon.hpp\n * @brief\
+    \ Polygon\n */\nnamespace bys::geo {\n//! @brief \u591A\u89D2\u5F62\ntemplate\
+    \ <class T>\nstruct Polygon {\n    int n_vertex;\n    std::vector<Point<T>> vertex;\n\
+    \    Polygon(std::initializer_list<Point<T>> init) : n_vertex(init.size()), vertex(init.begin(),\
+    \ init.end()) {}\n    Polygon(std::vector<Point<T>> vertex) : n_vertex(vertex.size()),\
+    \ vertex(vertex) {}\n    //! @brief \u9762\u7A4D*2\n    T area2() const {\n  \
+    \      if (n_vertex < 3) return 0;\n        ld s = 0.0;\n        for (int i =\
+    \ 0; i < n_vertex; ++i) {\n            s += vertex[i].det(vertex[(i + 1) % n_vertex]);\n\
+    \        }\n        return s;\n    };\n    //! @brief \u9762\u7A4D\n    ld area()\
+    \ const { return area2() * 0.5; }\n    //! @brief \u51F8\u5224\u5B9A\n    bool\
+    \ is_convex() const {\n        int left = 0;\n        int right = 0;\n       \
+    \ for (int i = 0; i < n_vertex; ++i) {\n            auto res = iSP(vertex[i],\
     \ vertex[(i + 1) % n_vertex], vertex[(i + 2) % n_vertex]);\n            if (res\
     \ == Turn::CW) left++;\n            if (res == Turn::CCW) right++;\n        }\n\
     \        return left == 0 || right == 0;\n    }\n};\n}  // namespace bys::geo\n"
@@ -140,7 +138,7 @@ data:
   isVerificationFile: false
   path: geometry/polygon.hpp
   requiredBy: []
-  timestamp: '2022-03-28 23:40:03+09:00'
+  timestamp: '2022-04-04 23:07:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/geometry/area.test.cpp

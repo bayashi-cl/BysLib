@@ -29,14 +29,20 @@ data:
     path: core/types.hpp
     title: Types
   - icon: ':heavy_check_mark:'
-    path: geometry/base.hpp
-    title: Base
-  - icon: ':heavy_check_mark:'
-    path: geometry/line.hpp
-    title: Line
-  - icon: ':heavy_check_mark:'
-    path: geometry/point.hpp
-    title: Point
+    path: graphv2/bellman_ford.hpp
+    title: Bellman Ford
+  - icon: ':question:'
+    path: graphv2/edge.hpp
+    title: Edge
+  - icon: ':question:'
+    path: graphv2/result.hpp
+    title: Shortest Path Result
+  - icon: ':question:'
+    path: utility/change.hpp
+    title: chmin/chmax
+  - icon: ':question:'
+    path: utility/range.hpp
+    title: Python::range
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -44,10 +50,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_A
+    PROBLEM: https://atcoder.jp/contests/abc137/tasks/abc137_e
     links:
-    - https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_A
-  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_A\"\
+    - https://atcoder.jp/contests/abc137/tasks/abc137_e
+  bundledCode: "#define PROBLEM \"https://atcoder.jp/contests/abc137/tasks/abc137_e\"\
     \n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n *\n * C++\
     \ library for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
     \ * Document : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
@@ -173,130 +179,113 @@ data:
     \ @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
     \ {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
     \u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <= rep; ++IT)\
-    \ solve();\n    }\n};\n}  // namespace bys\n/**\n * @file base.hpp\n * @brief\
-    \ Base\n */\n//! @brief \u5E7E\u4F55\nnamespace bys::geo {\nconst ld EPS = 1e-9;\n\
-    const ld PI = std::acos(-1.0);\nconst ld TAU = PI * 2;\nint sgn(ld a) { return\
-    \ (a < -EPS) ? -1 : (a > EPS) ? 1 : 0; }\nbool isclose(ld a, ld b) { return sgn(a\
-    \ - b) == 0; }\n//! @brief \u5EA6\u6570\u6CD5 -> \u5F27\u5EA6\u6CD5\nld radian(ld\
-    \ degree) { return degree * (PI / 180.0); }\n//! @brief \u5F27\u5EA6\u6CD5 ->\
-    \ \u5EA6\u6570\u6CD5\nld degree(ld theta) { return theta * (180.0 / PI); }\n}\
-    \  // namespace bys::geo\n/**\n * @file point.hpp\n * @brief Point\n */\nnamespace\
-    \ bys::geo {\n//! @brief \u70B9/\u30D9\u30AF\u30C8\u30EB\ntemplate <class T>\n\
-    struct Point {\n    T x, y;\n    Point() : x(0.0), y(0.0) {}\n    Point(T x, T\
-    \ y) : x(x), y(y) {}\n    // clang-format off\n    friend std::istream& operator>>(std::istream&\
-    \ is, Point& v) { return is >> v.x >> v.y; }\n    friend std::ostream& operator<<(std::ostream&\
-    \ os, const Point& v) { return os << v.x << ' ' << v.y; }\n    Point operator+()\
-    \ const { return *this; }\n    Point operator-() const { return Point(-x, -y);\
-    \ }\n    Point operator+(const Point& rh) const { return Point(x + rh.x, y + rh.y);\
-    \ }\n    Point operator-(const Point& rh) const { return Point(x - rh.x, y - rh.y);\
-    \ }\n    Point operator*(const T rh) const { return Point(x * rh, y * rh); }\n\
-    \    Point operator/(const T rh) const { return Point(x / rh, y / rh); }\n   \
-    \ Point operator+=(const Point& rh) { x += rh.x; y += rh.y; return *this; }\n\
-    \    Point operator-=(const Point& rh) { x -= rh.x; y -= rh.y; return *this; }\n\
-    \    Point operator*=(const T rh) { x *= rh; y *= rh; return *this; }\n    Point\
-    \ operator/=(const T rh) { x /= rh; y /= rh; return *this; }\n    bool operator==(const\
-    \ Point& rh) const { return isclose(x, rh.x) && isclose(y, rh.y); }\n    bool\
-    \ operator!=(const Point& rh) const { return !(*this == rh); }\n    // clang-format\
-    \ on\n\n    //! @brief \u30CE\u30EB\u30E0^2\n    T norm2() const { return x *\
-    \ x + y * y; }\n    //! @brief \u30CE\u30EB\u30E0\n    ld norm() const { return\
-    \ std::sqrt(norm2()); }\n    //! @brief \u5358\u4F4D\u30D9\u30AF\u30C8\u30EB\n\
-    \    Point normalized() const { return Point(x / norm(), y / norm()); }\n    //!\
-    \ @brief \u504F\u89D2\n    ld angle() const { return std::atan2(y, x); }\n   \
-    \ //! @brief \u56DE\u8EE2\n    Point rotate(ld theta) const {\n        ld ct =\
-    \ std::cos(theta), st = std::sin(theta);\n        return Point(x * ct - y * st,\
-    \ x * st + y * ct);\n    }\n    Point rotate90() const { return Point(-y, x);\
-    \ }\n    //! @brief \u30DE\u30F3\u30CF\u30C3\u30BF\u30F3\u8DDD\u96E2\u7528\u3002\
-    45\u5EA6\u56DE\u8EE2\u3057\u3066\u221A2\u500D\u3059\u308B\n    Point manhattan_rotate()\
-    \ const { return Point(x - y, x + y); }\n    //! @brief \u5185\u7A4D\n    T dot(const\
-    \ Point& rh) const { return x * rh.x + y * rh.y; }\n    //! @brief \u5916\u7A4D\
-    \n    T det(const Point& rh) const { return x * rh.y - y * rh.x; }\n    //! @brief\
-    \ \u6CD5\u7DDA\u30D9\u30AF\u30C8\u30EB\n    Point normal() const { return Point(-normalized().y,\
-    \ normalized().x); }\n    //! @brief \u6B63\u5C04\u5F71\u30D9\u30AF\u30C8\u30EB\
-    \n    Point projection(const Point& to) const { return to * (dot(to) / to.norm2());\
-    \ }\n    //! @brief \u8C61\u9650\n    int quadrant() const {\n        if (sgn(y)\
-    \ >= 0) return sgn(x) >= 0 ? 1 : 2;\n        return sgn(x) >= 0 ? 4 : 3;\n   \
-    \ }\n    //! @brief \u504F\u89D2\u30BD\u30FC\u30C8\u7528\n    bool operator<(const\
-    \ Point& rh) const {\n        int q = quadrant(), rhq = rh.quadrant();\n     \
-    \   if (q != rhq) return q < rhq;\n        return sgn(det(rh)) > 0;\n    }\n \
-    \   bool operator<=(const Point& rh) const {\n        int q = quadrant(), rhq\
-    \ = rh.quadrant();\n        if (q != rhq) return q < rhq;\n        return sgn(det(rh))\
-    \ >= 0;\n    }\n};\n\ntemplate <class T>\nbool compx(Point<T>& a, Point<T>& b)\
-    \ {\n    return a.x < b.x;\n}\ntemplate <class T>\nbool compy(Point<T>& a, Point<T>&\
-    \ b) {\n    return a.y < b.y;\n}\n//! @brief \u66F2\u304C\u308B\u65B9\u5411\n\
-    enum class Turn {\n    //! ab\u306E\u5F8C\u65B9\n    Back = -2,\n    //! ab->bc\u304C\
-    \u53F3\u306B\u66F2\u304C\u308B\n    CW = -1,\n    //! ab\u4E0A\n    Middle = 0,\n\
-    \    //! ab->bc\u304C\u5DE6\u306B\u66F2\u304C\u308B\n    CCW = 1,\n    //! ab\u306E\
-    \u524D\u65B9\n    Front = 2,\n};\n//! @brief \u8FBA\u306E\u66F2\u304C\u308B\u65B9\
-    \u5411\ntemplate <class T>\nTurn iSP(const Point<T>& a, const Point<T>& b, const\
-    \ Point<T>& c) {\n    int flg = sgn((b - a).det(c - a));\n    if (flg == 1) {\n\
-    \        return Turn::CCW;\n    } else if (flg == -1) {\n        return Turn::CW;\n\
-    \    } else {\n        if (sgn((b - a).dot(c - b)) > 0) {\n            return\
-    \ Turn::Front;\n        } else if (sgn((a - b).dot(c - a)) > 0) {\n          \
-    \  return Turn::Back;\n        } else {\n            return Turn::Middle;\n  \
-    \      }\n    }\n}\nenum class Angle {\n    //! \u920D\u89D2\n    Obtuse = -1,\n\
-    \    //! \u76F4\u89D2\n    Right = 0,\n    //! \u92ED\u89D2\n    Acute = 1,\n\
-    };\n\n//! @brief \u89D2\u306E\u7A2E\u985E\ntemplate <class T>\nAngle angle_type(const\
-    \ Point<T>& a, const Point<T>& b, const Point<T>& c) {\n    int t = sgn((a - b).dot(c\
-    \ - b));\n    if (t == -1) {\n        return Angle::Obtuse;\n    } else if (t\
-    \ == 0) {\n        return Angle::Right;\n    } else {\n        return Angle::Acute;\n\
-    \    }\n}\n}  // namespace bys::geo\n\n/**\n * @file line.hpp\n * @brief Line\n\
-    \ * @todo \u534A\u76F4\u7DDA\u306E\u5B9F\u88C5\n */\nnamespace bys::geo {\ntemplate\
-    \ <class T>\n//! @brief \u76F4\u7DDA\nstruct Line {\n    Point<T> p, q;\n    Line(Point<T>\
-    \ p, Point<T> q) : p(p), q(q) {}\n    Point<T> to_Point() const { return q - p;\
-    \ }\n    Point<ld> to_unit_Point() const { return to_Point().normalized(); }\n\
-    \    ld angle() const { return to_Point().angle(); }\n    bool operator==(const\
-    \ Line& rh) const { return abs((int)iSP(p, q, rh.p)) != 1 && abs((int)iSP(p, q,\
-    \ rh.q)) != 1; }\n    bool operator!=(const Line& rh) const { return !(*this ==\
-    \ rh); }\n};\n//! @brief \u7DDA\u5206\ntemplate <class T>\nstruct Segment : Line<T>\
-    \ {\n    Segment(Point<T>& p, Point<T>& q) : Line<T>::Line(p, q) {}\n    ld length()\
-    \ const { return this->to_Point().norm(); }\n    Point<ld> internal_division(ld\
-    \ m, ld n) const { return (this->p * n + this->q * m) / (m + n); }\n    bool operator==(const\
-    \ Segment& rh) const {\n        return (this->p == rh.p && this->q == rh.q) ||\
-    \ (this->p == rh.q && this->q == rh.p);\n    }\n    bool operator!=(const Segment&\
-    \ rh) const { return !(*this == rh); }\n};\ntemplate <class T>\nTurn iSP(const\
-    \ Point<T>& p, const Line<T>& l) {\n    return iSP(l.p, l.q, p);\n}\ntemplate\
-    \ <class T>\nbool is_parallel(const Line<T>& a, const Line<T>& b) {\n    return\
-    \ sgn(a.to_Point().det(b.to_Point())) == 0;\n}\ntemplate <class T>\nbool is_vertial(const\
-    \ Line<T>& a, const Line<T>& b) {\n    return sgn(a.to_Point().dot(b.to_Point()))\
-    \ == 0;\n}\ntemplate <class T>\nbool is_cross(const Line<T>& a, const Line<T>&\
-    \ b) {\n    return sgn(a.to_Point().det(b.to_Point())) != 0 || sgn(a.to_Point().det(b.p\
-    \ - a.p)) == 0;\n}\ntemplate <class T>\nbool is_cross(const Segment<T>& a, const\
-    \ Segment<T>& b) {\n    return (int)iSP(b.p, a) * (int)iSP(b.q, a) <= 0 && (int)iSP(a.p,\
-    \ b) * (int)iSP(a.q, b) <= 0;\n}\ntemplate <class T>\nld angle(const Line<T>&\
-    \ a, const Line<T>& b) {\n    return std::atan2(a.to_Point().det(b.to_Point()),\
-    \ a.to_Point().dot(b.to_Point()));\n}\n\ntemplate <class T>\nld distance(const\
-    \ Point<T>& p, const Line<T>& l) {\n    return abs(l.to_Point().det(p - l.p) /\
-    \ (l.q - l.p).norm());\n}\ntemplate <class T>\nld distance(const Point<T>& p,\
-    \ const Segment<T>& s) {\n    if (angle_type(s.p, s.q, p) == Angle::Obtuse) {\n\
-    \        return (p - s.q).norm();\n    } else if (angle_type(s.q, s.p, p) == Angle::Obtuse)\
-    \ {\n        return (p - s.p).norm();\n    } else {\n        return distance(p,\
-    \ Line(s.p, s.q));\n    }\n}\ntemplate <class T>\nld distance(const Segment<T>&\
-    \ s, const Segment<T>& t) {\n    if (is_cross(s, t)) return 0;\n\n    return min({distance(s.p,\
-    \ t), distance(s.q, t), distance(t.p, s), distance(t.q, s)});\n}\ntemplate <class\
-    \ T>\nstd::optional<Point<T>> cross_point(const Line<T>& a, const Line<T>& b)\
-    \ {\n    if (!is_cross(a, b)) return std::nullopt;\n    return a.p + a.to_Point()\
-    \ * (b.p - a.p).det(b.to_Point()) / a.to_Point().det(b.to_Point());\n}\n//! @brief\
-    \ \u5782\u7DDA\u306E\u8DB3\ntemplate <class T>\nPoint<T> projection(const Point<T>&\
-    \ p, const Line<T>& l) {\n    return (p - l.p).projection(l.to_Point()) + l.p;\n\
-    }\n//! @brief \u7DDA\u5BFE\u79F0\u306E\u70B9\ntemplate <class T>\nPoint<T> reflection(const\
-    \ Point<T>& p, const Line<T>& l) {\n    return p + (projection(p, l) - p) * 2;\n\
-    }\n}  // namespace bys::geo\n\nnamespace bys {\nvoid Solver::solve() {\n    auto\
-    \ q = scanner.read<int>();\n    for (int i = 0; i < q; ++i) {\n        auto [p0,\
-    \ p1, p2, p3] = scanner.read<geo::Point<ll>, 4>();\n        geo::Line s1(p0, p1),\
-    \ s2(p2, p3);\n        if (geo::is_parallel(s1, s2)) {\n            print(2);\n\
-    \        } else if (geo::is_vertial(s1, s2)) {\n            print(1);\n      \
-    \  } else {\n            print(0);\n        }\n    }\n}\n}  // namespace bys\n\
+    \ solve();\n    }\n};\n}  // namespace bys\n/**\n * @file change.hpp\n * @brief\
+    \ chmin/chmax\n */\nnamespace bys {\n/**\n * @brief \u6700\u5927\u5024\u3067\u66F4\
+    \u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\n */\ntemplate\
+    \ <class T>\ninline bool chmax(T& a, const T& b) {\n    return a < b ? a = b,\
+    \ true : false;\n}\n/**\n * @brief \u6700\u5C0F\u5024\u3067\u66F4\u65B0\n * @return\
+    \ true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\n */\ntemplate <class T>\ninline\
+    \ bool chmin(T& a, const T& b) {\n    return a > b ? a = b, true : false;\n}\n\
+    }  // namespace bys\n/**\n * @file edge.hpp\n * @brief Edge\n * @todo concept\n\
+    \ */\nnamespace bys {\n//! @brief \u8FBA\nstruct Edge {\n    std::size_t src,\
+    \ dest;\n    ll weight;\n    Edge() {}\n    Edge(std::size_t src, std::size_t\
+    \ dest, ll weight = 1) : src(src), dest(dest), weight(weight) {}\n    bool operator<(const\
+    \ Edge& rh) const { return weight < rh.weight; }\n    operator int() const { return\
+    \ dest; }\n    friend std::ostream& operator<<(std::ostream& os, const Edge& e)\
+    \ {\n        return os << \"{\" << e.src << \" -> \" << e.dest << \": \" << e.weight\
+    \ << \"}\";\n    }\n};\n//! @brief \u96A3\u63A5\u30EA\u30B9\u30C8\nstruct DynamicAdjacencyList\
+    \ {\n    std::vector<std::vector<Edge>> data;\n    DynamicAdjacencyList(std::size_t\
+    \ n) : data(n, vector<Edge>()), _n(n) {}\n    std::vector<vector<Edge>>::reference\
+    \ operator[](std::size_t i) { return *(data.begin() + i); }\n    const std::vector<vector<Edge>>::const_reference\
+    \ operator[](std::size_t i) const { return *(data.cbegin() + i); }\n    void add_edge(const\
+    \ Edge& e) { data[e.src].push_back(e); }\n    void add_edge(std::size_t src, std::size_t\
+    \ dest, ll weight = 1) { data[src].push_back({src, dest, weight}); }\n    std::size_t\
+    \ size() const { return _n; }\n\n   private:\n    std::size_t _n;\n};\n/**\n *\
+    \ @brief \u96A3\u63A5\u30EA\u30B9\u30C8\n *\n * CSR\u5F62\u5F0F\n * See: https://qiita.com/Nachia/items/d420c08b333296f54526\n\
+    \ */\nstruct AdjacencyList {\n    AdjacencyList(std::size_t n, std::size_t m =\
+    \ UINT64_MAX) : _n(n), _m(m), index(n + 1), _build_flg(m == 0) {}\n\n    struct\
+    \ AdjacencyRange {\n        using iterator = std::vector<Edge>::const_iterator;\n\
+    \        using reference = std::vector<Edge>::const_reference;\n        using\
+    \ value_type = Edge;\n        iterator _begin, _end;\n        iterator begin()\
+    \ const { return _begin; }\n        iterator end() const { return _end; }\n  \
+    \      reference operator[](std::size_t i) const { return *(_begin + i); }\n \
+    \       std::size_t size() const { return std::distance(_begin, _end); }\n   \
+    \     bool empty() const { return size() == 0; }\n    };\n    AdjacencyRange operator[](std::size_t\
+    \ i) const {\n        return AdjacencyRange{data.begin() + index[i], data.begin()\
+    \ + index[i + 1]};\n    }\n\n    void build() {\n        std::partial_sum(index.begin(),\
+    \ index.end(), index.begin());\n        data.resize(buf.size());\n        for\
+    \ (auto&& e : buf) data[--index[e.src]] = e;\n        _build_flg = true;\n   \
+    \ }\n    void add_edge(const Edge& e) {\n        ++index[e.src];\n        buf.emplace_back(e);\n\
+    \        if (buf.size() == _m) build();\n    }\n    void add_edge(std::size_t\
+    \ src, std::size_t dest, ll weight = 1) { add_edge(Edge(src, dest, weight)); }\n\
+    \    std::size_t size() const { return _n; }\n    std::size_t n_edge() const {\
+    \ return buf.size(); }\n    bool build_flg() const { return _build_flg; }\n\n\
+    \   private:\n    std::size_t _n, _m;\n    std::vector<Edge> buf, data;\n    std::vector<std::size_t>\
+    \ index;\n    bool _build_flg;\n};\n}  // namespace bys\n/**\n * @file result.hpp\n\
+    \ * @brief Shortest Path Result\n */\nnamespace bys {\n/**\n * @brief \u5358\u4E00\
+    \u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\n *\n * \u7D4C\u8DEF\u5FA9\u5143\u3082\u3067\
+    \u304D\u308B\n */\nstruct SSSPResult {\n    std::size_t source;\n    std::vector<ll>\
+    \ cost;\n    std::vector<int> prev;\n\n    SSSPResult(std::size_t _n, std::size_t\
+    \ _source) : source(_source), cost(_n, LINF), prev(_n, -1) {}\n    vector<std::size_t>\
+    \ path(int to) const {\n        vector<std::size_t> res;\n        while (to !=\
+    \ -1) {\n            res.push_back(to);\n            to = prev[to];\n        }\n\
+    \        std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n\
+    /**\n * @brief \u5168\u9802\u70B9\u5BFE\u9593\u6700\u77ED\u7D4C\u8DEF\n *\n *\
+    \ \u7D4C\u8DEF\u5FA9\u5143\u3082\u3067\u304D\u308B\n */\nstruct APSPResult {\n\
+    \    std::vector<std::vector<ll>> cost;\n    std::vector<std::vector<int>> prev;\n\
+    \    APSPResult(std::size_t _n) : cost(_n, vector(_n, LINF)), prev(_n, vector(_n,\
+    \ -1)) {}\n    std::vector<std::size_t> path(int from, int to) {\n        vector<std::size_t>\
+    \ res;\n        for (int now = to; now != from; now = prev[from][now]) {\n   \
+    \         res.push_back(now);\n        }\n        res.push_back(from);\n     \
+    \   std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n} \
+    \ // namespace bys\n/**\n * @file bellman_ford.hpp\n * @brief Bellman Ford\n */\n\
+    namespace bys {\n/**\n * @brief \u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\
+    \u6CD5\n *\n * O(VE)\n *\n * @param elist \u8FBA\u30EA\u30B9\u30C8\n * @param\
+    \ n_node \u9802\u70B9\u6570\n * @param source \u59CB\u70B9\n * @return SSSPResult\
+    \ LINF -> \u5230\u9054\u4E0D\u53EF, -LINF -> \u8CA0\u9589\u8DEF\n */\nSSSPResult\
+    \ bellman_ford(const std::vector<Edge>& elist, int n_node, int source) {\n   \
+    \ SSSPResult res(n_node, source);\n    int n = elist.size();\n    res.cost[source]\
+    \ = 0;\n    for (int i = 0; i < n_node - 1; ++i) {\n        for (auto&& e : elist)\
+    \ {\n            if (res.cost[e.src] >= LINF) continue;\n            chmin(res.cost[e.dest],\
+    \ res.cost[e.src] + e.weight);\n        }\n    }\n    std::vector<bool> neg_cycle(n);\n\
+    \    for (int i = 0; i < n; ++i) {\n        for (auto&& e : elist) {\n       \
+    \     if (res.cost[e.src] >= LINF) continue;\n            if (chmin(res.cost[e.dest],\
+    \ res.cost[e.src] + e.weight) || neg_cycle[e.src]) neg_cycle[e.dest] = true;\n\
+    \        }\n    }\n    for (int i = 0; i < n; ++i) {\n        if (neg_cycle[i])\
+    \ res.cost[i] = -LINF;\n    }\n    return res;\n}\n}  // namespace bys\n/**\n\
+    \ * @file range.hpp\n * @brief Python::range\n *\n * Python\u518D\u73FE\u30B7\u30EA\
+    \u30FC\u30BA range\u7DE8\n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n\
+    \ */\nnamespace bys {\ntemplate <typename T>\nclass Range {\n    T it;\n    const\
+    \ T stop, step;\n    const int dir;\n\n   public:\n    Range(T start, T stop,\
+    \ T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n\
+    \    Range(T stop) : it(0), stop(stop), step(1), dir(1) {}\n    Range<T> begin()\
+    \ const { return *this; }\n    T end() const { return stop; }\n    bool operator!=(const\
+    \ T val) const { return (val - it) * dir > 0; }\n    void operator++() { it +=\
+    \ step; }\n    const T& operator*() const { return it; }\n\n    friend Range reversed(const\
+    \ Range& r) {\n        auto new_start = (r.stop - r.dir - r.it) / r.step * r.step\
+    \ + r.it;\n        return {new_start, r.it - r.dir, -r.step};\n    }\n};\n//!\
+    \ @brief range(stop)\ntemplate <class T>\nRange<T> irange(T stop) {\n    return\
+    \ Range(stop);\n}\n//! @brief range(start, stop[, step])\ntemplate <class T>\n\
+    Range<T> irange(T start, T stop, T step = 1) {\n    return Range(start, stop,\
+    \ step);\n}\n}  // namespace bys\n\nnamespace bys {\nvoid Solver::solve() {\n\
+    \    auto [n, m, p] = scanner.read<int, 3>();\n    vector<Edge> edges;\n    for\
+    \ (UV : irange(m)) {\n        auto [a, b, c] = scanner.read<Int1, Int1, int>();\n\
+    \        edges.emplace_back(a, b, -c + p);\n    }\n    auto res = bellman_ford(edges,\
+    \ n, 0);\n    if (res.cost[n - 1] == -LINF) {\n        print(-1);\n    } else\
+    \ {\n        print(max(-res.cost[n - 1], 0LL));\n    }\n}\n}  // namespace bys\n\
     \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
     \ */);\n    return 0;\n}\n"
-  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_A\"\
-    \n#include \"../../core/core.hpp\"\n#include \"../../geometry/line.hpp\"\n\nnamespace\
-    \ bys {\nvoid Solver::solve() {\n    auto q = scanner.read<int>();\n    for (int\
-    \ i = 0; i < q; ++i) {\n        auto [p0, p1, p2, p3] = scanner.read<geo::Point<ll>,\
-    \ 4>();\n        geo::Line s1(p0, p1), s2(p2, p3);\n        if (geo::is_parallel(s1,\
-    \ s2)) {\n            print(2);\n        } else if (geo::is_vertial(s1, s2)) {\n\
-    \            print(1);\n        } else {\n            print(0);\n        }\n \
-    \   }\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/*\
-    \ bys::scanner.read<int>() */);\n    return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc137/tasks/abc137_e\"\n#include\
+    \ \"../../core/core.hpp\"\n#include \"../../graphv2/bellman_ford.hpp\"\n#include\
+    \ \"../../graphv2/edge.hpp\"\n#include \"../../utility/change.hpp\"\n#include\
+    \ \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve() {\n   \
+    \ auto [n, m, p] = scanner.read<int, 3>();\n    vector<Edge> edges;\n    for (UV\
+    \ : irange(m)) {\n        auto [a, b, c] = scanner.read<Int1, Int1, int>();\n\
+    \        edges.emplace_back(a, b, -c + p);\n    }\n    auto res = bellman_ford(edges,\
+    \ n, 0);\n    if (res.cost[n - 1] == -LINF) {\n        print(-1);\n    } else\
+    \ {\n        print(max(-res.cost[n - 1], 0LL));\n    }\n}\n}  // namespace bys\n\
+    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ */);\n    return 0;\n}\n"
   dependsOn:
   - core/core.hpp
   - core/const.hpp
@@ -307,19 +296,21 @@ data:
   - core/scanner.hpp
   - core/macro.hpp
   - core/solver.hpp
-  - geometry/line.hpp
-  - geometry/point.hpp
-  - geometry/base.hpp
+  - graphv2/bellman_ford.hpp
+  - utility/change.hpp
+  - graphv2/edge.hpp
+  - graphv2/result.hpp
+  - utility/range.hpp
   isVerificationFile: true
-  path: test/geometry/parallel_orthogonal.test.cpp
+  path: test/graphv2/bellman_ford.test.cpp
   requiredBy: []
   timestamp: '2022-04-04 23:07:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/geometry/parallel_orthogonal.test.cpp
+documentation_of: test/graphv2/bellman_ford.test.cpp
 layout: document
 redirect_from:
-- /verify/test/geometry/parallel_orthogonal.test.cpp
-- /verify/test/geometry/parallel_orthogonal.test.cpp.html
-title: test/geometry/parallel_orthogonal.test.cpp
+- /verify/test/graphv2/bellman_ford.test.cpp
+- /verify/test/graphv2/bellman_ford.test.cpp.html
+title: test/graphv2/bellman_ford.test.cpp
 ---

@@ -4,55 +4,55 @@ data:
   - icon: ':heavy_check_mark:'
     path: algebra/mapping.hpp
     title: Mapping
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid.hpp
     title: Monoid
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/const.hpp
     title: Const
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
     title: core/all
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/io.hpp
     title: I/O
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/printer.hpp
     title: Output
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/types.hpp
     title: Types
   - icon: ':heavy_check_mark:'
     path: data/lazy_segment_tree.hpp
     title: Lazy Segment Tree
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/bit.hpp
     title: Bit
   - icon: ':heavy_check_mark:'
     path: math/modint.hpp
     title: Modint
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/numeric.hpp
     title: Numeric
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/prime.hpp
     title: Prime
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/change.hpp
     title: chmin/chmax
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/range.hpp
     title: Python::range
   _extendedRequiredBy: []
@@ -66,76 +66,28 @@ data:
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include <optional>\n#include <utility>\n/**\n * @file monoid.hpp\n * @author\
-    \ bayashi_cl\n * @brief Monoid\n *\n * \u30E2\u30CE\u30A4\u30C9\n */\nnamespace\
-    \ bys {\ntemplate <class T>\nstruct Magma {\n    using set_type = T;\n    static\
-    \ constexpr set_type operation(set_type a, set_type b);\n    static constexpr\
-    \ bool commutative{false};\n};\ntemplate <class T>\nstruct Add : Magma<T> {\n\
-    \    using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return a + b; }\n    static constexpr set_type identity{0};\n\
-    \    static constexpr bool commutative{true};\n};\ntemplate <class T>\nstruct\
-    \ Min : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr\
-    \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
-    \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
-    \ <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return std::max(a,\
-    \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
-    };\ntemplate <class T>\nstruct Update : Magma<T> {\n    using set_type = std::optional<T>;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
-    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
-    \ <class T>\nstruct Affine : Magma<T> {\n    using set_type = std::pair<T, T>;\n\
-    \    static constexpr set_type operation(set_type a, set_type b) { return {a.first\
-    \ * b.first, a.second * b.first + b.second}; }\n    static constexpr set_type\
-    \ identity{1, 0};\n};\n}  // namespace bys\n/**\n * @file mapping.hpp\n * @author\
-    \ bayashi_cl\n * @brief Mapping\n *\n * \u9045\u5EF6\u30BB\u30B0\u6728 \u4F5C\u7528\
-    \u7D20\n */\nnamespace bys {\ntemplate <class T, class ActMonoid>\nstruct MappingToSet\
-    \ {\n    static constexpr void mapping(T&, typename ActMonoid::set_type) {\n \
-    \       static_assert([] { return false; }(), \"mapping function does not defined.\"\
-    );\n    }\n};\ntemplate <class T, class S>\nstruct MappingToSet<T, Add<S>> {\n\
-    \    static constexpr void mapping(T& t, typename Add<S>::set_type u) { t += u;\
-    \ }\n};\ntemplate <class T, class S>\nstruct MappingToSet<T, Update<S>> {\n  \
-    \  static constexpr void mapping(T& t, typename Update<S>::set_type u) {\n   \
-    \     if (u.has_value()) t = u.value();\n    }\n};\ntemplate <class Monoid, class\
-    \ ActMonoid>\nstruct Mapping {\n    static constexpr void mapping(typename Monoid::set_type&,\
-    \ typename ActMonoid::set_type, int) {\n        static_assert([] { return false;\
-    \ }(), \"mapping function does not defined.\");\n    }\n};\ntemplate <class T,\
-    \ class S>\nstruct Mapping<Min<T>, Update<S>> {\n    static constexpr void mapping(typename\
-    \ Min<T>::set_type& t, typename Update<S>::set_type s, int) {\n        if (s.has_value())\
-    \ t = s.value();\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
-    \ Add<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t, typename\
-    \ Add<S>::set_type s, int w) { t += s * w; }\n};\ntemplate <class T, class S>\n\
-    struct Mapping<Min<T>, Add<S>> {\n    static constexpr void mapping(typename Min<T>::set_type&\
-    \ t, typename Add<S>::set_type s, int) { t += s; }\n};\ntemplate <class T, class\
-    \ S>\nstruct Mapping<Add<T>, Update<S>> {\n    static constexpr void mapping(typename\
-    \ Add<T>::set_type& t, typename Update<S>::set_type s, int w) {\n        if (s.has_value())\
-    \ t = s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
-    \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
-    \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
-    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
-    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
-    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
-    \ bys\n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n * \n\
-    \ * C++ library for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
-    \ * Document : https://bayashi-cl.github.io/byslib/\n */\n/**\n * @file stdlib.hpp\n\
-    \ * @author bayashi_cl\n * @brief STL Template\n */\n#include <algorithm>\n#include\
-    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
-    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
-    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
-    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
-    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
-    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
-    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
-    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
-    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n/**\n * @file const.hpp\n * @author bayashi_cl\n * @brief Const\n */\n\
-    namespace bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\n\
-    constexpr int INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF =\
-    \ std::numeric_limits<ll>::max() / 2;\n}  // namespace bys\n/**\n * @file types.hpp\n\
-    \ * @author bayashi_cl\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\n\
-    namespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
-    \ : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n *\n * C++\
+    \ library for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
+    \ * Document : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
+    \ NDEBUG\n#endif\n/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n#include\
+    \ <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n#include\
+    \ <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include <string>\n\
+    #include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n#include\
+    \ <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string, std::set,\
+    \ std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing std::min,\
+    \ std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\nusing ll\
+    \ = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\nusing\
+    \ Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
+    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
+    \ T>;\n}  // namespace bys\n/**\n * @file const.hpp\n * @brief Const\n */\nnamespace\
+    \ bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr\
+    \ int INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
+    \ / 2;\n}  // namespace bys\n/**\n * @file types.hpp\n * @brief Types\n *\n *\
+    \ type_traits\u62E1\u5F35\n */\nnamespace bys {\ntemplate <class, class = void>\n\
+    struct has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct\
+    \ has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -145,12 +97,12 @@ data:
     \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
     \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
     \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n/**\n * @file\
-    \ printer.hpp\n * @author bayashi_cl\n * @brief Output\n */\nnamespace bys {\n\
-    class Printer {\n    std::ostream& os;\n    std::string _sep = \" \", _end = \"\
-    \\n\";\n    template <std::size_t I, class T>\n    inline void print_tuple_element(T&&\
-    \ elem) {\n        if constexpr (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n\
-    \    }\n    template <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&&\
-    \ tp, std::index_sequence<I...>) {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
+    \ printer.hpp\n * @brief Output\n */\nnamespace bys {\nclass Printer {\n    std::ostream&\
+    \ os;\n    std::string _sep = \" \", _end = \"\\n\";\n    template <std::size_t\
+    \ I, class T>\n    inline void print_tuple_element(T&& elem) {\n        if constexpr\
+    \ (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n    }\n    template\
+    \ <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&& tp, std::index_sequence<I...>)\
+    \ {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
     \ ...);\n    }\n\n   public:\n    Printer(std::ostream& os_) : os(os_) {}\n  \
     \  ~Printer() { os << std::flush; }\n\n    template <class T>\n    void cat(T&&\
     \ v) {\n        if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {\n\
@@ -175,9 +127,9 @@ data:
     \ \u533A\u5207\u308A\u6587\u5B57\u3068\u7D42\u7AEF\u6587\u5B57\u3092\u8A2D\u5B9A\
     \n    Printer set(string sep_ = \" \", string end_ = \"\\n\") {\n        _sep\
     \ = sep_;\n        _end = end_;\n        return *this;\n    }\n    void lf() {\
-    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @author\
-    \ bayashi_cl\n * @brief Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream&\
-    \ is;\n    template <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
+    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @brief\
+    \ Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream& is;\n    template\
+    \ <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
     \ {\n        return Tp{read<typename std::tuple_element_t<I, Tp>>()...};\n   \
     \ }\n\n   public:\n    Scanner(std::istream& is_) : is(is_){};\n\n    template\
     \ <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >> args);\n\
@@ -221,28 +173,74 @@ data:
     \u6539\u884C\u3092\u8AAD\u307F\u98DB\u3070\u3059\n     */\n    std::string getline(bool\
     \ skip_ws = true) {\n        if (skip_ws) std::ws(is);\n        std::string res;\n\
     \        std::getline(is, res);\n        return res;\n    }\n};\n}  // namespace\
-    \ bys\n/**\n * @file io.hpp\n * @author bayashi_cl\n * @brief I/O\n */\nnamespace\
-    \ bys {\n__attribute__((constructor)) void setup_io() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    std::cout << std::fixed << std::setprecision(11);\n\
-    \    std::cerr << std::fixed << std::setprecision(11);\n    std::cerr << std::boolalpha;\n\
-    }\n\nPrinter print(std::cout), debug(std::cerr);\nScanner scanner(std::cin);\n\
-    }  // namespace bys\n/**\n * @file macro.hpp\n * @author bayashi_cl\n * @brief\
-    \ Macro\n */\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\
-    \u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\
-    \u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\" <<\
-    \ std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n\
-    #endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define EXIT(...)\
-    \ { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a,\
-    \ b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\
-    \u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n\
-    #define RE std::runtime_error(\"line: \" + std::to_string(__LINE__) + \", func:\
-    \ \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n * @author bayashi_cl\n\
-    \ * @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n  \
-    \  Solver() {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\
-    \u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <=\
-    \ rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n/**\n * @file lazy_segment_tree.hpp\n\
-    \ * @author bayashi_cl\n * @brief Lazy Segment Tree\n */\n/**\n * @file bit.hpp\n\
-    \ * @author bayashi_cl\n * @brief Bit\n * @note c++20\u3067<bit>\u304C\u8FFD\u52A0\
+    \ bys\n/**\n * @file io.hpp\n * @brief I/O\n */\nnamespace bys {\n__attribute__((constructor))\
+    \ void setup_io() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
+    \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
+    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n/**\n *\
+    \ @file macro.hpp\n * @brief Macro\n */\n// clang-format off\n#ifdef LOCAL\n//!\
+    \ @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
+    \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr\
+    \ << \"[debug] line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__);\
+    \ }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\
+    \u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a,\
+    \ b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
+    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
+    \ + \", func: \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n *\
+    \ @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
+    \ {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
+    \u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <= rep; ++IT)\
+    \ solve();\n    }\n};\n}  // namespace bys\n// -------------------------------------\n\
+    #include <optional>\n#include <utility>\n/**\n * @file monoid.hpp\n * @brief Monoid\n\
+    \ *\n * \u30E2\u30CE\u30A4\u30C9\n */\nnamespace bys {\ntemplate <class T>\nstruct\
+    \ Magma {\n    using set_type = T;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b);\n    static constexpr bool commutative{false};\n};\ntemplate\
+    \ <class T>\nstruct Add : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return a +\
+    \ b; }\n    static constexpr set_type identity{0};\n    static constexpr bool\
+    \ commutative{true};\n};\ntemplate <class T>\nstruct Min : Magma<T> {\n    using\
+    \ typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
+    };\ntemplate <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return std::max(a,\
+    \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
+    };\ntemplate <class T>\nstruct Update : Magma<T> {\n    using set_type = std::optional<T>;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
+    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
+    \ <class T>\nstruct Affine : Magma<T> {\n    using set_type = std::pair<T, T>;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return {a.first\
+    \ * b.first, a.second * b.first + b.second}; }\n    static constexpr set_type\
+    \ identity{1, 0};\n};\n}  // namespace bys\n/**\n * @file mapping.hpp\n * @brief\
+    \ Mapping\n *\n * \u9045\u5EF6\u30BB\u30B0\u6728 \u4F5C\u7528\u7D20\n */\nnamespace\
+    \ bys {\ntemplate <class T, class ActMonoid>\nstruct MappingToSet {\n    static\
+    \ constexpr void mapping(T&, typename ActMonoid::set_type) {\n        static_assert([]\
+    \ { return false; }(), \"mapping function does not defined.\");\n    }\n};\ntemplate\
+    \ <class T, class S>\nstruct MappingToSet<T, Add<S>> {\n    static constexpr void\
+    \ mapping(T& t, typename Add<S>::set_type u) { t += u; }\n};\ntemplate <class\
+    \ T, class S>\nstruct MappingToSet<T, Update<S>> {\n    static constexpr void\
+    \ mapping(T& t, typename Update<S>::set_type u) {\n        if (u.has_value())\
+    \ t = u.value();\n    }\n};\ntemplate <class Monoid, class ActMonoid>\nstruct\
+    \ Mapping {\n    static constexpr void mapping(typename Monoid::set_type&, typename\
+    \ ActMonoid::set_type, int) {\n        static_assert([] { return false; }(), \"\
+    mapping function does not defined.\");\n    }\n};\ntemplate <class T, class S>\n\
+    struct Mapping<Min<T>, Update<S>> {\n    static constexpr void mapping(typename\
+    \ Min<T>::set_type& t, typename Update<S>::set_type s, int) {\n        if (s.has_value())\
+    \ t = s.value();\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
+    \ Add<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t, typename\
+    \ Add<S>::set_type s, int w) { t += s * w; }\n};\ntemplate <class T, class S>\n\
+    struct Mapping<Min<T>, Add<S>> {\n    static constexpr void mapping(typename Min<T>::set_type&\
+    \ t, typename Add<S>::set_type s, int) { t += s; }\n};\ntemplate <class T, class\
+    \ S>\nstruct Mapping<Add<T>, Update<S>> {\n    static constexpr void mapping(typename\
+    \ Add<T>::set_type& t, typename Update<S>::set_type s, int w) {\n        if (s.has_value())\
+    \ t = s.value() * w;\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
+    \ Affine<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t,\
+    \ typename Affine<S>::set_type s, int w) {\n        t = t * s.first + w * s.second;\n\
+    \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
+    \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
+    \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
+    \ bys\n/**\n * @file lazy_segment_tree.hpp\n * @brief Lazy Segment Tree\n */\n\
+    /**\n * @file bit.hpp\n * @brief Bit\n * @note c++20\u3067<bit>\u304C\u8FFD\u52A0\
     \u3055\u308C\u308B\n */\nnamespace bys {\n/**\n * @brief bit\u5E45\n *\n * bit_width(x)\
     \ - 1  < log2(x) <= bit_width(x)\n */\ntemplate <class T>\nconstexpr int bit_width(T\
     \ x) {\n    int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++)\
@@ -314,20 +312,19 @@ data:
     \        }\n\n        for (int i = 1; i <= logsize; i++) {\n            if (((l\
     \ >> i) << i) != l) reload(l >> i);\n            if (((r >> i) << i) != r) reload((r\
     \ - 1) >> i);\n        }\n    }\n};\n}  // namespace bys\n/**\n * @file numeric.hpp\n\
-    \ * @author bayashi_cl\n * @brief Numeric\n *\n * \u6570\u5024\u8A08\u7B97\u8A70\
-    \u3081\u5408\u308F\u305B\n */\nnamespace bys {\n//! @brief \u6574\u6570\u306E\u7D2F\
-    \u4E57\nconstexpr ll int_pow(int a, int b) {\n    ll res = 1;\n    for (int i\
-    \ = 0; i < b; ++i) res *= a;\n    return res;\n}\n/**\n * @brief \u7E70\u308A\u8FD4\
-    \u3057\u4E8C\u4E57\u6CD5\n *\n * O(log q)\n */\ntemplate <class T>\nconstexpr\
-    \ T mod_pow(T p, T q, T mod) {\n    T res = 1 % mod;\n    p %= mod;\n    for (;\
-    \ q; q >>= 1) {\n        if (q & 1) res = res * p % mod;\n        p = p * p %\
-    \ mod;\n    }\n    return res;\n}\n//! @brief ceil(x / y)\ntemplate <class T>\n\
-    constexpr T ceildiv(T x, T y) {\n    return x > T(0) ? (x + y - 1) / y : x / y;\n\
-    }\n//! @brief floor(x / y)\ntemplate <class T>\nconstexpr T floordiv(T x, T y)\
-    \ {\n    return x > T(0) ? x / y : (x - y + 1) / y;\n}\n/**\n * @brief Python::divmod\n\
-    \ *\n * See: https://docs.python.org/ja/3/library/functions.html#divmod\n */\n\
-    template <class T>\nconstexpr std::pair<T, T> divmod(T x, T y) {\n    auto q =\
-    \ floordiv(x, y);\n    return {q, x - q * y};\n}\n\n/**\n * @brief Python::%\n\
+    \ * @brief Numeric\n *\n * \u6570\u5024\u8A08\u7B97\u8A70\u3081\u5408\u308F\u305B\
+    \n */\nnamespace bys {\n//! @brief \u6574\u6570\u306E\u7D2F\u4E57\nconstexpr ll\
+    \ int_pow(int a, int b) {\n    ll res = 1;\n    for (int i = 0; i < b; ++i) res\
+    \ *= a;\n    return res;\n}\n/**\n * @brief \u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\
+    \u6CD5\n *\n * O(log q)\n */\ntemplate <class T>\nconstexpr T mod_pow(T p, T q,\
+    \ T mod) {\n    T res = 1 % mod;\n    p %= mod;\n    for (; q; q >>= 1) {\n  \
+    \      if (q & 1) res = res * p % mod;\n        p = p * p % mod;\n    }\n    return\
+    \ res;\n}\n//! @brief ceil(x / y)\ntemplate <class T>\nconstexpr T ceildiv(T x,\
+    \ T y) {\n    return x > T(0) ? (x + y - 1) / y : x / y;\n}\n//! @brief floor(x\
+    \ / y)\ntemplate <class T>\nconstexpr T floordiv(T x, T y) {\n    return x > T(0)\
+    \ ? x / y : (x - y + 1) / y;\n}\n/**\n * @brief Python::divmod\n *\n * See: https://docs.python.org/ja/3/library/functions.html#divmod\n\
+    \ */\ntemplate <class T>\nconstexpr std::pair<T, T> divmod(T x, T y) {\n    auto\
+    \ q = floordiv(x, y);\n    return {q, x - q * y};\n}\n\n/**\n * @brief Python::%\n\
     \ *\n * See: https://docs.python.org/ja/3/reference/expressions.html#index-68\n\
     \ */\ntemplate <class T, class S>\nconstexpr T floormod(T x, S mod) {\n    x %=\
     \ mod;\n    if (x < 0) x += mod;\n    return x;\n}\n\nconstexpr ll isqrt_aux(ll\
@@ -341,17 +338,23 @@ data:
     template <class T, typename std::enable_if_t<std::is_floating_point_v<T>, std::nullptr_t>\
     \ = nullptr>\nconstexpr bool isclose(T x, T y, T coef = 4.0) {\n    if (x == y)\
     \ return true;\n    auto diff = std::abs(x - y);\n    return diff <= std::numeric_limits<T>::epsilon()\
-    \ * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n}\n}  //\
-    \ namespace bys\n/**\n * @file prime.hpp\n * @author bayashi_cl\n * @brief Prime\n\
-    \ */\nnamespace bys {\n\n/**\n * @brief \u7D20\u56E0\u6570\u5206\u89E3\n *\n *\
-    \ \u8A66\u3057\u5272\u308A\u6CD5\n * O(\u221An)\n */\ntemplate <typename T>\n\
-    vector<T> prime_factorize(T n) {\n    vector<T> res;\n    while (n % 2 == 0) {\n\
-    \        res.push_back(2);\n        n /= 2;\n    }\n    T f = 3;\n    while (f\
-    \ * f <= n) {\n        if (n % f == 0) {\n            res.push_back(f);\n    \
-    \        n /= f;\n        } else {\n            f += 2;\n        }\n    }\n  \
-    \  if (n != 1) res.push_back(n);\n    return res;\n}\n\n/**\n * @brief Miller-Rabin\u7D20\
-    \u6570\u5224\u5B9A\n *\n * 2^64\u4EE5\u4E0B\u306A\u3089\u6B63\u78BA\u306B\u5224\
-    \u5B9A\u3067\u304D\u308B\n * See: https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test\n\
+    \ * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();\n}\n\nconstexpr\
+    \ std::pair<long long, long long> inv_gcd(long long a, long long b) {\n    a =\
+    \ floormod(a, b);\n    if (a == 0) return {b, 0};\n    long long s = b, t = a;\n\
+    \    long long m0 = 0, m1 = 1;\n\n    while (t) {\n        long long u = s / t;\n\
+    \        s -= t * u;\n        m0 -= m1 * u;\n        auto tmp = s;\n        s\
+    \ = t;\n        t = tmp;\n        tmp = m0;\n        m0 = m1;\n        m1 = tmp;\n\
+    \    }\n    if (m0 < 0) m0 += b / s;\n    return {s, m0};\n}\n}  // namespace\
+    \ bys\n/**\n * @file prime.hpp\n * @brief Prime\n */\nnamespace bys {\n\n/**\n\
+    \ * @brief \u7D20\u56E0\u6570\u5206\u89E3\n *\n * \u8A66\u3057\u5272\u308A\u6CD5\
+    \n * O(\u221An)\n */\ntemplate <typename T>\nvector<T> prime_factorize(T n) {\n\
+    \    vector<T> res;\n    while (n % 2 == 0) {\n        res.push_back(2);\n   \
+    \     n /= 2;\n    }\n    T f = 3;\n    while (f * f <= n) {\n        if (n %\
+    \ f == 0) {\n            res.push_back(f);\n            n /= f;\n        } else\
+    \ {\n            f += 2;\n        }\n    }\n    if (n != 1) res.push_back(n);\n\
+    \    return res;\n}\n\n/**\n * @brief Miller-Rabin\u7D20\u6570\u5224\u5B9A\n *\n\
+    \ * 2^64\u4EE5\u4E0B\u306A\u3089\u6B63\u78BA\u306B\u5224\u5B9A\u3067\u304D\u308B\
+    \n * See: https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test\n\
     \ * See: https://miller-rabin.appspot.com\n */\nconstexpr bool is_prime(long long\
     \ n) {\n    if (n <= 1) return false;\n    if (n == 2 || n == 7 || n == 61) return\
     \ true;\n    if (n % 2 == 0) return false;\n    long long d = n - 1;\n    while\
@@ -361,13 +364,12 @@ data:
     \ (t != n - 1 && y != 1 && y != n - 1) {\n            y = y * y % n;\n       \
     \     t <<= 1;\n        }\n        if (y != n - 1 && t % 2 == 0) {\n         \
     \   return false;\n        }\n    }\n    return true;\n}\n}  // namespace bys\n\
-    /**\n * @file modint.hpp\n * @author bayashi_cl\n * @brief Modint\n */\nnamespace\
-    \ bys {\n/**\n * @brief ModInt\n *\n * ac-library\u306Emodint\u3092constexpr\u5316\
-    \u3057\u305F\u3082\u306E\n * See: https://atcoder.github.io/ac-library/document_ja/modint.html\n\
-    \ *\n * @tparam Modulo (\u4ECA\u306E\u6240)\u7D20\u6570\n * @todo \u975E\u7D20\
-    \u6570mod\u3078\u306E\u5BFE\u5FDC\n */\ntemplate <unsigned int Modulo>\nclass\
-    \ ModInt {\n    unsigned int _v;\n\n   public:\n    static constexpr unsigned\
-    \ int mod = Modulo;\n    static_assert(is_prime(mod), \"Modulo need to be prime.\"\
+    /**\n * @file modint.hpp\n * @brief Modint\n */\nnamespace bys {\n/**\n * @brief\
+    \ ModInt\n *\n * ac-library\u306Emodint\u3092constexpr\u5316\u3057\u305F\u3082\
+    \u306E\n * See: https://atcoder.github.io/ac-library/document_ja/modint.html\n\
+    \ *\n * @tparam Modulo \u6CD5\n */\ntemplate <unsigned int Modulo>\nclass ModInt\
+    \ {\n    unsigned int _v;\n\n   public:\n    static constexpr unsigned int mod\
+    \ = Modulo;\n    // static_assert(is_prime(mod), \"Modulo need to be prime.\"\
     );\n    static_assert(mod < (std::numeric_limits<unsigned int>::max() >> 1), \"\
     Modulo need to be <2^31.\");\n\n    constexpr ModInt() noexcept : _v(0) {}\n \
     \   template <class T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t>\
@@ -377,21 +379,23 @@ data:
     \ ModInt pow(ll n) const noexcept {\n        ModInt res = 1, p = *this;\n    \
     \    while (n) {\n            if (n & 1) res *= p;\n            p *= p;\n    \
     \        n >>= 1;\n        }\n        return res;\n    }\n    constexpr ModInt\
-    \ inv() const noexcept { return pow(mod - 2); }\n\n    constexpr ModInt& operator+=(const\
-    \ ModInt rhs) noexcept {\n        _v += rhs._v;\n        if (_v >= mod) _v -=\
-    \ mod;\n        return *this;\n    }\n    constexpr ModInt& operator-=(const ModInt\
-    \ rhs) noexcept {\n        if (rhs._v > _v) _v += mod;\n        _v -= rhs._v;\n\
-    \        return *this;\n    }\n    constexpr ModInt& operator*=(const ModInt rhs)\
-    \ noexcept {\n        unsigned long long z = _v;\n        z *= rhs._v;\n     \
-    \   _v = (unsigned int)(z % mod);\n        return *this;\n    }\n    constexpr\
-    \ ModInt& operator/=(const ModInt rhs) noexcept { return *this = *this * rhs.inv();\
-    \ }\n\n    constexpr ModInt& operator+() const noexcept { return *this; }\n  \
-    \  constexpr ModInt& operator-() const noexcept { return ModInt() - *this; }\n\
-    \    constexpr ModInt& operator++() noexcept {\n        _v++;\n        if (_v\
-    \ == mod) _v = 0;\n        return *this;\n    }\n    constexpr ModInt& operator--()\
-    \ noexcept {\n        if (_v == 0) _v = mod;\n        --_v;\n        return *this;\n\
-    \    }\n    constexpr ModInt operator++(int) noexcept {\n        ModInt res =\
-    \ *this;\n        ++*this;\n        return res;\n    }\n    constexpr ModInt operator--(int)\
+    \ inv() const noexcept {\n        if constexpr (is_prime(mod)) {\n           \
+    \ return pow(mod - 2);\n        } else {\n            return inv_gcd(_v, mod).second;\n\
+    \        }\n    }\n\n    constexpr ModInt& operator+=(const ModInt rhs) noexcept\
+    \ {\n        _v += rhs._v;\n        if (_v >= mod) _v -= mod;\n        return\
+    \ *this;\n    }\n    constexpr ModInt& operator-=(const ModInt rhs) noexcept {\n\
+    \        if (rhs._v > _v) _v += mod;\n        _v -= rhs._v;\n        return *this;\n\
+    \    }\n    constexpr ModInt& operator*=(const ModInt rhs) noexcept {\n      \
+    \  unsigned long long z = _v;\n        z *= rhs._v;\n        _v = (unsigned int)(z\
+    \ % mod);\n        return *this;\n    }\n    constexpr ModInt& operator/=(const\
+    \ ModInt rhs) noexcept { return *this = *this * rhs.inv(); }\n\n    constexpr\
+    \ ModInt& operator+() const noexcept { return *this; }\n    constexpr ModInt&\
+    \ operator-() const noexcept { return ModInt() - *this; }\n    constexpr ModInt&\
+    \ operator++() noexcept {\n        _v++;\n        if (_v == mod) _v = 0;\n   \
+    \     return *this;\n    }\n    constexpr ModInt& operator--() noexcept {\n  \
+    \      if (_v == 0) _v = mod;\n        --_v;\n        return *this;\n    }\n \
+    \   constexpr ModInt operator++(int) noexcept {\n        ModInt res = *this;\n\
+    \        ++*this;\n        return res;\n    }\n    constexpr ModInt operator--(int)\
     \ noexcept {\n        ModInt res = *this;\n        --*this;\n        return res;\n\
     \    }\n\n    friend constexpr ModInt operator+(const ModInt& lhs, const ModInt&\
     \ rhs) noexcept { return ModInt(lhs) += rhs; }\n    friend constexpr ModInt operator-(const\
@@ -406,15 +410,14 @@ data:
     \ m._v; }\n    friend std::ostream& operator<<(std::ostream& os, const ModInt&\
     \ m) noexcept { return os << m._v; }\n};\nusing Mint = ModInt<998244353>;\nusing\
     \ Mint7 = ModInt<1000000007>;\n}  // namespace bys\n/**\n * @file change.hpp\n\
-    \ * @author bayashi_cl\n * @brief chmin/chmax\n */\nnamespace bys {\n/**\n * @brief\
-    \ \u6700\u5927\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\
-    \u305F\u3068\u304D\n */\ntemplate <class T>\ninline bool chmax(T& a, const T&\
-    \ b) {\n    return a < b ? a = b, true : false;\n}\n/**\n * @brief \u6700\u5C0F\
-    \u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\
-    \u304D\n */\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n    return\
-    \ a > b ? a = b, true : false;\n}\n}  // namespace bys\n/**\n * @file range.hpp\n\
-    \ * @author bayashi_cl\n * @brief Python::range\n *\n * Python\u518D\u73FE\u30B7\
-    \u30EA\u30FC\u30BA range\u7DE8\n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n\
+    \ * @brief chmin/chmax\n */\nnamespace bys {\n/**\n * @brief \u6700\u5927\u5024\
+    \u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\
+    \n */\ntemplate <class T>\ninline bool chmax(T& a, const T& b) {\n    return a\
+    \ < b ? a = b, true : false;\n}\n/**\n * @brief \u6700\u5C0F\u5024\u3067\u66F4\
+    \u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\n */\ntemplate\
+    \ <class T>\ninline bool chmin(T& a, const T& b) {\n    return a > b ? a = b,\
+    \ true : false;\n}\n}  // namespace bys\n/**\n * @file range.hpp\n * @brief Python::range\n\
+    \ *\n * Python\u518D\u73FE\u30B7\u30EA\u30FC\u30BA range\u7DE8\n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n\
     \ */\nnamespace bys {\ntemplate <typename T>\nclass Range {\n    T it;\n    const\
     \ T stop, step;\n    const int dir;\n\n   public:\n    Range(T start, T stop,\
     \ T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n\
@@ -437,30 +440,30 @@ data:
     \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
     \ */);\n    return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \n#include \"../../algebra/mapping.hpp\"\n#include \"../../algebra/monoid.hpp\"\
-    \n#include \"../../core/core.hpp\"\n#include \"../../data/lazy_segment_tree.hpp\"\
-    \n#include \"../../math/modint.hpp\"\n#include \"../../utility/change.hpp\"\n\
-    #include \"../../utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    auto a = scanner.readvec<Mint>(n);\n\
-    \    LazySegmentTree<Add<Mint>, Affine<Mint>> seg(a);\n    for (UV : irange(q))\
-    \ {\n        auto t = scanner.read<int>();\n        if (t == 0) {\n          \
-    \  auto [l, r, b, c] = scanner.read<int, 4>();\n            seg.apply(l, r, {b,\
-    \ c});\n        } else {\n            auto [l, r] = scanner.read<int, 2>();\n\
-    \            print(seg.query(l, r));\n        }\n    }\n}\n}  // namespace bys\n\
-    \nint main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
-    \ */);\n    return 0;\n}\n"
+    \n#include \"../../core/core.hpp\"\n// -------------------------------------\n\
+    #include \"../../algebra/mapping.hpp\"\n#include \"../../algebra/monoid.hpp\"\n\
+    #include \"../../data/lazy_segment_tree.hpp\"\n#include \"../../math/modint.hpp\"\
+    \n#include \"../../utility/change.hpp\"\n#include \"../../utility/range.hpp\"\n\
+    \nnamespace bys {\nvoid Solver::solve() {\n    auto [n, q] = scanner.read<int,\
+    \ 2>();\n    auto a = scanner.readvec<Mint>(n);\n    LazySegmentTree<Add<Mint>,\
+    \ Affine<Mint>> seg(a);\n    for (UV : irange(q)) {\n        auto t = scanner.read<int>();\n\
+    \        if (t == 0) {\n            auto [l, r, b, c] = scanner.read<int, 4>();\n\
+    \            seg.apply(l, r, {b, c});\n        } else {\n            auto [l,\
+    \ r] = scanner.read<int, 2>();\n            print(seg.query(l, r));\n        }\n\
+    \    }\n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n    solver.solve(/*\
+    \ bys::scanner.read<int>() */);\n    return 0;\n}\n"
   dependsOn:
-  - algebra/mapping.hpp
-  - algebra/monoid.hpp
   - core/core.hpp
-  - core/stdlib.hpp
   - core/const.hpp
+  - core/stdlib.hpp
   - core/io.hpp
   - core/printer.hpp
   - core/types.hpp
   - core/scanner.hpp
   - core/macro.hpp
   - core/solver.hpp
+  - algebra/mapping.hpp
+  - algebra/monoid.hpp
   - data/lazy_segment_tree.hpp
   - math/bit.hpp
   - math/modint.hpp
@@ -471,7 +474,7 @@ data:
   isVerificationFile: true
   path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
   requiredBy: []
-  timestamp: '2022-03-28 23:40:03+09:00'
+  timestamp: '2022-04-04 23:07:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp

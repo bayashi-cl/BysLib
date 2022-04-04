@@ -1,75 +1,75 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/const.hpp
     title: Const
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
     title: core/all
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/io.hpp
     title: I/O
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/macro.hpp
     title: Macro
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/printer.hpp
     title: Output
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/scanner.hpp
     title: Input
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/solver.hpp
     title: Solver
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/types.hpp
     title: Types
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: math/euclid.hpp
     title: Extended Euclidean Algorithm
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/change.hpp
     title: chmin/chmax
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: utility/range.hpp
     title: Python::range
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E
   bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/all/NTL_1_E\"\
-    \n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n * \n * C++\
+    \n/**\n * @file core.hpp\n * @author bayashi_cl\n * @brief core/all\n *\n * C++\
     \ library for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
-    \ * Document : https://bayashi-cl.github.io/byslib/\n */\n/**\n * @file stdlib.hpp\n\
-    \ * @author bayashi_cl\n * @brief STL Template\n */\n#include <algorithm>\n#include\
-    \ <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include <complex>\n\
-    #include <functional>\n#include <iomanip>\n#include <iostream>\n#include <iterator>\n\
-    #include <limits>\n#include <map>\n#include <numeric>\n#include <queue>\n#include\
-    \ <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n#include\
-    \ <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace bys\
-    \ {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
-    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
-    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
-    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
-    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
-    \ bys\n/**\n * @file const.hpp\n * @author bayashi_cl\n * @brief Const\n */\n\
-    namespace bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\n\
-    constexpr int INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF =\
-    \ std::numeric_limits<ll>::max() / 2;\n}  // namespace bys\n/**\n * @file types.hpp\n\
-    \ * @author bayashi_cl\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\n\
-    namespace bys {\ntemplate <class, class = void>\nstruct has_lshift_to_ostream\
-    \ : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \ * Document : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
+    \ NDEBUG\n#endif\n/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include\
+    \ <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n#include\
+    \ <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n#include\
+    \ <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n#include\
+    \ <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include <string>\n\
+    #include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n#include\
+    \ <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string, std::set,\
+    \ std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing std::min,\
+    \ std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\nusing ll\
+    \ = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\nusing\
+    \ Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
+    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
+    \ T>;\n}  // namespace bys\n/**\n * @file const.hpp\n * @brief Const\n */\nnamespace\
+    \ bys {\nconstexpr int MOD = 998244353;\nconstexpr int MOD7 = 1000000007;\nconstexpr\
+    \ int INF = std::numeric_limits<int>::max() / 2;\nconstexpr ll LINF = std::numeric_limits<ll>::max()\
+    \ / 2;\n}  // namespace bys\n/**\n * @file types.hpp\n * @brief Types\n *\n *\
+    \ type_traits\u62E1\u5F35\n */\nnamespace bys {\ntemplate <class, class = void>\n\
+    struct has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct\
+    \ has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
     \ << std::declval<T&>())>> : std::true_type {};\n\ntemplate <class, class = void>\n\
     struct has_rshift_from_istream : std::false_type {};\ntemplate <class T>\nstruct\
     \ has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
@@ -79,12 +79,12 @@ data:
     \ {};\n\ntemplate <class, class = void>\nstruct has_iterator : std::false_type\
     \ {};\ntemplate <class T>\nstruct has_iterator<T, std::void_t<typename T::iterator>>\
     \ : std::true_type {};\n\nstruct Int1 {};\n}  // namespace bys\n/**\n * @file\
-    \ printer.hpp\n * @author bayashi_cl\n * @brief Output\n */\nnamespace bys {\n\
-    class Printer {\n    std::ostream& os;\n    std::string _sep = \" \", _end = \"\
-    \\n\";\n    template <std::size_t I, class T>\n    inline void print_tuple_element(T&&\
-    \ elem) {\n        if constexpr (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n\
-    \    }\n    template <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&&\
-    \ tp, std::index_sequence<I...>) {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
+    \ printer.hpp\n * @brief Output\n */\nnamespace bys {\nclass Printer {\n    std::ostream&\
+    \ os;\n    std::string _sep = \" \", _end = \"\\n\";\n    template <std::size_t\
+    \ I, class T>\n    inline void print_tuple_element(T&& elem) {\n        if constexpr\
+    \ (I != 0) cat(_sep);\n        cat(std::forward<T>(elem));\n    }\n    template\
+    \ <class Tp, std::size_t... I>\n    inline void print_tuple(Tp&& tp, std::index_sequence<I...>)\
+    \ {\n        (print_tuple_element<I>(std::forward<decltype(std::get<I>(tp))>(std::get<I>(tp))),\
     \ ...);\n    }\n\n   public:\n    Printer(std::ostream& os_) : os(os_) {}\n  \
     \  ~Printer() { os << std::flush; }\n\n    template <class T>\n    void cat(T&&\
     \ v) {\n        if constexpr (has_lshift_to_ostream<std::decay_t<T>>::value) {\n\
@@ -109,9 +109,9 @@ data:
     \ \u533A\u5207\u308A\u6587\u5B57\u3068\u7D42\u7AEF\u6587\u5B57\u3092\u8A2D\u5B9A\
     \n    Printer set(string sep_ = \" \", string end_ = \"\\n\") {\n        _sep\
     \ = sep_;\n        _end = end_;\n        return *this;\n    }\n    void lf() {\
-    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @author\
-    \ bayashi_cl\n * @brief Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream&\
-    \ is;\n    template <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
+    \ cat(_end); }\n};\n}  // namespace bys\n/**\n * @file scanner.hpp\n * @brief\
+    \ Input\n */\nnamespace bys {\nclass Scanner {\n    std::istream& is;\n    template\
+    \ <class Tp, std::size_t... I>\n    inline decltype(auto) read_tuple(std::index_sequence<I...>)\
     \ {\n        return Tp{read<typename std::tuple_element_t<I, Tp>>()...};\n   \
     \ }\n\n   public:\n    Scanner(std::istream& is_) : is(is_){};\n\n    template\
     \ <class... Ts>\n    void scan(Ts&... args) {\n        (is >> ... >> args);\n\
@@ -155,43 +155,41 @@ data:
     \u6539\u884C\u3092\u8AAD\u307F\u98DB\u3070\u3059\n     */\n    std::string getline(bool\
     \ skip_ws = true) {\n        if (skip_ws) std::ws(is);\n        std::string res;\n\
     \        std::getline(is, res);\n        return res;\n    }\n};\n}  // namespace\
-    \ bys\n/**\n * @file io.hpp\n * @author bayashi_cl\n * @brief I/O\n */\nnamespace\
-    \ bys {\n__attribute__((constructor)) void setup_io() {\n    std::ios::sync_with_stdio(false);\n\
-    \    std::cin.tie(nullptr);\n    std::cout << std::fixed << std::setprecision(11);\n\
-    \    std::cerr << std::fixed << std::setprecision(11);\n    std::cerr << std::boolalpha;\n\
-    }\n\nPrinter print(std::cout), debug(std::cerr);\nScanner scanner(std::cin);\n\
-    }  // namespace bys\n/**\n * @file macro.hpp\n * @author bayashi_cl\n * @brief\
-    \ Macro\n */\n// clang-format off\n#ifdef LOCAL\n//! @brief \u30C7\u30D0\u30C3\
-    \u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\u3067\u306F\u4F55\u3082\
-    \u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr << \"[debug] line\" <<\
-    \ std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__); }\n#else\n#define DEBUG(...)\n\
-    #endif\n//! @brief print\u3057\u3066return\u3059\u308B\u3002\n#define EXIT(...)\
-    \ { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a, b) a##b\n#define CONCAT(a,\
-    \ b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\u6570\u3092\u751F\
-    \u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_, __LINE__)\n\
-    #define RE std::runtime_error(\"line: \" + std::to_string(__LINE__) + \", func:\
-    \ \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n * @author bayashi_cl\n\
-    \ * @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n  \
-    \  Solver() {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\
-    \u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <=\
-    \ rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n/**\n * @file euclid.hpp\n\
-    \ * @author bayashi_cl\n * @brief Extended Euclidean Algorithm\n */\nnamespace\
-    \ bys {\n/**\n * @brief \u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\
-    \u4E92\u9664\u6CD5\n *\n * ax + by = gcd(a, b) \u3092\u6E80\u305F\u3059 (x, y)\
-    \ \u3092\u6C42\u3081\u308B\n * See: https://qiita.com/drken/items/b97ff231e43bce50199a\n\
-    \ *\n * @return std::tuple<int, int, int> {d, x, y} s.t. ax + by = d\n */\ntemplate\
-    \ <class T>\nstd::tuple<T, T, T> ext_gcd(T a, T b) {\n    if (b == 0) return {a,\
-    \ 1, T(0)};\n    auto [d, y, x] = ext_gcd(b, a % b);\n    y -= (a / b) * x;\n\
-    \    return {d, x, y};\n}\n}  // namespace bys\n/**\n * @file change.hpp\n * @author\
-    \ bayashi_cl\n * @brief chmin/chmax\n */\nnamespace bys {\n/**\n * @brief \u6700\
-    \u5927\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\
-    \u3068\u304D\n */\ntemplate <class T>\ninline bool chmax(T& a, const T& b) {\n\
-    \    return a < b ? a = b, true : false;\n}\n/**\n * @brief \u6700\u5C0F\u5024\
-    \u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\
-    \n */\ntemplate <class T>\ninline bool chmin(T& a, const T& b) {\n    return a\
-    \ > b ? a = b, true : false;\n}\n}  // namespace bys\n/**\n * @file range.hpp\n\
-    \ * @author bayashi_cl\n * @brief Python::range\n *\n * Python\u518D\u73FE\u30B7\
-    \u30EA\u30FC\u30BA range\u7DE8\n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n\
+    \ bys\n/**\n * @file io.hpp\n * @brief I/O\n */\nnamespace bys {\n__attribute__((constructor))\
+    \ void setup_io() {\n    std::ios::sync_with_stdio(false);\n    std::cin.tie(nullptr);\n\
+    \    std::cout << std::fixed << std::setprecision(11);\n    std::cerr << std::fixed\
+    \ << std::setprecision(11);\n    std::cerr << std::boolalpha;\n}\n\nPrinter print(std::cout),\
+    \ debug(std::cerr);\nScanner scanner(std::cin);\n}  // namespace bys\n/**\n *\
+    \ @file macro.hpp\n * @brief Macro\n */\n// clang-format off\n#ifdef LOCAL\n//!\
+    \ @brief \u30C7\u30D0\u30C3\u30B0\u7528\u51FA\u529B \u30B8\u30E3\u30C3\u30B8\u4E0A\
+    \u3067\u306F\u4F55\u3082\u3057\u306A\u3044\u3002\n#define DEBUG(...) { std::cerr\
+    \ << \"[debug] line\" << std::setw(4) << __LINE__ << \": \"; debug(__VA_ARGS__);\
+    \ }\n#else\n#define DEBUG(...)\n#endif\n//! @brief print\u3057\u3066return\u3059\
+    \u308B\u3002\n#define EXIT(...) { print(__VA_ARGS__); return; }\n#define CONCAT_IMPL(a,\
+    \ b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
+    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    \ __LINE__)\n#define RE std::runtime_error(\"line: \" + std::to_string(__LINE__)\
+    \ + \", func: \" + __func__)\n// clang-format on\n/**\n * @file solver.hpp\n *\
+    \ @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
+    \ {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
+    \u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <= rep; ++IT)\
+    \ solve();\n    }\n};\n}  // namespace bys\n/**\n * @file euclid.hpp\n * @brief\
+    \ Extended Euclidean Algorithm\n */\nnamespace bys {\n/**\n * @brief \u62E1\u5F35\
+    \u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\u9664\u6CD5\n *\n * ax + by =\
+    \ gcd(a, b) \u3092\u6E80\u305F\u3059 (x, y) \u3092\u6C42\u3081\u308B\n * See:\
+    \ https://qiita.com/drken/items/b97ff231e43bce50199a\n *\n * @return std::tuple<int,\
+    \ int, int> {d, x, y} s.t. ax + by = d\n */\ntemplate <class T>\nstd::tuple<T,\
+    \ T, T> ext_gcd(T a, T b) {\n    if (b == 0) return {a, 1, T(0)};\n    auto [d,\
+    \ y, x] = ext_gcd(b, a % b);\n    y -= (a / b) * x;\n    return {d, x, y};\n}\n\
+    }  // namespace bys\n/**\n * @file change.hpp\n * @brief chmin/chmax\n */\nnamespace\
+    \ bys {\n/**\n * @brief \u6700\u5927\u5024\u3067\u66F4\u65B0\n * @return true\
+    \ \u66F4\u65B0\u3055\u308C\u305F\u3068\u304D\n */\ntemplate <class T>\ninline\
+    \ bool chmax(T& a, const T& b) {\n    return a < b ? a = b, true : false;\n}\n\
+    /**\n * @brief \u6700\u5C0F\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\
+    \u3055\u308C\u305F\u3068\u304D\n */\ntemplate <class T>\ninline bool chmin(T&\
+    \ a, const T& b) {\n    return a > b ? a = b, true : false;\n}\n}  // namespace\
+    \ bys\n/**\n * @file range.hpp\n * @brief Python::range\n *\n * Python\u518D\u73FE\
+    \u30B7\u30EA\u30FC\u30BA range\u7DE8\n * See: https://docs.python.org/ja/3/library/stdtypes.html#range\n\
     \ */\nnamespace bys {\ntemplate <typename T>\nclass Range {\n    T it;\n    const\
     \ T stop, step;\n    const int dir;\n\n   public:\n    Range(T start, T stop,\
     \ T step = 1) : it(start), stop(stop), step(step), dir(step >= 0 ? 1 : -1) {}\n\
@@ -217,8 +215,8 @@ data:
     \ */);\n    return 0;\n}\n"
   dependsOn:
   - core/core.hpp
-  - core/stdlib.hpp
   - core/const.hpp
+  - core/stdlib.hpp
   - core/io.hpp
   - core/printer.hpp
   - core/types.hpp
@@ -231,8 +229,8 @@ data:
   isVerificationFile: true
   path: test/math/euclid.test.cpp
   requiredBy: []
-  timestamp: '2022-03-28 23:40:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2022-04-04 23:07:30+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/math/euclid.test.cpp
 layout: document

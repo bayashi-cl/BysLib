@@ -17,7 +17,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: algebra/mapping.hpp
       title: Mapping
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: algebra/monoid.hpp
       title: Monoid
   - name: algorithm
@@ -27,34 +27,34 @@ data:
       title: Run Length Encoding
   - name: core
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/const.hpp
       title: Const
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/core.hpp
       title: core/all
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/io.hpp
       title: I/O
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/macro.hpp
       title: Macro
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/printer.hpp
       title: Output
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/scanner.hpp
       title: Input
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/solver.hpp
       title: Solver
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/stdlib.hpp
       title: STL Template
     - icon: ':warning:'
       path: core/timer.hpp
       title: Timer
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: core/types.hpp
       title: Types
   - name: data
@@ -80,7 +80,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: data/segment_tree.hpp
       title: Segment Tree
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: data/sparse_table.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
@@ -119,7 +119,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dijkstra.hpp
       title: graph/dijkstra.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/edge.hpp
       title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
     - icon: ':heavy_check_mark:'
@@ -140,24 +140,30 @@ data:
   - name: graphv2
     pages:
     - icon: ':heavy_check_mark:'
+      path: graphv2/bellman_ford.hpp
+      title: Bellman Ford
+    - icon: ':x:'
       path: graphv2/breadth_first_search.hpp
       title: Breadth First Search
     - icon: ':warning:'
       path: graphv2/depth_first_search.hpp
       title: Depth First Search
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graphv2/dijkstra.hpp
       title: Dijkstra
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graphv2/edge.hpp
       title: Edge
-    - icon: ':heavy_check_mark:'
+    - icon: ':warning:'
+      path: graphv2/kruskal.hpp
+      title: Kruskal
+    - icon: ':x:'
       path: graphv2/lca.hpp
       title: Lowest Common Ancestor
     - icon: ':warning:'
       path: graphv2/reader.hpp
       title: Reader
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graphv2/result.hpp
       title: Shortest Path Result
     - icon: ':warning:'
@@ -166,7 +172,7 @@ data:
     - icon: ':warning:'
       path: graphv2/topological_sort.hpp
       title: Topological Sort
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graphv2/warshall_floyd.hpp
       title: Warshall Floyd
   - name: math
@@ -177,16 +183,16 @@ data:
     - icon: ':warning:'
       path: math/base.hpp
       title: Base conversion
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/bit.hpp
       title: Bit
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/combination.hpp
       title: Binomial Coefficient
     - icon: ':warning:'
       path: math/divisor.hpp
       title: Divisor
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/euclid.hpp
       title: Extended Euclidean Algorithm
     - icon: ':warning:'
@@ -198,13 +204,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: math/modint.hpp
       title: Modint
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/numeric.hpp
       title: Numeric
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: math/osa_k.hpp
       title: Osa-k
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: math/prime.hpp
       title: Prime
     - icon: ':warning:'
@@ -228,7 +234,7 @@ data:
     - icon: ':warning:'
       path: utility/binary_search.hpp
       title: Binary Search
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/change.hpp
       title: chmin/chmax
     - icon: ':warning:'
@@ -237,10 +243,10 @@ data:
     - icon: ':warning:'
       path: utility/enumerate.hpp
       title: Python::enumerate
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: utility/fixpoint.hpp
       title: FixPoint
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/grid.hpp
       title: Grid Manager
     - icon: ':warning:'
@@ -249,7 +255,7 @@ data:
     - icon: ':warning:'
       path: utility/itertools.hpp
       title: Python::itertools
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: utility/range.hpp
       title: Python::range
     - icon: ':warning:'
@@ -358,39 +364,42 @@ data:
   - name: test/graphv2
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/graphv2/bellman_ford.test.cpp
+      title: test/graphv2/bellman_ford.test.cpp
+    - icon: ':x:'
       path: test/graphv2/bfs_grid.test.cpp
       title: test/graphv2/bfs_grid.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/graphv2/dijkstra.test.cpp
       title: test/graphv2/dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/graphv2/lca.test.cpp
       title: test/graphv2/lca.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/graphv2/warshallfloyd.test.cpp
       title: test/graphv2/warshallfloyd.test.cpp
   - name: test/math
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/combination.test.cpp
       title: test/math/combination.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/euclid.test.cpp
       title: test/math/euclid.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/osa_k.test.cpp
       title: test/math/osa_k.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/math/prime.test.cpp
       title: test/math/prime.test.cpp
   - name: test
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/test.test.cpp
       title: test/test.test.cpp
   - name: test/utility
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/utility/range.test.cpp
       title: test/utility/range.test.cpp
 layout: toppage

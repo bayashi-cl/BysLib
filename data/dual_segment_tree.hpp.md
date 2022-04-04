@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: algebra/mapping.hpp
     title: Mapping
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: algebra/monoid.hpp
     title: Monoid
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: math/bit.hpp
     title: Bit
   _extendedRequiredBy: []
@@ -29,17 +29,16 @@ data:
     links:
     - https://kmyk.github.io/blog/blog/2019/02/22/dual-segment-tree/
   bundledCode: "#include <optional>\n#include <utility>\n/**\n * @file monoid.hpp\n\
-    \ * @author bayashi_cl\n * @brief Monoid\n *\n * \u30E2\u30CE\u30A4\u30C9\n */\n\
-    namespace bys {\ntemplate <class T>\nstruct Magma {\n    using set_type = T;\n\
-    \    static constexpr set_type operation(set_type a, set_type b);\n    static\
-    \ constexpr bool commutative{false};\n};\ntemplate <class T>\nstruct Add : Magma<T>\
-    \ {\n    using typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return a + b; }\n    static constexpr set_type identity{0};\n\
-    \    static constexpr bool commutative{true};\n};\ntemplate <class T>\nstruct\
-    \ Min : Magma<T> {\n    using typename Magma<T>::set_type;\n    static constexpr\
-    \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
-    \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
-    \ <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \ * @brief Monoid\n *\n * \u30E2\u30CE\u30A4\u30C9\n */\nnamespace bys {\ntemplate\
+    \ <class T>\nstruct Magma {\n    using set_type = T;\n    static constexpr set_type\
+    \ operation(set_type a, set_type b);\n    static constexpr bool commutative{false};\n\
+    };\ntemplate <class T>\nstruct Add : Magma<T> {\n    using typename Magma<T>::set_type;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return a +\
+    \ b; }\n    static constexpr set_type identity{0};\n    static constexpr bool\
+    \ commutative{true};\n};\ntemplate <class T>\nstruct Min : Magma<T> {\n    using\
+    \ typename Magma<T>::set_type;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
+    };\ntemplate <class T>\nstruct Max : Magma<T> {\n    using typename Magma<T>::set_type;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return std::max(a,\
     \ b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
     };\ntemplate <class T>\nstruct Update : Magma<T> {\n    using set_type = std::optional<T>;\n\
@@ -48,20 +47,20 @@ data:
     \ <class T>\nstruct Affine : Magma<T> {\n    using set_type = std::pair<T, T>;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return {a.first\
     \ * b.first, a.second * b.first + b.second}; }\n    static constexpr set_type\
-    \ identity{1, 0};\n};\n}  // namespace bys\n/**\n * @file mapping.hpp\n * @author\
-    \ bayashi_cl\n * @brief Mapping\n *\n * \u9045\u5EF6\u30BB\u30B0\u6728 \u4F5C\u7528\
-    \u7D20\n */\nnamespace bys {\ntemplate <class T, class ActMonoid>\nstruct MappingToSet\
-    \ {\n    static constexpr void mapping(T&, typename ActMonoid::set_type) {\n \
-    \       static_assert([] { return false; }(), \"mapping function does not defined.\"\
-    );\n    }\n};\ntemplate <class T, class S>\nstruct MappingToSet<T, Add<S>> {\n\
-    \    static constexpr void mapping(T& t, typename Add<S>::set_type u) { t += u;\
-    \ }\n};\ntemplate <class T, class S>\nstruct MappingToSet<T, Update<S>> {\n  \
-    \  static constexpr void mapping(T& t, typename Update<S>::set_type u) {\n   \
-    \     if (u.has_value()) t = u.value();\n    }\n};\ntemplate <class Monoid, class\
-    \ ActMonoid>\nstruct Mapping {\n    static constexpr void mapping(typename Monoid::set_type&,\
-    \ typename ActMonoid::set_type, int) {\n        static_assert([] { return false;\
-    \ }(), \"mapping function does not defined.\");\n    }\n};\ntemplate <class T,\
-    \ class S>\nstruct Mapping<Min<T>, Update<S>> {\n    static constexpr void mapping(typename\
+    \ identity{1, 0};\n};\n}  // namespace bys\n/**\n * @file mapping.hpp\n * @brief\
+    \ Mapping\n *\n * \u9045\u5EF6\u30BB\u30B0\u6728 \u4F5C\u7528\u7D20\n */\nnamespace\
+    \ bys {\ntemplate <class T, class ActMonoid>\nstruct MappingToSet {\n    static\
+    \ constexpr void mapping(T&, typename ActMonoid::set_type) {\n        static_assert([]\
+    \ { return false; }(), \"mapping function does not defined.\");\n    }\n};\ntemplate\
+    \ <class T, class S>\nstruct MappingToSet<T, Add<S>> {\n    static constexpr void\
+    \ mapping(T& t, typename Add<S>::set_type u) { t += u; }\n};\ntemplate <class\
+    \ T, class S>\nstruct MappingToSet<T, Update<S>> {\n    static constexpr void\
+    \ mapping(T& t, typename Update<S>::set_type u) {\n        if (u.has_value())\
+    \ t = u.value();\n    }\n};\ntemplate <class Monoid, class ActMonoid>\nstruct\
+    \ Mapping {\n    static constexpr void mapping(typename Monoid::set_type&, typename\
+    \ ActMonoid::set_type, int) {\n        static_assert([] { return false; }(), \"\
+    mapping function does not defined.\");\n    }\n};\ntemplate <class T, class S>\n\
+    struct Mapping<Min<T>, Update<S>> {\n    static constexpr void mapping(typename\
     \ Min<T>::set_type& t, typename Update<S>::set_type s, int) {\n        if (s.has_value())\
     \ t = s.value();\n    }\n};\ntemplate <class T, class S>\nstruct Mapping<Add<T>,\
     \ Add<S>> {\n    static constexpr void mapping(typename Add<T>::set_type& t, typename\
@@ -76,37 +75,36 @@ data:
     \    }\n};\ntemplate <class T, class S>\nstruct Mapping<Max<T>, Update<S>> {\n\
     \    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type\
     \ s, int) {\n        if (s.has_value()) t = s.value();\n    }\n};\n}  // namespace\
-    \ bys\n/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
-    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
-    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
-    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
-    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
-    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
-    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
-    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
-    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
-    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
-    \ T>;\n}  // namespace bys\n/**\n * @file bit.hpp\n * @author bayashi_cl\n * @brief\
-    \ Bit\n * @note c++20\u3067<bit>\u304C\u8FFD\u52A0\u3055\u308C\u308B\n */\nnamespace\
-    \ bys {\n/**\n * @brief bit\u5E45\n *\n * bit_width(x) - 1  < log2(x) <= bit_width(x)\n\
-    \ */\ntemplate <class T>\nconstexpr int bit_width(T x) {\n    int bits = 0;\n\
-    \    x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n    return\
-    \ bits;\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\u4E0B\u3052\ntemplate <class\
-    \ T>\nconstexpr T bit_floor(T x) {\n    assert(x >= 0);\n    return x == 0 ? 0\
-    \ : T(1) << (bit_width(x) - 1);\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\u4E0A\
-    \u3052\ntemplate <class T>\nconstexpr T bit_ceil(T x) {\n    assert(x >= 0);\n\
-    \    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n}\n//! @brief 2\u9032\u6587\
-    \u5B57\u5217\u306B\u5909\u63DB\ntemplate <class T>\nstd::string bin(T n) {\n \
-    \   assert(n > 0);\n    if (n == 0) return \"0\";\n    std::string res;\n    while\
-    \ (n > 0) {\n        res.push_back(n & 1 ? '1' : '0');\n        n >>= 1;\n   \
-    \ }\n    std::reverse(res.begin(), res.end());\n    return res;\n}\n//! @brief\
-    \ d bit\u76EE\u304C\u7ACB\u3063\u3066\u3044\u308B\u304B\ntemplate <class T>\n\
-    constexpr bool pop(T s, int d) {\n    return s & (T(1) << d);\n}\n}  // namespace\
-    \ bys\n/**\n * @file dual_segment_tree.hpp\n * @author bayashi_cl\n * @brief Dual\
-    \ Segment Tree\n *\n * \u53CC\u5BFE\u30BB\u30B0\u6728\n */\nnamespace bys {\n\
-    /**\n * @brief \u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\n *\n * \u533A\
+    \ bys\n/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
+    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
+    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
+    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
+    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
+    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
+    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n/**\n * @file bit.hpp\n * @brief Bit\n * @note c++20\u3067<bit>\u304C\u8FFD\
+    \u52A0\u3055\u308C\u308B\n */\nnamespace bys {\n/**\n * @brief bit\u5E45\n *\n\
+    \ * bit_width(x) - 1  < log2(x) <= bit_width(x)\n */\ntemplate <class T>\nconstexpr\
+    \ int bit_width(T x) {\n    int bits = 0;\n    x = (x < 0) ? (-x) : x;\n    for\
+    \ (; x != 0; bits++) x >>= 1;\n    return bits;\n}\n//! @brief 2\u51AA\u306B\u5207\
+    \u308A\u4E0B\u3052\ntemplate <class T>\nconstexpr T bit_floor(T x) {\n    assert(x\
+    \ >= 0);\n    return x == 0 ? 0 : T(1) << (bit_width(x) - 1);\n}\n//! @brief 2\u51AA\
+    \u306B\u5207\u308A\u4E0A\u3052\ntemplate <class T>\nconstexpr T bit_ceil(T x)\
+    \ {\n    assert(x >= 0);\n    return x == 0 ? 1 : T(1) << bit_width(x - 1);\n\
+    }\n//! @brief 2\u9032\u6587\u5B57\u5217\u306B\u5909\u63DB\ntemplate <class T>\n\
+    std::string bin(T n) {\n    assert(n > 0);\n    if (n == 0) return \"0\";\n  \
+    \  std::string res;\n    while (n > 0) {\n        res.push_back(n & 1 ? '1' :\
+    \ '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
+    \    return res;\n}\n//! @brief d bit\u76EE\u304C\u7ACB\u3063\u3066\u3044\u308B\
+    \u304B\ntemplate <class T>\nconstexpr bool pop(T s, int d) {\n    return s & (T(1)\
+    \ << d);\n}\n}  // namespace bys\n/**\n * @file dual_segment_tree.hpp\n * @brief\
+    \ Dual Segment Tree\n *\n * \u53CC\u5BFE\u30BB\u30B0\u6728\n */\nnamespace bys\
+    \ {\n/**\n * @brief \u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\n *\n * \u533A\
     \u9593\u66F4\u65B0: O(logN)\n * \u4E00\u70B9\u53D6\u5F97: O(logN)\n * See: https://kmyk.github.io/blog/blog/2019/02/22/dual-segment-tree/\n\
     \ *\n * @tparam T \u8981\u7D20\u578B\n * @tparam ActMonoid \u4F5C\u7528\u7D20\u30E2\
     \u30CE\u30A4\u30C9\n * @tparam Action T\u306B\u5BFE\u3059\u308B\u4F5C\u7528\u95A2\
@@ -140,11 +138,10 @@ data:
     \                lazy[r] = ActMonoid::operation(lazy[r], val);\n            }\n\
     \        }\n    }\n};\n}  // namespace bys\n"
   code: "#pragma once\n#include \"../algebra/mapping.hpp\"\n#include \"../core/stdlib.hpp\"\
-    \n#include \"../math/bit.hpp\"\n/**\n * @file dual_segment_tree.hpp\n * @author\
-    \ bayashi_cl\n * @brief Dual Segment Tree\n *\n * \u53CC\u5BFE\u30BB\u30B0\u6728\
-    \n */\nnamespace bys {\n/**\n * @brief \u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\
-    \u6728\n *\n * \u533A\u9593\u66F4\u65B0: O(logN)\n * \u4E00\u70B9\u53D6\u5F97\
-    : O(logN)\n * See: https://kmyk.github.io/blog/blog/2019/02/22/dual-segment-tree/\n\
+    \n#include \"../math/bit.hpp\"\n/**\n * @file dual_segment_tree.hpp\n * @brief\
+    \ Dual Segment Tree\n *\n * \u53CC\u5BFE\u30BB\u30B0\u6728\n */\nnamespace bys\
+    \ {\n/**\n * @brief \u53CC\u5BFE\u30BB\u30B0\u30E1\u30F3\u30C8\u6728\n *\n * \u533A\
+    \u9593\u66F4\u65B0: O(logN)\n * \u4E00\u70B9\u53D6\u5F97: O(logN)\n * See: https://kmyk.github.io/blog/blog/2019/02/22/dual-segment-tree/\n\
     \ *\n * @tparam T \u8981\u7D20\u578B\n * @tparam ActMonoid \u4F5C\u7528\u7D20\u30E2\
     \u30CE\u30A4\u30C9\n * @tparam Action T\u306B\u5BFE\u3059\u308B\u4F5C\u7528\u95A2\
     \u6570\u30AA\u30D6\u30B8\u30A7\u30AF\u30C8\n */\ntemplate <class T, class ActMonoid,\
@@ -184,7 +181,7 @@ data:
   isVerificationFile: false
   path: data/dual_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-03-28 23:40:03+09:00'
+  timestamp: '2022-04-04 23:07:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data/dual_segment_tree_RAQ.test.cpp

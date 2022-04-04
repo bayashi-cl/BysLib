@@ -18,17 +18,16 @@ data:
     title: chmin/chmax
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/graphv2/warshallfloyd.test.cpp
-    title: test/graphv2/warshallfloyd.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/graphv2/bellman_ford.test.cpp
+    title: test/graphv2/bellman_ford.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    document_title: Warshall Floyd
+    document_title: Bellman Ford
     links: []
-  bundledCode: "/**\n * @file warshall_floyd.hpp\n * @brief Warshall Floyd\n */\n\
-    /**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include <algorithm>\n\
+  bundledCode: "/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include <algorithm>\n\
     #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
     \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
     #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
@@ -102,35 +101,38 @@ data:
     \ res;\n        for (int now = to; now != from; now = prev[from][now]) {\n   \
     \         res.push_back(now);\n        }\n        res.push_back(from);\n     \
     \   std::reverse(res.begin(), res.end());\n        return res;\n    }\n};\n} \
-    \ // namespace bys\n\nnamespace bys {\n/**\n * @brief Warshall Floyd\n *\n * O(VE)\n\
-    \ *\n * @param graph \u8FBA\u30EA\u30B9\u30C8\n */\nAPSPResult warshall_floyd(const\
-    \ std::vector<Edge>& graph, std::size_t n_node) {\n    APSPResult res(n_node);\n\
-    \    for (auto&& e : graph) res.cost[e.src][e.dest] = e.weight;\n    for (std::size_t\
-    \ i = 0; i < n_node; ++i) res.cost[i][i] = 0;\n    for (std::size_t i = 0; i <\
-    \ n_node; ++i) {\n        for (std::size_t j = 0; j < n_node; ++j) {\n       \
-    \     res.prev[i][j] = i;\n        }\n    }\n    for (std::size_t k = 0; k < n_node;\
-    \ k++) {\n        for (std::size_t i = 0; i < n_node; i++) {\n            for\
-    \ (std::size_t j = 0; j < n_node; j++) {\n                if (res.cost[i][k] ==\
-    \ LINF || res.cost[k][j] == LINF) continue;\n                if (chmin(res.cost[i][j],\
-    \ res.cost[i][k] + res.cost[k][j])) {\n                    res.prev[i][j] = res.prev[k][j];\n\
-    \                }\n            }\n        }\n    }\n    return res;\n}\n}  //\
-    \ namespace bys\n"
-  code: "#pragma once\n/**\n * @file warshall_floyd.hpp\n * @brief Warshall Floyd\n\
-    \ */\n#include \"../core/const.hpp\"\n#include \"../core/stdlib.hpp\"\n#include\
-    \ \"../utility/change.hpp\"\n#include \"edge.hpp\"\n#include \"result.hpp\"\n\n\
-    namespace bys {\n/**\n * @brief Warshall Floyd\n *\n * O(VE)\n *\n * @param graph\
-    \ \u8FBA\u30EA\u30B9\u30C8\n */\nAPSPResult warshall_floyd(const std::vector<Edge>&\
-    \ graph, std::size_t n_node) {\n    APSPResult res(n_node);\n    for (auto&& e\
-    \ : graph) res.cost[e.src][e.dest] = e.weight;\n    for (std::size_t i = 0; i\
-    \ < n_node; ++i) res.cost[i][i] = 0;\n    for (std::size_t i = 0; i < n_node;\
-    \ ++i) {\n        for (std::size_t j = 0; j < n_node; ++j) {\n            res.prev[i][j]\
-    \ = i;\n        }\n    }\n    for (std::size_t k = 0; k < n_node; k++) {\n   \
-    \     for (std::size_t i = 0; i < n_node; i++) {\n            for (std::size_t\
-    \ j = 0; j < n_node; j++) {\n                if (res.cost[i][k] == LINF || res.cost[k][j]\
-    \ == LINF) continue;\n                if (chmin(res.cost[i][j], res.cost[i][k]\
-    \ + res.cost[k][j])) {\n                    res.prev[i][j] = res.prev[k][j];\n\
-    \                }\n            }\n        }\n    }\n    return res;\n}\n}  //\
-    \ namespace bys\n"
+    \ // namespace bys\n/**\n * @file bellman_ford.hpp\n * @brief Bellman Ford\n */\n\
+    namespace bys {\n/**\n * @brief \u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\
+    \u6CD5\n *\n * O(VE)\n *\n * @param elist \u8FBA\u30EA\u30B9\u30C8\n * @param\
+    \ n_node \u9802\u70B9\u6570\n * @param source \u59CB\u70B9\n * @return SSSPResult\
+    \ LINF -> \u5230\u9054\u4E0D\u53EF, -LINF -> \u8CA0\u9589\u8DEF\n */\nSSSPResult\
+    \ bellman_ford(const std::vector<Edge>& elist, int n_node, int source) {\n   \
+    \ SSSPResult res(n_node, source);\n    int n = elist.size();\n    res.cost[source]\
+    \ = 0;\n    for (int i = 0; i < n_node - 1; ++i) {\n        for (auto&& e : elist)\
+    \ {\n            if (res.cost[e.src] >= LINF) continue;\n            chmin(res.cost[e.dest],\
+    \ res.cost[e.src] + e.weight);\n        }\n    }\n    std::vector<bool> neg_cycle(n);\n\
+    \    for (int i = 0; i < n; ++i) {\n        for (auto&& e : elist) {\n       \
+    \     if (res.cost[e.src] >= LINF) continue;\n            if (chmin(res.cost[e.dest],\
+    \ res.cost[e.src] + e.weight) || neg_cycle[e.src]) neg_cycle[e.dest] = true;\n\
+    \        }\n    }\n    for (int i = 0; i < n; ++i) {\n        if (neg_cycle[i])\
+    \ res.cost[i] = -LINF;\n    }\n    return res;\n}\n}  // namespace bys\n"
+  code: "#pragma once\n#include \"../core/const.hpp\"\n#include \"../core/stdlib.hpp\"\
+    \n#include \"../utility/change.hpp\"\n#include \"edge.hpp\"\n#include \"result.hpp\"\
+    \n/**\n * @file bellman_ford.hpp\n * @brief Bellman Ford\n */\nnamespace bys {\n\
+    /**\n * @brief \u30D9\u30EB\u30DE\u30F3\u30D5\u30A9\u30FC\u30C9\u6CD5\n *\n *\
+    \ O(VE)\n *\n * @param elist \u8FBA\u30EA\u30B9\u30C8\n * @param n_node \u9802\
+    \u70B9\u6570\n * @param source \u59CB\u70B9\n * @return SSSPResult LINF -> \u5230\
+    \u9054\u4E0D\u53EF, -LINF -> \u8CA0\u9589\u8DEF\n */\nSSSPResult bellman_ford(const\
+    \ std::vector<Edge>& elist, int n_node, int source) {\n    SSSPResult res(n_node,\
+    \ source);\n    int n = elist.size();\n    res.cost[source] = 0;\n    for (int\
+    \ i = 0; i < n_node - 1; ++i) {\n        for (auto&& e : elist) {\n          \
+    \  if (res.cost[e.src] >= LINF) continue;\n            chmin(res.cost[e.dest],\
+    \ res.cost[e.src] + e.weight);\n        }\n    }\n    std::vector<bool> neg_cycle(n);\n\
+    \    for (int i = 0; i < n; ++i) {\n        for (auto&& e : elist) {\n       \
+    \     if (res.cost[e.src] >= LINF) continue;\n            if (chmin(res.cost[e.dest],\
+    \ res.cost[e.src] + e.weight) || neg_cycle[e.src]) neg_cycle[e.dest] = true;\n\
+    \        }\n    }\n    for (int i = 0; i < n; ++i) {\n        if (neg_cycle[i])\
+    \ res.cost[i] = -LINF;\n    }\n    return res;\n}\n}  // namespace bys\n"
   dependsOn:
   - core/const.hpp
   - core/stdlib.hpp
@@ -138,16 +140,16 @@ data:
   - graphv2/edge.hpp
   - graphv2/result.hpp
   isVerificationFile: false
-  path: graphv2/warshall_floyd.hpp
+  path: graphv2/bellman_ford.hpp
   requiredBy: []
   timestamp: '2022-04-04 23:07:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/graphv2/warshallfloyd.test.cpp
-documentation_of: graphv2/warshall_floyd.hpp
+  - test/graphv2/bellman_ford.test.cpp
+documentation_of: graphv2/bellman_ford.hpp
 layout: document
 redirect_from:
-- /library/graphv2/warshall_floyd.hpp
-- /library/graphv2/warshall_floyd.hpp.html
-title: Warshall Floyd
+- /library/graphv2/bellman_ford.hpp
+- /library/graphv2/bellman_ford.hpp.html
+title: Bellman Ford
 ---

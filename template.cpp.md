@@ -18,11 +18,11 @@ data:
     , line 263, in _resolve\n    raise BundleErrorAt(path, -1, \"no such header\"\
     )\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt: byslib/core/core.hpp:\
     \ line -1: no such header\n"
-  code: "#ifndef LOCAL\n#define NDEBUG\n#endif\n#include \"byslib/core/core.hpp\"\n\
-    // -------------------------------------\n#include \"byslib/utility/change.hpp\"\
-    \n#include \"byslib/utility/range.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    \n}\n}  // namespace bys\n\nint main() {\n    bys::Solver solver;\n \
-    \   solver.solve(/* bys::scanner.read<int>() */);\n    return 0;\n}\n"
+  code: "#include \"byslib/core/core.hpp\"\n// -------------------------------------\n\
+    #include \"byslib/utility/change.hpp\"\n#include \"byslib/utility/range.hpp\"\n\
+    \nnamespace bys {\nvoid Solver::solve() {\n    \n}\n}  // namespace bys\n\nint\
+    \ main() {\n    bys::Solver solver;\n    solver.solve(/* bys::scanner.read<int>()\
+    \ */);\n    return 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: template.cpp

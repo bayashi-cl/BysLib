@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/stdlib.hpp
     title: STL Template
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: core/core.hpp
     title: core/all
   - icon: ':heavy_check_mark:'
@@ -106,63 +106,66 @@ data:
     path: test/graph/warshallfloyd.test.cpp
     title: test/graph/warshallfloyd.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/graphv2/bellman_ford.test.cpp
+    title: test/graphv2/bellman_ford.test.cpp
+  - icon: ':x:'
     path: test/graphv2/bfs_grid.test.cpp
     title: test/graphv2/bfs_grid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graphv2/dijkstra.test.cpp
     title: test/graphv2/dijkstra.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graphv2/lca.test.cpp
     title: test/graphv2/lca.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/graphv2/warshallfloyd.test.cpp
     title: test/graphv2/warshallfloyd.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/combination.test.cpp
     title: test/math/combination.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/euclid.test.cpp
     title: test/math/euclid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/osa_k.test.cpp
     title: test/math/osa_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/math/prime.test.cpp
     title: test/math/prime.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/utility/range.test.cpp
     title: test/utility/range.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     document_title: Solver
     links: []
-  bundledCode: "/**\n * @file stdlib.hpp\n * @author bayashi_cl\n * @brief STL Template\n\
-    \ */\n#include <algorithm>\n#include <array>\n#include <bitset>\n#include <cassert>\n\
-    #include <cmath>\n#include <complex>\n#include <functional>\n#include <iomanip>\n\
-    #include <iostream>\n#include <iterator>\n#include <limits>\n#include <map>\n\
-    #include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n#include\
-    \ <string>\n#include <type_traits>\n#include <unordered_map>\n#include <unordered_set>\n\
-    #include <vector>\n\nnamespace bys {\nusing std::array, std::vector, std::string,\
-    \ std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\nusing\
-    \ std::min, std::max, std::sort, std::reverse, std::abs, std::pow;\n\n// alias\n\
-    using ll = long long int;\nusing ld = long double;\nusing Pa = pair<int, int>;\n\
-    using Pall = pair<ll, ll>;\nusing ibool = std::int8_t;\ntemplate <class T>\nusing\
-    \ uset = std::unordered_set<T>;\ntemplate <class S, class T>\nusing umap = std::unordered_map<S,\
-    \ T>;\n}  // namespace bys\n/**\n * @file solver.hpp\n * @author bayashi_cl\n\
-    \ * @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n  \
-    \  Solver() {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\
-    \u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <=\
-    \ rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n"
-  code: "#pragma once\n#include \"stdlib.hpp\"\n/**\n * @file solver.hpp\n * @author\
-    \ bayashi_cl\n * @brief Solver\n */\nnamespace bys {\nstruct Solver {\n    int\
-    \ IT = 1;\n    Solver() {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\
-    \u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int rep) {\n      \
-    \  for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace bys\n"
+  bundledCode: "/**\n * @file stdlib.hpp\n * @brief STL Template\n */\n#include <algorithm>\n\
+    #include <array>\n#include <bitset>\n#include <cassert>\n#include <cmath>\n#include\
+    \ <complex>\n#include <functional>\n#include <iomanip>\n#include <iostream>\n\
+    #include <iterator>\n#include <limits>\n#include <map>\n#include <numeric>\n#include\
+    \ <queue>\n#include <set>\n#include <stack>\n#include <string>\n#include <type_traits>\n\
+    #include <unordered_map>\n#include <unordered_set>\n#include <vector>\n\nnamespace\
+    \ bys {\nusing std::array, std::vector, std::string, std::set, std::map, std::pair;\n\
+    using std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
+    \ std::abs, std::pow;\n\n// alias\nusing ll = long long int;\nusing ld = long\
+    \ double;\nusing Pa = pair<int, int>;\nusing Pall = pair<ll, ll>;\nusing ibool\
+    \ = std::int8_t;\ntemplate <class T>\nusing uset = std::unordered_set<T>;\ntemplate\
+    \ <class S, class T>\nusing umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n/**\n * @file solver.hpp\n * @brief Solver\n */\nnamespace bys {\nstruct\
+    \ Solver {\n    int IT = 1;\n    Solver() {}\n    void solve();\n    //! @brief\
+    \ \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u7528\n    void solve(int\
+    \ rep) {\n        for (; IT <= rep; ++IT) solve();\n    }\n};\n}  // namespace\
+    \ bys\n"
+  code: "#pragma once\n#include \"stdlib.hpp\"\n/**\n * @file solver.hpp\n * @brief\
+    \ Solver\n */\nnamespace bys {\nstruct Solver {\n    int IT = 1;\n    Solver()\
+    \ {}\n    void solve();\n    //! @brief \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\
+    \u30FC\u30B9\u7528\n    void solve(int rep) {\n        for (; IT <= rep; ++IT)\
+    \ solve();\n    }\n};\n}  // namespace bys\n"
   dependsOn:
   - core/stdlib.hpp
   isVerificationFile: false
@@ -170,50 +173,51 @@ data:
   requiredBy:
   - core/core.hpp
   - graph/dijkstra.hpp
-  timestamp: '2022-03-28 23:40:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2022-04-04 23:07:30+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/math/prime.test.cpp
-  - test/math/osa_k.test.cpp
-  - test/math/combination.test.cpp
-  - test/math/euclid.test.cpp
-  - test/geometry/area.test.cpp
-  - test/geometry/counter_clockwise.test.cpp
-  - test/geometry/reflection.test.cpp
-  - test/geometry/parallel_orthogonal.test.cpp
-  - test/geometry/distance.test.cpp
-  - test/geometry/is_convex.test.cpp
-  - test/geometry/projection.test.cpp
-  - test/geometry/intersection.test.cpp
-  - test/geometry/cross_point.test.cpp
-  - test/utility/range.test.cpp
-  - test/test.test.cpp
-  - test/data/binary_indexed_tree.test.cpp
-  - test/data/segment_tree_RSQ2.test.cpp
-  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
-  - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
-  - test/data/cumulative_sum_2D.test.cpp
-  - test/data/dual_segment_tree_RAQ.test.cpp
-  - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
-  - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-  - test/data/binary_indexed_tree_aux.test.cpp
-  - test/data/sparse_table.test.cpp
-  - test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
-  - test/data/cumulative_sum.test.cpp
-  - test/data/union_find.test.cpp
-  - test/data/segment_tree_RMQ.test.cpp
-  - test/data/dual_segment_tree_RUQ.test.cpp
-  - test/data/segment_tree_RSQ.test.cpp
-  - test/graphv2/bfs_grid.test.cpp
-  - test/graphv2/warshallfloyd.test.cpp
   - test/graphv2/lca.test.cpp
   - test/graphv2/dijkstra.test.cpp
-  - test/graph/bfs_grid.test.cpp
-  - test/graph/warshallfloyd.test.cpp
+  - test/graphv2/bellman_ford.test.cpp
+  - test/graphv2/bfs_grid.test.cpp
+  - test/graphv2/warshallfloyd.test.cpp
+  - test/test.test.cpp
   - test/graph/lca.test.cpp
-  - test/graph/kruskal.test.cpp
   - test/graph/dijkstra.test.cpp
   - test/graph/bellman_ford.test.cpp
+  - test/graph/kruskal.test.cpp
+  - test/graph/bfs_grid.test.cpp
+  - test/graph/warshallfloyd.test.cpp
+  - test/data/binary_indexed_tree_aux.test.cpp
+  - test/data/dual_segment_tree_RAQ.test.cpp
+  - test/data/dual_segment_tree_RUQ.test.cpp
+  - test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
+  - test/data/union_find.test.cpp
+  - test/data/binary_indexed_tree.test.cpp
+  - test/data/sparse_table.test.cpp
+  - test/data/segment_tree_RSQ2.test.cpp
+  - test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
+  - test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
+  - test/data/segment_tree_RMQ.test.cpp
+  - test/data/segment_tree_RSQ.test.cpp
+  - test/data/cumulative_sum_2D.test.cpp
+  - test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+  - test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+  - test/data/cumulative_sum.test.cpp
+  - test/geometry/area.test.cpp
+  - test/geometry/parallel_orthogonal.test.cpp
+  - test/geometry/counter_clockwise.test.cpp
+  - test/geometry/is_convex.test.cpp
+  - test/geometry/cross_point.test.cpp
+  - test/geometry/reflection.test.cpp
+  - test/geometry/distance.test.cpp
+  - test/geometry/projection.test.cpp
+  - test/geometry/intersection.test.cpp
+  - test/math/prime.test.cpp
+  - test/math/euclid.test.cpp
+  - test/math/combination.test.cpp
+  - test/math/osa_k.test.cpp
+  - test/utility/range.test.cpp
 documentation_of: core/solver.hpp
 layout: document
 redirect_from:
