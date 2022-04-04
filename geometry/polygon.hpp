@@ -2,7 +2,6 @@
 #include "point.hpp"
 /**
  * @file polygon.hpp
- * @author bayashi_cl
  * @brief Polygon
  */
 namespace bys::geo {

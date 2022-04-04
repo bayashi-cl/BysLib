@@ -6,7 +6,6 @@
 #include "result.hpp"
 /**
  * @file breadth_first_search.hpp
- * @author bayashi_cl
  * @brief Breadth First Search
  *
  * 幅優先探索

@@ -3,7 +3,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file combination.hpp
- * @author bayashi_cl
  * @brief Binomial Coefficient
  */
 namespace bys {

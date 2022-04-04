@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file euclid.hpp
- * @author bayashi_cl
  * @brief Extended Euclidean Algorithm
  */
 namespace bys {

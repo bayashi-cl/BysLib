@@ -3,7 +3,6 @@
 #include "types.hpp"
 /**
  * @file scanner.hpp
- * @author bayashi_cl
  * @brief Input
  */
 namespace bys {

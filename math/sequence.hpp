@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file sequence.hpp
- * @author bayashi_cl
  * @brief Sequence
  *
  * 数列

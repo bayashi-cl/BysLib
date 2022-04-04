@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file binary_search.hpp
- * @author bayashi_cl
  * @brief Binary Search
  *
  * 二分探索法

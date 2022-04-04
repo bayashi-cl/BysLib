@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file bit.hpp
- * @author bayashi_cl
  * @brief Bit
  * @note c++20で<bit>が追加される
  */

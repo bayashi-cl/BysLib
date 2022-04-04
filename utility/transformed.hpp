@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file transformed.hpp
- * @author bayashi_cl
  * @brief Transformed
  */
 namespace bys {

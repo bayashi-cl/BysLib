@@ -2,7 +2,6 @@
 #include <ext/pb_ds/assoc_container.hpp>
 /**
  * @file ordered_set.hpp
- * @author bayashi_cl
  * @brief Ordered Set
  *
  * pb_dsのラッパ

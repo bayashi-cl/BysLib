@@ -3,7 +3,6 @@
 #include <utility>
 /**
  * @file monoid.hpp
- * @author bayashi_cl
  * @brief Monoid
  *
  * モノイド

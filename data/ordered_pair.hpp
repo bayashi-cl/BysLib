@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file ordered_pair.hpp
- * @author bayashi_cl
  * @brief Orderd Pair
  */
 #include "../core/stdlib.hpp"

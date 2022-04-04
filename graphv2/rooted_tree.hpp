@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file rooted_tree.hpp
- * @author bayashi_cl
  * @brief Rooted tree
  */
 #include "../core/stdlib.hpp"

@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file edge.hpp
- * @author bayashi_cl
  * @brief Edge
  * @todo concept
  */
@@ -39,11 +38,12 @@ struct DynamicAdjacencyList {
  * See: https://qiita.com/Nachia/items/d420c08b333296f54526
  */
 struct AdjacencyList {
-    AdjacencyList(std::size_t n, std::size_t m) : _n(n), _m(m), index(n + 1), _build_flg(m == 0) { buf.reserve(m); }
+    AdjacencyList(std::size_t n, std::size_t m = UINT64_MAX) : _n(n), _m(m), index(n + 1), _build_flg(m == 0) {}
 
     struct AdjacencyRange {
         using iterator = std::vector<Edge>::const_iterator;
         using reference = std::vector<Edge>::const_reference;
+        using value_type = Edge;
         iterator _begin, _end;
         iterator begin() const { return _begin; }
         iterator end() const { return _end; }
@@ -57,7 +57,7 @@ struct AdjacencyList {
 
     void build() {
         std::partial_sum(index.begin(), index.end(), index.begin());
-        data.resize(_m);
+        data.resize(buf.size());
         for (auto&& e : buf) data[--index[e.src]] = e;
         _build_flg = true;
     }
@@ -68,7 +68,7 @@ struct AdjacencyList {
     }
     void add_edge(std::size_t src, std::size_t dest, ll weight = 1) { add_edge(Edge(src, dest, weight)); }
     std::size_t size() const { return _n; }
-    std::size_t n_edge() const { return _m; }
+    std::size_t n_edge() const { return buf.size(); }
     bool build_flg() const { return _build_flg; }
 
    private:

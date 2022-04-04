@@ -3,7 +3,6 @@
 #include "edge.hpp"
 /**
  * @file depth_first_search.hpp
- * @author bayashi_cl
  * @brief Depth First Search
  *
  * 深さ優先探索
@@ -32,7 +31,7 @@ class DepthFirstSearch {
 
     void crawl() {
         for (std::size_t i = 0; i < _n; ++i) {
-            if (cost[i] != -1) {
+            if (cost[i] == -1) {
                 cost[i] = 0;
                 search(i);
             }

@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file lca.hpp
- * @author bayashi_cl
  * @brief Lowest Common Ancestor
  *
  * 最近共通祖先

@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file macro.hpp
- * @author bayashi_cl
  * @brief Macro
  */
 // clang-format off

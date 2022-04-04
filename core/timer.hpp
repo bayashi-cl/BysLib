@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file timer.hpp
- * @author bayashi_cl
  * @brief Timer
  */
 #include <chrono>

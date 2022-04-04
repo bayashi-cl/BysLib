@@ -4,7 +4,6 @@
 #include "edge.hpp"
 /**
  * @file reader.hpp
- * @author bayashi_cl
  * @brief Reader
  *
  * グラフ入力

@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file range.hpp
- * @author bayashi_cl
  * @brief Python::range
  *
  * Python再現シリーズ range編

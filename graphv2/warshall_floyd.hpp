@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file warshall_floyd.hpp
- * @author bayashi_cl
  * @brief Warshall Floyd
  */
 #include "../core/const.hpp"

@@ -3,7 +3,6 @@
 #include "types.hpp"
 /**
  * @file printer.hpp
- * @author bayashi_cl
  * @brief Output
  */
 namespace bys {

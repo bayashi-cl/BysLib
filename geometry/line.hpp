@@ -3,7 +3,6 @@
 
 /**
  * @file line.hpp
- * @author bayashi_cl
  * @brief Line
  * @todo 半直線の実装
  */

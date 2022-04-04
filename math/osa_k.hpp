@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file osa_k.hpp
- * @author bayashi_cl
  * @brief Osa-k
  */
 namespace bys {

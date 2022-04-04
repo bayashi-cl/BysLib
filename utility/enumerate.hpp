@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file enumerate.hpp
- * @author bayashi_cl
  * @brief Python::enumerate
  *
  * Python再現シリーズ enumerate編

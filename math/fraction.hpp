@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file fraction.hpp
- * @author bayashi_cl
  * @brief Fraction
  */
 namespace bys {

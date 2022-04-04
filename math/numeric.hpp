@@ -3,7 +3,6 @@
 #include "bit.hpp"
 /**
  * @file numeric.hpp
- * @author bayashi_cl
  * @brief Numeric
  *
  * 数値計算詰め合わせ
@@ -92,5 +91,26 @@ constexpr bool isclose(T x, T y, T coef = 4.0) {
     if (x == y) return true;
     auto diff = std::abs(x - y);
     return diff <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();
+}
+
+constexpr std::pair<long long, long long> inv_gcd(long long a, long long b) {
+    a = floormod(a, b);
+    if (a == 0) return {b, 0};
+    long long s = b, t = a;
+    long long m0 = 0, m1 = 1;
+
+    while (t) {
+        long long u = s / t;
+        s -= t * u;
+        m0 -= m1 * u;
+        auto tmp = s;
+        s = t;
+        t = tmp;
+        tmp = m0;
+        m0 = m1;
+        m1 = tmp;
+    }
+    if (m0 < 0) m0 += b / s;
+    return {s, m0};
 }
 }  // namespace bys

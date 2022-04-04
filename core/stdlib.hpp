@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file stdlib.hpp
- * @author bayashi_cl
  * @brief STL Template
  */
 #include <algorithm>

@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file sparse_table.hpp
- * @author bayashi_cl
  * @brief Sparse Table
  */
 namespace bys {

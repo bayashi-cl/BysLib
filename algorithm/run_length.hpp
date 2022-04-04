@@ -3,7 +3,6 @@
 #include "../core/types.hpp"
 /**
  * @file run_length.hpp
- * @author bayashi_cl
  * @brief Run Length Encoding
  */
 namespace bys {

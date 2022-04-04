@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file matrix.hpp
- * @author bayashi_cl
  * @brief Matrix
  * @todo geoとの連携
  */

@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file lazy_segment_tree.hpp
- * @author bayashi_cl
  * @brief Lazy Segment Tree
  */
 #include "../algebra/mapping.hpp"

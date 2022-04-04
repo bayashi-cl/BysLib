@@ -4,7 +4,6 @@
 #include "stdlib.hpp"
 /**
  * @file io.hpp
- * @author bayashi_cl
  * @brief I/O
  */
 namespace bys {

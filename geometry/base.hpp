@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file base.hpp
- * @author bayashi_cl
  * @brief Base
  */
 //! @brief 幾何

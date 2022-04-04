@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file union_find.hpp
- * @author bayashi_cl
  * @brief Union Find Tree
  */
 namespace bys {
@@ -26,6 +25,11 @@ struct UnionFindTree {
         assert(b < _n);
         return find(a) == find(b);
     }
+    /**
+     * @brief マージ
+     *
+     * a, bが別の連結成分に属していた場合true
+     */
     bool unite(std::size_t a, std::size_t b) {
         assert(a < _n);
         assert(b < _n);

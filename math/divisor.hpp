@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file divisor.hpp
- * @author bayashi_cl
  * @brief Divisor
  */
 namespace bys {

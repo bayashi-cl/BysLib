@@ -3,7 +3,6 @@
 #include "../math/bit.hpp"
 /**
  * @file segment_tree.hpp
- * @author bayashi_cl
  * @brief Segment Tree
  */
 namespace bys {

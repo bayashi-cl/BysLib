@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file zfill.hpp
- * @author bayashi_cl
  * @brief Python::str
  *
  * Python再現シリーズ str編

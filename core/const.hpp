@@ -2,7 +2,6 @@
 #include "stdlib.hpp"
 /**
  * @file const.hpp
- * @author bayashi_cl
  * @brief Const
  */
 namespace bys {

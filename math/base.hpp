@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file base.hpp
- * @author bayashi_cl
  * @brief Base conversion
  *
  * 進数変換

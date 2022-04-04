@@ -4,7 +4,6 @@
 #include "result.hpp"
 /**
  * @file dijkstra.hpp
- * @author bayashi_cl
  * @brief Dijkstra
  */
 namespace bys {

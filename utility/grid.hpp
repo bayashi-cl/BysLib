@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file grid.hpp
- * @author bayashi_cl
  * @brief Grid Manager
  */
 namespace bys {

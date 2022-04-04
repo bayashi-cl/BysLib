@@ -1,7 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
+#include "../../core/core.hpp"
+// -------------------------------------
 #include "../../algebra/mapping.hpp"
 #include "../../algebra/monoid.hpp"
-#include "../../core/core.hpp"
 #include "../../data/lazy_segment_tree.hpp"
 #include "../../math/modint.hpp"
 #include "../../utility/change.hpp"

@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file compress.hpp
- * @author bayashi_cl
  * @brief Coordinate Compression
  *
  * 座標圧縮

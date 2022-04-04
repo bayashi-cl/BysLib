@@ -1,6 +1,3 @@
-#ifndef LOCAL
-#define NDEBUG
-#endif
 #include "byslib/core/core.hpp"
 // -------------------------------------
 #include "byslib/utility/change.hpp"

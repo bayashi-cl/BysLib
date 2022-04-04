@@ -3,7 +3,6 @@
 #include "../math/bit.hpp"
 /**
  * @file binary_indexed_tree.hpp
- * @author bayashi_cl
  * @brief Binary Indexed Tree
  */
 namespace bys {

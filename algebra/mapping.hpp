@@ -2,7 +2,6 @@
 #include "monoid.hpp"
 /**
  * @file mapping.hpp
- * @author bayashi_cl
  * @brief Mapping
  *
  * 遅延セグ木 作用素

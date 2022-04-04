@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file topological_sort.hpp
- * @author bayashi_cl
  * @brief Topological Sort
  */
 #include "edge.hpp"

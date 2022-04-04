@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file cumulative_sum.hpp
- * @author bayashi_cl
  * @brief Cumulative Sum
  *
  * 累積和

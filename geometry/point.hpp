@@ -2,7 +2,6 @@
 #include "base.hpp"
 /**
  * @file point.hpp
- * @author bayashi_cl
  * @brief Point
  */
 namespace bys::geo {

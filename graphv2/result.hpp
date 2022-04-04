@@ -3,7 +3,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file result.hpp
- * @author bayashi_cl
  * @brief Shortest Path Result
  */
 namespace bys {

@@ -2,7 +2,6 @@
 #include "stdlib.hpp"
 /**
  * @file types.hpp
- * @author bayashi_cl
  * @brief Types
  *
  * type_traits拡張

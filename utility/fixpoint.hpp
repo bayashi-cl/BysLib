@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file fixpoint.hpp
- * @author bayashi_cl
  * @brief FixPoint
  */
 namespace bys {

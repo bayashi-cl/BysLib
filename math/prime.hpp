@@ -3,7 +3,6 @@
 #include "numeric.hpp"
 /**
  * @file prime.hpp
- * @author bayashi_cl
  * @brief Prime
  */
 namespace bys {

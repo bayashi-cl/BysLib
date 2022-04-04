@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file itertools.hpp
- * @author bayashi_cl
  * @brief Python::itertools
  *
  * Python再現シリーズ itertools編

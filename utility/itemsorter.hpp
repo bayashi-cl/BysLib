@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file itemsorter.hpp
- * @author bayashi_cl
  * @brief ItemSorter
  *
  * sort関数の第三引数に渡すことで"vectorの2番目の要素でソート"、"pairのsecond

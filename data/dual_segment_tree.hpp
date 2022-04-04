@@ -4,7 +4,6 @@
 #include "../math/bit.hpp"
 /**
  * @file dual_segment_tree.hpp
- * @author bayashi_cl
  * @brief Dual Segment Tree
  *
  * 双対セグ木

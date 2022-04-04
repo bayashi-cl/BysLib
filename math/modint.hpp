@@ -3,7 +3,6 @@
 #include "prime.hpp"
 /**
  * @file modint.hpp
- * @author bayashi_cl
  * @brief Modint
  */
 namespace bys {
@@ -13,8 +12,7 @@ namespace bys {
  * ac-libraryのmodintをconstexpr化したもの
  * See: https://atcoder.github.io/ac-library/document_ja/modint.html
  *
- * @tparam Modulo (今の所)素数
- * @todo 非素数modへの対応
+ * @tparam Modulo 法
  */
 template <unsigned int Modulo>
 class ModInt {
@@ -22,7 +20,7 @@ class ModInt {
 
    public:
     static constexpr unsigned int mod = Modulo;
-    static_assert(is_prime(mod), "Modulo need to be prime.");
+    // static_assert(is_prime(mod), "Modulo need to be prime.");
     static_assert(mod < (std::numeric_limits<unsigned int>::max() >> 1), "Modulo need to be <2^31.");
 
     constexpr ModInt() noexcept : _v(0) {}
@@ -40,7 +38,13 @@ class ModInt {
         }
         return res;
     }
-    constexpr ModInt inv() const noexcept { return pow(mod - 2); }
+    constexpr ModInt inv() const noexcept {
+        if constexpr (is_prime(mod)) {
+            return pow(mod - 2);
+        } else {
+            return inv_gcd(_v, mod).second;
+        }
+    }
 
     constexpr ModInt& operator+=(const ModInt rhs) noexcept {
         _v += rhs._v;

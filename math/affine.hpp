@@ -2,7 +2,6 @@
 #include "matrix.hpp"
 /**
  * @file affine.hpp
- * @author bayashi_cl
  * @brief Affine Transformation
  */
 namespace bys::affine {

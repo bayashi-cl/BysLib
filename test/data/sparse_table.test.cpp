@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
-
-#include "../../algebra/monoid.hpp"
 #include "../../core/core.hpp"
+// -------------------------------------
+#include "../../algebra/monoid.hpp"
 #include "../../data/sparse_table.hpp"
 #include "../../utility/change.hpp"
 #include "../../utility/range.hpp"

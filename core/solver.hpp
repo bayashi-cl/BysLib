@@ -2,7 +2,6 @@
 #include "stdlib.hpp"
 /**
  * @file solver.hpp
- * @author bayashi_cl
  * @brief Solver
  */
 namespace bys {

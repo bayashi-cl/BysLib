@@ -1,7 +1,6 @@
 #pragma once
 /**
  * @file ascii.hpp
- * @author bayashi_cl
  * @brief Alphabet
  */
 #include "../core/stdlib.hpp"

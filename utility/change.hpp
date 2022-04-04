@@ -2,7 +2,6 @@
 #include "../core/stdlib.hpp"
 /**
  * @file change.hpp
- * @author bayashi_cl
  * @brief chmin/chmax
  */
 namespace bys {
