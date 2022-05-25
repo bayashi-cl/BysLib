@@ -6,7 +6,7 @@
  *
  * C++ library for competitive programming by bayashi_cl
  * Repository: https://github.com/bayashi-cl/byslib
- * Document : https://bayashi-cl.github.io/byslib/
+ * Document  : https://bayashi-cl.github.io/byslib/
  */
 #ifndef LOCAL
 #define NDEBUG

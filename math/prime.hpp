@@ -1,4 +1,5 @@
 #pragma once
+#include "../core/alias.hpp"
 #include "../core/stdlib.hpp"
 #include "numeric.hpp"
 /**
@@ -6,7 +7,6 @@
  * @brief Prime
  */
 namespace bys {
-
 /**
  * @brief 素因数分解
  *
@@ -14,7 +14,7 @@ namespace bys {
  * O(√n)
  */
 template <typename T>
-vector<T> prime_factorize(T n) {
+std::vector<T> prime_factorize(T n) {
     vector<T> res;
     while (n % 2 == 0) {
         res.push_back(2);
@@ -40,16 +40,16 @@ vector<T> prime_factorize(T n) {
  * See: https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
  * See: https://miller-rabin.appspot.com
  */
-constexpr bool is_prime(long long n) {
+constexpr bool is_prime(i16 n) {
+    if (not(n & 1)) return n == 2;
     if (n <= 1) return false;
-    if (n == 2 || n == 7 || n == 61) return true;
-    if (n % 2 == 0) return false;
-    long long d = n - 1;
+    auto d = n - 1;
     while (d % 2 == 0) d >>= 1;
-    constexpr std::array<ll, 7> prime = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
-    for (long long p : prime) {
-        long long t = d;
-        long long y = mod_pow(p, t, n);
+    std::array<i16, 9> base = {2, 7, 61, 325, 9375, 28178, 450775, 9780504, 1795265022};
+    for (auto b : base) {
+        if (n <= b) break;
+        auto t = d;
+        auto y = mod_pow(b, t, n);
         while (t != n - 1 && y != 1 && y != n - 1) {
             y = y * y % n;
             t <<= 1;

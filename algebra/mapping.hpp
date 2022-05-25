@@ -18,6 +18,12 @@ struct MappingToSet<T, Add<S>> {
     static constexpr void mapping(T& t, typename Add<S>::set_type u) { t += u; }
 };
 template <class T, class S>
+struct MappingToSet<T, Min<S>> {
+    static constexpr void mapping(T& t, typename Min<S>::set_type u) {
+        if (t > u) t = u;
+    }
+};
+template <class T, class S>
 struct MappingToSet<T, Update<S>> {
     static constexpr void mapping(T& t, typename Update<S>::set_type u) {
         if (u.has_value()) t = u.value();

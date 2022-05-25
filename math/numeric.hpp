@@ -21,7 +21,9 @@ constexpr ll int_pow(int a, int b) {
  */
 template <class T>
 constexpr T mod_pow(T p, T q, T mod) {
-    T res = 1 % mod;
+    // T res = 1 % mod;
+    if (mod == 1) return 0;
+    T res = 1;
     p %= mod;
     for (; q; q >>= 1) {
         if (q & 1) res = res * p % mod;
@@ -32,12 +34,20 @@ constexpr T mod_pow(T p, T q, T mod) {
 //! @brief ceil(x / y)
 template <class T>
 constexpr T ceildiv(T x, T y) {
-    return x > T(0) ? (x + y - 1) / y : x / y;
+    if ((x < T(0)) ^ (y < T(0))) {
+        return x / y;
+    } else {
+        return (x + y + (x < T(0) ? 1 : -1)) / y;
+    }
 }
 //! @brief floor(x / y)
 template <class T>
 constexpr T floordiv(T x, T y) {
-    return x > T(0) ? x / y : (x - y + 1) / y;
+    if ((x < T(0)) ^ (y < T(0))) {
+        return (x - y + (x < T(0) ? 1 : -1)) / y;
+    } else {
+        return x / y;
+    }
 }
 /**
  * @brief Python::divmod

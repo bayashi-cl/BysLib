@@ -46,6 +46,7 @@ class LowestCommonAncestor {
     int lca(std::size_t a, std::size_t b) {
         assert(a < n);
         assert(b < n);
+        if (a == b) return a;
         if (pos[a] > pos[b]) std::swap(a, b);
         return st.query(pos[a], pos[b]).id;
     }

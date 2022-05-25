@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/shortest_path"
-#include "core/core.hpp"
-#include "graph/dijkstra.hpp"
+#include "../../core/core.hpp"
+#include "../../graph/dijkstra.hpp"
 
 namespace bys {
 void Solver::solve() {

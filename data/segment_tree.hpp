@@ -28,7 +28,7 @@ class SegmentTree {
     }
 
     value_type query(int l, int r) const {
-        assert(0 <= l && l < _n);
+        assert(0 <= l && l <= _n);
         assert(l <= r);
         assert(r <= _n);
 
