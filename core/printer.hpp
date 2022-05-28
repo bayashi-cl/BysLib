@@ -20,7 +20,7 @@ class Printer {
     }
 
    public:
-    Printer(std::ostream& os_) : os(os_) {}
+    Printer(std::ostream& os_) : os(os_) { os << std::fixed << std::setprecision(11) << std::boolalpha; }
     ~Printer() { os << std::flush; }
 
     template <class T>

@@ -14,7 +14,7 @@ class Scanner {
     }
 
    public:
-    Scanner(std::istream& is_) : is(is_){};
+    Scanner(std::istream& is_) : is(is_) { is.tie(nullptr); }
 
     template <class... Ts>
     void scan(Ts&... args) {

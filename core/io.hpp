@@ -7,12 +7,15 @@
  * @brief I/O
  */
 namespace bys {
-__attribute__((constructor)) void setup_io() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout << std::fixed << std::setprecision(11);
-    std::cerr << std::fixed << std::setprecision(11);
-    std::cerr << std::boolalpha;
+template <class... Args>
+std::string debugfmt(int line, Args&&... args) {
+    std::stringstream ss;
+    Printer printer(ss);
+    ss << "📌 line" << std::setw(4) << line << ": ";
+    std::string space = "\n             ";
+    printer.set(" ", space).print(std::forward<Args>(args)...);
+    auto result = ss.str();
+    return result.substr(0, result.length() - space.length());
 }
 
 Printer print(std::cout), debug(std::cerr);

@@ -6,12 +6,16 @@
  */
 namespace bys {
 struct Solver {
-    int IT = 1;
-    Solver() {}
-    void solve();
-    //! @brief マルチテストケース用
-    void solve(int rep) {
-        for (; IT <= rep; ++IT) solve();
+    static inline int TESTCASE = 1;
+    static void solve();
+    static int main(int t = 1) {
+        std::ios::sync_with_stdio(false);
+
+        for (; TESTCASE <= t; ++TESTCASE) solve();
+
+        if (not std::cin.good()) std::cerr << "🟡 Input failed." << std::endl;
+        if (not std::ws(std::cin).eof()) std::cerr << "🟡 Unused input." << std::endl;
+        return 0;
     }
 };
 }  // namespace bys

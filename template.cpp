@@ -9,8 +9,4 @@ void Solver::solve() {
 }
 }  // namespace bys
 
-int main() {
-    bys::Solver solver;
-    solver.solve(/* bys::scanner.read<int>() */);
-    return 0;
-}
+int main() { return bys::Solver::main(/* bys::scanner.read<int>() */); }
