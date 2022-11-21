@@ -64,8 +64,8 @@ class ModInt {
     }
     constexpr ModInt& operator/=(const ModInt rhs) noexcept { return *this = *this * rhs.inv(); }
 
-    constexpr ModInt& operator+() const noexcept { return *this; }
-    constexpr ModInt& operator-() const noexcept { return ModInt() - *this; }
+    constexpr ModInt operator+() const noexcept { return *this; }
+    constexpr ModInt operator-() const noexcept { return ModInt() - *this; }
     constexpr ModInt& operator++() noexcept {
         _v++;
         if (_v == mod) _v = 0;

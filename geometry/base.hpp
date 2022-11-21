@@ -6,7 +6,7 @@
  */
 //! @brief 幾何
 namespace bys::geo {
-const ld EPS = 1e-9;
+constexpr ld EPS = 1e-9;
 const ld PI = std::acos(-1.0);
 const ld TAU = PI * 2;
 int sgn(ld a) { return (a < -EPS) ? -1 : (a > EPS) ? 1 : 0; }

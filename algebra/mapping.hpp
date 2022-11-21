@@ -67,4 +67,8 @@ struct Mapping<Max<T>, Update<S>> {
         if (s.has_value()) t = s.value();
     }
 };
+template <class T, class Modint>
+struct Mapping<Add<T>, ModMul<Modint>> {
+    static constexpr void mapping(typename Add<T>::set_type& t, typename ModMul<Modint>::set_type s, int) { t *= s; }
+};
 }  // namespace bys

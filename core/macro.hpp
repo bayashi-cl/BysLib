@@ -6,11 +6,11 @@
 // clang-format off
 #ifdef LOCAL
 //! @brief デバッグ用出力 ジャッジ上では何もしない。
-#define DEBUG(...) debug(debugfmt(__LINE__, __VA_ARGS__));
+#define DEBUG(...) debug.cat(debugfmt(__LINE__, __VA_ARGS__)); debug.flush()
 #else
 #define DEBUG(...)
 #endif
-#define DEBUGCASE(casenum, ...) if (TESTCASE == casenum) DEBUG(__VA_ARGS__);
+#define DEBUGCASE(casenum, ...) if (TESTCASE == casenum) DEBUG(__VA_ARGS__)
 //! @brief printしてreturnする。
 #define EXIT(...) { print(__VA_ARGS__); return; }
 #define CONCAT_IMPL(a, b) a##b

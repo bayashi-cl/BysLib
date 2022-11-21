@@ -130,4 +130,12 @@ Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
         return Angle::Acute;
     }
 }
+template <class T>
+T distance2(const Point<T>& a, const Point<T>& b) {
+    return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
+}
+template <class T>
+T distance(const Point<T>& a, const Point<T>& b) {
+    return sqrt(distance2(a, b));
+}
 }  // namespace bys::geo

@@ -33,7 +33,7 @@ constexpr T bit_ceil(T x) {
 //! @brief 2進文字列に変換
 template <class T>
 std::string bin(T n) {
-    assert(n > 0);
+    assert(n >= 0);
     if (n == 0) return "0";
     std::string res;
     while (n > 0) {

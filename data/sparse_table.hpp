@@ -41,7 +41,9 @@ class SparseTable {
     }
 
     T query(int l, int r) {
-        assert(0 <= l && l < r && r <= n);
+        assert(0 <= l && l <= n);
+        assert(0 <= r && r <= n);
+        if (l >= r) return Band::identity;
         int w = r - l;
         return Band::operation(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);
     }

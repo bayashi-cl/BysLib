@@ -1,46 +1,27 @@
 #pragma once
-#include "../core/core.hpp"
-#include "edge.hpp"
-
+#include "graph.hpp"
 namespace bys {
-struct Dijkstra {
-    int n_node;
-    vector<int> prev;
-    vector<ll> cost;
-
-    Dijkstra(const Adj& graph, int start, ll err_val = -1) : n_node(graph.size()), prev(n_node, -1), cost(n_node, LINF) {
-        search(graph, start);
-        std::replace(cost.begin(), cost.end(), LINF, err_val);
-    }
-
-    void search(const Adj& graph, int start) {
-        using Node = std::pair<ll, int>;
-        std::priority_queue<Node, vector<Node>, std::greater<Node>> que;
-        cost[start] = 0;
-        que.push({0, start});
-        while (!que.empty()) {
-            auto top = que.top();
-            que.pop();
-            if (cost[top.second] < top.first) continue;
-            for (auto&& next : graph[top.second]) {
-                ll next_cost = cost[top.second] + next.cost;
-                if (next_cost < cost[next.to]) {
-                    cost[next.to] = next_cost;
-                    prev[next.to] = top.second;
-                    que.push({next_cost, next.to});
-                }
+template <class E>
+auto dijkstra(AdjacencyList<E> const& graph, typename E::vertex_type source) {
+    using V = typename E::vertex_type;
+    using W = typename E::weight_type;
+    using Node = std::pair<W, V>;
+    std::vector<W> cost(graph.size(), get_inf<W>());
+    std::priority_queue<Node, std::vector<Node>, std::greater<Node>> que;
+    cost[source] = 0;
+    que.emplace(0, source);
+    while (not que.empty()) {
+        auto [top_cost, top] = que.top();
+        que.pop();
+        if (cost[top] < top_cost) continue;
+        for (auto&& next : graph[top]) {
+            auto next_cost = cost[top] + next.weight;
+            if (next_cost < cost[next.dest]) {
+                cost[next.dest] = next_cost;
+                que.emplace(next_cost, next.dest);
             }
         }
     }
-    vector<int> path(int to) {
-        assert(to < n_node);
-        vector<int> res;
-        while (to != -1) {
-            res.push_back(to);
-            to = prev[to];
-        }
-        std::reverse(res.begin(), res.end());
-        return res;
-    }
-};
+    return cost;
+}
 }  // namespace bys

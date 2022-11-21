@@ -12,10 +12,9 @@ std::string debugfmt(int line, Args&&... args) {
     std::stringstream ss;
     Printer printer(ss);
     ss << "📌 line" << std::setw(4) << line << ": ";
-    std::string space = "\n             ";
-    printer.set(" ", space).print(std::forward<Args>(args)...);
-    auto result = ss.str();
-    return result.substr(0, result.length() - space.length());
+    printer.set_sep("\n             ", " ", " ");
+    printer.print(std::forward<Args>(args)...);
+    return ss.str();
 }
 
 Printer print(std::cout), debug(std::cerr);

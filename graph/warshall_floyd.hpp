@@ -1,46 +1,36 @@
 #pragma once
-#include "edge.hpp"
-#include "../core/stdlib.hpp"
+/**
+ * @file warshall_floyd.hpp
+ * @brief Warshall Floyd
+ */
 #include "../core/const.hpp"
 #include "../utility/change.hpp"
+#include "graph.hpp"
 
 namespace bys {
-struct WarshallFloyd {
-    int n_node;
-    vector<vector<ll>> cost;
-    vector<vector<int>> prev;
+/**
+ * @brief Warshall Floyd
+ *
+ * O(V^3)
+ *
+ * @param graph 辺リスト
+ */
 
-    WarshallFloyd(const EdgeList& graph, int n_node)
-        : n_node(n_node), cost(n_node, vector(n_node, LINF)), prev(n_node, vector(n_node, -1)) {
-        for (auto&& e : graph) cost[e.from][e.to] = e.cost;
-        for (int i = 0; i < n_node; ++i) cost[i][i] = 0;
-        for (int i = 0; i < n_node; ++i) {
-            for (int j = 0; j < n_node; ++j) {
-                prev[i][j] = i;
-            }
-        }
-        search();
-    }
-
-    void search() {
-        for (int k = 0; k < n_node; k++) {
-            for (int i = 0; i < n_node; i++) {
-                for (int j = 0; j < n_node; j++) {
-                    if (chmin(cost[i][j], cost[i][k] + cost[k][j])) {
-                        prev[i][j] = prev[k][j];
-                    }
-                }
+template <class E>
+std::vector<std::vector<typename E::weight_type>> warshall_floyd(EdgeList<E> const& graph) {
+    using W = typename E::weight_type;
+    int n = graph.size();
+    std::vector cost(n, std::vector(n, get_inf<W>()));
+    for (auto&& [src, id, e] : graph) chmin(cost[src][e.dest], e.weight);
+    for (int i = 0; i < n; ++i) cost[i][i] = 0;
+    for (int k = 0; k < n; k++) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (is_inf(cost[i][k]) or is_inf([k][j])) continue;
+                chmin(cost[i][j], cost[i][k] + cost[k][j]);
             }
         }
     }
-    vector<int> path(int from, int to) {
-        vector<int> res;
-        for (int now = to; now != from; now = prev[from][now]) {
-            res.push_back(now);
-        }
-        res.push_back(from);
-        std::reverse(res.begin(), res.end());
-        return res;
-    }
-};
+    return cost;
+}
 }  // namespace bys

@@ -123,4 +123,18 @@ constexpr std::pair<long long, long long> inv_gcd(long long a, long long b) {
     if (m0 < 0) m0 += b / s;
     return {s, m0};
 }
+
+//! @brief Count multipules of k in the [left, right)
+template <class T>
+constexpr T range_multiples(T left, T right, T k) {
+    return (right - 1) / k - (left - 1) / k;
+}
+template <class T>
+constexpr T multiple_floor(T x, T k) {
+    return x / k * k;
+}
+template <class T>
+constexpr T multiple_ceil(T x, T k) {
+    return ceildiv(x, k) * k;
+}
 }  // namespace bys

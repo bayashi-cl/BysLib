@@ -1,15 +1,17 @@
 #pragma once
 #include "../core/stdlib.hpp"
+#include "../core/types.hpp"
 /**
  * @file transformed.hpp
  * @brief Transformed
  */
 namespace bys {
 //! @brief vecotrの変換
-template <class T, class Lambda, typename R = std::invoke_result_t<std::decay_t<Lambda>, T>>
-std::vector<R> transformed(const std::vector<T>& vec, Lambda f) {
-    std::vector<R> res(vec.size());
-    std::transform(vec.begin(), vec.end(), res.begin(), f);
+template <class Iterable, class Lambda>
+auto transformed(Iterable const& itr, Lambda f) {
+    static_assert(is_iterable_v<Iterable>, "itr is not iterable");
+    std::vector<std::invoke_result_t<std::decay_t<Lambda>, typename Iterable::value_type>> res;
+    std::transform(itr.begin(), itr.end(), std::back_inserter(res), f);
     return res;
 }
 }  // namespace bys

@@ -6,11 +6,10 @@ namespace bys {
 void Solver::solve() {
     auto [n, q] = scanner.read<int, 2>();
     auto a = scanner.readvec<ll>(n);
-    CumulativeSum cs(a);
-    cs.construct();
+    CumSum<ll> cs(a);
     for (int i = 0; i < q; ++i) {
         auto [l, r] = scanner.read<int, 2>();
-        print(cs.sum(l, r));
+        print(cs.fold(l, r));
     }
 }
 }  // namespace bys

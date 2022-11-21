@@ -1,5 +1,4 @@
 #pragma once
-#include <cmath>
 #include <cstdint>
 namespace bys {
 // numpy style number types

@@ -34,15 +34,17 @@ struct MultiComb {
         }
     }
 
-    ll comb(int n, int r) {
+    ll fac(int n) const { return fact[n]; }
+
+    ll comb(int n, int r) const {
         if (r < 0 || n < r) return 0;
         return fact[n] * (factinv[r] * factinv[n - r] % mod) % mod;
     }
-    ll perm(int n, int r) {
+    ll perm(int n, int r) const {
         if (r < 0 || n < r) return 0;
         return fact[n] * factinv[n - r] % mod;
     }
-    ll hom(int n, int r) {
+    ll hom(int n, int r) const {
         if (n == 0 && r == 0) return 1;
         return comb(n + r - 1, r);
     }

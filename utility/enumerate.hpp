@@ -1,5 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <tuple>
+
+#include "subrange.hpp"
 /**
  * @file enumerate.hpp
  * @brief Python::enumerate
@@ -9,26 +11,29 @@
  */
 namespace bys {
 template <class Iterator>
-class Enumerate {
-    Iterator _begin, _end;
-    int _idx;
-
+struct EnumerateIterator {
    public:
-    class EnumerateIterator {
-        Iterator _iter;
-        int _id;
+    using difference_type = typename Iterator::difference_type;
+    using value_type = std::tuple<int, typename Iterator::value_type>;
+    // using pointer = value_type*;
+    using reference = value_type&;
+    using iterator_category = std::forward_iterator_tag;
 
-       public:
-        EnumerateIterator(Iterator iter, int id) : _iter(iter), _id(id) {}
-        void operator++() { ++_iter, ++_id; }
-        bool operator!=(const EnumerateIterator& other) const { return _iter != other._iter; }
-        auto operator*() { return std::tie(_id, *_iter); }
-    };
+    EnumerateIterator(const Iterator& iterator, int idx) : index(idx), value(iterator) {}
 
-    Enumerate(Iterator from, Iterator to, int start) : _begin(from), _end(to), _idx(start) {}
-    auto begin() const { return EnumerateIterator(_begin, _idx); }
-    auto end() const { return EnumerateIterator(_end, _idx + std::distance(_begin, _end)); }
+    auto& operator++() {
+        ++value;
+        ++index;
+        return *this;
+    }
+    bool operator!=(const EnumerateIterator& other) const { return value != other.value; }
+    auto operator*() const { return std::tie(index, *value); }
+
+   private:
+    int index;
+    Iterator value;
 };
+
 /**
  * @brief enumerate
  *
@@ -37,7 +42,9 @@ class Enumerate {
  */
 template <class Iterable>
 auto enumerate(Iterable& iterable, int start = 0) {
-    return Enumerate(std::begin(iterable), std::end(iterable), start);
+    using iterator_t = EnumerateIterator<typename Iterable::iterator>;
+    int end = static_cast<int>(iterable.size()) + start;
+    return SubRange(iterator_t(std::begin(iterable), start), iterator_t(std::end(iterable), end));
 }
 /**
  * @brief const enumerate
@@ -47,6 +54,8 @@ auto enumerate(Iterable& iterable, int start = 0) {
  */
 template <class Iterable>
 auto cenumerate(Iterable& iterable, int start = 0) {
-    return Enumerate(std::cbegin(iterable), std::cend(iterable), start);
+    using iterator_t = EnumerateIterator<typename Iterable::const_iterator>;
+    int end = static_cast<int>(iterable.size()) + start;
+    return SubRange(iterator_t(std::cbegin(iterable), start), iterator_t(std::cend(iterable), end));
 }
 }  // namespace bys

@@ -1,18 +1,24 @@
 #pragma once
-#include "utility/fixpoint.hpp"
-#include "edge.hpp"
+#include <vector>
+
+#include "graph.hpp"
+
 namespace bys {
-Adj make_directed_tree(const Adj& graph, int root = 0) {
-    Adj res(graph.size());
-    FixPoint dfs([&](auto&& self, int now, int prev = -1) -> void {
-        for (auto&& nxt : graph[now]) {
-            if (nxt.to != prev) {
-                res[now].push_back(nxt);
-                self(nxt.to, now);
+template <class E, class V = typename E::vertex_type>
+std::vector<bool> reachable(AdjacencyList<E> const& graph, V source) {
+    std::vector<bool> seen(graph.size());
+    std::stack<V> st;
+    st.push(source);
+    while (not st.empty()) {
+        auto top = st.top();
+        st.pop();
+        seen[top] = true;
+        for (auto&& e : graph[top]) {
+            if (not seen[e.dest]) {
+                st.push(e.dest);
             }
         }
-    });
-    dfs(root);
-    return res;
+    }
+    return seen;
 }
 }  // namespace bys

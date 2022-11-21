@@ -1,7 +1,6 @@
 #include "byslib/core/core.hpp"
+#include "byslib/utility/utility.hpp"
 // -------------------------------------
-#include "byslib/utility/change.hpp"
-#include "byslib/utility/range.hpp"
 
 namespace bys {
 void Solver::solve() {

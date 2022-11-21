@@ -1,47 +1,54 @@
 #pragma once
-#include "depth_first.hpp"
-#include "../core/stdlib.hpp"
-
+/**
+ * @file lca.hpp
+ * @brief Lowest Common Ancestor
+ *
+ * 最近共通祖先
+ */
+#include "../algebra/monoid.hpp"
+#include "../data/sparse_table.hpp"
+#include "../utility/fixpoint.hpp"
+#include "graph.hpp"
 namespace bys {
-struct LowestCommonAncestor {
-    const Adj& graph;
-    const int n_node;
-    DepthFirstSearch dfs;
-    vector<vector<int>> parent;
-    int log_size = 1;
+/**
+ * @brief 最近共通祖先
+ *
+ * Sparse TableによるEulerTour + RmQ
+ * 構築   O(N logN)
+ * クエリ O(1)
+ */
+template <class E>
+class LowestCommonAncestor {
+    struct Vertex {
+        int id, depath;
+        bool operator<(const Vertex& rh) const { return depath < rh.depath; }
+    };
+    std::size_t n;
+    SparseTable<Min<Vertex>> st;
+    std::vector<int> pos;
 
-    LowestCommonAncestor(const Adj& graph, int root = 0) : graph(graph), n_node(graph.size()), dfs(graph, root) {
-        while ((1 << log_size) < n_node) ++log_size;
-        parent.assign(log_size, vector<int>(n_node, -1));
-        parent[0] = dfs.prev;
-        for (int i = 0; i < log_size - 1; i++) {
-            for (int j = 0; j < n_node; j++) {
-                if (parent[i][j] < 0) {
-                    parent[i + 1][j] = -1;
-                } else {
-                    parent[i + 1][j] = parent[i][parent[i][j]];
-                }
+   public:
+    LowestCommonAncestor(AdjacencyList<E> const& graph, int root) : n(graph.size()), pos(n) {
+        std::vector<Vertex> euler_tour;
+        euler_tour.reserve(2 * n - 1);
+        FixPoint([&](auto&& self, int now, int prev, int deapth) -> void {
+            pos[now] = euler_tour.size();
+            euler_tour.push_back({now, deapth});
+
+            for (auto&& nxt : graph[now]) {
+                if (int(nxt.dest) == prev) continue;
+                self(nxt.dest, now, deapth + 1);
+                euler_tour.push_back({now, deapth});
             }
-        }
+        })(root, -1, 0);
+        st.build(euler_tour);
     }
-    int prev(int n, int x) const {
-        // nのx個上
-        for (int k = 0; k < log_size; k++) {
-            if (x >> k & 1) n = parent[k][n];
-        }
-        return n;
-    }
-    int lca(int a, int b) const {
-        if (dfs.cost[a] < dfs.cost[b]) std::swap(a, b);
-        a = prev(a, dfs.cost[a] - dfs.cost[b]);
+    int lca(std::size_t a, std::size_t b) {
+        assert(a < n);
+        assert(b < n);
         if (a == b) return a;
-        for (int k = log_size - 1; k >= 0; k--) {
-            if (parent[k][a] != parent[k][b]) {
-                a = parent[k][a];
-                b = parent[k][b];
-            }
-        }
-        return parent[0][a];
+        if (pos[a] > pos[b]) std::swap(a, b);
+        return st.query(pos[a], pos[b]).id;
     }
 };
 }  // namespace bys

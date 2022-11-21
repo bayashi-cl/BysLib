@@ -22,6 +22,12 @@ class Range {
     bool operator!=(const T val) const { return (val - it) * dir > 0; }
     void operator++() { it += step; }
     const T& operator*() const { return it; }
+    ll sum() const {
+        ll a = it;
+        ll b = (stop - dir - it) / step * step + it;
+        ll n = (b - a) / step + 1;
+        return n > 0 ? (a + b) * n / 2 : 0;
+    }
 
     friend Range reversed(const Range& r) {
         auto new_start = (r.stop - r.dir - r.it) / r.step * r.step + r.it;
@@ -30,12 +36,12 @@ class Range {
 };
 //! @brief range(stop)
 template <class T>
-Range<T> irange(T stop) {
+[[deprecated("please use irange.hpp")]] Range<T> irange(T stop) {
     return Range(stop);
 }
 //! @brief range(start, stop[, step])
 template <class T>
-Range<T> irange(T start, T stop, T step = 1) {
+[[deprecated("please use irange.hpp")]] Range<T> irange(T start, T stop, T step = 1) {
     return Range(start, stop, step);
 }
 }  // namespace bys

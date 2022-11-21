@@ -27,7 +27,7 @@ struct Grid {
         return {idx / w, idx % w};
     }
     //! 周囲のマスのうちグリッドに含まれるもの
-    auto next(int row, int col, const vector<pair<int, int>> delta) const {
+    auto next(int row, int col, const vector<pair<int, int>>& delta) const {
         assert(contain(row, col));
         std::vector<std::pair<int, int>> res;
         for (auto [di, dj] : delta) {

@@ -7,9 +7,12 @@
  * pb_dsのラッパ
  */
 namespace bys {
-using namespace __gnu_pbds;
-template <typename T>
-using OrderedSet = tree<T, null_type, std::less<T>, rb_tree_tag, tree_order_statistics_node_update>;
-template <typename T>
-using OrderedSetGT = tree<T, null_type, std::greater<T>, rb_tree_tag, tree_order_statistics_node_update>;
+namespace pbds = __gnu_pbds;
+template <class T, class Comp>
+using Tree = pbds::tree<T, pbds::null_type, Comp, pbds::rb_tree_tag, pbds::tree_order_statistics_node_update>;
+
+template <class T>
+using OrderdSet = Tree<T, std::less<T>>;
+template <class T>
+using OrderdSetGt = Tree<T, std::greater<T>>;
 }  // namespace bys
