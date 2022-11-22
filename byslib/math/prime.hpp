@@ -40,12 +40,12 @@ std::vector<T> prime_factorize(T n) {
  * See: https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
  * See: https://miller-rabin.appspot.com
  */
-constexpr bool is_prime(i16 n) {
+constexpr bool is_prime(i128 n) {
     if (not(n & 1)) return n == 2;
     if (n <= 1) return false;
     auto d = n - 1;
     while (d % 2 == 0) d >>= 1;
-    std::array<i16, 9> base = {2, 7, 61, 325, 9375, 28178, 450775, 9780504, 1795265022};
+    std::array<i128, 9> base = {2, 7, 61, 325, 9375, 28178, 450775, 9780504, 1795265022};
     for (auto b : base) {
         if (n <= b) break;
         auto t = d;

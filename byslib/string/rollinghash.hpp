@@ -12,15 +12,15 @@ namespace bys {
  *
  */
 class RollingHash {
-    static constexpr u8 mod = (1UL << 61) - 1;
-    static inline const u8 base = []() {
+    static constexpr u64 mod = (1UL << 61) - 1;
+    static inline const u64 base = []() {
         std::random_device seed_gen;
         std::mt19937 engine(seed_gen());
         return engine();
     }();
-    static inline std::vector<u8> base_pow = {1};
+    static inline std::vector<u64> base_pow = {1};
 
-    std::vector<u8> _hash;
+    std::vector<u64> _hash;
 
    public:
     RollingHash(std::string const& s) : _hash(s.length() + 1) {
@@ -31,8 +31,8 @@ class RollingHash {
         }
     }
 
-    u8 hash(int l, int r) const {
-        u8 res = mod + _hash[r] - modmul(_hash[l], base_pow[r - l]);
+    u64 hash(int l, int r) const {
+        u64 res = mod + _hash[r] - modmul(_hash[l], base_pow[r - l]);
         return res < mod ? res : res - mod;
     }
 
@@ -43,8 +43,8 @@ class RollingHash {
         }
     }
 
-    u8 modmul(i16 a, i16 b) const {
-        i16 t = a * b;
+    u64 modmul(i128 a, i128 b) const {
+        i128 t = a * b;
         t = (t >> 61) + (t & mod);
         if (t >= mod) return t - mod;
         return t;

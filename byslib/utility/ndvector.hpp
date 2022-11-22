@@ -31,10 +31,10 @@ using NdVector = typename impl::NdVector<T, N>::type;
  *
  * @example auto v = ndvector({2, 3}, 4); // {{4, 4, 4}, {4, 4, 4}}
  */
-template <class T, std::size_t N>
-auto ndvector(const std::size_t (&shape)[N], const T& fill_value = T()) {
+template <class S, class T, std::size_t N>
+auto ndvector(S const (&shape)[N], T const& fill_value = T()) {
     static_assert(N > 0);
-    std::vector shape_vec(std::crbegin(shape), std::crend(shape));
+    std::vector<std::size_t> shape_vec(std::crbegin(shape), std::crend(shape));
     return impl::ndvector<T, N>(shape_vec, fill_value);
 }
 }  // namespace bys
