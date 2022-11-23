@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 #include "base.hpp"
 /**
  * @file point.hpp
@@ -31,14 +33,14 @@ struct Point {
     //! @brief ノルム^2
     T norm2() const { return x * x + y * y; }
     //! @brief ノルム
-    ld norm() const { return std::sqrt(norm2()); }
+    f128 norm() const { return std::sqrt(norm2()); }
     //! @brief 単位ベクトル
     Point normalized() const { return Point(x / norm(), y / norm()); }
     //! @brief 偏角
-    ld angle() const { return std::atan2(y, x); }
+    f128 angle() const { return std::atan2(y, x); }
     //! @brief 回転
-    Point rotate(ld theta) const {
-        ld ct = std::cos(theta), st = std::sin(theta);
+    Point rotate(f128 theta) const {
+        f128 ct = std::cos(theta), st = std::sin(theta);
         return Point(x * ct - y * st, x * st + y * ct);
     }
     Point rotate90() const { return Point(-y, x); }

@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "point.hpp"
 /**
  * @file polygon.hpp
@@ -15,14 +17,14 @@ struct Polygon {
     //! @brief 面積*2
     T area2() const {
         if (n_vertex < 3) return 0;
-        ld s = 0.0;
+        f128 s = 0.0;
         for (int i = 0; i < n_vertex; ++i) {
             s += vertex[i].det(vertex[(i + 1) % n_vertex]);
         }
         return s;
     };
     //! @brief 面積
-    ld area() const { return area2() * 0.5; }
+    f128 area() const { return area2() * 0.5; }
     //! @brief 凸判定
     bool is_convex() const {
         int left = 0;
