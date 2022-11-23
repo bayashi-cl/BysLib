@@ -1,4 +1,6 @@
 #pragma once
+#include <stack>
+
 #include "../utility/fixpoint.hpp"
 #include "graph.hpp"
 

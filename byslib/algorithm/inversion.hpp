@@ -2,12 +2,13 @@
 #include <algorithm>
 #include <vector>
 
+#include "../core/alias.hpp"
 #include "../data/binary_indexed_tree.hpp"
 #include "../utility/compress.hpp"
 
 namespace bys {
 template <class T>
-i64 inversion(const vector<T>& v) {
+i64 inversion(const std::vector<T>& v) {
     Compress<T> cp(v);
     std::vector<i32> cp_v;
     cp_v.reserve(v.size());
