@@ -1,5 +1,5 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include "../core/alias.hpp"
 #include "bit.hpp"
 /**
  * @file numeric.hpp
@@ -9,8 +9,8 @@
  */
 namespace bys {
 //! @brief 整数の累乗
-constexpr ll int_pow(int a, int b) {
-    ll res = 1;
+constexpr i64 int_pow(int a, int b) {
+    i64 res = 1;
     for (int i = 0; i < b; ++i) res *= a;
     return res;
 }
@@ -72,10 +72,10 @@ constexpr T floormod(T x, S mod) {
     return x;
 }
 
-constexpr ll isqrt_aux(ll c, ll n) {
+constexpr i64 isqrt_aux(i64 c, i64 n) {
     if (c == 0) return 1;
-    ll k = (c - 1) / 2;
-    ll a = isqrt_aux(c / 2, n >> (2 * k + 2));
+    i64 k = (c - 1) / 2;
+    i64 a = isqrt_aux(c / 2, n >> (2 * k + 2));
     return (a << k) + (n >> (k + 2)) / a;
 }
 /**
@@ -88,7 +88,7 @@ template <class T>
 constexpr T isqrt(T n) {
     assert(n >= 0);
     if (n == T(0)) return T(0);
-    ll a = isqrt_aux((bit_width(n) - 1) / 2, n);
+    i64 a = isqrt_aux((bit_width(n) - 1) / 2, n);
     return n < a * a ? a - 1 : a;
 }
 /**

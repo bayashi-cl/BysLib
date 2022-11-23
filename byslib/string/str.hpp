@@ -1,11 +1,13 @@
 #pragma once
+#include <iomanip>
+#include <string>
+#include <vector>
 /**
  * @file zfill.hpp
  * @brief Python::str
  *
  * Python再現シリーズ str編
  */
-#include "../core/stdlib.hpp"
 namespace bys {
 /**
  * @brief str.zfill()

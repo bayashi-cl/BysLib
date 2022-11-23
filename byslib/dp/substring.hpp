@@ -6,8 +6,7 @@
 
 namespace bys {
 i32 count_substring(const std::string& s, i32 mod = 998244353) {
-    const auto n = s.length();
-    if (n == 0) return 0;
+    i32 n = s.length();
     std::vector next_char_pos(n + 1, std::vector(26, n));
     for (i32 i = n - 1; i >= 0; --i) {
         for (i32 j = 0; j < 26; ++j) next_char_pos[i][j] = next_char_pos[i + 1][j];

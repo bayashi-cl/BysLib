@@ -1,11 +1,15 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <algorithm>
+#include <string>
+#include <vector>
+
+#include "../core/alias.hpp"
 /**
  * @file base.hpp
  * @brief Base conversion
  *
  * 進数変換
- * 153(10) -> std::vector<ll>({3, 5, 1})
+ * 153(10) -> std::vector<i64>({3, 5, 1})
  *
  * @todo クラス化
  */
@@ -21,17 +25,17 @@ std::vector<T> deci2n(T deci, T base) {
     return res;
 }
 //! @brief n進数 -> 10進数
-ll n2deci(std::vector<ll> n, int base) {
-    ll b = 1;
-    ll res = 0;
+i64 n2deci(std::vector<i64> n, int base) {
+    i64 b = 1;
+    i64 res = 0;
     for (auto&& d : n) {
         res += d * b;
         b *= base;
     }
     return res;
 }
-std::vector<ll> strbase(string n) {
-    std::vector<ll> res;
+std::vector<i64> strbase(std::string n) {
+    std::vector<i64> res;
     std::for_each(n.rbegin(), n.rend(), [&](char d) { res.push_back(d - '0'); });
     return res;
 }

@@ -1,7 +1,8 @@
 #pragma once
+#include "../core/alias.hpp"
 #include "../core/io.hpp"
-#include "../core/stdlib.hpp"
 #include "graph.hpp"
+
 /**
  * @file reader.hpp
  * @brief Reader
@@ -10,10 +11,10 @@
  */
 namespace bys {
 //! @brief 重みなし隣接リスト
-auto read_adj_uv(std::size_t n, std::size_t m, bool directed = false, int index = 1) {
-    EdgeList<Edge<int>> edges(n);
-    for (std::size_t i = 0; i < m; ++i) {
-        auto [u, v] = scanner.read<int, 2>();
+auto read_adj_uv(i32 n, i32 m, bool directed = false, i32 index = 1) {
+    EdgeList<Edge<i32>> edges(n);
+    for (i32 i = 0; i < m; ++i) {
+        auto [u, v] = scanner.read<i32, 2>();
         u -= index;
         v -= index;
         if (directed) {
@@ -25,10 +26,10 @@ auto read_adj_uv(std::size_t n, std::size_t m, bool directed = false, int index 
     return edges.adj();
 }
 //! @brief 重みつき隣接リスト
-auto read_adj_uvc(std::size_t n, std::size_t m, bool directed = false, int index = 1) {
-    EdgeList<Edge<long long>> edges(n);
-    for (std::size_t i = 0; i < m; ++i) {
-        auto [u, v, c] = scanner.read<int, int, ll>();
+auto read_adj_uvc(i32 n, i32 m, bool directed = false, i32 index = 1) {
+    EdgeList<Edge<i64>> edges(n);
+    for (i32 i = 0; i < m; ++i) {
+        auto [u, v, c] = scanner.read<i32, i32, i64>();
         u -= index;
         v -= index;
         if (directed) {

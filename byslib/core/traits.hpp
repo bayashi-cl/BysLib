@@ -1,5 +1,7 @@
 #pragma once
-#include "stdlib.hpp"
+#include <array>
+#include <iostream>
+#include <type_traits>
 /**
  * @file traits.hpp
  * @brief Types

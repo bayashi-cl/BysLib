@@ -1,6 +1,8 @@
 #pragma once
+#include <algorithm>
 #include <vector>
 
+#include "../core/alias.hpp"
 #include "../core/traits.hpp"
 namespace bys {
 /**
@@ -19,7 +21,7 @@ auto lis(const Iterable& v, bool strict = true) {
 
     std::vector<T> dp;
     std::vector<i32> restore(n);
-    for (usize i = 0; i < n; ++i) {
+    for (i32 i = 0; i < n; ++i) {
         auto vi = v[i];
         auto itr = strict ? std::lower_bound(dp.begin(), dp.end(), vi) : std::upper_bound(dp.begin(), dp.end(), vi);
         restore[i] = itr - dp.begin();

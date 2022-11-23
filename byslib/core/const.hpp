@@ -1,6 +1,7 @@
 #pragma once
 #include <cstddef>
 #include <limits>
+#include <tuple>
 #include <utility>
 
 #include "alias.hpp"
@@ -11,8 +12,9 @@
  * @brief Const
  */
 namespace bys {
-constexpr i32 MOD = 998244353;
 constexpr i32 MOD7 = 1000000007;
+constexpr i32 MOD9 = 998244353;
+constexpr i32 MOD = MOD9;
 
 template <class T>
 constexpr T get_inf();

@@ -1,5 +1,8 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <cmath>
+#include <type_traits>
+
+#include "../core/alias.hpp"
 /**
  * @file binary_search.hpp
  * @brief Binary Search
@@ -46,13 +49,14 @@ T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
  * @return double is_okを満たす最大/小の実数
  */
 template <class Lambda, class... Args>
-ld bisect_float(ld ok, ld ng, int rep, Lambda is_ok, Args... args) {
-    static_assert(std::is_same_v<std::invoke_result_t<Lambda, ld, Args...>, bool>, "The function signature is invalid.");
+f128 bisect_float(f128 ok, f128 ng, int rep, Lambda is_ok, Args... args) {
+    static_assert(std::is_same_v<std::invoke_result_t<Lambda, f128, Args...>, bool>,
+                  "The function signature is invalid.");
     assert(is_ok(ok, args...));
     assert(!is_ok(ng, args...));
 
     for (int i = 0; i < rep; i++) {
-        ld mid = (ok + ng) / 2;
+        auto mid = (ok + ng) / 2;
         if (is_ok(mid, args...)) {
             ok = mid;
         } else {

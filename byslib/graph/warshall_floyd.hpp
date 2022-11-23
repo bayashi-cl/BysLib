@@ -26,7 +26,7 @@ std::vector<std::vector<typename E::weight_type>> warshall_floyd(EdgeList<E> con
     for (int k = 0; k < n; k++) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (is_inf(cost[i][k]) or is_inf([k][j])) continue;
+                if (is_inf(cost[i][k]) or is_inf(cost[k][j])) continue;
                 chmin(cost[i][j], cost[i][k] + cost[k][j]);
             }
         }

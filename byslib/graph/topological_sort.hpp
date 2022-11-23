@@ -1,9 +1,12 @@
 #pragma once
+#include <queue>
+#include <vector>
+
+#include "graph.hpp"
 /**
  * @file topological_sort.hpp
  * @brief Topological Sort
  */
-#include "graph.hpp"
 namespace bys {
 /**
  * @brief トポロジカルソート

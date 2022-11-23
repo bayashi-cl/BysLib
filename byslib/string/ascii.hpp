@@ -1,10 +1,10 @@
 #pragma once
+#include <string>
 /**
  * @file ascii.hpp
  * @brief Alphabet
  */
-#include "../core/stdlib.hpp"
 namespace bys {
-const string LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
-const string UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const std::string LOWERCASE = "abcdefghijklmnopqrstuvwxyz";
+const std::string UPPERCASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 }  // namespace bys

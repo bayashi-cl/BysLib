@@ -1,4 +1,6 @@
 #pragma once
+#include <queue>
+
 #include "graph.hpp"
 namespace bys {
 template <class E>

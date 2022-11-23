@@ -1,15 +1,22 @@
 #pragma once
+#include <cassert>
 #include <vector>
 namespace bys {
 template <class T>
 struct CumulativeSum2D {
+   private:
+    bool build;
+
+   public:
     std::vector<std::vector<T>> data;
-    CumulativeSum2D(int n, int m) : data(n + 1, vector<T>(m + 1)){};
-    CumulativeSum2D(const vector<vector<T>>& v) : data(v.size() + 1, vector<T>(v[0].size() + 1)) {
+    CumulativeSum2D(int n, int m) : build(false), data(n + 1, std::vector<T>(m + 1)){};
+    CumulativeSum2D(std::vector<std::vector<T>> const& v)
+        : build(false), data(v.size() + 1, std::vector<T>(v[0].size() + 1)) {
         int n = v.size();
         for (int i = 0; i < n; ++i) {
             std::copy(v[i].begin(), v[i].end(), std::next(data[i + 1].begin()));
         }
+        construct();
     };
     void set(int i, int j, int x) {
         assert(!build);
@@ -37,9 +44,6 @@ struct CumulativeSum2D {
         return (data[gi][gj] - data[si][gj] - data[gi][sj] + data[si][sj]);
     }
     // [s, g)
-    T sum(pair<int, int> s, pair<int, int> g) { return sum(s.first, s.second, g.first, g.second); }
-
-   private:
-    bool build = false;
+    T sum(std::pair<int, int> s, std::pair<int, int> g) { return sum(s.first, s.second, g.first, g.second); }
 };
 }  // namespace bys

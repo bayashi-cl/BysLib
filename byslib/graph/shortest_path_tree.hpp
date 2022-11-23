@@ -1,4 +1,6 @@
 #pragma once
+#include <stack>
+
 #include "graph.hpp"
 #include "tree.hpp"
 namespace bys {

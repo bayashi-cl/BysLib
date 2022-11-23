@@ -1,5 +1,6 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include "../core/alias.hpp"
+#include "../core/const.hpp"
 #include "prime.hpp"
 /**
  * @file modint.hpp
@@ -14,14 +15,14 @@ namespace bys {
  *
  * @tparam Modulo 法
  */
-template <unsigned int Modulo>
+template <u32 Modulo>
 class ModInt {
-    unsigned int _v;
+    u32 _v;
 
    public:
-    static constexpr unsigned int mod = Modulo;
+    static constexpr u32 mod = Modulo;
     // static_assert(is_prime(mod), "Modulo need to be prime.");
-    static_assert(mod < (std::numeric_limits<unsigned int>::max() >> 1), "Modulo need to be <2^31.");
+    static_assert(mod < (std::numeric_limits<u32>::max() >> 1), "Modulo need to be <2^31.");
 
     constexpr ModInt() noexcept : _v(0) {}
     template <class T, std::enable_if_t<std::is_unsigned_v<T>, std::nullptr_t> = nullptr>
@@ -29,7 +30,7 @@ class ModInt {
     template <class T, std::enable_if_t<std::is_signed_v<T>, std::nullptr_t> = nullptr>
     constexpr ModInt(T v) noexcept : _v(floormod(v, mod)) {}
 
-    constexpr ModInt pow(ll n) const noexcept {
+    constexpr ModInt pow(i64 n) const noexcept {
         ModInt res = 1, p = *this;
         while (n) {
             if (n & 1) res *= p;
@@ -97,6 +98,7 @@ class ModInt {
     friend std::istream& operator>>(std::istream& is, ModInt& m) noexcept { return is >> m._v; }
     friend std::ostream& operator<<(std::ostream& os, const ModInt& m) noexcept { return os << m._v; }
 };
-using Mint = ModInt<998244353>;
-using Mint7 = ModInt<1000000007>;
+using Mint = ModInt<MOD>;
+using Mint7 = ModInt<MOD7>;
+using Mint9 = ModInt<MOD9>;
 }  // namespace bys

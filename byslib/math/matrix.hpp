@@ -1,5 +1,10 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <cassert>
+#include <cmath>
+#include <numeric>
+#include <vector>
+
+#include "../core/alias.hpp"
 /**
  * @file matrix.hpp
  * @brief Matrix
@@ -9,20 +14,20 @@ namespace bys {
 //! @brief 行列
 template <class T>
 struct Matrix {
-    vector<vector<T>> mat;
-    Matrix(int i, int j) : mat(i, vector<T>(j)), r(i), c(j) {}
-    Matrix(const vector<vector<T>>& v) : mat(v), r(v.size()), c(v[0].size()) {}
+    std::vector<std::vector<T>> mat;
+    Matrix(i32 i, i32 j) : mat(i, std::vector<T>(j)), r(i), c(j) {}
+    Matrix(const std::vector<std::vector<T>>& v) : mat(v), r(v.size()), c(v[0].size()) {}
 
-    vector<T>& operator[](int k) { return mat[k]; }
-    int row() const { return r; }
-    int col() const { return c; }
-    pair<int, int> shape() const { return {r, c}; }
+    std::vector<T>& operator[](i32 k) { return mat[k]; }
+    i32 row() const { return r; }
+    i32 col() const { return c; }
+    std::pair<i32, i32> shape() const { return {r, c}; }
 
     Matrix operator+(const Matrix<T>& rh) const {
         assert(shape() == rh.shape());
         Matrix<T> res(r, c);
-        for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < c; ++j) {
+        for (i32 i = 0; i < r; ++i) {
+            for (i32 j = 0; j < c; ++j) {
                 res[i][j] = mat[i][j] + rh.mat[i][j];
             }
         }
@@ -31,8 +36,8 @@ struct Matrix {
     Matrix operator-(const Matrix<T>& rh) const {
         assert(shape() == rh.shape());
         Matrix<T> res(r, c);
-        for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < c; ++j) {
+        for (i32 i = 0; i < r; ++i) {
+            for (i32 j = 0; j < c; ++j) {
                 res[i][j] = mat[i][j] - rh.mat[i][j];
             }
         }
@@ -40,8 +45,8 @@ struct Matrix {
     }
     Matrix operator*(const T rh) const {
         Matrix<T> res(r, c);
-        for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < c; ++j) {
+        for (i32 i = 0; i < r; ++i) {
+            for (i32 j = 0; j < c; ++j) {
                 res[i][j] = mat[i][j] * rh;
             }
         }
@@ -49,8 +54,8 @@ struct Matrix {
     }
     Matrix operator/(const T rh) const {
         Matrix<T> res(r, c);
-        for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < c; ++j) {
+        for (i32 i = 0; i < r; ++i) {
+            for (i32 j = 0; j < c; ++j) {
                 res[i][j] = mat[i][j] / rh;
             }
         }
@@ -59,22 +64,22 @@ struct Matrix {
 
     Matrix operator*(const Matrix<T>& rh) const {
         assert(col() == rh.row());
-        int d = rh.col();
+        i32 d = rh.col();
         Matrix<T> res(r, d);
-        for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < d; ++j) {
-                for (int k = 0; k < c; ++k) {
+        for (i32 i = 0; i < r; ++i) {
+            for (i32 j = 0; j < d; ++j) {
+                for (i32 k = 0; k < c; ++k) {
                     res.mat[i][j] += mat[i][k] * rh.mat[k][j];
                 }
             }
         }
         return res;
     }
-    vector<T> operator*(const vector<T>& rh) const {
-        int n = rh.size();
+    std::vector<T> operator*(const std::vector<T>& rh) const {
+        i32 n = rh.size();
         assert(col() == n);
-        vector<T> res(r);
-        for (int i = 0; i < r; ++i) {
+        std::vector<T> res(r);
+        for (i32 i = 0; i < r; ++i) {
             res[i] = std::inner_product(mat[i].begin(), mat[i].end(), rh.begin(), (T)0);
         }
         return res;
@@ -82,15 +87,15 @@ struct Matrix {
 
     Matrix rotate90() const {
         Matrix<T> res(c, r);
-        for (int i = 0; i < r; ++i) {
-            for (int j = 0; j < c; ++j) {
+        for (i32 i = 0; i < r; ++i) {
+            for (i32 j = 0; j < c; ++j) {
                 res.mat[j][r - i - 1] = mat[i][j];
             }
         }
         return res;
     }
 
-    auto pow(ll p) const {
+    auto pow(i64 p) const {
         assert(r == c);
         auto res = Matrix<T>::ident(r);
         auto base = *this;
@@ -100,9 +105,9 @@ struct Matrix {
         return res;
     }
 
-    static Matrix<T> ident(int n) {
+    static Matrix<T> ident(i32 n) {
         Matrix res(n, n);
-        for (int i = 0; i < n; ++i) res.mat[i][i] = T(1);
+        for (i32 i = 0; i < n; ++i) res.mat[i][i] = T(1);
         return res;
     }
     static Matrix<double> rotate(double theta) {
@@ -115,6 +120,6 @@ struct Matrix {
     }
 
    private:
-    int r, c;
+    i32 r, c;
 };
 }  // namespace bys
