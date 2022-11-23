@@ -25,17 +25,16 @@
 #include <unordered_set>
 #include <vector>
 
+#include "alias.hpp"
+
 namespace bys {
 using std::array, std::vector, std::string, std::set, std::map, std::pair;
 using std::cin, std::cout, std::endl;
 using std::min, std::max, std::sort, std::reverse, std::abs, std::pow;
 
 // alias
-using ll = long long int;
-using ld = long double;
-using Pa = pair<int, int>;
-using Pall = pair<ll, ll>;
-using ibool = std::int8_t;
+using Pa = pair<i32, i32>;
+using Pall = pair<i64, i64>;
 template <class T>
 using uset = std::unordered_set<T>;
 template <class S, class T>

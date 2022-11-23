@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+
 namespace bys {
 namespace impl {
 template <typename T, std::size_t N>

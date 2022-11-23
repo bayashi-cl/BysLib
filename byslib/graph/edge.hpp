@@ -1,8 +1,8 @@
 #pragma once
+#include <cstddef>
 #include <iostream>
 
 #include "../core/const.hpp"
-#include "../core/stdlib.hpp"
 #include "../sparse/csr.hpp"
 
 namespace bys {

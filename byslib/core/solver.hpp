@@ -1,16 +1,20 @@
 #pragma once
 #include <unistd.h>
 
-#include "stdlib.hpp"
+#include <cstddef>
+#include <iostream>
+
+#include "alias.hpp"
+
 /**
  * @file solver.hpp
  * @brief Solver
  */
 namespace bys {
 struct Solver {
-    static inline int TESTCASE = 1;
+    static inline i32 TESTCASE = 1;
     static void solve();
-    static int main(int t = 1) {
+    static i32 main(i32 t = 1) {
         std::ios::sync_with_stdio(false);
 
         for (; TESTCASE <= t; ++TESTCASE) solve();
