@@ -1,5 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <algorithm>
+#include <cassert>
+#include <string>
 /**
  * @file bit.hpp
  * @brief Bit

@@ -1,5 +1,8 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <algorithm>
+#include <type_traits>
+#include <vector>
+
 #include "../core/traits.hpp"
 /**
  * @file transformed.hpp

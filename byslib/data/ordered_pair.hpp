@@ -1,9 +1,9 @@
 #pragma once
+#include <utility>
 /**
  * @file ordered_pair.hpp
  * @brief Orderd Pair
  */
-#include "../core/stdlib.hpp"
 namespace bys {
 //! @brief first <= secondになるpair
 template <class T>

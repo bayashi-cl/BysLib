@@ -1,6 +1,8 @@
 #pragma once
+#include <numeric>
+#include <vector>
+
 #include "../algebra/monoid.hpp"
-#include "../core/stdlib.hpp"
 /**
  * @file cumulative_sum.hpp
  * @brief Cumulative Sum
@@ -12,19 +14,21 @@ template <class Alg>
 struct CumulativeSum {
     using T = typename Alg::set_type;
     std::vector<T> data;
-    CumulativeSum(const vector<T>& value) {
+    CumulativeSum(const std::vector<T>& value) {
         data.reserve(value.size() + 1);
         data.emplace_back(Alg::identity);
         std::partial_sum(value.begin(), value.end(), std::back_inserter(data), Alg::operation);
     }
     T prefix_fold(int right) { return data[right]; }
-    T fold(int left, int right) { return left < right ? Alg::operation(Alg::inverse(data[left]), data[right]) : Alg::identity; }
+    T fold(int left, int right) {
+        return left < right ? Alg::operation(Alg::inverse(data[left]), data[right]) : Alg::identity;
+    }
 };
 
 template <class T>
 struct CumulativeSum<Add<T>> {
     std::vector<T> data;
-    CumulativeSum(const vector<T>& value) {
+    CumulativeSum(const std::vector<T>& value) {
         data.reserve(value.size() + 1);
         data.emplace_back(0);
         std::partial_sum(value.begin(), value.end(), std::back_inserter(data));

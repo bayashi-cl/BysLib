@@ -1,5 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <cassert>
+#include <utility>
+#include <vector>
 /**
  * @file grid.hpp
  * @brief Grid Manager
@@ -27,7 +29,7 @@ struct Grid {
         return {idx / w, idx % w};
     }
     //! 周囲のマスのうちグリッドに含まれるもの
-    auto next(int row, int col, const vector<pair<int, int>>& delta) const {
+    auto next(int row, int col, const std::vector<std::pair<int, int>>& delta) const {
         assert(contain(row, col));
         std::vector<std::pair<int, int>> res;
         for (auto [di, dj] : delta) {
@@ -43,7 +45,7 @@ struct Grid {
     auto next4(int row, int col) const { return next(row, col, {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}); }
     //! @brief 8方向
     auto next8(int row, int col) const {
-        vector<pair<int, int>> delta;
+        std::vector<std::pair<int, int>> delta;
         for (int di = -1; di <= 1; ++di) {
             for (int dj = -1; dj <= 1; ++dj) {
                 if (di == 0 && dj == 0) continue;

@@ -1,5 +1,4 @@
 #pragma once
-#include "../core/stdlib.hpp"
 /**
  * @file change.hpp
  * @brief chmin/chmax
@@ -10,7 +9,7 @@ namespace bys {
  * @return true 更新されたとき
  */
 template <class T>
-inline bool chmax(T& a, const T& b) {
+constexpr bool chmax(T& a, T const& b) {
     return a < b ? a = b, true : false;
 }
 /**
@@ -18,7 +17,7 @@ inline bool chmax(T& a, const T& b) {
  * @return true 更新されたとき
  */
 template <class T>
-inline bool chmin(T& a, const T& b) {
+constexpr bool chmin(T& a, T const& b) {
     return a > b ? a = b, true : false;
 }
 }  // namespace bys

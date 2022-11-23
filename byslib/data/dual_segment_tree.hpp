@@ -1,6 +1,8 @@
 #pragma once
+#include <algorithm>
+#include <vector>
+
 #include "../algebra/mapping.hpp"
-#include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
 /**
  * @file dual_segment_tree.hpp
@@ -44,9 +46,17 @@ class DualSegmentTree {
 
    public:
     DualSegmentTree(int n, T ident)
-        : _n(n), n_leaf(bit_ceil(_n)), logsize(bit_width(n - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf, ident) {}
+        : _n(n),
+          n_leaf(bit_ceil(_n)),
+          logsize(bit_width(n - 1)),
+          lazy(n_leaf, ActMonoid::identity),
+          data(n_leaf, ident) {}
     DualSegmentTree(const std::vector<T>& v)
-        : _n(v.size()), n_leaf(bit_ceil(_n)), logsize(bit_width(_n - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf) {
+        : _n(v.size()),
+          n_leaf(bit_ceil(_n)),
+          logsize(bit_width(_n - 1)),
+          lazy(n_leaf, ActMonoid::identity),
+          data(n_leaf) {
         std::copy(v.begin(), v.end(), data.begin());
     }
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <tuple>
 /**
  * @file euclid.hpp
  * @brief Extended Euclidean Algorithm

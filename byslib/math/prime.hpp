@@ -1,6 +1,8 @@
 #pragma once
+#include <array>
+#include <vector>
+
 #include "../core/alias.hpp"
-#include "../core/stdlib.hpp"
 #include "numeric.hpp"
 /**
  * @file prime.hpp
@@ -15,7 +17,7 @@ namespace bys {
  */
 template <typename T>
 std::vector<T> prime_factorize(T n) {
-    vector<T> res;
+    std::vector<T> res;
     while (n % 2 == 0) {
         res.push_back(2);
         n /= 2;

@@ -1,6 +1,9 @@
 #pragma once
+#include <algorithm>
+#include <cassert>
+#include <vector>
+
 #include "../algebra/monoid.hpp"
-#include "../core/stdlib.hpp"
 #include "../math/bit.hpp"
 /**
  * @file binary_indexed_tree.hpp

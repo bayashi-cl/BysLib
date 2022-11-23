@@ -1,5 +1,8 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <algorithm>
+#include <cassert>
+#include <iterator>
+#include <vector>
 /**
  * @file compress.hpp
  * @brief Coordinate Compression

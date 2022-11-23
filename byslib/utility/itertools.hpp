@@ -1,5 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <array>
+#include <numeric>
+#include <vector>
 /**
  * @file itertools.hpp
  * @brief Python::itertools

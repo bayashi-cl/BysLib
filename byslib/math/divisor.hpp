@@ -1,5 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <algorithm>
+#include <iterator>
+#include <vector>
 /**
  * @file divisor.hpp
  * @brief Divisor
@@ -11,7 +13,7 @@ namespace bys {
  * O(√n)
  */
 template <typename T>
-vector<T> make_divisor(T n) {
+std::vector<T> make_divisor(T n) {
     std::vector<T> lower, upper;
     for (T i = 1; i * i <= n; ++i) {
         if (n % i == 0) {

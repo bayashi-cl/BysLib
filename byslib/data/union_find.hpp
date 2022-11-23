@@ -1,5 +1,9 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <cassert>
+#include <map>
+#include <numeric>
+#include <utility>
+#include <vector>
 /**
  * @file union_find.hpp
  * @brief Union Find Tree

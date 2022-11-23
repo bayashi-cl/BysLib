@@ -1,5 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <cassert>
+#include <vector>
+
 #include "../math/bit.hpp"
 /**
  * @file segment_tree.hpp
@@ -22,7 +24,8 @@ class SegmentTree {
 
    public:
     SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity) {}
-    SegmentTree(const vector<value_type>& v) : _n(v.size()), n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {
+    SegmentTree(const std::vector<value_type>& v)
+        : _n(v.size()), n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {
         std::copy(v.begin(), v.end(), data.begin() + n_leaf);
         for (int i = n_leaf - 1; i > 0; --i) data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
     }

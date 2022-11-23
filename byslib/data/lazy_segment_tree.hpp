@@ -1,11 +1,14 @@
 #pragma once
+#include <algorithm>
+#include <cassert>
+#include <vector>
+
+#include "../algebra/mapping.hpp"
+#include "../math/bit.hpp"
 /**
  * @file lazy_segment_tree.hpp
  * @brief Lazy Segment Tree
  */
-#include "../algebra/mapping.hpp"
-#include "../core/stdlib.hpp"
-#include "../math/bit.hpp"
 namespace bys {
 /**
  * @brief 遅延伝播セグメント木

@@ -1,5 +1,9 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <algorithm>
+#include <cassert>
+#include <map>
+#include <numeric>
+#include <vector>
 /**
  * @file osa_k.hpp
  * @brief Osa-k
@@ -16,7 +20,7 @@ namespace bys {
  */
 struct Osa_K {
     int mx;
-    vector<int> spf;  // smallest prime factor
+    std::vector<int> spf;  // smallest prime factor
     Osa_K(int n) : mx(n), spf(n + 1) {
         std::iota(spf.begin(), spf.end(), 0);
         sieve();
@@ -36,19 +40,19 @@ struct Osa_K {
         if (n <= 1) return false;
         return spf[n] == n;
     }
-    map<int, int> factorize(int n) const {
+    std::map<int, int> factorize(int n) const {
         assert(n <= mx);
-        map<int, int> res;
+        std::map<int, int> res;
         while (n > 1) {
             res[spf[n]]++;
             n /= spf[n];
         }
         return res;
     }
-    vector<int> divisor(int n) const {
-        vector<int> res;
-        map<int, int> factor_ = factorize(n);
-        vector<pair<int, int>> factor(factor_.begin(), factor_.end());
+    std::vector<int> divisor(int n) const {
+        std::vector<int> res;
+        std::map<int, int> factor_ = factorize(n);
+        std::vector<std::pair<int, int>> factor(factor_.begin(), factor_.end());
         int k = factor.size();
         auto dfs = [&](auto dfs, int depth, int prod) {
             if (depth == k) {
@@ -62,7 +66,7 @@ struct Osa_K {
             }
         };
         dfs(dfs, 0, 1);
-        sort(res.begin(), res.end());
+        std::sort(res.begin(), res.end());
         return res;
     }
 };

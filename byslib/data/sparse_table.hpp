@@ -1,5 +1,7 @@
 #pragma once
-#include "../core/stdlib.hpp"
+#include <algorithm>
+#include <cassert>
+#include <vector>
 /**
  * @file sparse_table.hpp
  * @brief Sparse Table

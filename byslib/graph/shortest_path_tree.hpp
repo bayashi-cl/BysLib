@@ -7,7 +7,6 @@ namespace bys {
 template <class E>
 Tree<E> shortest_path_tree(AdjacencyList<E> const& graph, std::vector<typename E::weight_type> const& cost,
                            typename E::vertex_type source) {
-    using W = typename E::weight_type;
     using V = typename E::vertex_type;
     Tree<E> res(graph.size());
 
