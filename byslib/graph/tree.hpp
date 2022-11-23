@@ -3,8 +3,7 @@
 #include "graph.hpp"
 
 namespace bys {
-template <class E>
-struct Tree : std::vector<E> {
+template <class E> struct Tree : std::vector<E> {
     static_assert(is_edge_v<E>, "E is not Edge");
     using super = std::vector<E>;
     using super::vector;

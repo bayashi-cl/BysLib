@@ -1,3 +1,14 @@
-BasedOnStyle: 'Google'
+# ac-library style https://github.com/atcoder/ac-library/blob/master/.clang-format ->
+BasedOnStyle: "Chromium"
 IndentWidth: 4
-ColumnLimit: 120
+AccessModifierOffset: -2
+
+# for competitive programing
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true
+AlwaysBreakTemplateDeclarations: false
+
+# <- ac-library
+
+ColumnLimit: 100

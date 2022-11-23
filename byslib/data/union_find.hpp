@@ -54,12 +54,11 @@ struct UnionFindTree {
     std::size_t size(std::size_t a) { return -parent[find(a)]; }
     std::size_t n_tree() { return _n_tree; }
 
-   private:
+  private:
     std::size_t _n, _n_tree;
     std::vector<int> parent;  // 負なら親でありその値は(-子の数)
 };
-template <class T, class Lambda>
-struct UnionFindTreeWithData : UnionFindTree {
+template <class T, class Lambda> struct UnionFindTreeWithData : UnionFindTree {
     std::vector<T> _data;
     Lambda _mearge;
 
@@ -81,7 +80,9 @@ struct UnionFindTreeWithData : UnionFindTree {
 
 struct LinkedUnionFindTree : UnionFindTree {
     std::vector<int> _link;
-    LinkedUnionFindTree(int n) : UnionFindTree::UnionFindTree(n), _link(n) { std::iota(_link.begin(), _link.end(), 0); }
+    LinkedUnionFindTree(int n) : UnionFindTree::UnionFindTree(n), _link(n) {
+        std::iota(_link.begin(), _link.end(), 0);
+    }
 
     bool unite(std::size_t a, std::size_t b) {
         if (UnionFindTree::unite(a, b)) {

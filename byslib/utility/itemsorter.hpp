@@ -9,19 +9,15 @@
  */
 namespace bys {
 //! @brief IterableのI番目の要素を比較
-template <std::size_t I>
-struct ItemSorter {
-    template <class T>
-    constexpr bool operator()(const T& lh, const T& rh) const {
+template <std::size_t I> struct ItemSorter {
+    template <class T> constexpr bool operator()(const T& lh, const T& rh) const {
         return lh[I] < rh[I];
     }
 };
 
 //! @brief Tuple-likeのI番目の要素を比較
-template <std::size_t I>
-struct TupleSorter {
-    template <class T>
-    bool operator()(const T& lh, const T& rh) {
+template <std::size_t I> struct TupleSorter {
+    template <class T> bool operator()(const T& lh, const T& rh) {
         return std::get<I>(lh) < std::get<I>(rh);
     }
 };

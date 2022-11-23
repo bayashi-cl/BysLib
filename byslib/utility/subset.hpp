@@ -1,11 +1,10 @@
 #pragma once
 #include "subrange.hpp"
 namespace bys {
-template <class T>
-class SubsetIterator {
+template <class T> class SubsetIterator {
     static_assert(std::is_integral_v<T>, "T is not integral.");
 
-   public:
+  public:
     using difference_type = std::ptrdiff_t;
     using value_type = T;
     using reference = T;
@@ -34,13 +33,12 @@ class SubsetIterator {
     bool operator!=(const SubsetIterator& other) const { return not sentinel; }
     bool operator==(const SubsetIterator& other) const { return not(*this != other); }
 
-   private:
+  private:
     T _t;
     const T _s;
     bool sentinel = false;
 };
-template <class T>
-SubRange<SubsetIterator<T>> subset(T s) {
+template <class T> SubRange<SubsetIterator<T>> subset(T s) {
     return SubRange(SubsetIterator<T>(s), SubsetIterator<T>(s));
 }
 }  // namespace bys

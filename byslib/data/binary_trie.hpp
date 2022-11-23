@@ -4,8 +4,7 @@
 #include <type_traits>
 
 namespace bys {
-template <class T>
-class BinaryTrie {
+template <class T> class BinaryTrie {
     static_assert(std::is_integral_v<T>, "T is not integral");
     static constexpr int B = std::numeric_limits<T>::digits;
 
@@ -46,7 +45,7 @@ class BinaryTrie {
         return now;
     }
 
-   public:
+  public:
     BinaryTrie() {}
     void insert(T x) { root = add(root, x, B - 1); }
     auto erase(T x) { root = sub(root, x, B - 1); }

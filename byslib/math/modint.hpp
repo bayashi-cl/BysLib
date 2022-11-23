@@ -15,11 +15,10 @@ namespace bys {
  *
  * @tparam Modulo 法
  */
-template <u32 Modulo>
-class ModInt {
+template <u32 Modulo> class ModInt {
     u32 _v;
 
-   public:
+  public:
     static constexpr u32 mod = Modulo;
     // static_assert(is_prime(mod), "Modulo need to be prime.");
     static_assert(mod < (std::numeric_limits<u32>::max() >> 1), "Modulo need to be <2^31.");
@@ -88,15 +87,29 @@ class ModInt {
         return res;
     }
 
-    friend constexpr ModInt operator+(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) += rhs; }
-    friend constexpr ModInt operator-(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) -= rhs; }
-    friend constexpr ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) *= rhs; }
-    friend constexpr ModInt operator/(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) /= rhs; }
-    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs._v == rhs._v; }
-    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs._v != rhs._v; }
+    friend constexpr ModInt operator+(const ModInt& lhs, const ModInt& rhs) noexcept {
+        return ModInt(lhs) += rhs;
+    }
+    friend constexpr ModInt operator-(const ModInt& lhs, const ModInt& rhs) noexcept {
+        return ModInt(lhs) -= rhs;
+    }
+    friend constexpr ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept {
+        return ModInt(lhs) *= rhs;
+    }
+    friend constexpr ModInt operator/(const ModInt& lhs, const ModInt& rhs) noexcept {
+        return ModInt(lhs) /= rhs;
+    }
+    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept {
+        return lhs._v == rhs._v;
+    }
+    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) noexcept {
+        return lhs._v != rhs._v;
+    }
 
     friend std::istream& operator>>(std::istream& is, ModInt& m) noexcept { return is >> m._v; }
-    friend std::ostream& operator<<(std::ostream& os, const ModInt& m) noexcept { return os << m._v; }
+    friend std::ostream& operator<<(std::ostream& os, const ModInt& m) noexcept {
+        return os << m._v;
+    }
 };
 using Mint = ModInt<MOD>;
 using Mint7 = ModInt<MOD7>;

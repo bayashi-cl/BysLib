@@ -15,8 +15,7 @@
  */
 namespace bys {
 //! @brief 10進数 -> n進数
-template <class T>
-std::vector<T> deci2n(T deci, T base) {
+template <class T> std::vector<T> deci2n(T deci, T base) {
     std::vector<T> res;
     while (deci > 0) {
         res.push_back(deci % base);

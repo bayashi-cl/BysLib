@@ -42,7 +42,9 @@ struct Grid {
     //! @brief 右・下
     auto next2(int row, int col) const { return next(row, col, {{1, 0}, {0, 1}}); }
     //! @brief 上下左右
-    auto next4(int row, int col) const { return next(row, col, {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}); }
+    auto next4(int row, int col) const {
+        return next(row, col, {{1, 0}, {-1, 0}, {0, 1}, {0, -1}});
+    }
     //! @brief 8方向
     auto next8(int row, int col) const {
         std::vector<std::pair<int, int>> delta;

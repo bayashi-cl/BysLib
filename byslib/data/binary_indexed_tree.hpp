@@ -17,8 +17,7 @@ namespace bys {
  * 区間和: O(logN)
  * See: https://algo-logic.info/binary-indexed-tree/
  */
-template <class Abelian>
-struct BinaryIndexedTree {
+template <class Abelian> struct BinaryIndexedTree {
     using T = typename Abelian::set_type;
     static_assert(Abelian::commutative);
     const int _n;
@@ -58,8 +57,7 @@ struct BinaryIndexedTree {
     }
 };
 
-template <class T>
-struct BinaryIndexedTree<Add<T>> {
+template <class T> struct BinaryIndexedTree<Add<T>> {
     const int _n;
     std::vector<T> data;
 
@@ -88,7 +86,9 @@ struct BinaryIndexedTree<Add<T>> {
         for (; right > 0; right -= right & -right) res += data[right];
         return res;
     }
-    T fold(int left, int right) const { return left < right ? prefix_fold(right) - prefix_fold(left) : 0; }
+    T fold(int left, int right) const {
+        return left < right ? prefix_fold(right) - prefix_fold(left) : 0;
+    }
 
     //! @brief sum[0, r) >= xとなる最小のrを求める
     int bisect(T x) const {
@@ -105,10 +105,8 @@ struct BinaryIndexedTree<Add<T>> {
     }
 };
 
-template <class T>
-using FenwickTree = BinaryIndexedTree<Add<T>>;
-template <class T>
-BinaryIndexedTree<Add<T>> fenwick_tree(const std::vector<T>& val) {
+template <class T> using FenwickTree = BinaryIndexedTree<Add<T>>;
+template <class T> BinaryIndexedTree<Add<T>> fenwick_tree(const std::vector<T>& val) {
     return BinaryIndexedTree<Add<T>>(val);
 }
 }  // namespace bys

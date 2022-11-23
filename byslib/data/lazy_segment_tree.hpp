@@ -16,7 +16,8 @@ namespace bys {
  * 区間更新: O(logN)
  * 区間クエリ: O(logN)
  * 一点取得: O(logN)
- * See: https://ikatakos.com/pot/programming_algorithm/data_structure/segment_tree/lazy_segment_tree
+ * See:
+ * https://ikatakos.com/pot/programming_algorithm/data_structure/segment_tree/lazy_segment_tree
  *
  * @tparam Monoid モノイド
  * @tparam ActMonoid 作用素モノイド
@@ -43,7 +44,7 @@ class LazySegmentTree {
         if (p < n_leaf) lazy[p] = ActMonoid::operation(lazy[p], f);
     }
 
-   public:
+  public:
     LazySegmentTree(int n)
         : _n(n),
           n_leaf(bit_ceil(_n)),

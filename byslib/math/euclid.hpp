@@ -13,8 +13,7 @@ namespace bys {
  *
  * @return std::tuple<int, int, int> {d, x, y} s.t. ax + by = d
  */
-template <class T>
-std::tuple<T, T, T> ext_gcd(T a, T b) {
+template <class T> std::tuple<T, T, T> ext_gcd(T a, T b) {
     if (b == 0) return {a, 1, T(0)};
     auto [d, y, x] = ext_gcd(b, a % b);
     y -= (a / b) * x;

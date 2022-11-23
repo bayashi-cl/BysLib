@@ -12,18 +12,18 @@ namespace bys {
  *
  * 構築: O(NlogN)
  * クエリ: O(1)
- * See: https://ikatakos.com/pot/programming_algorithm/data_structure/sparse_table
+ * See:
+ * https://ikatakos.com/pot/programming_algorithm/data_structure/sparse_table
  *
  * @tparam Band モノイドで冪等性があるもの
  */
-template <class Band>
-class SparseTable {
+template <class Band> class SparseTable {
     using T = typename Band::set_type;
     int n;
     std::vector<int> lookup;
     std::vector<std::vector<T>> table;
 
-   public:
+  public:
     SparseTable() {}
     SparseTable(const std::vector<T>& v) { build(v); }
 

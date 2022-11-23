@@ -12,8 +12,7 @@
  */
 namespace bys {
 //! @brief 行列
-template <class T>
-struct Matrix {
+template <class T> struct Matrix {
     std::vector<std::vector<T>> mat;
     Matrix(i32 i, i32 j) : mat(i, std::vector<T>(j)), r(i), c(j) {}
     Matrix(const std::vector<std::vector<T>>& v) : mat(v), r(v.size()), c(v[0].size()) {}
@@ -119,7 +118,7 @@ struct Matrix {
         return res;
     }
 
-   private:
+  private:
     i32 r, c;
 };
 }  // namespace bys

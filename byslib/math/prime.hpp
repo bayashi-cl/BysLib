@@ -15,8 +15,7 @@ namespace bys {
  * 試し割り法
  * O(√n)
  */
-template <typename T>
-std::vector<T> prime_factorize(T n) {
+template <typename T> std::vector<T> prime_factorize(T n) {
     std::vector<T> res;
     while (n % 2 == 0) {
         res.push_back(2);

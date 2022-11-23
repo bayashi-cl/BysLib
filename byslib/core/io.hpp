@@ -7,8 +7,7 @@
  * @brief I/O
  */
 namespace bys {
-template <class... Args>
-std::string debugfmt(int line, Args&&... args) {
+template <class... Args> std::string debugfmt(int line, Args&&... args) {
     std::stringstream ss;
     Printer printer(ss);
     ss << "📌 line" << std::setw(4) << line << ": ";

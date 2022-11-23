@@ -12,8 +12,7 @@ namespace bys {
  *
  * O(√n)
  */
-template <typename T>
-std::vector<T> make_divisor(T n) {
+template <typename T> std::vector<T> make_divisor(T n) {
     std::vector<T> lower, upper;
     for (T i = 1; i * i <= n; ++i) {
         if (n % i == 0) {

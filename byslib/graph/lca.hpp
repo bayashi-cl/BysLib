@@ -17,8 +17,7 @@ namespace bys {
  * 構築   O(N logN)
  * クエリ O(1)
  */
-template <class E>
-class LowestCommonAncestor {
+template <class E> class LowestCommonAncestor {
     struct Vertex {
         int id, depath;
         bool operator<(const Vertex& rh) const { return depath < rh.depath; }
@@ -27,7 +26,7 @@ class LowestCommonAncestor {
     SparseTable<Min<Vertex>> st;
     std::vector<int> pos;
 
-   public:
+  public:
     LowestCommonAncestor(AdjacencyList<E> const& graph, int root) : n(graph.size()), pos(n) {
         std::vector<Vertex> euler_tour;
         euler_tour.reserve(2 * n - 1);

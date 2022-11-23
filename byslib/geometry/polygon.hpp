@@ -8,11 +8,11 @@
  */
 namespace bys::geo {
 //! @brief 多角形
-template <class T>
-struct Polygon {
+template <class T> struct Polygon {
     int n_vertex;
     std::vector<Point<T>> vertex;
-    Polygon(std::initializer_list<Point<T>> init) : n_vertex(init.size()), vertex(init.begin(), init.end()) {}
+    Polygon(std::initializer_list<Point<T>> init)
+        : n_vertex(init.size()), vertex(init.begin(), init.end()) {}
     Polygon(std::vector<Point<T>> vertex) : n_vertex(vertex.size()), vertex(vertex) {}
     //! @brief 面積*2
     T area2() const {

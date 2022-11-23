@@ -3,8 +3,7 @@
 
 #include "graph.hpp"
 namespace bys {
-template <class E>
-auto bfs(const AdjacencyList<E>& graph, typename E::vertex_type source) {
+template <class E> auto bfs(const AdjacencyList<E>& graph, typename E::vertex_type source) {
     using W = typename E::weight_type;
     using V = typename E::vertex_type;
     std::vector<W> cost(graph.size(), get_inf<W>());

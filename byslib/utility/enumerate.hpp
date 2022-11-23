@@ -10,9 +10,8 @@
  * See: https://docs.python.org/ja/3/library/functions.html#enumerate
  */
 namespace bys {
-template <class Iterator>
-struct EnumerateIterator {
-   public:
+template <class Iterator> struct EnumerateIterator {
+  public:
     using difference_type = typename Iterator::difference_type;
     using value_type = std::tuple<int, typename Iterator::value_type>;
     // using pointer = value_type*;
@@ -29,7 +28,7 @@ struct EnumerateIterator {
     bool operator!=(const EnumerateIterator& other) const { return value != other.value; }
     auto operator*() const { return std::tie(index, *value); }
 
-   private:
+  private:
     int index;
     Iterator value;
 };
@@ -40,8 +39,7 @@ struct EnumerateIterator {
  * @param iterable 対象
  * @param start indexの初期値
  */
-template <class Iterable>
-auto enumerate(Iterable& iterable, int start = 0) {
+template <class Iterable> auto enumerate(Iterable& iterable, int start = 0) {
     using iterator_t = EnumerateIterator<typename Iterable::iterator>;
     int end = static_cast<int>(iterable.size()) + start;
     return SubRange(iterator_t(std::begin(iterable), start), iterator_t(std::end(iterable), end));
@@ -52,8 +50,7 @@ auto enumerate(Iterable& iterable, int start = 0) {
  * @param iterable 対象
  * @param start indexの初期値
  */
-template <class Iterable>
-auto cenumerate(Iterable& iterable, int start = 0) {
+template <class Iterable> auto cenumerate(Iterable& iterable, int start = 0) {
     using iterator_t = EnumerateIterator<typename Iterable::const_iterator>;
     int end = static_cast<int>(iterable.size()) + start;
     return SubRange(iterator_t(std::cbegin(iterable), start), iterator_t(std::cend(iterable), end));

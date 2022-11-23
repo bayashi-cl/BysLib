@@ -15,16 +15,16 @@ namespace bys {
  *
  * 入力の要素からなる長さrの部分列を返す。
  */
-template <class T>
-class Combinations {
+template <class T> class Combinations {
     const std::vector<T> pool;
     int n, r;
     std::vector<T> comb;
     std::vector<int> indices;
     bool term = false;
 
-   public:
-    Combinations(const std::vector<T>& vec, int r) : pool(vec), n(vec.size()), r(r), comb(r), indices(r) {
+  public:
+    Combinations(const std::vector<T>& vec, int r)
+        : pool(vec), n(vec.size()), r(r), comb(r), indices(r) {
         if (r > n) {
             term = true;
             return;
@@ -61,13 +61,12 @@ class Combinations {
  *
  * [0, n) からR個を選ぶ組み合わせ全探索
  */
-template <std::size_t R>
-class IndexCombinations {
+template <std::size_t R> class IndexCombinations {
     std::array<std::size_t, R> indices;
     std::size_t n, r;
     bool term = false;
 
-   public:
+  public:
     IndexCombinations(std::size_t n) : n(n), r(indices.size()) {
         if (r > n) {
             term = true;

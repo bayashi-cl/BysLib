@@ -16,18 +16,18 @@ namespace bys {
  *
  * @tparam Monoid モノイド
  */
-template <class Monoid>
-class SegmentTree {
+template <class Monoid> class SegmentTree {
     using value_type = typename Monoid::set_type;
     int _n, n_leaf;
     std::vector<value_type> data;
 
-   public:
+  public:
     SegmentTree(int n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity) {}
     SegmentTree(const std::vector<value_type>& v)
         : _n(v.size()), n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {
         std::copy(v.begin(), v.end(), data.begin() + n_leaf);
-        for (int i = n_leaf - 1; i > 0; --i) data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
+        for (int i = n_leaf - 1; i > 0; --i)
+            data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
     }
 
     value_type query(int l, int r) const {

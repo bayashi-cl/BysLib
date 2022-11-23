@@ -11,8 +11,7 @@
  */
 namespace bys {
 //! @brief ランレングス圧縮
-template <class Iterable>
-auto run_length_encode(const Iterable& v) {
+template <class Iterable> auto run_length_encode(const Iterable& v) {
     static_assert(is_iterable_v<Iterable>, "arg is not iterable.");
     using T = typename Iterable::value_type;
     std::vector<std::pair<T, i32>> res;

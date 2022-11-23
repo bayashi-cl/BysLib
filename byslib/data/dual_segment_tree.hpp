@@ -44,7 +44,7 @@ class DualSegmentTree {
         }
     }
 
-   public:
+  public:
     DualSegmentTree(int n, T ident)
         : _n(n),
           n_leaf(bit_ceil(_n)),

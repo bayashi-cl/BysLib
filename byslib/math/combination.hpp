@@ -59,8 +59,7 @@ struct MultiComb {
  *
  * @param n Modi32も渡せる
  */
-template <class T>
-constexpr T comb(T n, i32 r) {
+template <class T> constexpr T comb(T n, i32 r) {
     T num = 1, den = 1;
     for (i32 i = 0; i < r; ++i) {
         num *= n - i;

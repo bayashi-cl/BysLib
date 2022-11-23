@@ -5,7 +5,8 @@
 #include "tree.hpp"
 namespace bys {
 template <class E>
-Tree<E> shortest_path_tree(AdjacencyList<E> const& graph, std::vector<typename E::weight_type> const& cost,
+Tree<E> shortest_path_tree(AdjacencyList<E> const& graph,
+                           std::vector<typename E::weight_type> const& cost,
                            typename E::vertex_type source) {
     using V = typename E::vertex_type;
     Tree<E> res(graph.size());

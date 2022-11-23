@@ -13,8 +13,7 @@ namespace bys {
  *
  * O(V + E)
  */
-template <class E>
-std::vector<int> topological_sort(AdjacencyList<E> const& graph) {
+template <class E> std::vector<int> topological_sort(AdjacencyList<E> const& graph) {
     using V = typename E::vertex_type;
     auto n = graph.size();
     std::vector<V> res;

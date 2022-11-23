@@ -6,9 +6,8 @@
 #include "../core/traits.hpp"
 
 namespace bys {
-template <class Iterator>
-class SubRange {
-   public:
+template <class Iterator> class SubRange {
+  public:
     using iterator = Iterator;
     using reverse_iterator = std::reverse_iterator<iterator>;
     using value_type = typename iterator::value_type;
@@ -27,12 +26,12 @@ class SubRange {
 
     auto to_vec() const { return std::vector(_begin, _end); }
 
-   private:
+  private:
     iterator _begin, _end;
 };
-template <class Iterable>
-auto reversed(Iterable&& iter) {
+template <class Iterable> auto reversed(Iterable&& iter) {
     static_assert(is_iterable_v<Iterable>, "iter is not iterable");
-    return SubRange(std::rbegin(std::forward<Iterable>(iter)), std::rend(std::forward<Iterable>(iter)));
+    return SubRange(std::rbegin(std::forward<Iterable>(iter)),
+                    std::rend(std::forward<Iterable>(iter)));
 }
 }  // namespace bys

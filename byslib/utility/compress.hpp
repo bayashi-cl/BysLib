@@ -13,12 +13,11 @@ namespace bys {
 /**
  * @brief 座標圧縮
  */
-template <class T>
-class Compress {
+template <class T> class Compress {
     std::vector<T> cp;
     bool build = false;
 
-   public:
+  public:
     Compress() {}
     Compress(const std::vector<T>& vec) : cp(vec) { construct(); }
     void add(T v) {

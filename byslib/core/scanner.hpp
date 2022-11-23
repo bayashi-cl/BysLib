@@ -14,17 +14,15 @@
 namespace bys {
 class Scanner {
     std::istream& _is;
-    template <class T, std::size_t... I>
-    auto read_tuple(std::index_sequence<I...>) {
+    template <class T, std::size_t... I> auto read_tuple(std::index_sequence<I...>) {
         return resolve_type_t<T>{read<typename std::tuple_element_t<I, T>>()...};
     }
 
-   public:
+  public:
     Scanner() = delete;
     Scanner(std::istream& is) : _is(is) { _is.tie(nullptr); }
 
-    template <class T>
-    auto read() {
+    template <class T> auto read() {
         if constexpr (has_rshift_from_istream_v<T>) {
             T res;
             _is >> res;
@@ -43,20 +41,17 @@ class Scanner {
     auto read() {
         return std::tuple{read<Ts>()...};
     }
-    template <class T, std::size_t N>
-    auto read() {
+    template <class T, std::size_t N> auto read() {
         std::array<resolve_type_t<T>, N> res;
         for (auto&& e : res) e = read<T>();
         return res;
     }
-    template <class T>
-    auto readvec(i32 n) {
+    template <class T> auto readvec(i32 n) {
         std::vector<resolve_type_t<T>> res(n);
         for (auto&& e : res) e = read<T>();
         return res;
     }
-    template <class T>
-    auto readvec(i32 n, i32 m) {
+    template <class T> auto readvec(i32 n, i32 m) {
         std::vector<std::vector<resolve_type_t<T>>> res(n);
         for (auto&& e : res) e = readvec<T>(m);
         return res;

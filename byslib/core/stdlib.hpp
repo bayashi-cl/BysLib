@@ -35,8 +35,6 @@ using std::min, std::max, std::sort, std::reverse, std::abs, std::pow;
 // alias
 using Pa = pair<i32, i32>;
 using Pall = pair<i64, i64>;
-template <class T>
-using uset = std::unordered_set<T>;
-template <class S, class T>
-using umap = std::unordered_map<S, T>;
+template <class T> using uset = std::unordered_set<T>;
+template <class S, class T> using umap = std::unordered_map<S, T>;
 }  // namespace bys

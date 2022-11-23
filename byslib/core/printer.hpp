@@ -17,23 +17,24 @@ class Printer {
     // sep3 " "        : tuple_like
     std::string sep1 = "\n", sep2 = " ", sep3 = " ", end = "\n";
 
-    template <std::size_t I, class T>
-    void print_tuple_element(T&& elem) {
+    template <std::size_t I, class T> void print_tuple_element(T&& elem) {
         if constexpr (I != 0) cat(sep3);
         cat(std::forward<T>(elem));
     }
-    template <class Tp, std::size_t... I>
-    void print_tuple(Tp&& tp, std::index_sequence<I...>) {
-        (print_tuple_element<I>(std::forward<std::tuple_element_t<I, std::decay_t<Tp>>>(std::get<I>(tp))), ...);
+    template <class Tp, std::size_t... I> void print_tuple(Tp&& tp, std::index_sequence<I...>) {
+        (print_tuple_element<I>(
+             std::forward<std::tuple_element_t<I, std::decay_t<Tp>>>(std::get<I>(tp))),
+         ...);
     }
 
-   public:
+  public:
     Printer() = delete;
-    Printer(std::ostream& os) : _os(os) { _os << std::fixed << std::setprecision(11) << std::boolalpha; }
+    Printer(std::ostream& os) : _os(os) {
+        _os << std::fixed << std::setprecision(11) << std::boolalpha;
+    }
     ~Printer() { _os << std::flush; }
 
-    template <class T>
-    void cat(T&& v) {
+    template <class T> void cat(T&& v) {
         if constexpr (has_lshft_to_ostream_v<std::decay_t<T>>) {
             _os << v;
         } else if constexpr (is_iterable_v<std::decay_t<T>>) {
@@ -49,32 +50,27 @@ class Printer {
                 cat(vi);
             }
         } else if constexpr (is_tuple_like_v<std::decay_t<T>>) {
-            print_tuple(std::forward<T>(v), std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
+            print_tuple(std::forward<T>(v),
+                        std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
         } else {
             static_assert([] { return false; }(), "type error");
         }
     }
 
     void print() { cat(end); }
-    template <class T>
-    void print(T&& v) {
+    template <class T> void print(T&& v) {
         cat(std::forward<T>(v));
         cat(end);
     }
-    template <class T, class... Ts>
-    void print(T&& top, Ts&&... args) {
+    template <class T, class... Ts> void print(T&& top, Ts&&... args) {
         cat(std::forward<T>(top));
         cat(sep2);
         print(std::forward<Ts>(args)...);
     }
-    template <class... Ts>
-    void operator()(Ts&&... args) {
-        print(std::forward<Ts>(args)...);
-    }
+    template <class... Ts> void operator()(Ts&&... args) { print(std::forward<Ts>(args)...); }
 
     void flush() { _os << std::flush; }
-    template <class... Ts>
-    void send(Ts&&... args) {
+    template <class... Ts> void send(Ts&&... args) {
         print(std::forward<Ts>(args)...);
         flush();
     }

@@ -3,8 +3,7 @@
 #include "graph.hpp"
 
 namespace bys {
-template <class E>
-auto kruskal(EdgeList<E> elist) {
+template <class E> auto kruskal(EdgeList<E> elist) {
     elist.sort();
     UnionFindTree uf(elist.size());
     EdgeList<E> res(elist.size());

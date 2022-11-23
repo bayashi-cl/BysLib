@@ -7,8 +7,7 @@
  */
 namespace bys {
 //! @brief 等差数列
-template <class T>
-struct Arithmetic {
+template <class T> struct Arithmetic {
     T a0, d;
     Arithmetic(T a0, T d) : a0(a0), d(d) {}
     T an(T n) { return a0 + d * n; }

@@ -1,5 +1,4 @@
 #pragma once
 namespace bys {
-template <class T>
-struct CSRMatrix;
+template <class T> struct CSRMatrix;
 }

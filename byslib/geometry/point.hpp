@@ -8,8 +8,7 @@
  */
 namespace bys::geo {
 //! @brief 点/ベクトル
-template <class T>
-struct Point {
+template <class T> struct Point {
     T x, y;
     Point() : x(0.0), y(0.0) {}
     Point(T x, T y) : x(x), y(y) {}
@@ -72,14 +71,8 @@ struct Point {
     }
 };
 
-template <class T>
-bool compx(Point<T>& a, Point<T>& b) {
-    return a.x < b.x;
-}
-template <class T>
-bool compy(Point<T>& a, Point<T>& b) {
-    return a.y < b.y;
-}
+template <class T> bool compx(Point<T>& a, Point<T>& b) { return a.x < b.x; }
+template <class T> bool compy(Point<T>& a, Point<T>& b) { return a.y < b.y; }
 //! @brief 曲がる方向
 enum class Turn {
     //! abの後方
@@ -94,8 +87,7 @@ enum class Turn {
     Front = 2,
 };
 //! @brief 辺の曲がる方向
-template <class T>
-Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
+template <class T> Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int flg = sgn((b - a).det(c - a));
     if (flg == 1) {
         return Turn::CCW;
@@ -121,8 +113,7 @@ enum class Angle {
 };
 
 //! @brief 角の種類
-template <class T>
-Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
+template <class T> Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
     int t = sgn((a - b).dot(c - b));
     if (t == -1) {
         return Angle::Obtuse;
@@ -132,12 +123,10 @@ Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
         return Angle::Acute;
     }
 }
-template <class T>
-T distance2(const Point<T>& a, const Point<T>& b) {
+template <class T> T distance2(const Point<T>& a, const Point<T>& b) {
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
 }
-template <class T>
-T distance(const Point<T>& a, const Point<T>& b) {
+template <class T> T distance(const Point<T>& a, const Point<T>& b) {
     return sqrt(distance2(a, b));
 }
 }  // namespace bys::geo

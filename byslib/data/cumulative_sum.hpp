@@ -10,8 +10,7 @@
  * 累積和
  */
 namespace bys {
-template <class Alg>
-struct CumulativeSum {
+template <class Alg> struct CumulativeSum {
     using T = typename Alg::set_type;
     std::vector<T> data;
     CumulativeSum(const std::vector<T>& value) {
@@ -25,8 +24,7 @@ struct CumulativeSum {
     }
 };
 
-template <class T>
-struct CumulativeSum<Add<T>> {
+template <class T> struct CumulativeSum<Add<T>> {
     std::vector<T> data;
     CumulativeSum(const std::vector<T>& value) {
         data.reserve(value.size() + 1);
@@ -37,8 +35,7 @@ struct CumulativeSum<Add<T>> {
     T fold(int left, int right) { return left < right ? data[right] - data[left] : T(0); }
 };
 
-template <class T>
-CumulativeSum<Add<T>> cumsum(const std::vector<T>& val) {
+template <class T> CumulativeSum<Add<T>> cumsum(const std::vector<T>& val) {
     return CumulativeSum<Add<T>>(val);
 }
 }  // namespace bys

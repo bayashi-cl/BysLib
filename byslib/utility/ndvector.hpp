@@ -3,14 +3,10 @@
 
 namespace bys {
 namespace impl {
-template <typename T, std::size_t N>
-struct NdVector {
+template <typename T, std::size_t N> struct NdVector {
     using type = std::vector<typename NdVector<T, N - 1>::type>;
 };
-template <typename T>
-struct NdVector<T, 1> {
-    using type = std::vector<T>;
-};
+template <typename T> struct NdVector<T, 1> { using type = std::vector<T>; };
 
 template <typename T, std::size_t N>
 auto ndvector(std::vector<size_t>& shape, T const& fill_value) {
@@ -24,8 +20,7 @@ auto ndvector(std::vector<size_t>& shape, T const& fill_value) {
 }
 }  // namespace impl
 
-template <class T, std::size_t N>
-using NdVector = typename impl::NdVector<T, N>::type;
+template <class T, std::size_t N> using NdVector = typename impl::NdVector<T, N>::type;
 
 /**
  * @brief n-dimentional vector

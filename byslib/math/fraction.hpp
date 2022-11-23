@@ -35,7 +35,8 @@ struct Fraction {
     }
     operator f128() const { return (f128)numerator / denominator; }
     Fraction operator+(const Fraction& rh) const {
-        return Fraction(numerator * rh.denominator + rh.numerator * denominator, denominator * rh.denominator);
+        return Fraction(numerator * rh.denominator + rh.numerator * denominator,
+                        denominator * rh.denominator);
     }
     Fraction operator+(const i64 rh) const { return *this + Fraction(rh, 1); }
     Fraction operator+=(const Fraction& rh) {
@@ -47,7 +48,8 @@ struct Fraction {
         return *this;
     }
     Fraction operator-(const Fraction& rh) const {
-        return Fraction(numerator * rh.denominator - rh.numerator * denominator, denominator * rh.denominator);
+        return Fraction(numerator * rh.denominator - rh.numerator * denominator,
+                        denominator * rh.denominator);
     }
     Fraction operator-(const i64 rh) const { return *this - Fraction(rh, 1); }
     Fraction operator-=(const Fraction& rh) {
@@ -82,7 +84,9 @@ struct Fraction {
         *this = *this / rh;
         return *this;
     }
-    bool operator<(const Fraction& rh) const { return numerator * rh.denominator < rh.numerator * denominator; }
+    bool operator<(const Fraction& rh) const {
+        return numerator * rh.denominator < rh.numerator * denominator;
+    }
 };
 std::ostream& operator<<(std::ostream& os, const Fraction& f) { return os << (f128)f; }
 }  // namespace bys

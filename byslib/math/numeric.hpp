@@ -19,8 +19,7 @@ constexpr i64 int_pow(int a, int b) {
  *
  * O(log q)
  */
-template <class T>
-constexpr T mod_pow(T p, T q, T mod) {
+template <class T> constexpr T mod_pow(T p, T q, T mod) {
     // T res = 1 % mod;
     if (mod == 1) return 0;
     T res = 1;
@@ -32,8 +31,7 @@ constexpr T mod_pow(T p, T q, T mod) {
     return res;
 }
 //! @brief ceil(x / y)
-template <class T>
-constexpr T ceildiv(T x, T y) {
+template <class T> constexpr T ceildiv(T x, T y) {
     if ((x < T(0)) ^ (y < T(0))) {
         return x / y;
     } else {
@@ -41,8 +39,7 @@ constexpr T ceildiv(T x, T y) {
     }
 }
 //! @brief floor(x / y)
-template <class T>
-constexpr T floordiv(T x, T y) {
+template <class T> constexpr T floordiv(T x, T y) {
     if ((x < T(0)) ^ (y < T(0))) {
         return (x - y + (x < T(0) ? 1 : -1)) / y;
     } else {
@@ -54,8 +51,7 @@ constexpr T floordiv(T x, T y) {
  *
  * See: https://docs.python.org/ja/3/library/functions.html#divmod
  */
-template <class T>
-constexpr std::pair<T, T> divmod(T x, T y) {
+template <class T> constexpr std::pair<T, T> divmod(T x, T y) {
     auto q = floordiv(x, y);
     return {q, x - q * y};
 }
@@ -65,8 +61,7 @@ constexpr std::pair<T, T> divmod(T x, T y) {
  *
  * See: https://docs.python.org/ja/3/reference/expressions.html#index-68
  */
-template <class T, class S>
-constexpr T floormod(T x, S mod) {
+template <class T, class S> constexpr T floormod(T x, S mod) {
     x %= mod;
     if (x < 0) x += mod;
     return x;
@@ -84,8 +79,7 @@ constexpr i64 isqrt_aux(i64 c, i64 n) {
  * floor(sqrt(n))
  * See: https://docs.python.org/ja/3/library/math.html#math.isqrt
  */
-template <class T>
-constexpr T isqrt(T n) {
+template <class T> constexpr T isqrt(T n) {
     assert(n >= 0);
     if (n == T(0)) return T(0);
     i64 a = isqrt_aux((bit_width(n) - 1) / 2, n);
@@ -100,7 +94,8 @@ template <class T, typename std::enable_if_t<std::is_floating_point_v<T>, std::n
 constexpr bool isclose(T x, T y, T coef = 4.0) {
     if (x == y) return true;
     auto diff = std::abs(x - y);
-    return diff <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();
+    return diff <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef ||
+           diff < std::numeric_limits<T>::min();
 }
 
 constexpr std::pair<long long, long long> inv_gcd(long long a, long long b) {
@@ -125,16 +120,9 @@ constexpr std::pair<long long, long long> inv_gcd(long long a, long long b) {
 }
 
 //! @brief Count multipules of k in the [left, right)
-template <class T>
-constexpr T range_multiples(T left, T right, T k) {
+template <class T> constexpr T range_multiples(T left, T right, T k) {
     return (right - 1) / k - (left - 1) / k;
 }
-template <class T>
-constexpr T multiple_floor(T x, T k) {
-    return x / k * k;
-}
-template <class T>
-constexpr T multiple_ceil(T x, T k) {
-    return ceildiv(x, k) * k;
-}
+template <class T> constexpr T multiple_floor(T x, T k) { return x / k * k; }
+template <class T> constexpr T multiple_ceil(T x, T k) { return ceildiv(x, k) * k; }
 }  // namespace bys

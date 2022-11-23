@@ -5,8 +5,7 @@
 #include "graph.hpp"
 
 namespace bys {
-template <class E>
-auto dfs(AdjacencyList<E> const& graph, typename E::vertex_type source) {
+template <class E> auto dfs(AdjacencyList<E> const& graph, typename E::vertex_type source) {
     using V = typename E::vertex_type;
     std::vector<bool> seen(graph.size());
     std::vector<V> res;
@@ -24,8 +23,7 @@ auto dfs(AdjacencyList<E> const& graph, typename E::vertex_type source) {
         }
     }
 }
-template <class E>
-auto pre_order(const AdjacencyList<E>& graph) {
+template <class E> auto pre_order(const AdjacencyList<E>& graph) {
     using V = typename E::vertex_type;
     int n = graph.size();
     std::vector<bool> seen(n);
@@ -44,8 +42,7 @@ auto pre_order(const AdjacencyList<E>& graph) {
 }
 
 // std::vector<int> in_order(const AdjacencyList& graph, int source);
-template <class E>
-auto post_order(const AdjacencyList<E>& graph) {
+template <class E> auto post_order(const AdjacencyList<E>& graph) {
     using V = typename E::vertex_type;
     int n = graph.size();
     std::vector<bool> seen(n);

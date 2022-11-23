@@ -22,7 +22,7 @@ class RollingHash {
 
     std::vector<u64> _hash;
 
-   public:
+  public:
     RollingHash(std::string const& s) : _hash(s.length() + 1) {
         extend_base(s.length());
         for (std::size_t i = 0, n = s.length(); i < n; ++i) {
@@ -36,7 +36,7 @@ class RollingHash {
         return res < mod ? res : res - mod;
     }
 
-   private:
+  private:
     void extend_base(std::size_t n) {
         while (base_pow.size() < n) {
             base_pow.push_back(modmul(base_pow.back(), base));
