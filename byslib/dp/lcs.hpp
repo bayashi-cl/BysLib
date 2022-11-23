@@ -1,15 +1,18 @@
 #pragma once
-#include "byslib/core/stdlib.hpp"
-#include "byslib/core/types.hpp"
-#include "byslib/utility/enumerate.hpp"
+#include <algorithm>
+#include <vector>
+
+#include "../core/alias.hpp"
+#include "../core/traits.hpp"
+#include "../utility/enumerate.hpp"
 
 namespace bys {
 template <class Iterable>
 int lcs(Iterable const& a, Iterable const& b) {
     static_assert(is_iterable_v<Iterable>, "not iertable");
-    auto n = a.size();
-    auto m = b.size();
-    std::vector dp(n + 1, std::vector<int>(m + 1));
+    i32 n = a.size();
+    i32 m = b.size();
+    std::vector dp(n + 1, std::vector<i32>(m + 1));
     for (auto [i, ai] : cenumerate(a)) {
         for (auto [j, bj] : cenumerate(b)) {
             if (ai == bj) {

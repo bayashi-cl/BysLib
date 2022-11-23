@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "../core/types.hpp"
+#include "../core/traits.hpp"
 namespace bys {
 /**
  * @brief 最長増加部分列
@@ -15,11 +15,11 @@ template <class Iterable>
 auto lis(const Iterable& v, bool strict = true) {
     static_assert(is_iterable_v<Iterable>, "v is not iterable");
     using T = typename Iterable::value_type;
+    auto n = v.size();
 
-    int n = v.size();
     std::vector<T> dp;
-    std::vector<int> restore(n);
-    for (int i = 0; i < n; ++i) {
+    std::vector<i32> restore(n);
+    for (usize i = 0; i < n; ++i) {
         auto vi = v[i];
         auto itr = strict ? std::lower_bound(dp.begin(), dp.end(), vi) : std::upper_bound(dp.begin(), dp.end(), vi);
         restore[i] = itr - dp.begin();
@@ -29,9 +29,9 @@ auto lis(const Iterable& v, bool strict = true) {
             *itr = vi;
         }
     }
-    int idx = dp.size() - 1;
-    std::vector<int> res(dp.size());
-    for (int i = n - 1; i >= 0; --i) {
+    i32 idx = dp.size() - 1;
+    std::vector<i32> res(dp.size());
+    for (i32 i = n - 1; i >= 0; --i) {
         if (restore[i] == idx) res[idx--] = i;
     }
     return res;

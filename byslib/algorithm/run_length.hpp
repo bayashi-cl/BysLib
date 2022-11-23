@@ -1,6 +1,10 @@
 #pragma once
-#include "../core/stdlib.hpp"
-#include "../core/types.hpp"
+#include <utility>
+#include <vector>
+
+#include "../core/alias.hpp"
+#include "../core/traits.hpp"
+
 /**
  * @file run_length.hpp
  * @brief Run Length Encoding
@@ -11,7 +15,7 @@ template <class Iterable>
 auto run_length_encode(const Iterable& v) {
     static_assert(is_iterable_v<Iterable>, "arg is not iterable.");
     using T = typename Iterable::value_type;
-    std::vector<std::pair<T, int>> res;
+    std::vector<std::pair<T, i32>> res;
     if (v.empty()) return res;
     res.emplace_back(v.front(), 0);
     for (auto&& e : v) {
