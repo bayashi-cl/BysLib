@@ -1,6 +1,11 @@
 #pragma once
-#include "stdlib.hpp"
-#include "types.hpp"
+#include <array>
+#include <iostream>
+#include <utility>
+#include <vector>
+
+#include "alias.hpp"
+#include "traits.hpp"
 /**
  * @file scanner.hpp
  * @brief Input
@@ -44,13 +49,13 @@ class Scanner {
         return res;
     }
     template <class T>
-    auto readvec(std::size_t n) {
+    auto readvec(i32 n) {
         std::vector<resolve_type_t<T>> res(n);
         for (auto&& e : res) e = read<T>();
         return res;
     }
     template <class T>
-    auto readvec(std::size_t n, std::size_t m) {
+    auto readvec(i32 n, i32 m) {
         std::vector<std::vector<resolve_type_t<T>>> res(n);
         for (auto&& e : res) e = readvec<T>(m);
         return res;

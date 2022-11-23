@@ -3,7 +3,7 @@
 #include <iterator>
 #include <vector>
 
-#include "../core/types.hpp"
+#include "../core/traits.hpp"
 
 namespace bys {
 template <class Iterator>

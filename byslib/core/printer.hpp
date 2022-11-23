@@ -1,6 +1,9 @@
 #pragma once
-#include "stdlib.hpp"
-#include "types.hpp"
+#include <iostream>
+#include <string>
+#include <utility>
+
+#include "traits.hpp"
 /**
  * @file printer.hpp
  * @brief Output
@@ -90,5 +93,4 @@ class Printer {
         return *this;
     }
 };
-
 }  // namespace bys

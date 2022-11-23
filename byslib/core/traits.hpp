@@ -1,7 +1,7 @@
 #pragma once
 #include "stdlib.hpp"
 /**
- * @file types.hpp
+ * @file traits.hpp
  * @brief Types
  *
  * type_traits拡張
@@ -10,14 +10,16 @@ namespace bys {
 template <class, class = void>
 struct has_rshift_from_istream : std::false_type {};
 template <class T>
-struct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>() >> std::declval<T&>())>> : std::true_type {};
+struct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>() >> std::declval<T&>())>>
+    : std::true_type {};
 template <class T>
 constexpr bool has_rshift_from_istream_v = has_rshift_from_istream<T>::value;
 
 template <class, class = void>
 struct has_lshift_to_ostream : std::false_type {};
 template <class T>
-struct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>() << std::declval<T&>())>> : std::true_type {};
+struct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>() << std::declval<T&>())>>
+    : std::true_type {};
 template <class T>
 constexpr bool has_lshft_to_ostream_v = has_lshift_to_ostream<T>::value;
 
