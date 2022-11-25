@@ -24,7 +24,7 @@ template <class T> std::vector<T> deci2n(T deci, T base) {
     return res;
 }
 //! @brief n進数 -> 10進数
-i64 n2deci(std::vector<i64> n, int base) {
+i64 n2deci(std::vector<i64> n, i32 base) {
     i64 b = 1;
     i64 res = 0;
     for (auto&& d : n) {

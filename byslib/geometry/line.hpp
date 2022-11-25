@@ -18,7 +18,7 @@ struct Line {
     Point<f128> to_unit_Point() const { return to_Point().normalized(); }
     f128 angle() const { return to_Point().angle(); }
     bool operator==(const Line& rh) const {
-        return abs((int)iSP(p, q, rh.p)) != 1 && abs((int)iSP(p, q, rh.q)) != 1;
+        return abs((i32)iSP(p, q, rh.p)) != 1 && abs((i32)iSP(p, q, rh.q)) != 1;
     }
     bool operator!=(const Line& rh) const { return !(*this == rh); }
 };
@@ -45,7 +45,7 @@ template <class T> bool is_cross(const Line<T>& a, const Line<T>& b) {
     return sgn(a.to_Point().det(b.to_Point())) != 0 || sgn(a.to_Point().det(b.p - a.p)) == 0;
 }
 template <class T> bool is_cross(const Segment<T>& a, const Segment<T>& b) {
-    return (int)iSP(b.p, a) * (int)iSP(b.q, a) <= 0 && (int)iSP(a.p, b) * (int)iSP(a.q, b) <= 0;
+    return (i32)iSP(b.p, a) * (i32)iSP(b.q, a) <= 0 && (i32)iSP(a.p, b) * (i32)iSP(a.q, b) <= 0;
 }
 template <class T> f128 angle(const Line<T>& a, const Line<T>& b) {
     return std::atan2(a.to_Point().det(b.to_Point()), a.to_Point().dot(b.to_Point()));

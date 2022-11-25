@@ -2,6 +2,7 @@
 #include <cassert>
 #include <utility>
 #include <vector>
+#include "../core/alias.hpp"
 /**
  * @file grid.hpp
  * @brief Grid Manager
@@ -9,47 +10,47 @@
 namespace bys {
 //! @brief グリッド探索補助ツール詰め合わせ
 struct Grid {
-    int h, w;
+    i32 h, w;
     //! @brief row*colのグリッド
-    Grid(int row, int col) : h(row), w(col) {}
+    Grid(i32 row, i32 col) : h(row), w(col) {}
 
     //! @brief グリッドに含まれるか判定
-    bool contain(int row, int col) const { return 0 <= row && row < h && 0 <= col && col < w; }
+    bool contain(i32 row, i32 col) const { return 0 <= row && row < h && 0 <= col && col < w; }
     //! @brief グリッドの面積
-    int area() const { return h * w; }
+    i32 area() const { return h * w; }
     //! @brief 一次元化したときのインデックス
-    int index(int row, int col) const {
+    i32 index(i32 row, i32 col) const {
         assert(contain(row, col));
         return row * w + col;
     }
-    int index(std::pair<int, int> p) const { return index(p.first, p.second); }
+    i32 index(std::pair<i32, i32> p) const { return index(p.first, p.second); }
     //! @brief インデックスから復元
-    std::pair<int, int> coord(int idx) const {
+    std::pair<i32, i32> coord(i32 idx) const {
         assert(0 <= idx && idx < area());
         return {idx / w, idx % w};
     }
     //! 周囲のマスのうちグリッドに含まれるもの
-    auto next(int row, int col, const std::vector<std::pair<int, int>>& delta) const {
+    auto next(i32 row, i32 col, const std::vector<std::pair<i32, i32>>& delta) const {
         assert(contain(row, col));
-        std::vector<std::pair<int, int>> res;
+        std::vector<std::pair<i32, i32>> res;
         for (auto [di, dj] : delta) {
-            int ni = row + di;
-            int nj = col + dj;
+            i32 ni = row + di;
+            i32 nj = col + dj;
             if (contain(ni, nj)) res.push_back({ni, nj});
         }
         return res;
     }
     //! @brief 右・下
-    auto next2(int row, int col) const { return next(row, col, {{1, 0}, {0, 1}}); }
+    auto next2(i32 row, i32 col) const { return next(row, col, {{1, 0}, {0, 1}}); }
     //! @brief 上下左右
-    auto next4(int row, int col) const {
+    auto next4(i32 row, i32 col) const {
         return next(row, col, {{1, 0}, {-1, 0}, {0, 1}, {0, -1}});
     }
     //! @brief 8方向
-    auto next8(int row, int col) const {
-        std::vector<std::pair<int, int>> delta;
-        for (int di = -1; di <= 1; ++di) {
-            for (int dj = -1; dj <= 1; ++dj) {
+    auto next8(i32 row, i32 col) const {
+        std::vector<std::pair<i32, i32>> delta;
+        for (i32 di = -1; di <= 1; ++di) {
+            for (i32 dj = -1; dj <= 1; ++dj) {
                 if (di == 0 && dj == 0) continue;
                 delta.push_back({di, dj});
             }

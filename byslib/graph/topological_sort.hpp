@@ -2,6 +2,7 @@
 #include <queue>
 #include <vector>
 
+#include "../core/alias.hpp"
 #include "graph.hpp"
 /**
  * @file topological_sort.hpp
@@ -13,11 +14,11 @@ namespace bys {
  *
  * O(V + E)
  */
-template <class E> std::vector<int> topological_sort(AdjacencyList<E> const& graph) {
+template <class E> std::vector<i32> topological_sort(AdjacencyList<E> const& graph) {
     using V = typename E::vertex_type;
     auto n = graph.size();
     std::vector<V> res;
-    std::vector<int> degree(n);
+    std::vector<i32> degree(n);
     res.reserve(n);
     for (std::size_t i = 0; i < n; ++i) {
         for (auto&& e : graph[i]) ++degree[e.dest];

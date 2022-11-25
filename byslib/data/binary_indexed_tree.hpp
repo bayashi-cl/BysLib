@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "../algebra/monoid.hpp"
+#include "../core/alias.hpp"
 #include "../math/bit.hpp"
 /**
  * @file binary_indexed_tree.hpp
@@ -20,18 +21,18 @@ namespace bys {
 template <class Abelian> struct BinaryIndexedTree {
     using T = typename Abelian::set_type;
     static_assert(Abelian::commutative);
-    const int _n;
+    const i32 _n;
     std::vector<T> data;
 
-    BinaryIndexedTree(int n) : _n(n), data(_n + 1, Abelian::identity) {}
+    BinaryIndexedTree(i32 n) : _n(n), data(_n + 1, Abelian::identity) {}
     BinaryIndexedTree(const std::vector<T>& val) : _n(val.size()), data(_n + 1, Abelian::identity) {
         std::copy(val.begin(), val.end(), data.begin() + 1);
-        for (int i = 1; i <= _n; i++) {
-            if (int j = i + (i & -i); j <= _n) data[j] = Abelian::operation(data[j], data[i]);
+        for (i32 i = 1; i <= _n; i++) {
+            if (i32 j = i + (i & -i); j <= _n) data[j] = Abelian::operation(data[j], data[i]);
         }
     }
 
-    void point_append(int i, T val) {
+    void point_append(i32 i, T val) {
         assert(0 <= i && i < _n);
         for (++i; i <= _n; i += i & -i) data[i] = Abelian::operation(data[i], val);
     }
@@ -42,13 +43,13 @@ template <class Abelian> struct BinaryIndexedTree {
     }
     T operator[](std::size_t i) const { return fold(i, i + 1); }
 
-    T prefix_fold(int right) const {
+    T prefix_fold(i32 right) const {
         assert(0 <= right and right <= _n);
         T res = Abelian::identity;
         for (; right > 0; right -= right & -right) res = Abelian::operation(res, data[right]);
         return res;
     }
-    T fold(int left, int right) const {
+    T fold(i32 left, i32 right) const {
         if (left < right) {
             return Abelian::operation(Abelian::inverse(prefix_fold(left)), prefix_fold(right));
         } else {
@@ -58,18 +59,18 @@ template <class Abelian> struct BinaryIndexedTree {
 };
 
 template <class T> struct BinaryIndexedTree<Add<T>> {
-    const int _n;
+    const i32 _n;
     std::vector<T> data;
 
-    BinaryIndexedTree(int n) : _n(n), data(_n + 1) {}
+    BinaryIndexedTree(i32 n) : _n(n), data(_n + 1) {}
     BinaryIndexedTree(const std::vector<T>& val) : _n(val.size()), data(_n + 1) {
         std::copy(val.begin(), val.end(), data.begin() + 1);
-        for (int i = 1; i <= _n; i++) {
-            if (int j = i + (i & -i); j <= _n) data[j] += data[i];
+        for (i32 i = 1; i <= _n; i++) {
+            if (i32 j = i + (i & -i); j <= _n) data[j] += data[i];
         }
     }
 
-    void point_append(int i, T val) {
+    void point_append(i32 i, T val) {
         assert(0 <= i && i < _n);
         for (++i; i <= _n; i += i & -i) data[i] += val;
     }
@@ -80,22 +81,22 @@ template <class T> struct BinaryIndexedTree<Add<T>> {
     }
     T operator[](std::size_t i) const { return fold(i, i + 1); }
 
-    T prefix_fold(int right) const {
+    T prefix_fold(i32 right) const {
         assert(0 <= right and right <= _n);
         T res = 0;
         for (; right > 0; right -= right & -right) res += data[right];
         return res;
     }
-    T fold(int left, int right) const {
+    T fold(i32 left, i32 right) const {
         return left < right ? prefix_fold(right) - prefix_fold(left) : 0;
     }
 
     //! @brief sum[0, r) >= xとなる最小のrを求める
-    int bisect(T x) const {
+    i32 bisect(T x) const {
         if (x <= 0) return 0;
         if (x > prefix_fold(_n)) return -1;
-        int res = 0;
-        for (int w = bit_floor(_n); w > 0; w >>= 1) {
+        i32 res = 0;
+        for (i32 w = bit_floor(_n); w > 0; w >>= 1) {
             if (res + w < _n && data[res + w] < x) {
                 x -= data[res + w];
                 res += w;

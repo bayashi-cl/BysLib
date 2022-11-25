@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cassert>
 #include <vector>
+#include "../core/alias.hpp"
 /**
  * @file sparse_table.hpp
  * @brief Sparse Table
@@ -19,8 +20,8 @@ namespace bys {
  */
 template <class Band> class SparseTable {
     using T = typename Band::set_type;
-    int n;
-    std::vector<int> lookup;
+    i32 n;
+    std::vector<i32> lookup;
     std::vector<std::vector<T>> table;
 
   public:
@@ -31,22 +32,22 @@ template <class Band> class SparseTable {
         n = v.size();
         lookup.resize(n + 1);
 
-        for (int i = 2; i < n + 1; ++i) lookup[i] = lookup[i >> 1] + 1;
-        int max_k = lookup.back();
+        for (i32 i = 2; i < n + 1; ++i) lookup[i] = lookup[i >> 1] + 1;
+        i32 max_k = lookup.back();
         table.assign(max_k + 1, std::vector<T>(n));
         std::copy(v.begin(), v.end(), table[0].begin());
-        for (int i = 1; i <= max_k; ++i) {
-            for (int j = 0; j <= n - (1 << i); ++j) {
+        for (i32 i = 1; i <= max_k; ++i) {
+            for (i32 j = 0; j <= n - (1 << i); ++j) {
                 table[i][j] = Band::operation(table[i - 1][j], table[i - 1][j + (1 << (i - 1))]);
             }
         }
     }
 
-    T query(int l, int r) {
+    T query(i32 l, i32 r) {
         assert(0 <= l && l <= n);
         assert(0 <= r && r <= n);
         if (l >= r) return Band::identity;
-        int w = r - l;
+        i32 w = r - l;
         return Band::operation(table[lookup[w]][l], table[lookup[w]][r - (1 << lookup[w])]);
     }
 };

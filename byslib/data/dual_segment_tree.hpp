@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "../algebra/mapping.hpp"
+#include "../core/alias.hpp"
 #include "../math/bit.hpp"
 /**
  * @file dual_segment_tree.hpp
@@ -24,19 +25,19 @@ namespace bys {
  */
 template <class T, class ActMonoid, class Action = MappingToSet<T, ActMonoid>>
 class DualSegmentTree {
-    int _n, n_leaf, logsize;
+    i32 _n, n_leaf, logsize;
     std::vector<typename ActMonoid::set_type> lazy;
     std::vector<T> data;
 
-    void push(int p) {
-        for (int i = logsize; i > 0; --i) {
-            int a = p >> i;
+    void push(i32 p) {
+        for (i32 i = logsize; i > 0; --i) {
+            i32 a = p >> i;
             if (lazy[a] == ActMonoid::identity) continue;
             if (a * 2 < n_leaf) {
                 lazy[a * 2] = ActMonoid::operation(lazy[a * 2], lazy[a]);
                 lazy[a * 2 + 1] = ActMonoid::operation(lazy[a * 2 + 1], lazy[a]);
             } else {
-                int t = a * 2 - n_leaf;
+                i32 t = a * 2 - n_leaf;
                 Action::mapping(data[t], lazy[a]);
                 Action::mapping(data[t + 1], lazy[a]);
             }
@@ -45,7 +46,7 @@ class DualSegmentTree {
     }
 
   public:
-    DualSegmentTree(int n, T ident)
+    DualSegmentTree(i32 n, T ident)
         : _n(n),
           n_leaf(bit_ceil(_n)),
           logsize(bit_width(n - 1)),
@@ -60,20 +61,20 @@ class DualSegmentTree {
         std::copy(v.begin(), v.end(), data.begin());
     }
 
-    T operator[](int i) const {
+    T operator[](i32 i) const {
         T res = data[i];
         for (i = (i + n_leaf) >> 1; i > 0; i >>= 1) {
             Action::mapping(res, lazy[i]);
         }
         return res;
     }
-    void update(int i, T val) {
+    void update(i32 i, T val) {
         if constexpr (!ActMonoid::commutative) {
             push(i + n_leaf);
         }
         data[i] = val;
     }
-    void apply(int l, int r, T val) {
+    void apply(i32 l, i32 r, T val) {
         assert(l < r);
         l += n_leaf;
         r += n_leaf;

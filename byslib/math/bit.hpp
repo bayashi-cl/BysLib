@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cassert>
 #include <string>
+#include "../core/alias.hpp"
 /**
  * @file bit.hpp
  * @brief Bit
@@ -13,8 +14,8 @@ namespace bys {
  *
  * bit_width(x) - 1  < log2(x) <= bit_width(x)
  */
-template <class T> constexpr int bit_width(T x) {
-    int bits = 0;
+template <class T> constexpr i32 bit_width(T x) {
+    i32 bits = 0;
     x = (x < 0) ? (-x) : x;
     for (; x != 0; bits++) x >>= 1;
     return bits;
@@ -42,5 +43,5 @@ template <class T> std::string bin(T n) {
     return res;
 }
 //! @brief d bit目が立っているか
-template <class T> constexpr bool pop(T s, int d) { return s & (T(1) << d); }
+template <class T> constexpr bool pop(T s, i32 d) { return s & (T(1) << d); }
 }  // namespace bys

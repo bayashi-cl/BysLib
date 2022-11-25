@@ -3,6 +3,7 @@
  * @file warshall_floyd.hpp
  * @brief Warshall Floyd
  */
+#include "../core/alias.hpp"
 #include "../core/const.hpp"
 #include "../utility/change.hpp"
 #include "graph.hpp"
@@ -19,13 +20,13 @@ namespace bys {
 template <class E>
 std::vector<std::vector<typename E::weight_type>> warshall_floyd(EdgeList<E> const& graph) {
     using W = typename E::weight_type;
-    int n = graph.size();
+    i32 n = graph.size();
     std::vector cost(n, std::vector(n, get_inf<W>()));
     for (auto&& [src, id, e] : graph) chmin(cost[src][e.dest], e.weight);
-    for (int i = 0; i < n; ++i) cost[i][i] = 0;
-    for (int k = 0; k < n; k++) {
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
+    for (i32 i = 0; i < n; ++i) cost[i][i] = 0;
+    for (i32 k = 0; k < n; k++) {
+        for (i32 i = 0; i < n; i++) {
+            for (i32 j = 0; j < n; j++) {
                 if (is_inf(cost[i][k]) or is_inf(cost[k][j])) continue;
                 chmin(cost[i][j], cost[i][k] + cost[k][j]);
             }

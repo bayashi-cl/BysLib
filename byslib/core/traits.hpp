@@ -2,6 +2,7 @@
 #include <array>
 #include <iostream>
 #include <type_traits>
+#include "alias.hpp"
 /**
  * @file traits.hpp
  * @brief Types
@@ -37,14 +38,16 @@ template <class T> struct Indexed {
     static_assert(std::is_integral_v<T>);
     using resolve_to = T;
 };
-using int1 = Indexed<int>;
-using ll1 = Indexed<long long int>;
+using i32_1 = Indexed<i32>;
+using i64_1 = Indexed<i64>;
 
 template <class, class = void> struct is_indexed : std::false_type {};
 template <class T> struct is_indexed<Indexed<T>> : std::true_type {};
 template <class T> constexpr bool is_indexed_v = is_indexed<T>::value;
 
-template <class T, class = void> struct resolve_type { using type = T; };
+template <class T, class = void> struct resolve_type {
+    using type = T;
+};
 template <class T> struct resolve_type<T, std::void_t<typename T::resolve_to>> {
     using type = typename T::resolve_to;
 };

@@ -6,6 +6,7 @@
  * 最近共通祖先
  */
 #include "../algebra/monoid.hpp"
+#include "../core/alias.hpp"
 #include "../data/sparse_table.hpp"
 #include "../utility/fixpoint.hpp"
 #include "graph.hpp"
@@ -19,30 +20,30 @@ namespace bys {
  */
 template <class E> class LowestCommonAncestor {
     struct Vertex {
-        int id, depath;
+        i32 id, depath;
         bool operator<(const Vertex& rh) const { return depath < rh.depath; }
     };
     std::size_t n;
     SparseTable<Min<Vertex>> st;
-    std::vector<int> pos;
+    std::vector<i32> pos;
 
   public:
-    LowestCommonAncestor(AdjacencyList<E> const& graph, int root) : n(graph.size()), pos(n) {
+    LowestCommonAncestor(AdjacencyList<E> const& graph, i32 root) : n(graph.size()), pos(n) {
         std::vector<Vertex> euler_tour;
         euler_tour.reserve(2 * n - 1);
-        FixPoint([&](auto&& self, int now, int prev, int deapth) -> void {
+        FixPoint([&](auto&& self, i32 now, i32 prev, i32 deapth) -> void {
             pos[now] = euler_tour.size();
             euler_tour.push_back({now, deapth});
 
             for (auto&& nxt : graph[now]) {
-                if (int(nxt.dest) == prev) continue;
+                if (i32(nxt.dest) == prev) continue;
                 self(nxt.dest, now, deapth + 1);
                 euler_tour.push_back({now, deapth});
             }
         })(root, -1, 0);
         st.build(euler_tour);
     }
-    int lca(std::size_t a, std::size_t b) {
+    i32 lca(std::size_t a, std::size_t b) {
         assert(a < n);
         assert(b < n);
         if (a == b) return a;

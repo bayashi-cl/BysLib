@@ -54,18 +54,18 @@ template <class T> struct Point {
     //! @brief 正射影ベクトル
     Point projection(const Point& to) const { return to * (dot(to) / to.norm2()); }
     //! @brief 象限
-    int quadrant() const {
+    i32 quadrant() const {
         if (sgn(y) >= 0) return sgn(x) >= 0 ? 1 : 2;
         return sgn(x) >= 0 ? 4 : 3;
     }
     //! @brief 偏角ソート用
     bool operator<(const Point& rh) const {
-        int q = quadrant(), rhq = rh.quadrant();
+        i32 q = quadrant(), rhq = rh.quadrant();
         if (q != rhq) return q < rhq;
         return sgn(det(rh)) > 0;
     }
     bool operator<=(const Point& rh) const {
-        int q = quadrant(), rhq = rh.quadrant();
+        i32 q = quadrant(), rhq = rh.quadrant();
         if (q != rhq) return q < rhq;
         return sgn(det(rh)) >= 0;
     }
@@ -88,7 +88,7 @@ enum class Turn {
 };
 //! @brief 辺の曲がる方向
 template <class T> Turn iSP(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
-    int flg = sgn((b - a).det(c - a));
+    i32 flg = sgn((b - a).det(c - a));
     if (flg == 1) {
         return Turn::CCW;
     } else if (flg == -1) {
@@ -114,7 +114,7 @@ enum class Angle {
 
 //! @brief 角の種類
 template <class T> Angle angle_type(const Point<T>& a, const Point<T>& b, const Point<T>& c) {
-    int t = sgn((a - b).dot(c - b));
+    i32 t = sgn((a - b).dot(c - b));
     if (t == -1) {
         return Angle::Obtuse;
     } else if (t == 0) {

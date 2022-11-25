@@ -2,6 +2,8 @@
 #include <array>
 #include <optional>
 #include <utility>
+#include "../core/alias.hpp"
+
 /**
  * @file monoid.hpp
  * @brief Monoid
@@ -60,7 +62,7 @@ template <class T> struct Xor : Magma {
     static constexpr bool commutative{true};
 };
 template <std::size_t N> struct Perm : Magma {
-    using set_type = std::array<int, N>;
+    using set_type = std::array<i32, N>;
     static constexpr set_type operation(const set_type& a, const set_type& b) {
         set_type res = {};
         for (auto i = 0UL; i < N; ++i) res[i] = b[a[i]];

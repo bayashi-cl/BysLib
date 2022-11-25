@@ -9,7 +9,7 @@
 namespace bys::geo {
 //! @brief 多角形
 template <class T> struct Polygon {
-    int n_vertex;
+    i32 n_vertex;
     std::vector<Point<T>> vertex;
     Polygon(std::initializer_list<Point<T>> init)
         : n_vertex(init.size()), vertex(init.begin(), init.end()) {}
@@ -18,7 +18,7 @@ template <class T> struct Polygon {
     T area2() const {
         if (n_vertex < 3) return 0;
         f128 s = 0.0;
-        for (int i = 0; i < n_vertex; ++i) {
+        for (i32 i = 0; i < n_vertex; ++i) {
             s += vertex[i].det(vertex[(i + 1) % n_vertex]);
         }
         return s;
@@ -27,9 +27,9 @@ template <class T> struct Polygon {
     f128 area() const { return area2() * 0.5; }
     //! @brief 凸判定
     bool is_convex() const {
-        int left = 0;
-        int right = 0;
-        for (int i = 0; i < n_vertex; ++i) {
+        i32 left = 0;
+        i32 right = 0;
+        for (i32 i = 0; i < n_vertex; ++i) {
             auto res = iSP(vertex[i], vertex[(i + 1) % n_vertex], vertex[(i + 2) % n_vertex]);
             if (res == Turn::CW) left++;
             if (res == Turn::CCW) right++;

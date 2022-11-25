@@ -4,6 +4,7 @@
 #include <numeric>
 #include <utility>
 #include <vector>
+#include "../core/alias.hpp"
 /**
  * @file union_find.hpp
  * @brief Union Find Tree
@@ -56,7 +57,7 @@ struct UnionFindTree {
 
   private:
     std::size_t _n, _n_tree;
-    std::vector<int> parent;  // 負なら親でありその値は(-子の数)
+    std::vector<i32> parent;  // 負なら親でありその値は(-子の数)
 };
 template <class T, class Lambda> struct UnionFindTreeWithData : UnionFindTree {
     std::vector<T> _data;
@@ -79,8 +80,8 @@ template <class T, class Lambda> struct UnionFindTreeWithData : UnionFindTree {
 };
 
 struct LinkedUnionFindTree : UnionFindTree {
-    std::vector<int> _link;
-    LinkedUnionFindTree(int n) : UnionFindTree::UnionFindTree(n), _link(n) {
+    std::vector<i32> _link;
+    LinkedUnionFindTree(i32 n) : UnionFindTree::UnionFindTree(n), _link(n) {
         std::iota(_link.begin(), _link.end(), 0);
     }
 
@@ -92,9 +93,9 @@ struct LinkedUnionFindTree : UnionFindTree {
             return false;
         }
     }
-    std::vector<int> connect(int x) const {
-        std::vector<int> res = {x};
-        for (int y = _link[x]; y != x; y = _link[y]) res.push_back(y);
+    std::vector<i32> connect(i32 x) const {
+        std::vector<i32> res = {x};
+        for (i32 y = _link[x]; y != x; y = _link[y]) res.push_back(y);
         return res;
     }
 };

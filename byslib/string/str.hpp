@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <string>
 #include <vector>
+#include "../core/alias.hpp"
 /**
  * @file zfill.hpp
  * @brief Python::str
@@ -15,7 +16,7 @@ namespace bys {
  * @param width 幅
  * @param fill 埋める文字
  */
-template <class T> std::string zfill(const T& n, const int width, char fill = '0') {
+template <class T> std::string zfill(const T& n, const i32 width, char fill = '0') {
     std::stringstream ss;
     ss << std::setw(width) << std::setfill(fill) << n;
     return ss.str();
@@ -27,9 +28,9 @@ template <class T> std::string zfill(const T& n, const int width, char fill = '0
  */
 std::vector<std::string> split(const std::string& s, char delim = ' ') {
     std::vector<std::string> res;
-    auto n = static_cast<int>(s.length());
-    int left = 0;
-    for (int i = 0; i < n; ++i) {
+    auto n = static_cast<i32>(s.length());
+    i32 left = 0;
+    for (i32 i = 0; i < n; ++i) {
         if (s[i] == delim) {
             if (i != left) {
                 res.emplace_back(s.substr(left, i - left));

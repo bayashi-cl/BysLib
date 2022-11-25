@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iterator>
 #include <vector>
+#include "../core/alias.hpp"
 /**
  * @file compress.hpp
  * @brief Coordinate Compression
@@ -31,14 +32,14 @@ template <class T> class Compress {
         build = true;
     }
     //! @brief 圧縮された値を取得 O(log N)
-    int get(T v) const {
+    i32 get(T v) const {
         assert(build);
         auto itr = std::lower_bound(std::begin(cp), std::end(cp), v);
         assert(*itr == v);
         return std::distance(cp.begin(), itr);
     }
     //! @brief 解凍された値を取得 O(1)
-    T unzip(int i) const {
+    T unzip(i32 i) const {
         assert(build);
         return cp[i];
     }

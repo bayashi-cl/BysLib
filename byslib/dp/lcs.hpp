@@ -7,7 +7,7 @@
 #include "../utility/enumerate.hpp"
 
 namespace bys {
-template <class Iterable> int lcs(Iterable const& a, Iterable const& b) {
+template <class Iterable> i32 lcs(Iterable const& a, Iterable const& b) {
     static_assert(is_iterable_v<Iterable>, "not iertable");
     i32 n = a.size();
     i32 m = b.size();

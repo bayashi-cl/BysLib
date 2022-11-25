@@ -11,7 +11,7 @@ namespace bys {
  * @tparam Iterable
  * @param v
  * @param strict 狭義単調増加 or 広義単調増加
- * @return std::vector<int> 部分列を構成するインデックス
+ * @return std::vector<i32> 部分列を構成するインデックス
  */
 template <class Iterable> auto lis(const Iterable& v, bool strict = true) {
     static_assert(is_iterable_v<Iterable>, "v is not iterable");

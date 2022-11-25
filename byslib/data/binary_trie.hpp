@@ -2,23 +2,24 @@
 #include <limits>
 #include <memory>
 #include <type_traits>
+#include "../core/alias.hpp"
 
 namespace bys {
 template <class T> class BinaryTrie {
     static_assert(std::is_integral_v<T>, "T is not integral");
-    static constexpr int B = std::numeric_limits<T>::digits;
+    static constexpr i32 B = std::numeric_limits<T>::digits;
 
     struct Node;
     using Ptr = std::shared_ptr<Node>;
 
     struct Node {
         Ptr left, right;
-        int count = 0;
+        i32 count = 0;
     };
 
     Ptr root;
 
-    Ptr add(Ptr now, T val, int b) {
+    Ptr add(Ptr now, T val, i32 b) {
         if (not now) now = std::make_shared<Node>();
         now->count += 1;
         if (b >= 0) {
@@ -31,7 +32,7 @@ template <class T> class BinaryTrie {
         return now;
     }
 
-    Ptr sub(Ptr now, T val, int b) {
+    Ptr sub(Ptr now, T val, i32 b) {
         if (not now) return nullptr;
         now->count -= 1;
         if (now->count == 0) return nullptr;
@@ -57,17 +58,17 @@ template <class T> class BinaryTrie {
         if (not root) return false;
 
         Ptr now = root;
-        for (int i = B - 1; i >= 0; --i) {
+        for (i32 i = B - 1; i >= 0; --i) {
             now = (val >> i) & (T)1 ? now->left : now->right;
             if (not now) return false;
         }
         return true;
     }
-    int count(T val) const {
+    i32 count(T val) const {
         if (not root) return 0;
 
         Ptr now = root;
-        for (int i = B - 1; i >= 0; --i) {
+        for (i32 i = B - 1; i >= 0; --i) {
             now = (val >> i) & (T)1 ? now->left : now->right;
             if (not now) return 0;
         }

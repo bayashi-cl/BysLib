@@ -2,6 +2,7 @@
 #include <array>
 #include <numeric>
 #include <vector>
+#include "../core/alias.hpp"
 /**
  * @file itertools.hpp
  * @brief Python::itertools
@@ -17,27 +18,27 @@ namespace bys {
  */
 template <class T> class Combinations {
     const std::vector<T> pool;
-    int n, r;
+    i32 n, r;
     std::vector<T> comb;
-    std::vector<int> indices;
+    std::vector<i32> indices;
     bool term = false;
 
   public:
-    Combinations(const std::vector<T>& vec, int r)
+    Combinations(const std::vector<T>& vec, i32 r)
         : pool(vec), n(vec.size()), r(r), comb(r), indices(r) {
         if (r > n) {
             term = true;
             return;
         }
         std::iota(indices.begin(), indices.end(), 0);
-        for (int i = 0; i < r; ++i) comb[i] = pool[indices[i]];
+        for (i32 i = 0; i < r; ++i) comb[i] = pool[indices[i]];
     }
     Combinations<T> begin() const { return *this; }
     bool end() const { return true; }
     bool operator!=(bool) const { return !term; }
     void operator++() {
         bool flg = true;
-        int i = r - 1;
+        i32 i = r - 1;
         for (; i >= 0; --i) {
             if (indices[i] != i + n - r) {
                 flg = false;
@@ -49,10 +50,10 @@ template <class T> class Combinations {
             return;
         }
         indices[i]++;
-        for (int j = i + 1; j < r; ++j) {
+        for (i32 j = i + 1; j < r; ++j) {
             indices[j] = indices[j - 1] + 1;
         }
-        for (int k = 0; k < r; ++k) comb[k] = pool[indices[k]];
+        for (i32 k = 0; k < r; ++k) comb[k] = pool[indices[k]];
     }
     const std::vector<T>& operator*() const { return comb; }
 };
@@ -79,7 +80,7 @@ template <std::size_t R> class IndexCombinations {
     bool operator!=(bool) const { return !term; }
     void operator++() {
         bool flg = true;
-        int i = r - 1;
+        i32 i = r - 1;
         for (; i >= 0; --i) {
             if (indices[i] != i + n - r) {
                 flg = false;

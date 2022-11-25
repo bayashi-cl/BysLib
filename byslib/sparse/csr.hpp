@@ -3,6 +3,7 @@
 #include <utility>
 #include <vector>
 
+#include "../core/alias.hpp"
 #include "../utility/subrange.hpp"
 #include "coo.hpp"
 
@@ -10,10 +11,10 @@ namespace bys {
 template <class T> class CSRMatrix {
   public:
     using value_type = T;
-    const std::pair<int, int> shape;
+    const std::pair<i32, i32> shape;
 
   private:
-    std::vector<int> _indptr, _indices;
+    std::vector<i32> _indptr, _indices;
     std::vector<T> _data;
 
   public:
@@ -26,14 +27,14 @@ template <class T> class CSRMatrix {
 
         std::partial_sum(_indptr.begin(), _indptr.end(), _indptr.begin());
         for (auto&& [i, j, v] : coo._data) {
-            int index = --_indptr[i];
+            i32 index = --_indptr[i];
             _indices[index] = j;
             _data[index] = v;
         }
     }
-    CSRMatrix(std::pair<int, int> shape, const std::vector<std::vector<std::pair<int, T>>>& data)
+    CSRMatrix(std::pair<i32, i32> shape, const std::vector<std::vector<std::pair<i32, T>>>& data)
         : shape(shape), _indptr(shape.first + 1) {
-        for (int i = 0; i < shape.first; ++i) {
+        for (i32 i = 0; i < shape.first; ++i) {
             for (auto&& [index, elem] : data[i]) {
                 _indices.push_back(index);
                 _data.push_back(elem);

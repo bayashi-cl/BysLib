@@ -31,7 +31,7 @@ class RollingHash {
         }
     }
 
-    u64 hash(int l, int r) const {
+    u64 hash(i32 l, i32 r) const {
         u64 res = mod + _hash[r] - modmul(_hash[l], base_pow[r - l]);
         return res < mod ? res : res - mod;
     }

@@ -1,6 +1,7 @@
 #pragma once
 #include <stack>
 
+#include "../core/alias.hpp"
 #include "../utility/fixpoint.hpp"
 #include "graph.hpp"
 
@@ -25,7 +26,7 @@ template <class E> auto dfs(AdjacencyList<E> const& graph, typename E::vertex_ty
 }
 template <class E> auto pre_order(const AdjacencyList<E>& graph) {
     using V = typename E::vertex_type;
-    int n = graph.size();
+    i32 n = graph.size();
     std::vector<bool> seen(n);
     std::vector<V> res;
     FixPoint pre_dfs([&](auto&& self, V now) -> void {
@@ -35,16 +36,16 @@ template <class E> auto pre_order(const AdjacencyList<E>& graph) {
             if (not seen[e.dest]) self(e.dest);
         }
     });
-    for (int i = 0; i < n; ++i) {
+    for (i32 i = 0; i < n; ++i) {
         if (not seen[i]) pre_dfs(i);
     }
     return res;
 }
 
-// std::vector<int> in_order(const AdjacencyList& graph, int source);
+// std::vector<i32> in_order(const AdjacencyList& graph, i32 source);
 template <class E> auto post_order(const AdjacencyList<E>& graph) {
     using V = typename E::vertex_type;
-    int n = graph.size();
+    i32 n = graph.size();
     std::vector<bool> seen(n);
     std::vector<V> res;
     FixPoint post_dfs([&](auto&& self, V now) -> void {
@@ -54,10 +55,10 @@ template <class E> auto post_order(const AdjacencyList<E>& graph) {
         }
         res.push_back(now);
     });
-    for (int i = 0; i < n; ++i) {
+    for (i32 i = 0; i < n; ++i) {
         if (not seen[i]) post_dfs(i);
     }
     return res;
 }
-// std::vector<int> euler_tour(const AdjacencyList& graph, int source);
+// std::vector<i32> euler_tour(const AdjacencyList& graph, i32 source);
 }  // namespace bys

@@ -9,9 +9,9 @@
  */
 namespace bys {
 //! @brief 整数の累乗
-constexpr i64 int_pow(int a, int b) {
+constexpr i64 int_pow(i32 a, i32 b) {
     i64 res = 1;
-    for (int i = 0; i < b; ++i) res *= a;
+    for (i32 i = 0; i < b; ++i) res *= a;
     return res;
 }
 /**
