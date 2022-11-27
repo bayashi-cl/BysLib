@@ -57,9 +57,9 @@ template <u32 Modulo> class ModInt {
         return *this;
     }
     constexpr ModInt& operator*=(const ModInt rhs) noexcept {
-        unsigned long long z = _v;
+        u64 z = _v;
         z *= rhs._v;
-        _v = (unsigned i32)(z % mod);
+        _v = (u32)(z % mod);
         return *this;
     }
     constexpr ModInt& operator/=(const ModInt rhs) noexcept { return *this = *this * rhs.inv(); }

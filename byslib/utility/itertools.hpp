@@ -64,11 +64,11 @@ template <class T> class Combinations {
  */
 template <std::size_t R> class IndexCombinations {
     std::array<std::size_t, R> indices;
-    std::size_t n, r;
+    i32 n, r;
     bool term = false;
 
   public:
-    IndexCombinations(std::size_t n) : n(n), r(indices.size()) {
+    IndexCombinations(i32 n) : n(n), r(indices.size()) {
         if (r > n) {
             term = true;
             return;
@@ -92,7 +92,7 @@ template <std::size_t R> class IndexCombinations {
             return;
         }
         indices[i]++;
-        for (std::size_t j = i + 1; j < r; ++j) {
+        for (i32 j = i + 1; j < r; ++j) {
             indices[j] = indices[j - 1] + 1;
         }
     }

@@ -19,16 +19,16 @@ constexpr i64 int_pow(i32 a, i32 b) {
  *
  * O(log q)
  */
-template <class T> constexpr T mod_pow(T p, T q, T mod) {
-    // T res = 1 % mod;
-    if (mod == 1) return 0;
-    T res = 1;
-    p %= mod;
-    for (; q; q >>= 1) {
-        if (q & 1) res = res * p % mod;
-        p = p * p % mod;
+constexpr i64 mod_pow(i64 p, i64 q, i64 mod) {
+    if (mod == 1) return 0_i64;
+    i128 res = 1;
+    i128 b = p % mod;
+    while (q) {
+        if (q & 1) res = res * b % mod;
+        b = b * b % mod;
+        q >>= 1;
     }
-    return res;
+    return (i64)res;
 }
 //! @brief ceil(x / y)
 template <class T> constexpr T ceildiv(T x, T y) {
@@ -98,14 +98,14 @@ constexpr bool isclose(T x, T y, T coef = 4.0) {
            diff < std::numeric_limits<T>::min();
 }
 
-constexpr std::pair<long long, long long> inv_gcd(long long a, long long b) {
+constexpr std::pair<i64, i64> inv_gcd(i64 a, i64 b) {
     a = floormod(a, b);
     if (a == 0) return {b, 0};
-    long long s = b, t = a;
-    long long m0 = 0, m1 = 1;
+    i64 s = b, t = a;
+    i64 m0 = 0, m1 = 1;
 
     while (t) {
-        long long u = s / t;
+        i64 u = s / t;
         s -= t * u;
         m0 -= m1 * u;
         auto tmp = s;

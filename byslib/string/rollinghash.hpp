@@ -25,7 +25,7 @@ class RollingHash {
   public:
     RollingHash(std::string const& s) : _hash(s.length() + 1) {
         extend_base(s.length());
-        for (std::size_t i = 0, n = s.length(); i < n; ++i) {
+        for (i32 i = 0, n = (i32)s.length(); i < n; ++i) {
             _hash[i + 1] = modmul(_hash[i], base) + s[i] + 1;
             if (_hash[i + 1] >= mod) _hash[i + 1] -= mod;
         }
@@ -37,8 +37,8 @@ class RollingHash {
     }
 
   private:
-    void extend_base(std::size_t n) {
-        while (base_pow.size() < n) {
+    void extend_base(i32 n) {
+        while ((i32)base_pow.size() < n) {
             base_pow.push_back(modmul(base_pow.back(), base));
         }
     }

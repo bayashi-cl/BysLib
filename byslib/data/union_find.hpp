@@ -13,11 +13,11 @@ namespace bys {
 //! @brief Union Find Tree
 struct UnionFindTree {
     UnionFindTree() : _n(0) {}
-    UnionFindTree(std::size_t n) : _n(n), _n_tree(_n), parent(_n, -1) {}
+    UnionFindTree(i32 n) : _n(n), _n_tree(_n), parent(_n, -1) {}
 
-    std::size_t find(std::size_t a) {
+    i32 find(i32 a) {
         assert(a < _n);
-        std::vector<std::size_t> path;
+        std::vector<i32> path;
         while (parent[a] >= 0) {
             path.emplace_back(a);
             a = parent[a];
@@ -25,7 +25,7 @@ struct UnionFindTree {
         for (auto&& p : path) parent[p] = a;
         return a;
     }
-    bool same(std::size_t a, std::size_t b) {
+    bool same(i32 a, i32 b) {
         assert(a < _n);
         assert(b < _n);
         return find(a) == find(b);
@@ -35,7 +35,7 @@ struct UnionFindTree {
      *
      * a, bが別の連結成分に属していた場合true
      */
-    bool unite(std::size_t a, std::size_t b) {
+    bool unite(i32 a, i32 b) {
         assert(a < _n);
         assert(b < _n);
         a = find(a);
@@ -47,26 +47,26 @@ struct UnionFindTree {
         parent[b] = a;
         return true;
     }
-    std::map<std::size_t, std::vector<std::size_t>> groups() {
-        std::map<std::size_t, std::vector<std::size_t>> res;
-        for (std::size_t i = 0; i < _n; ++i) res[find(i)].emplace_back(i);
+    std::map<i32, std::vector<i32>> groups() {
+        std::map<i32, std::vector<i32>> res;
+        for (i32 i = 0; i < _n; ++i) res[find(i)].emplace_back(i);
         return res;
     };
-    std::size_t size(std::size_t a) { return -parent[find(a)]; }
-    std::size_t n_tree() { return _n_tree; }
+    i32 size(i32 a) { return -parent[find(a)]; }
+    i32 n_tree() { return _n_tree; }
 
   private:
-    std::size_t _n, _n_tree;
+    i32 _n, _n_tree;
     std::vector<i32> parent;  // 負なら親でありその値は(-子の数)
 };
 template <class T, class Lambda> struct UnionFindTreeWithData : UnionFindTree {
     std::vector<T> _data;
     Lambda _mearge;
 
-    UnionFindTreeWithData(std::size_t n, const std::vector<T>& data, Lambda mearge)
+    UnionFindTreeWithData(i32 n, const std::vector<T>& data, Lambda mearge)
         : UnionFindTree::UnionFindTree(n), _data(data), _mearge(mearge) {}
 
-    bool unite(std::size_t a, std::size_t b) {
+    bool unite(i32 a, i32 b) {
         auto leader_a = find(a), leader_b = find(b);
         if (UnionFindTree::unite(a, b)) {
             auto new_leader = find(a);
@@ -76,7 +76,7 @@ template <class T, class Lambda> struct UnionFindTreeWithData : UnionFindTree {
             return false;
         }
     }
-    T get(std::size_t i) { return _data[find(i)]; }
+    T get(i32 i) { return _data[find(i)]; }
 };
 
 struct LinkedUnionFindTree : UnionFindTree {
@@ -85,7 +85,7 @@ struct LinkedUnionFindTree : UnionFindTree {
         std::iota(_link.begin(), _link.end(), 0);
     }
 
-    bool unite(std::size_t a, std::size_t b) {
+    bool unite(i32 a, i32 b) {
         if (UnionFindTree::unite(a, b)) {
             std::swap(_link[a], _link[b]);
             return true;

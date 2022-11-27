@@ -8,7 +8,7 @@
 namespace bys {
 struct EdgeBase {};
 
-template <class WeightType = long long, class VertexType = std::size_t> struct Edge : EdgeBase {
+template <class WeightType = i64, class VertexType = i32> struct Edge : EdgeBase {
     using weight_type = WeightType;
     using vertex_type = VertexType;
     vertex_type src, dest;
@@ -24,7 +24,7 @@ template <class WeightType = long long, class VertexType = std::size_t> struct E
     }
 };
 
-template <class InfoType, class WeightType = std::int64_t, class VertexType = std::size_t>
+template <class InfoType, class WeightType = i64, class VertexType = i32>
 struct InfoEdge : Edge<WeightType, VertexType> {
     using info_type = InfoType;
     using super = Edge<WeightType, VertexType>;

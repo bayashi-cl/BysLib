@@ -37,7 +37,7 @@ template <class Abelian> struct BinaryIndexedTree {
         for (++i; i <= _n; i += i & -i) data[i] = Abelian::operation(data[i], val);
     }
 
-    void set(std::size_t i, T val) {
+    void set(i32 i, T val) {
         assert(0 <= i and i < _n);
         point_append(i, Abelian::operation(Abelian::inverse(fold(i, i + 1)), val));
     }
@@ -75,7 +75,7 @@ template <class T> struct BinaryIndexedTree<Add<T>> {
         for (++i; i <= _n; i += i & -i) data[i] += val;
     }
 
-    void set(std::size_t i, T val) {
+    void set(i32 i, T val) {
         assert(0 <= i and i < _n);
         point_append(i, val - fold(i, i + 1));
     }

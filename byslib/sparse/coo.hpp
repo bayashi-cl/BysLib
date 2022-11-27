@@ -39,6 +39,7 @@ template <class T> class COOMatrix {
                   });
     }
     std::size_t size() const { return shape.first; }
+    std::ptrdiff_t ssize() const { return shape.first; }
     std::size_t nonzero() const { return _data.size(); }
 
     friend CSRMatrix<T>;

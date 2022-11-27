@@ -23,7 +23,7 @@ template <class E> class LowestCommonAncestor {
         i32 id, depath;
         bool operator<(const Vertex& rh) const { return depath < rh.depath; }
     };
-    std::size_t n;
+    i32 n;
     SparseTable<Min<Vertex>> st;
     std::vector<i32> pos;
 
@@ -43,7 +43,7 @@ template <class E> class LowestCommonAncestor {
         })(root, -1, 0);
         st.build(euler_tour);
     }
-    i32 lca(std::size_t a, std::size_t b) {
+    i32 lca(i32 a, i32 b) {
         assert(a < n);
         assert(b < n);
         if (a == b) return a;

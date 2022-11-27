@@ -44,5 +44,6 @@ template <class T> class Compress {
         return cp[i];
     }
     std::size_t size() const { return cp.size(); }
+    std::ptrdiff_t ssize() const { return cp.size(); }
 };
 }  // namespace bys

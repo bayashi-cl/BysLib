@@ -75,6 +75,7 @@ template <class T> class BinaryTrie {
         return now->count;
     }
     std::size_t size() const noexcept { return root ? root->count : 0; }
+    std::ptrdiff_t ssize() const noexcept { return root ? root->count : 0; }
     // auto operator[]();
 };
 }  // namespace bys

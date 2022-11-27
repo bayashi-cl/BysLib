@@ -46,5 +46,6 @@ template <class T> class CSRMatrix {
         return SubRange(_data.cbegin() + _indptr[i], _data.cbegin() + _indptr[i + 1]);
     }
     std::size_t size() const { return shape.first; }
+    std::ptrdiff_t ssize() const { return shape.first; }
 };
 }  // namespace bys
