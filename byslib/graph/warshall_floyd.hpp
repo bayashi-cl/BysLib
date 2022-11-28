@@ -3,9 +3,9 @@
  * @file warshall_floyd.hpp
  * @brief Warshall Floyd
  */
-#include "../core/alias.hpp"
-#include "../core/const.hpp"
-#include "../utility/change.hpp"
+#include "../core/constant.hpp"
+#include "../core/int_alias.hpp"
+#include "../extension/change.hpp"
 #include "graph.hpp"
 
 namespace bys {

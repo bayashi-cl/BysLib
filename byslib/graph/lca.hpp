@@ -6,9 +6,9 @@
  * 最近共通祖先
  */
 #include "../algebra/monoid.hpp"
-#include "../core/alias.hpp"
-#include "../data/sparse_table.hpp"
-#include "../utility/fixpoint.hpp"
+#include "../core/int_alias.hpp"
+#include "../ds/sparse_table.hpp"
+#include "../extension/fixpoint.hpp"
 #include "graph.hpp"
 namespace bys {
 /**

@@ -2,7 +2,7 @@
 #include <queue>
 #include <vector>
 
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 #include "graph.hpp"
 /**
  * @file topological_sort.hpp

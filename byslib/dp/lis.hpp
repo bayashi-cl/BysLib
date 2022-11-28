@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <vector>
 
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 #include "../core/traits.hpp"
 namespace bys {
 /**

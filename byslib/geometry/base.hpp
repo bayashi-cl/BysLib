@@ -1,7 +1,7 @@
 #pragma once
 #include <cmath>
 
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 /**
  * @file base.hpp
  * @brief Base

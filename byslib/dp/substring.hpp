@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 
 namespace bys {
 i32 count_substring(const std::string& s, i32 mod = 998244353) {

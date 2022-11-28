@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 namespace bys {
 /**
  * @brief ローリングハッシュ

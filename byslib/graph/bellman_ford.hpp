@@ -1,7 +1,7 @@
 #pragma once
-#include "../core/alias.hpp"
-#include "../core/const.hpp"
-#include "../utility/change.hpp"
+#include "../core/constant.hpp"
+#include "../core/int_alias.hpp"
+#include "../extension/change.hpp"
 #include "graph.hpp"
 /**
  * @file bellman_ford.hpp

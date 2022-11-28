@@ -1,5 +1,5 @@
 #pragma once
-#include "../data/union_find.hpp"
+#include "../ds/union_find.hpp"
 #include "graph.hpp"
 
 namespace bys {

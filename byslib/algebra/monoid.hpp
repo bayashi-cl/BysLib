@@ -2,7 +2,7 @@
 #include <array>
 #include <optional>
 #include <utility>
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 
 /**
  * @file monoid.hpp

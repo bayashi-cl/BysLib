@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <vector>
 
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 #include "../core/traits.hpp"
-#include "../utility/enumerate.hpp"
+#include "../extension/enumerate.hpp"
 
 namespace bys {
 template <class Iterable> i32 lcs(Iterable const& a, Iterable const& b) {

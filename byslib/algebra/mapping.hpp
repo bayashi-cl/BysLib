@@ -1,5 +1,5 @@
 #pragma once
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 #include "monoid.hpp"
 /**
  * @file mapping.hpp

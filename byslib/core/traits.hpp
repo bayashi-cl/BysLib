@@ -2,7 +2,7 @@
 #include <array>
 #include <iostream>
 #include <type_traits>
-#include "alias.hpp"
+#include "int_alias.hpp"
 /**
  * @file traits.hpp
  * @brief Types

@@ -1,8 +1,8 @@
 #pragma once
 #include <stack>
 
-#include "../core/alias.hpp"
-#include "../utility/fixpoint.hpp"
+#include "../core/int_alias.hpp"
+#include "../extension/fixpoint.hpp"
 #include "graph.hpp"
 
 namespace bys {

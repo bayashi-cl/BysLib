@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <string>
 #include <vector>
-#include "../core/alias.hpp"
+#include "../core/int_alias.hpp"
 /**
  * @file zfill.hpp
  * @brief Python::str

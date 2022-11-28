@@ -2,8 +2,8 @@
 #include <cstddef>
 #include <iostream>
 
-#include "../core/const.hpp"
-#include "../sparse/csr.hpp"
+#include "../core/constant.hpp"
+#include "../linalg/csr.hpp"
 
 namespace bys {
 struct EdgeBase {};

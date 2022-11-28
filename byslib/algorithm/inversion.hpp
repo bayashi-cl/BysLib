@@ -2,9 +2,9 @@
 #include <algorithm>
 #include <vector>
 
-#include "../core/alias.hpp"
-#include "../data/binary_indexed_tree.hpp"
-#include "../utility/compress.hpp"
+#include "../algorithm/compress.hpp"
+#include "../core/int_alias.hpp"
+#include "../ds/binary_indexed_tree.hpp"
 
 namespace bys {
 template <class T> i64 inversion(const std::vector<T>& v) {

@@ -1,6 +1,6 @@
 #pragma once
-#include "../core/alias.hpp"
-#include "../core/io.hpp"
+#include "../core/int_alias.hpp"
+#include "../io/io.hpp"
 #include "graph.hpp"
 
 /**
