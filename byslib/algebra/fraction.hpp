@@ -2,6 +2,7 @@
 #include <cassert>
 #include <iostream>
 #include <numeric>
+#include <utility>
 
 #include "../core/int_alias.hpp"
 /**
@@ -10,86 +11,7 @@
  */
 namespace bys {
 //! @brief 有理数
-// struct Fraction {
-//     // numerator / denominator
-//     i64 numerator, denominator;
-//     Fraction() : numerator(0), denominator(1) {}
-//     Fraction(i64 num, i64 den) {
-//         assert(den != 0);
-//         if (num == 0) {
-//             numerator = 0;
-//             denominator = 1;
-//         } else {
-//             if (den < 0) num *= -1;
-//             numerator = num;
-//             denominator = den;
-//             reduction();
-//         }
-//     }
-//     bool reduction() {
-//         i64 g = std::gcd(numerator, denominator);
-//         if (g == 1) return false;
-//         numerator /= g;
-//         denominator /= g;
-//         return true;
-//     }
-//     operator f128() const { return (f128)numerator / denominator; }
-//     Fraction operator+(const Fraction& rh) const {
-//         return Fraction(numerator * rh.denominator + rh.numerator * denominator,
-//                         denominator * rh.denominator);
-//     }
-//     Fraction operator+(const i64 rh) const { return *this + Fraction(rh, 1); }
-//     Fraction operator+=(const Fraction& rh) {
-//         *this = *this + rh;
-//         return *this;
-//     }
-//     Fraction operator+=(const i64 rh) {
-//         *this = *this + rh;
-//         return *this;
-//     }
-//     Fraction operator-(const Fraction& rh) const {
-//         return Fraction(numerator * rh.denominator - rh.numerator * denominator,
-//                         denominator * rh.denominator);
-//     }
-//     Fraction operator-(const i64 rh) const { return *this - Fraction(rh, 1); }
-//     Fraction operator-=(const Fraction& rh) {
-//         *this = *this - rh;
-//         return *this;
-//     }
-//     Fraction operator-=(const i64 rh) {
-//         *this = *this - rh;
-//         return *this;
-//     }
-//     Fraction operator*(const Fraction& rh) const {
-//         return Fraction(numerator * rh.numerator, denominator * rh.denominator);
-//     }
-//     Fraction operator*(const i64 rh) const { return Fraction(numerator * rh, denominator); }
-//     Fraction operator*=(const Fraction& rh) {
-//         *this = *this * rh;
-//         return *this;
-//     }
-//     Fraction operator*=(const i64 rh) {
-//         *this = *this * rh;
-//         return *this;
-//     }
-//     Fraction operator/(const Fraction& rh) const {
-//         return Fraction(numerator * rh.denominator, denominator * rh.numerator);
-//     }
-//     Fraction operator/(const i64 rh) const { return *this * Fraction(1, rh); }
-//     Fraction operator/=(const Fraction& rh) {
-//         *this = *this / rh;
-//         return *this;
-//     }
-//     Fraction operator/=(const i64 rh) {
-//         *this = *this / rh;
-//         return *this;
-//     }
-//     bool operator<(const Fraction& rh) const {
-//         return numerator * rh.denominator < rh.numerator * denominator;
-//     }
-// };
-// std::ostream& operator<<(std::ostream& os, const Fraction& f) { return os << (f128)f; }
-struct Fraction {
+class Fraction {
     i64 numerator, denominator;
 
     bool reduction() {
@@ -100,7 +22,9 @@ struct Fraction {
         return true;
     }
 
+  public:
     Fraction() : numerator(0), denominator(1) {}
+    Fraction(i64 integer) : numerator(integer), denominator(1) {}
     Fraction(i64 num, i64 den) : numerator(num), denominator(den) {
         assert(denominator != 0);
         if (numerator == 0) {
@@ -112,25 +36,59 @@ struct Fraction {
         reduction();
     }
 
+    Fraction inv() const { return Fraction(denominator, numerator); }
     operator f128() const { return (f128)numerator / denominator; }
+    std::pair<i64, i64> as_integer_ratio() { return {numerator, denominator}; }
 
-    Fraction& operator+=(Fraction const& rhs) {}
-    Fraction& operator-=(Fraction const& rhs) {}
-    Fraction& operator*=(Fraction const& rhs) {}
-    Fraction& operator/=(Fraction const& rhs) {}
+    Fraction& operator+=(Fraction const& rhs) {
+        numerator = numerator * rhs.denominator + rhs.numerator * denominator;
+        denominator *= rhs.denominator;
+        reduction();
+    }
+    Fraction& operator-=(Fraction const& rhs) {
+        numerator = numerator * rhs.denominator - rhs.numerator * denominator;
+        denominator *= rhs.denominator;
+        reduction();
+    }
+    Fraction& operator*=(Fraction const& rhs) {
+        numerator *= rhs.numerator;
+        denominator *= rhs.denominator;
+        reduction();
+    }
+    Fraction& operator/=(Fraction const& rhs) { *this *= rhs.inv(); }
 
-    // template <class T> friend Fraction operator+(T const& rhs) {}
-    // template <class T> friend Fraction operator-(T const& rhs) {}
-    // template <class T> friend Fraction operator*(T const& rhs) {}
-    // template <class T> friend Fraction operator/(T const& rhs) {}
+    template <class T> friend Fraction operator+(Fraction const& rhs, Fraction const& lhs) {
+        return Fraction(rhs) += lhs;
+    }
+    template <class T> friend Fraction operator-(Fraction const& rhs, Fraction const& lhs) {
+        return Fraction(rhs) -= lhs;
+    }
+    template <class T> friend Fraction operator*(Fraction const& rhs, Fraction const& lhs) {
+        return Fraction(rhs) *= lhs;
+    }
+    template <class T> friend Fraction operator/(Fraction const& rhs, Fraction const& lhs) {
+        return Fraction(rhs) /= lhs;
+    }
 
-    Fraction operator+() {}
-    Fraction operator-() {}
+    Fraction operator+() const { return *this; }
+    Fraction operator-() const { return Fraction(-numerator, denominator); }
 
-    Fraction& operator++() {}
-    Fraction& operator--() {}
+    Fraction& operator++() { numerator += denominator; }
+    Fraction& operator--() { numerator -= denominator; }
 
-    Fraction operator++(int) {}
-    Fraction operator--(int) {}
+    Fraction operator++(int) {
+        auto temp = *this;
+        ++*this;
+        return temp;
+    }
+    Fraction operator--(int) {
+        auto temp = *this;
+        --*this;
+        return temp;
+    }
+
+    bool operator<(Fraction const& rhs) const {
+        return numerator * rhs.denominator < rhs.numerator * denominator;
+    }
 };
 }  // namespace bys
