@@ -67,12 +67,14 @@ template <class T, class S> constexpr T floormod(T x, S mod) {
     return x;
 }
 
+namespace impl {
 constexpr i64 isqrt_aux(i64 c, i64 n) {
     if (c == 0) return 1;
     i64 k = (c - 1) / 2;
     i64 a = isqrt_aux(c / 2, n >> (2 * k + 2));
     return (a << k) + (n >> (k + 2)) / a;
 }
+}  // namespace impl
 /**
  * @brief Python::math.isqrt
  *
@@ -82,7 +84,7 @@ constexpr i64 isqrt_aux(i64 c, i64 n) {
 template <class T> constexpr T isqrt(T n) {
     assert(n >= 0);
     if (n == T(0)) return T(0);
-    i64 a = isqrt_aux((bit_width(n) - 1) / 2, n);
+    i64 a = impl::isqrt_aux((bit_width(n) - 1) / 2, n);
     return n < a * a ? a - 1 : a;
 }
 /**

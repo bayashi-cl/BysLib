@@ -1,7 +1,7 @@
 #pragma once
 #include "../core/constant.hpp"
 #include "../core/int_alias.hpp"
-#include "prime.hpp"
+#include "../ntheory/prime.hpp"
 /**
  * @file modint.hpp
  * @brief Modint
