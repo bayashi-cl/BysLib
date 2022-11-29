@@ -25,7 +25,7 @@ Scanner scanner(std::cin);
 #define DEBUG(...)                                  \
     {                                               \
         debug.cat(debugfmt(__LINE__, __VA_ARGS__)); \
-        debug.flush()                               \
+        debug.flush();                              \
     }
 #else
 #define DEBUG(...)

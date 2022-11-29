@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <optional>
 
 #include "point.hpp"
@@ -52,7 +53,7 @@ template <class T> f128 angle(const Line<T>& a, const Line<T>& b) {
 }
 
 template <class T> f128 distance(const Point<T>& p, const Line<T>& l) {
-    return abs(l.to_Point().det(p - l.p) / (l.q - l.p).norm());
+    return std::abs(l.to_Point().det(p - l.p) / (l.q - l.p).norm());
 }
 template <class T> f128 distance(const Point<T>& p, const Segment<T>& s) {
     if (angle_type(s.p, s.q, p) == Angle::Obtuse) {
@@ -65,8 +66,7 @@ template <class T> f128 distance(const Point<T>& p, const Segment<T>& s) {
 }
 template <class T> f128 distance(const Segment<T>& s, const Segment<T>& t) {
     if (is_cross(s, t)) return 0;
-
-    return min({distance(s.p, t), distance(s.q, t), distance(t.p, s), distance(t.q, s)});
+    return std::min({distance(s.p, t), distance(s.q, t), distance(t.p, s), distance(t.q, s)});
 }
 template <class T> std::optional<Point<T>> cross_point(const Line<T>& a, const Line<T>& b) {
     if (!is_cross(a, b)) return std::nullopt;
