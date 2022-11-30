@@ -9,6 +9,5 @@
 namespace bys {
 namespace pbds = __gnu_pbds;
 template <class T, class Comp = std::less<T>>
-using OrderdSet = pbds::
-    tree<T, pbds::null_type, Comp, pbds::rb_tree_tag, pbds::tree_order_statistics_node_update>;
+using OrderdSet = pbds::tree<T, pbds::null_type, Comp, pbds::rb_tree_tag, pbds::tree_order_statistics_node_update>;
 }  // namespace bys

@@ -24,8 +24,7 @@ template <class T> class Combinations {
     bool term = false;
 
   public:
-    Combinations(const std::vector<T>& vec, i32 r)
-        : pool(vec), n(vec.size()), r(r), comb(r), indices(r) {
+    Combinations(const std::vector<T>& vec, i32 r) : pool(vec), n(vec.size()), r(r), comb(r), indices(r) {
         if (r > n) {
             term = true;
             return;

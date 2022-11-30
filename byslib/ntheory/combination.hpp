@@ -32,9 +32,7 @@ class MultiComb {
     }
 
   public:
-    MultiComb(i32 n = 1, i32 mod = MOD) : mod(mod), fact({1, 1}), factinv({1, 1}), inv({0, 1}) {
-        extend(n);
-    }
+    MultiComb(i32 n = 1, i32 mod = MOD) : mod(mod), fact({1, 1}), factinv({1, 1}), inv({0, 1}) { extend(n); }
 
     i32 fac(i32 n) {
         extend(n);

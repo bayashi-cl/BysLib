@@ -31,7 +31,6 @@ template <class Iterator> class SubRange {
 };
 template <class Iterable> auto reversed(Iterable&& iter) {
     static_assert(is_iterable_v<Iterable>, "iter is not iterable");
-    return SubRange(std::rbegin(std::forward<Iterable>(iter)),
-                    std::rend(std::forward<Iterable>(iter)));
+    return SubRange(std::rbegin(std::forward<Iterable>(iter)), std::rend(std::forward<Iterable>(iter)));
 }
 }  // namespace bys

@@ -26,8 +26,7 @@ template <typename F> struct FixPoint : F {
 template <class F> class Cache : F {
     template <class> struct get_signature {};
 
-    template <class Fn, class R, class Self, class... Args>
-    struct get_signature<R (Fn::*)(Self, Args...) const> {
+    template <class Fn, class R, class Self, class... Args> struct get_signature<R (Fn::*)(Self, Args...) const> {
         using result_type = R;
         using args_tuple = std::tuple<std::decay_t<Args>...>;
     };

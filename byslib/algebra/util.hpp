@@ -1,8 +1,7 @@
 #pragma once
 #include <cassert>
 namespace bys {
-template <class Monoid, class T>
-typename Monoid::set_type pow_monoid(typename Monoid::set_type p, T q) {
+template <class Monoid, class T> typename Monoid::set_type pow_monoid(typename Monoid::set_type p, T q) {
     assert(q >= 0);
     auto res = Monoid::identity;
     while (q > 0) {

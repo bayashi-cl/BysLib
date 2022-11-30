@@ -12,26 +12,20 @@
 namespace bys {
 template <class, class = void> struct has_rshift_from_istream : std::false_type {};
 template <class T>
-struct has_rshift_from_istream<
-    T,
-    std::void_t<decltype(std::declval<std::istream&>() >> std::declval<T&>())>> : std::true_type {};
+struct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>() >> std::declval<T&>())>> : std::true_type {};
 template <class T> constexpr bool has_rshift_from_istream_v = has_rshift_from_istream<T>::value;
 
 template <class, class = void> struct has_lshift_to_ostream : std::false_type {};
 template <class T>
-struct has_lshift_to_ostream<
-    T,
-    std::void_t<decltype(std::declval<std::ostream&>() << std::declval<T&>())>> : std::true_type {};
+struct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>() << std::declval<T&>())>> : std::true_type {};
 template <class T> constexpr bool has_lshft_to_ostream_v = has_lshift_to_ostream<T>::value;
 
 template <class, class = void> struct is_tuple_like : std::false_type {};
-template <class T>
-struct is_tuple_like<T, std::void_t<decltype(std::tuple_size<T>())>> : std::true_type {};
+template <class T> struct is_tuple_like<T, std::void_t<decltype(std::tuple_size<T>())>> : std::true_type {};
 template <class T> constexpr bool is_tuple_like_v = is_tuple_like<T>::value;
 
 template <class, class = void> struct is_iterable : std::false_type {};
-template <class T>
-struct is_iterable<T, std::void_t<decltype(std::begin(std::declval<T>()))>> : std::true_type {};
+template <class T> struct is_iterable<T, std::void_t<decltype(std::begin(std::declval<T>()))>> : std::true_type {};
 template <class T> constexpr bool is_iterable_v = is_iterable<T>::value;
 
 template <class T> struct Indexed {
@@ -45,12 +39,8 @@ template <class, class = void> struct is_indexed : std::false_type {};
 template <class T> struct is_indexed<Indexed<T>> : std::true_type {};
 template <class T> constexpr bool is_indexed_v = is_indexed<T>::value;
 
-template <class T, class = void> struct resolve_type {
-    using type = T;
-};
-template <class T> struct resolve_type<T, std::void_t<typename T::resolve_to>> {
-    using type = typename T::resolve_to;
-};
+template <class T, class = void> struct resolve_type { using type = T; };
+template <class T> struct resolve_type<T, std::void_t<typename T::resolve_to>> { using type = typename T::resolve_to; };
 template <class T, std::size_t N> struct resolve_type<std::array<T, N>> {
     using type = std::array<typename resolve_type<T>::type, N>;
 };

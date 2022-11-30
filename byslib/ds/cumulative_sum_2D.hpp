@@ -11,8 +11,7 @@ template <class T> struct CumulativeSum2D {
   public:
     std::vector<std::vector<T>> data;
     CumulativeSum2D(i32 n, i32 m) : build(false), data(n + 1, std::vector<T>(m + 1)){};
-    CumulativeSum2D(std::vector<std::vector<T>> const& v)
-        : build(false), data(v.size() + 1, std::vector<T>(v[0].size() + 1)) {
+    CumulativeSum2D(std::vector<std::vector<T>> const& v) : build(false), data(v.size() + 1, std::vector<T>(v[0].size() + 1)) {
         i32 n = v.size();
         for (i32 i = 0; i < n; ++i) {
             std::copy(v[i].begin(), v[i].end(), std::next(data[i + 1].begin()));
@@ -45,8 +44,6 @@ template <class T> struct CumulativeSum2D {
         return (data[gi][gj] - data[si][gj] - data[gi][sj] + data[si][sj]);
     }
     // [s, g)
-    T sum(std::pair<i32, i32> s, std::pair<i32, i32> g) {
-        return sum(s.first, s.second, g.first, g.second);
-    }
+    T sum(std::pair<i32, i32> s, std::pair<i32, i32> g) { return sum(s.first, s.second, g.first, g.second); }
 };
 }  // namespace bys

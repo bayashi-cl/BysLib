@@ -20,9 +20,7 @@ template <class Alg> struct CumulativeSum {
         std::partial_sum(value.begin(), value.end(), std::back_inserter(data), Alg::operation);
     }
     T prefix_fold(i32 right) { return data[right]; }
-    T fold(i32 left, i32 right) {
-        return left < right ? Alg::operation(Alg::inverse(data[left]), data[right]) : Alg::identity;
-    }
+    T fold(i32 left, i32 right) { return left < right ? Alg::operation(Alg::inverse(data[left]), data[right]) : Alg::identity; }
 };
 
 template <class T> struct CumulativeSum<Add<T>> {
@@ -36,7 +34,5 @@ template <class T> struct CumulativeSum<Add<T>> {
     T fold(i32 left, i32 right) { return left < right ? data[right] - data[left] : T(0); }
 };
 
-template <class T> CumulativeSum<Add<T>> cumsum(const std::vector<T>& val) {
-    return CumulativeSum<Add<T>>(val);
-}
+template <class T> CumulativeSum<Add<T>> cumsum(const std::vector<T>& val) { return CumulativeSum<Add<T>>(val); }
 }  // namespace bys

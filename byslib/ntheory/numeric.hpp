@@ -96,8 +96,7 @@ template <class T, typename std::enable_if_t<std::is_floating_point_v<T>, std::n
 constexpr bool isclose(T x, T y, T coef = 4.0) {
     if (x == y) return true;
     auto diff = std::abs(x - y);
-    return diff <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef ||
-           diff < std::numeric_limits<T>::min();
+    return diff <= std::numeric_limits<T>::epsilon() * std::abs(x + y) * coef || diff < std::numeric_limits<T>::min();
 }
 
 constexpr std::pair<i64, i64> inv_gcd(i64 a, i64 b) {
@@ -122,9 +121,7 @@ constexpr std::pair<i64, i64> inv_gcd(i64 a, i64 b) {
 }
 
 //! @brief Count multipules of k in the [left, right)
-template <class T> constexpr T range_multiples(T left, T right, T k) {
-    return (right - 1) / k - (left - 1) / k;
-}
+template <class T> constexpr T range_multiples(T left, T right, T k) { return (right - 1) / k - (left - 1) / k; }
 template <class T> constexpr T multiple_floor(T x, T k) { return x / k * k; }
 template <class T> constexpr T multiple_ceil(T x, T k) { return ceildiv(x, k) * k; }
 }  // namespace bys

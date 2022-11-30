@@ -37,8 +37,7 @@ class Scanner {
             static_assert([] { return false; }(), "TypeError");
         }
     }
-    template <class... Ts, std::enable_if_t<(sizeof...(Ts) >= 2), std::nullptr_t> = nullptr>
-    auto read() {
+    template <class... Ts, std::enable_if_t<(sizeof...(Ts) >= 2), std::nullptr_t> = nullptr> auto read() {
         return std::tuple{read<Ts>()...};
     }
     template <class T, std::size_t N> auto read() {

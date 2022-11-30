@@ -11,9 +11,7 @@ template <class E> struct EdgeList : public COOMatrix<E> {
     using super::COOMatrix;
 
     void add_edge(edge_type& edge) { super::push_back(edge.src, std::forward<edge_type>(edge)); }
-    void add_edge(vertex_type src, vertex_type dest, weight_type weight = 1) {
-        super::push_back(src, {src, dest, weight});
-    }
+    void add_edge(vertex_type src, vertex_type dest, weight_type weight = 1) { super::push_back(src, {src, dest, weight}); }
     void add_undirected_edge(vertex_type u, vertex_type v, weight_type weight = 1) {
         super::push_back(u, {u, v, weight});
         super::push_back(v, {v, u, weight});

@@ -25,8 +25,7 @@ namespace bys {
  * @tparam Action 作用関数オブジェクト 区間の幅も渡される
  * @todo 二分探索: O(logN)
  */
-template <class Monoid, class ActMonoid, class Action = Mapping<Monoid, ActMonoid>>
-class LazySegmentTree {
+template <class Monoid, class ActMonoid, class Action = Mapping<Monoid, ActMonoid>> class LazySegmentTree {
     using value_type = typename Monoid::set_type;
     using act_type = typename ActMonoid::set_type;
     i32 _n, n_leaf, logsize;

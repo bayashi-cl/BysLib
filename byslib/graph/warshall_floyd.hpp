@@ -17,8 +17,7 @@ namespace bys {
  * @param graph 辺リスト
  */
 
-template <class E>
-std::vector<std::vector<typename E::weight_type>> warshall_floyd(EdgeList<E> const& graph) {
+template <class E> std::vector<std::vector<typename E::weight_type>> warshall_floyd(EdgeList<E> const& graph) {
     using W = typename E::weight_type;
     i32 n = graph.size();
     std::vector cost(n, std::vector(n, get_inf<W>()));

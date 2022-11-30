@@ -87,29 +87,15 @@ template <u32 Modulo> class ModInt {
         return res;
     }
 
-    friend constexpr ModInt operator+(const ModInt& lhs, const ModInt& rhs) noexcept {
-        return ModInt(lhs) += rhs;
-    }
-    friend constexpr ModInt operator-(const ModInt& lhs, const ModInt& rhs) noexcept {
-        return ModInt(lhs) -= rhs;
-    }
-    friend constexpr ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept {
-        return ModInt(lhs) *= rhs;
-    }
-    friend constexpr ModInt operator/(const ModInt& lhs, const ModInt& rhs) noexcept {
-        return ModInt(lhs) /= rhs;
-    }
-    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept {
-        return lhs._v == rhs._v;
-    }
-    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) noexcept {
-        return lhs._v != rhs._v;
-    }
+    friend constexpr ModInt operator+(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) += rhs; }
+    friend constexpr ModInt operator-(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) -= rhs; }
+    friend constexpr ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) *= rhs; }
+    friend constexpr ModInt operator/(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) /= rhs; }
+    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs._v == rhs._v; }
+    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs._v != rhs._v; }
 
     friend std::istream& operator>>(std::istream& is, ModInt& m) noexcept { return is >> m._v; }
-    friend std::ostream& operator<<(std::ostream& os, const ModInt& m) noexcept {
-        return os << m._v;
-    }
+    friend std::ostream& operator<<(std::ostream& os, const ModInt& m) noexcept { return os << m._v; }
 };
 using Mint = ModInt<MOD>;
 using Mint7 = ModInt<MOD7>;

@@ -81,9 +81,7 @@ template <class T, class Lambda> struct UnionFindTreeWithData : UnionFindTree {
 
 struct LinkedUnionFindTree : UnionFindTree {
     std::vector<i32> _link;
-    LinkedUnionFindTree(i32 n) : UnionFindTree::UnionFindTree(n), _link(n) {
-        std::iota(_link.begin(), _link.end(), 0);
-    }
+    LinkedUnionFindTree(i32 n) : UnionFindTree::UnionFindTree(n), _link(n) { std::iota(_link.begin(), _link.end(), 0); }
 
     bool unite(i32 a, i32 b) {
         if (UnionFindTree::unite(a, b)) {

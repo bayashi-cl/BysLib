@@ -57,18 +57,10 @@ class Fraction {
     }
     Fraction& operator/=(Fraction const& rhs) { *this *= rhs.inv(); }
 
-    template <class T> friend Fraction operator+(Fraction const& rhs, Fraction const& lhs) {
-        return Fraction(rhs) += lhs;
-    }
-    template <class T> friend Fraction operator-(Fraction const& rhs, Fraction const& lhs) {
-        return Fraction(rhs) -= lhs;
-    }
-    template <class T> friend Fraction operator*(Fraction const& rhs, Fraction const& lhs) {
-        return Fraction(rhs) *= lhs;
-    }
-    template <class T> friend Fraction operator/(Fraction const& rhs, Fraction const& lhs) {
-        return Fraction(rhs) /= lhs;
-    }
+    template <class T> friend Fraction operator+(Fraction const& rhs, Fraction const& lhs) { return Fraction(rhs) += lhs; }
+    template <class T> friend Fraction operator-(Fraction const& rhs, Fraction const& lhs) { return Fraction(rhs) -= lhs; }
+    template <class T> friend Fraction operator*(Fraction const& rhs, Fraction const& lhs) { return Fraction(rhs) *= lhs; }
+    template <class T> friend Fraction operator/(Fraction const& rhs, Fraction const& lhs) { return Fraction(rhs) /= lhs; }
 
     Fraction operator+() const { return *this; }
     Fraction operator-() const { return Fraction(-numerator, denominator); }
@@ -87,8 +79,6 @@ class Fraction {
         return temp;
     }
 
-    bool operator<(Fraction const& rhs) const {
-        return numerator * rhs.denominator < rhs.numerator * denominator;
-    }
+    bool operator<(Fraction const& rhs) const { return numerator * rhs.denominator < rhs.numerator * denominator; }
 };
 }  // namespace bys

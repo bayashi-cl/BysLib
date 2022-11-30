@@ -24,11 +24,9 @@ template <class Monoid> class SegmentTree {
 
   public:
     SegmentTree(i32 n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity) {}
-    SegmentTree(const std::vector<value_type>& v)
-        : _n(v.size()), n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {
+    SegmentTree(const std::vector<value_type>& v) : _n(v.size()), n_leaf(bit_ceil(_n)), data(n_leaf * 2, Monoid::identity) {
         std::copy(v.begin(), v.end(), data.begin() + n_leaf);
-        for (i32 i = n_leaf - 1; i > 0; --i)
-            data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
+        for (i32 i = n_leaf - 1; i > 0; --i) data[i] = Monoid::operation(data[i * 2], data[i * 2 + 1]);
     }
 
     value_type query(i32 l, i32 r) const {
@@ -59,8 +57,7 @@ template <class Monoid> class SegmentTree {
     }
 
     // f(query(l, r)) == true となる最大のr
-    template <class Lambda, class... Args>
-    i32 bisect_from_left(i32 l, Lambda f, Args... args) const {
+    template <class Lambda, class... Args> i32 bisect_from_left(i32 l, Lambda f, Args... args) const {
         static_assert(std::is_same_v<std::invoke_result_t<Lambda, value_type, Args...>, bool>,
                       "The function signature is invalid.");
         assert(0 <= l && l < _n);
@@ -86,8 +83,7 @@ template <class Monoid> class SegmentTree {
     }
 
     // f(query(l, r)) == true となる最小のl
-    template <class Lambda, class... Args>
-    i32 bisect_from_right(i32 r, Lambda f, Args... args) const {
+    template <class Lambda, class... Args> i32 bisect_from_right(i32 r, Lambda f, Args... args) const {
         static_assert(std::is_same_v<std::invoke_result_t<Lambda, value_type, Args...>, bool>,
                       "The function signature is invalid.");
         assert(0 <= r && r <= _n);

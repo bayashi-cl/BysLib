@@ -87,9 +87,7 @@ template <class T> struct BinaryIndexedTree<Add<T>> {
         for (; right > 0; right -= right & -right) res += data[right];
         return res;
     }
-    T fold(i32 left, i32 right) const {
-        return left < right ? prefix_fold(right) - prefix_fold(left) : 0;
-    }
+    T fold(i32 left, i32 right) const { return left < right ? prefix_fold(right) - prefix_fold(left) : 0; }
 
     //! @brief sum[0, r) >= xとなる最小のrを求める
     i32 bisect(T x) const {
@@ -107,7 +105,5 @@ template <class T> struct BinaryIndexedTree<Add<T>> {
 };
 
 template <class T> using FenwickTree = BinaryIndexedTree<Add<T>>;
-template <class T> BinaryIndexedTree<Add<T>> fenwick_tree(const std::vector<T>& val) {
-    return BinaryIndexedTree<Add<T>>(val);
-}
+template <class T> BinaryIndexedTree<Add<T>> fenwick_tree(const std::vector<T>& val) { return BinaryIndexedTree<Add<T>>(val); }
 }  // namespace bys

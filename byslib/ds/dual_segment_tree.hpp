@@ -23,8 +23,7 @@ namespace bys {
  * @tparam ActMonoid 作用素モノイド
  * @tparam Action Tに対する作用関数オブジェクト
  */
-template <class T, class ActMonoid, class Action = MappingToSet<T, ActMonoid>>
-class DualSegmentTree {
+template <class T, class ActMonoid, class Action = MappingToSet<T, ActMonoid>> class DualSegmentTree {
     i32 _n, n_leaf, logsize;
     std::vector<typename ActMonoid::set_type> lazy;
     std::vector<T> data;
@@ -47,17 +46,9 @@ class DualSegmentTree {
 
   public:
     DualSegmentTree(i32 n, T ident)
-        : _n(n),
-          n_leaf(bit_ceil(_n)),
-          logsize(bit_width(n - 1)),
-          lazy(n_leaf, ActMonoid::identity),
-          data(n_leaf, ident) {}
+        : _n(n), n_leaf(bit_ceil(_n)), logsize(bit_width(n - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf, ident) {}
     DualSegmentTree(const std::vector<T>& v)
-        : _n(v.size()),
-          n_leaf(bit_ceil(_n)),
-          logsize(bit_width(_n - 1)),
-          lazy(n_leaf, ActMonoid::identity),
-          data(n_leaf) {
+        : _n(v.size()), n_leaf(bit_ceil(_n)), logsize(bit_width(_n - 1)), lazy(n_leaf, ActMonoid::identity), data(n_leaf) {
         std::copy(v.begin(), v.end(), data.begin());
     }
 

@@ -105,7 +105,6 @@ template <class T> SubRange<IntegerStepIterator<T>> irange(T start, T stop, T st
     auto w = step >= 0 ? stop - start : start - stop;
     auto s = step >= 0 ? step : -step;
     if (w < 0) w = 0;
-    return SubRange(iterator_t(start, static_cast<T>(0), step),
-                    iterator_t(start, (w + s - 1) / s, step));
+    return SubRange(iterator_t(start, static_cast<T>(0), step), iterator_t(start, (w + s - 1) / s, step));
 }
 }  // namespace bys

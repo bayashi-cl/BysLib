@@ -22,16 +22,12 @@ class Printer {
         cat(std::forward<T>(elem));
     }
     template <class Tp, std::size_t... I> void print_tuple(Tp&& tp, std::index_sequence<I...>) {
-        (print_tuple_element<I>(
-             std::forward<std::tuple_element_t<I, std::decay_t<Tp>>>(std::get<I>(tp))),
-         ...);
+        (print_tuple_element<I>(std::forward<std::tuple_element_t<I, std::decay_t<Tp>>>(std::get<I>(tp))), ...);
     }
 
   public:
     Printer() = delete;
-    Printer(std::ostream& os) : _os(os) {
-        _os << std::fixed << std::setprecision(11) << std::boolalpha;
-    }
+    Printer(std::ostream& os) : _os(os) { _os << std::fixed << std::setprecision(11) << std::boolalpha; }
     ~Printer() { _os << std::flush; }
 
     template <class T> void cat(T&& v) {
@@ -50,8 +46,7 @@ class Printer {
                 cat(vi);
             }
         } else if constexpr (is_tuple_like_v<std::decay_t<T>>) {
-            print_tuple(std::forward<T>(v),
-                        std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
+            print_tuple(std::forward<T>(v), std::make_index_sequence<std::tuple_size_v<std::decay_t<T>>>());
         } else {
             static_assert([] { return false; }(), "type error");
         }

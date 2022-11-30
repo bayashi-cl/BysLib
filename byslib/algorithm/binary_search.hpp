@@ -21,10 +21,8 @@ namespace bys {
  * @param args is_okに追加で渡される引数 可変長
  * @return T is_okを満たす最大/小の整数
  */
-template <typename T, class Lambda, class... Args>
-T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
-    static_assert(std::is_same_v<std::invoke_result_t<Lambda, T, Args...>, bool>,
-                  "The function signature is invalid.");
+template <typename T, class Lambda, class... Args> T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
+    static_assert(std::is_same_v<std::invoke_result_t<Lambda, T, Args...>, bool>, "The function signature is invalid.");
     assert(is_ok(ok, args...));
     assert(!is_ok(ng, args...));
 
@@ -49,10 +47,8 @@ T meguru_bisect(T ok, T ng, Lambda is_ok, Args... args) {
  * @param args is_okに追加で渡される引数 可変長
  * @return double is_okを満たす最大/小の実数
  */
-template <class Lambda, class... Args>
-f128 bisect_float(f128 ok, f128 ng, i32 rep, Lambda is_ok, Args... args) {
-    static_assert(std::is_same_v<std::invoke_result_t<Lambda, f128, Args...>, bool>,
-                  "The function signature is invalid.");
+template <class Lambda, class... Args> f128 bisect_float(f128 ok, f128 ng, i32 rep, Lambda is_ok, Args... args) {
+    static_assert(std::is_same_v<std::invoke_result_t<Lambda, f128, Args...>, bool>, "The function signature is invalid.");
     assert(is_ok(ok, args...));
     assert(!is_ok(ng, args...));
 

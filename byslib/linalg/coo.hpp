@@ -26,17 +26,14 @@ template <class T> class COOMatrix {
         _data.emplace_back(i, j, v);
     }
     void push_back(i32 i, T&& v) { set(i, _col_cnt[i], std::forward<T>(v)); }
-    template <class... Args> void emplace_back(i32 i, Args&&... args) {
-        set(i, _col_cnt[i], {std::forward<Args>(args)...});
-    }
+    template <class... Args> void emplace_back(i32 i, Args&&... args) { set(i, _col_cnt[i], {std::forward<Args>(args)...}); }
     auto begin() const { return _data.begin(); }
     auto end() const { return _data.end(); }
 
     void sort() {
-        std::sort(_data.begin(), _data.end(),
-                  [](const std::tuple<i32, i32, T>& a, const std::tuple<i32, i32, T>& b) {
-                      return std::get<2>(a) < std::get<2>(b);
-                  });
+        std::sort(_data.begin(), _data.end(), [](const std::tuple<i32, i32, T>& a, const std::tuple<i32, i32, T>& b) {
+            return std::get<2>(a) < std::get<2>(b);
+        });
     }
     std::size_t size() const { return shape.first; }
     std::ptrdiff_t ssize() const { return shape.first; }

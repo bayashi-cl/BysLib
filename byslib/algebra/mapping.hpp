@@ -32,50 +32,32 @@ template <class Monoid, class ActMonoid> struct Mapping {
     }
 };
 template <class T, class S> struct Mapping<Min<T>, Update<S>> {
-    static constexpr void mapping(typename Min<T>::set_type& t,
-                                  typename Update<S>::set_type s,
-                                  i32) {
+    static constexpr void mapping(typename Min<T>::set_type& t, typename Update<S>::set_type s, i32) {
         if (s.has_value()) t = s.value();
     }
 };
 template <class T, class S> struct Mapping<Add<T>, Add<S>> {
-    static constexpr void mapping(typename Add<T>::set_type& t,
-                                  typename Add<S>::set_type s,
-                                  i32 w) {
-        t += s * w;
-    }
+    static constexpr void mapping(typename Add<T>::set_type& t, typename Add<S>::set_type s, i32 w) { t += s * w; }
 };
 template <class T, class S> struct Mapping<Min<T>, Add<S>> {
-    static constexpr void mapping(typename Min<T>::set_type& t, typename Add<S>::set_type s, i32) {
-        t += s;
-    }
+    static constexpr void mapping(typename Min<T>::set_type& t, typename Add<S>::set_type s, i32) { t += s; }
 };
 template <class T, class S> struct Mapping<Add<T>, Update<S>> {
-    static constexpr void mapping(typename Add<T>::set_type& t,
-                                  typename Update<S>::set_type s,
-                                  i32 w) {
+    static constexpr void mapping(typename Add<T>::set_type& t, typename Update<S>::set_type s, i32 w) {
         if (s.has_value()) t = s.value() * w;
     }
 };
 template <class T, class S> struct Mapping<Add<T>, Affine<S>> {
-    static constexpr void mapping(typename Add<T>::set_type& t,
-                                  typename Affine<S>::set_type s,
-                                  i32 w) {
+    static constexpr void mapping(typename Add<T>::set_type& t, typename Affine<S>::set_type s, i32 w) {
         t = t * s.first + w * s.second;
     }
 };
 template <class T, class S> struct Mapping<Max<T>, Update<S>> {
-    static constexpr void mapping(typename Max<T>::set_type& t,
-                                  typename Update<S>::set_type s,
-                                  i32) {
+    static constexpr void mapping(typename Max<T>::set_type& t, typename Update<S>::set_type s, i32) {
         if (s.has_value()) t = s.value();
     }
 };
 template <class T, class Modint> struct Mapping<Add<T>, ModMul<Modint>> {
-    static constexpr void mapping(typename Add<T>::set_type& t,
-                                  typename ModMul<Modint>::set_type s,
-                                  i32) {
-        t *= s;
-    }
+    static constexpr void mapping(typename Add<T>::set_type& t, typename ModMul<Modint>::set_type s, i32) { t *= s; }
 };
 }  // namespace bys

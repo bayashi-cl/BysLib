@@ -42,9 +42,7 @@ template <class T> struct Update : Magma {
 };
 template <class T> struct Affine : Magma {
     using set_type = std::pair<T, T>;
-    static constexpr set_type operation(set_type a, set_type b) {
-        return {a.first * b.first, a.second * b.first + b.second};
-    }
+    static constexpr set_type operation(set_type a, set_type b) { return {a.first * b.first, a.second * b.first + b.second}; }
     static constexpr set_type identity{1, 0};
 };
 template <class Modint> struct ModMul : Magma {

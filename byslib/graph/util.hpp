@@ -5,8 +5,7 @@
 #include "graph.hpp"
 
 namespace bys {
-template <class E, class V = typename E::vertex_type>
-std::vector<bool> reachable(AdjacencyList<E> const& graph, V source) {
+template <class E, class V = typename E::vertex_type> std::vector<bool> reachable(AdjacencyList<E> const& graph, V source) {
     std::vector<bool> seen(graph.size());
     std::stack<V> st;
     st.push(source);

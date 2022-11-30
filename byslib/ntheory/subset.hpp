@@ -38,7 +38,5 @@ template <class T> class SubsetIterator {
     const T _s;
     bool sentinel = false;
 };
-template <class T> SubRange<SubsetIterator<T>> subset(T s) {
-    return SubRange(SubsetIterator<T>(s), SubsetIterator<T>(s));
-}
+template <class T> SubRange<SubsetIterator<T>> subset(T s) { return SubRange(SubsetIterator<T>(s), SubsetIterator<T>(s)); }
 }  // namespace bys

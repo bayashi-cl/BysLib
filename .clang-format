@@ -11,4 +11,4 @@ AlwaysBreakTemplateDeclarations: false
 
 # <- ac-library
 
-ColumnLimit: 100
+ColumnLimit: 130

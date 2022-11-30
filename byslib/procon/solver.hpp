@@ -20,8 +20,7 @@ struct Solver {
         for (; TESTCASE <= t; ++TESTCASE) solve();
 #ifdef LOCAL
         if (not std::cin.good()) std::cerr << "🟡 Input failed." << std::endl;
-        if (not isatty(STDIN_FILENO) and not std::ws(std::cin).eof())
-            std::cerr << "🟡 Unused input." << std::endl;
+        if (not isatty(STDIN_FILENO) and not std::ws(std::cin).eof()) std::cerr << "🟡 Unused input." << std::endl;
 #endif
         return 0;
     }
