@@ -6,7 +6,7 @@ void Solver::solve() {
     auto [n, q] = scanner.read<i32, 2>();
     UnionFindTree uf(n);
     for (UV : irange(q)) {
-        auto [com, x, y] = scanner.read<i32, i32_1, i32_1>();
+        auto [com, x, y] = scanner.read<i32, 3>();
         if (com == 0) {
             uf.unite(x, y);
         } else {
