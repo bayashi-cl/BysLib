@@ -3,7 +3,7 @@
 
 #include "graph.hpp"
 namespace bys {
-template <class E> auto dijkstra(AdjacencyList<E> const& graph, typename E::vertex_type source) {
+template <class E> auto dijkstra(EdgesCSR<E> const& graph, typename E::vertex_type source) {
     using V = typename E::vertex_type;
     using W = typename E::weight_type;
     using Node = std::pair<W, V>;

@@ -6,7 +6,7 @@
 #include "graph.hpp"
 
 namespace bys {
-template <class E> auto dfs(AdjacencyList<E> const& graph, typename E::vertex_type source) {
+template <class E> auto dfs(EdgesCSR<E> const& graph, typename E::vertex_type source) {
     using V = typename E::vertex_type;
     std::vector<bool> seen(graph.size());
     std::vector<V> res;
@@ -24,7 +24,7 @@ template <class E> auto dfs(AdjacencyList<E> const& graph, typename E::vertex_ty
         }
     }
 }
-template <class E> auto pre_order(const AdjacencyList<E>& graph) {
+template <class E> auto pre_order(const EdgesCSR<E>& graph) {
     using V = typename E::vertex_type;
     i32 n = graph.size();
     std::vector<bool> seen(n);
@@ -42,8 +42,8 @@ template <class E> auto pre_order(const AdjacencyList<E>& graph) {
     return res;
 }
 
-// std::vector<i32> in_order(const AdjacencyList& graph, i32 source);
-template <class E> auto post_order(const AdjacencyList<E>& graph) {
+// std::vector<i32> in_order(const EdgesCSR& graph, i32 source);
+template <class E> auto post_order(const EdgesCSR<E>& graph) {
     using V = typename E::vertex_type;
     i32 n = graph.size();
     std::vector<bool> seen(n);
@@ -60,5 +60,5 @@ template <class E> auto post_order(const AdjacencyList<E>& graph) {
     }
     return res;
 }
-// std::vector<i32> euler_tour(const AdjacencyList& graph, i32 source);
+// std::vector<i32> euler_tour(const EdgesCSR& graph, i32 source);
 }  // namespace bys

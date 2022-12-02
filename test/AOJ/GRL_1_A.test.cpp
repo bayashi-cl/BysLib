@@ -6,12 +6,12 @@ namespace bys {
 void Solver::solve() {
     auto [v, e, r] = scanner.read<i32, 3>();
 
-    EList edges(v);
+    EdgeList edges(v, directed);
     for (UV : irange(e)) {
         auto [s, t, d] = scanner.read<i32, i32, i64>();
         edges.add_edge(s, t, d);
     }
-    auto graph = edges.adj();
+    auto graph = edges.build();
     auto res = dijkstra(graph, r);
     for (auto ans : res) {
         if (is_inf(ans)) {

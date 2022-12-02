@@ -3,13 +3,12 @@
 #include "graph.hpp"
 
 namespace bys {
-template <class E> auto kruskal(EdgeList<E> elist) {
+template <class E> auto kruskal(EdgesCOO<E> elist) {
     elist.sort();
     UnionFindTree uf(elist.size());
-    EdgeList<E> res(elist.size());
+    EdgesCOO<E> res(elist.size());
     typename E::weight_type cost = 0;
-    for (auto v : elist) {
-        auto e = std::get<2>(v);
+    for (auto e : elist) {
         if (uf.unite(e.src, e.dest)) {
             cost += e.weight;
             res.add_edge(e);
