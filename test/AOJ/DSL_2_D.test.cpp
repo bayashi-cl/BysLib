@@ -12,7 +12,7 @@ void Solver::solve() {
         auto c = scanner.read<i32>();
         if (c == 0) {
             auto [s, t, x] = scanner.read<i32, 3>();
-            seg.apply(s, t + 1, x);
+            seg.effect(s, t + 1, x);
         } else {
             auto i = scanner.read<i32>();
             print(seg[i]);

@@ -11,7 +11,7 @@ void Solver::solve() {
     SparseTable<Min<i32>> st(a);
     for (UV : irange(q)) {
         auto [l, r] = scanner.read<i32, 2>();
-        print(st.query(l, r));
+        print(st.fold(l, r));
     }
 }
 }  // namespace bys

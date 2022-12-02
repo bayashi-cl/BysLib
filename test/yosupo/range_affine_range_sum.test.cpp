@@ -14,10 +14,10 @@ void Solver::solve() {
         auto t = scanner.read<i32>();
         if (t == 0) {
             auto [l, r, b, c] = scanner.read<i32, 4>();
-            seg.apply(l, r, {b, c});
+            seg.effect(l, r, {b, c});
         } else {
             auto [l, r] = scanner.read<i32, 2>();
-            print(seg.query(l, r));
+            print(seg.fold(l, r));
         }
     }
 }

@@ -14,7 +14,7 @@ void Solver::solve() {
             seg.update(x - 1, seg[x - 1] + y);
 
         } else {
-            print(seg.query(x - 1, y));
+            print(seg.fold(x - 1, y));
         }
     }
 }

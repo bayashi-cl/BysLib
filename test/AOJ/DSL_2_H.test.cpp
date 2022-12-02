@@ -13,10 +13,10 @@ void Solver::solve() {
         auto c = scanner.read<i32>();
         if (c == 0) {
             auto [s, t, x] = scanner.read<i32, 3>();
-            seg.apply(s, t + 1, x);
+            seg.effect(s, t + 1, x);
         } else {
             auto [s, t] = scanner.read<i32, 2>();
-            print(seg.query(s, t + 1));
+            print(seg.fold(s, t + 1));
         }
     }
 }

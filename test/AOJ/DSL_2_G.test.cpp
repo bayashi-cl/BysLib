@@ -12,10 +12,10 @@ void Solver::solve() {
         auto c = scanner.read<i32>();
         if (c == 0) {
             auto [s, t, x] = scanner.read<i32, 3>();
-            seg.apply(s - 1, t, x);
+            seg.effect(s - 1, t, x);
         } else {
             auto [s, t] = scanner.read<i32, 2>();
-            print(seg.query(s - 1, t));
+            print(seg.fold(s - 1, t));
         }
     }
 }
