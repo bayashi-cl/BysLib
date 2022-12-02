@@ -65,7 +65,7 @@ template <class T, class ActMonoid, class Action = MappingToSet<T, ActMonoid>> c
         }
         data[i] = val;
     }
-    void apply(i32 l, i32 r, T val) {
+    void effect(i32 l, i32 r, T val) {
         assert(l < r);
         l += n_leaf;
         r += n_leaf;

@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_2_B"
-#include "byslib/geometry/line.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/geometry/line.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {

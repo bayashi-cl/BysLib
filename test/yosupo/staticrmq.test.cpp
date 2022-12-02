@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "byslib/algebra/monoid.hpp"
-#include "byslib/ds/sparse_table.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/algebra/monoid.hpp"
+#include "../../byslib/ds/sparse_table.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {
@@ -11,7 +11,7 @@ void Solver::solve() {
     SparseTable<Min<i32>> st(a);
     for (UV : irange(q)) {
         auto [l, r] = scanner.read<i32, 2>();
-        print(st.query(l, r));
+        print(st.fold(l, r));
     }
 }
 }  // namespace bys

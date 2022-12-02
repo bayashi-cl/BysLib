@@ -44,7 +44,7 @@ template <class Band> class SparseTable {
         }
     }
 
-    T query(i32 l, i32 r) {
+    T fold(i32 l, i32 r) {
         assert(0 <= l && l <= n);
         assert(0 <= r && r <= n);
         if (l >= r) return Band::identity;

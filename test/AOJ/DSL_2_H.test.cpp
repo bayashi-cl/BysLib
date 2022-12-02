@@ -1,8 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H"
 
-#include "byslib/algebra/monoid.hpp"
-#include "byslib/ds/lazy_segment_tree.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/algebra/monoid.hpp"
+#include "../../byslib/ds/lazy_segment_tree.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {
@@ -13,10 +13,10 @@ void Solver::solve() {
         auto c = scanner.read<i32>();
         if (c == 0) {
             auto [s, t, x] = scanner.read<i32, 3>();
-            seg.apply(s, t + 1, x);
+            seg.effect(s, t + 1, x);
         } else {
             auto [s, t] = scanner.read<i32, 2>();
-            print(seg.query(s, t + 1));
+            print(seg.fold(s, t + 1));
         }
     }
 }

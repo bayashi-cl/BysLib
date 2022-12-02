@@ -18,22 +18,22 @@ namespace bys {
  * @param source 始点
  * @return inf -> 到達不可, -inf -> 負閉路
  */
-template <class E> std::vector<typename E::weight_type> bellman_ford(EdgeList<E> const& edges, typename E::vertex_type source) {
+template <class E> std::vector<typename E::weight_type> bellman_ford(EdgesCOO<E> const& edges, typename E::vertex_type source) {
     using W = typename E::weight_type;
     std::vector cost(edges.size(), get_inf<W>());
     i32 n = edges.size();
     cost[source] = 0;
     for (i32 i = 0; i < n - 1; ++i) {
-        for (auto&& [src, id, e] : edges) {
-            if (is_inf(cost[src])) continue;
-            chmin(cost[e.dest], cost[src] + e.weight);
+        for (auto&& e : edges) {
+            if (is_inf(cost[e.src])) continue;
+            chmin(cost[e.dest], cost[e.src] + e.weight);
         }
     }
     std::vector<bool> neg_cycle(n);
     for (i32 i = 0; i < n; ++i) {
-        for (auto&& [src, id, e] : edges) {
-            if (is_inf(cost[src])) continue;
-            if (chmin(cost[e.dest], cost[src] + e.weight) || neg_cycle[src]) neg_cycle[e.dest] = true;
+        for (auto&& e : edges) {
+            if (is_inf(cost[e.src])) continue;
+            if (chmin(cost[e.dest], cost[e.src] + e.weight) || neg_cycle[e.src]) neg_cycle[e.dest] = true;
         }
     }
     for (i32 i = 0; i < n; ++i) {

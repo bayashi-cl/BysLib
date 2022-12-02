@@ -3,23 +3,72 @@
 #include "edge.hpp"
 
 namespace bys {
-template <class E> struct EdgeList : public COOMatrix<E> {
+enum class Directed : bool { undirected, directed };
+constexpr auto directed = Directed::directed;
+constexpr auto undirected = Directed::undirected;
+
+template <class E> class EdgesCSR;
+
+template <class E> class EdgesCOO {
+    COOMatrix<E> coo;
+
+  public:
     using edge_type = E;
     using vertex_type = typename edge_type::vertex_type;
     using weight_type = typename edge_type::weight_type;
-    using super = COOMatrix<E>;
-    using super::COOMatrix;
+    Directed directed_kind;
 
-    void add_edge(edge_type& edge) { super::push_back(edge.src, std::forward<edge_type>(edge)); }
-    void add_edge(vertex_type src, vertex_type dest, weight_type weight = 1) { super::push_back(src, {src, dest, weight}); }
-    void add_undirected_edge(vertex_type u, vertex_type v, weight_type weight = 1) {
-        super::push_back(u, {u, v, weight});
-        super::push_back(v, {v, u, weight});
+    template <class Itr> class EdgeIterator {
+        Itr coo_itr;
+
+      public:
+        using difference_type = std::ptrdiff_t;
+        using value_type = edge_type;
+        using reference = edge_type&;
+        using pointer = edge_type*;
+        using iterator_category = std::bidirectional_iterator_tag;
+
+        EdgeIterator(const Itr& itr) : coo_itr(itr) {}
+        auto operator*() { return std::get<2>(*coo_itr); }
+        auto operator*() const { return std::get<2>(*coo_itr); }
+
+        EdgeIterator& operator++() noexcept {
+            ++coo_itr;
+            return *this;
+        }
+        EdgeIterator& operator--() noexcept {
+            --coo_itr;
+            return *this;
+        }
+        bool operator==(EdgeIterator const& other) const { return coo_itr == other.coo_itr; }
+        bool operator!=(EdgeIterator const& other) const { return coo_itr != other.coo_itr; }
+    };
+
+    EdgesCOO(i32 n, Directed dir) : coo(n, -1), directed_kind(dir) {}
+    std::size_t size() const { return coo.shape.first; }
+    std::ptrdiff_t ssize() const { return coo.shape.first; }
+    std::size_t n_edges() const { return coo.nonzero(); }
+    auto begin() const { return EdgeIterator(coo.begin()); }
+    auto end() const { return EdgeIterator(coo.end()); }
+    void sort() { coo.sort(); }
+
+    void add(edge_type& e) { coo.push_back(e.src, e); }
+    void add_edge(vertex_type src, vertex_type dest, weight_type weight = 1) {
+        coo.push_back(src, {src, dest, weight});
+        if (directed_kind == Directed::undirected) coo.push_back(dest, {dest, src, weight});
     }
-    auto adj() const { return CSRMatrix<edge_type>(*this); }
-};
-using EList = EdgeList<Edge<>>;
 
-template <class E> using AdjacencyList = CSRMatrix<E>;
-using AdjList = AdjacencyList<Edge<>>;
+    auto build() const { return EdgesCSR<edge_type>(coo, directed_kind); }
+};
+template <class E> class EdgesCSR : public CSRMatrix<E> {
+  public:
+    using edge_type = E;
+    using vertex_type = typename edge_type::vertex_type;
+    using weight_type = typename edge_type::weight_type;
+    Directed directed_kind;
+    EdgesCSR(const COOMatrix<E>& coo, Directed dir) : CSRMatrix<E>::CSRMatrix(coo), directed_kind(dir) {}
+};
+
+using EdgeList = EdgesCOO<Edge<>>;
+using AdjList = EdgesCSR<Edge<>>;
 }  // namespace bys

@@ -14,7 +14,7 @@ namespace bys {
  *
  * O(V + E)
  */
-template <class E> std::vector<i32> topological_sort(AdjacencyList<E> const& graph) {
+template <class E> std::vector<i32> topological_sort(EdgesCSR<E> const& graph) {
     using V = typename E::vertex_type;
     i32 n = graph.size();
     std::vector<V> res;

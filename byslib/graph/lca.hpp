@@ -28,7 +28,7 @@ template <class E> class LowestCommonAncestor {
     std::vector<i32> pos;
 
   public:
-    LowestCommonAncestor(AdjacencyList<E> const& graph, i32 root) : n(graph.size()), pos(n) {
+    LowestCommonAncestor(EdgesCSR<E> const& graph, i32 root) : n(graph.size()), pos(n) {
         std::vector<Vertex> euler_tour;
         euler_tour.reserve(2 * n - 1);
         FixPoint([&](auto&& self, i32 now, i32 prev, i32 deapth) -> void {
@@ -48,7 +48,7 @@ template <class E> class LowestCommonAncestor {
         assert(b < n);
         if (a == b) return a;
         if (pos[a] > pos[b]) std::swap(a, b);
-        return st.query(pos[a], pos[b]).id;
+        return st.fold(pos[a], pos[b]).id;
     }
 };
 }  // namespace bys

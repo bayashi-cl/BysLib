@@ -20,10 +20,10 @@ template <class E> struct Tree : std::vector<E> {
         std::reverse(res.begin(), res.end());
         return res;
     }
-    AdjacencyList<E> adj() const {
-        EdgeList<E> elist;
+    EdgesCSR<E> adj() const {
+        EdgesCOO<E> elist(super::size(), undirected);
         for (auto&& e : *this) {
-            if (e.src != -1) elist.add_edge(e);
+            if (e.src != -1) elist.add(e);
         }
         return elist.adj();
     }

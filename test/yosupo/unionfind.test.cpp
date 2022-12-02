@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/unionfind"
 
-#include "byslib/ds/union_find.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/ds/union_find.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {

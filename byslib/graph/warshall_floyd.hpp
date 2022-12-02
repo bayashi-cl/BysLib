@@ -17,11 +17,11 @@ namespace bys {
  * @param graph 辺リスト
  */
 
-template <class E> std::vector<std::vector<typename E::weight_type>> warshall_floyd(EdgeList<E> const& graph) {
+template <class E> std::vector<std::vector<typename E::weight_type>> warshall_floyd(EdgesCOO<E> const& graph) {
     using W = typename E::weight_type;
     i32 n = graph.size();
     std::vector cost(n, std::vector(n, get_inf<W>()));
-    for (auto&& [src, id, e] : graph) chmin(cost[src][e.dest], e.weight);
+    for (auto&& e : graph) chmin(cost[e.src][e.dest], e.weight);
     for (i32 i = 0; i < n; ++i) cost[i][i] = 0;
     for (i32 k = 0; k < n; k++) {
         for (i32 i = 0; i < n; i++) {
