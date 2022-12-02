@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <limits>
 #include <optional>
 #include <utility>
 #include "../core/int_alias.hpp"
