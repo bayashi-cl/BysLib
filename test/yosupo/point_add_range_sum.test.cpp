@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/point_add_range_sum"
 
-#include "byslib/ds/binary_indexed_tree.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/ds/binary_indexed_tree.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {

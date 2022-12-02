@@ -1,8 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/staticrmq"
 
-#include "byslib/algebra/monoid.hpp"
-#include "byslib/ds/sparse_table.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/algebra/monoid.hpp"
+#include "../../byslib/ds/sparse_table.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {

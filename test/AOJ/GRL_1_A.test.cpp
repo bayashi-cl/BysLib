@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_A"
-#include "byslib/graph/dijkstra.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/graph/dijkstra.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {

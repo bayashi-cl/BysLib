@@ -1,9 +1,9 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
 
-#include "byslib/algebra/modint.hpp"
-#include "byslib/algebra/monoid.hpp"
-#include "byslib/ds/lazy_segment_tree.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/algebra/modint.hpp"
+#include "../../byslib/algebra/monoid.hpp"
+#include "../../byslib/ds/lazy_segment_tree.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {

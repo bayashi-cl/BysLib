@@ -1,6 +1,6 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/all/GRL_1_C"
-#include "byslib/graph/warshall_floyd.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/graph/warshall_floyd.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {
@@ -35,6 +35,5 @@ void Solver::solve() {
     }
 }
 }  // namespace bys
-// NEGATIVE_CYCLE
-// NEGATIVE_CYCLE
+
 int main() { return bys::Solver::main(/* bys::scanner.read<int>() */); }

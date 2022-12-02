@@ -1,8 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A"
 
-#include "byslib/algebra/monoid.hpp"
-#include "byslib/ds/segment_tree.hpp"
-#include "byslib/template.hpp"
+#include "../../byslib/algebra/monoid.hpp"
+#include "../../byslib/ds/segment_tree.hpp"
+#include "../../byslib/template.hpp"
 
 namespace bys {
 void Solver::solve() {
