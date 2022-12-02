@@ -10,6 +10,9 @@ data:
   - icon: ':question:'
     path: byslib/core/traits.hpp
     title: Types
+  - icon: ':heavy_check_mark:'
+    path: byslib/ds/union_find.hpp
+    title: Union Find Tree
   - icon: ':question:'
     path: byslib/extension/change.hpp
     title: chmin/chmax
@@ -47,15 +50,16 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "/**\n * @file template.hpp\n * @author bayashi_cl\n *\n * C++ library\
-    \ for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
-    \ * Document  : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
-    \ NDEBUG\n#endif\n\n#include <cstddef>\n#include <limits>\n#include <tuple>\n\
-    #include <utility>\n\n#include <cstdint>\nnamespace bys {\nusing i8 = std::int8_t;\n\
-    using i16 = std::int16_t;\nusing i32 = std::int32_t;\nusing i64 = std::int64_t;\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/unionfind
+    links:
+    - https://judge.yosupo.jp/problem/unionfind
+  bundledCode: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n\
+    #include <cassert>\n#include <map>\n#include <numeric>\n#include <utility>\n#include\
+    \ <vector>\n#include <cstdint>\nnamespace bys {\nusing i8 = std::int8_t;\nusing\
+    \ i16 = std::int16_t;\nusing i32 = std::int32_t;\nusing i64 = std::int64_t;\n\
     using i128 = __int128_t;\nusing u8 = std::uint8_t;\nusing u16 = std::uint16_t;\n\
     using u32 = std::uint32_t;\nusing u64 = std::uint64_t;\nusing u128 = __uint128_t;\n\
     using f32 = float;\nusing f64 = double;\nusing f128 = long double;\n\nusing isize\
@@ -67,7 +71,46 @@ data:
     \ std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\nDEFINE_NUM_LITERAL(_u32,\
     \ std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\nDEFINE_NUM_LITERAL(_u128,\
     \ __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n#undef DEFINE_NUM_LITERAL\n\
-    }  // namespace bys\n#include <array>\n#include <iostream>\n#include <type_traits>\n\
+    }  // namespace bys\n/**\n * @file union_find.hpp\n * @brief Union Find Tree\n\
+    \ */\nnamespace bys {\n//! @brief Union Find Tree\nstruct UnionFindTree {\n  \
+    \  UnionFindTree() : _n(0) {}\n    UnionFindTree(i32 n) : _n(n), _n_tree(_n),\
+    \ parent(_n, -1) {}\n\n    i32 find(i32 a) {\n        assert(a < _n);\n      \
+    \  std::vector<i32> path;\n        while (parent[a] >= 0) {\n            path.emplace_back(a);\n\
+    \            a = parent[a];\n        }\n        for (auto&& p : path) parent[p]\
+    \ = a;\n        return a;\n    }\n    bool same(i32 a, i32 b) {\n        assert(a\
+    \ < _n);\n        assert(b < _n);\n        return find(a) == find(b);\n    }\n\
+    \    /**\n     * @brief \u30DE\u30FC\u30B8\n     *\n     * a, b\u304C\u5225\u306E\
+    \u9023\u7D50\u6210\u5206\u306B\u5C5E\u3057\u3066\u3044\u305F\u5834\u5408true\n\
+    \     */\n    bool unite(i32 a, i32 b) {\n        assert(a < _n);\n        assert(b\
+    \ < _n);\n        a = find(a);\n        b = find(b);\n        if (a == b) return\
+    \ false;\n        --_n_tree;\n        if (-parent[a] < -parent[b]) std::swap(a,\
+    \ b);\n        parent[a] += parent[b];\n        parent[b] = a;\n        return\
+    \ true;\n    }\n    std::map<i32, std::vector<i32>> groups() {\n        std::map<i32,\
+    \ std::vector<i32>> res;\n        for (i32 i = 0; i < _n; ++i) res[find(i)].emplace_back(i);\n\
+    \        return res;\n    };\n    i32 size(i32 a) { return -parent[find(a)]; }\n\
+    \    i32 n_tree() { return _n_tree; }\n\n  private:\n    i32 _n, _n_tree;\n  \
+    \  std::vector<i32> parent;  // \u8CA0\u306A\u3089\u89AA\u3067\u3042\u308A\u305D\
+    \u306E\u5024\u306F(-\u5B50\u306E\u6570)\n};\ntemplate <class T, class Lambda>\
+    \ struct UnionFindTreeWithData : UnionFindTree {\n    std::vector<T> _data;\n\
+    \    Lambda _mearge;\n\n    UnionFindTreeWithData(i32 n, const std::vector<T>&\
+    \ data, Lambda mearge)\n        : UnionFindTree::UnionFindTree(n), _data(data),\
+    \ _mearge(mearge) {}\n\n    bool unite(i32 a, i32 b) {\n        auto leader_a\
+    \ = find(a), leader_b = find(b);\n        if (UnionFindTree::unite(a, b)) {\n\
+    \            auto new_leader = find(a);\n            _data[new_leader] = _mearge(_data[leader_a],\
+    \ _data[leader_b]);\n            return true;\n        } else {\n            return\
+    \ false;\n        }\n    }\n    T get(i32 i) { return _data[find(i)]; }\n};\n\n\
+    struct LinkedUnionFindTree : UnionFindTree {\n    std::vector<i32> _link;\n  \
+    \  LinkedUnionFindTree(i32 n) : UnionFindTree::UnionFindTree(n), _link(n) { std::iota(_link.begin(),\
+    \ _link.end(), 0); }\n\n    bool unite(i32 a, i32 b) {\n        if (UnionFindTree::unite(a,\
+    \ b)) {\n            std::swap(_link[a], _link[b]);\n            return true;\n\
+    \        } else {\n            return false;\n        }\n    }\n    std::vector<i32>\
+    \ connect(i32 x) const {\n        std::vector<i32> res = {x};\n        for (i32\
+    \ y = _link[x]; y != x; y = _link[y]) res.push_back(y);\n        return res;\n\
+    \    }\n};\n}  // namespace bys\n/**\n * @file template.hpp\n * @author bayashi_cl\n\
+    \ *\n * C++ library for competitive programming by bayashi_cl\n * Repository:\
+    \ https://github.com/bayashi-cl/byslib\n * Document  : https://bayashi-cl.github.io/byslib/\n\
+    \ */\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <cstddef>\n#include <limits>\n\
+    #include <tuple>\n\n#include <array>\n#include <iostream>\n#include <type_traits>\n\
     /**\n * @file traits.hpp\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\n\
     namespace bys {\ntemplate <class, class = void> struct has_rshift_from_istream\
     \ : std::false_type {};\ntemplate <class T>\nstruct has_rshift_from_istream<T,\
@@ -117,23 +160,23 @@ data:
     \ * @brief \u6700\u5C0F\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\
     \u308C\u305F\u3068\u304D\n */\ntemplate <class T> constexpr bool chmin(T& a, T\
     \ const& b) { return a > b ? a = b, true : false; }\n}  // namespace bys\n#include\
-    \ <iterator>\n#include <vector>\n\n\nnamespace bys {\ntemplate <class Iterator>\
-    \ class SubRange {\n  public:\n    using iterator = Iterator;\n    using reverse_iterator\
-    \ = std::reverse_iterator<iterator>;\n    using value_type = typename iterator::value_type;\n\
-    \n    SubRange() = default;\n    SubRange(const SubRange& s) : _begin(s._begin),\
-    \ _end(s._end) {}\n    SubRange(const iterator& begin, const iterator& end) :\
-    \ _begin(begin), _end(end) {}\n\n    iterator begin() const noexcept { return\
-    \ _begin; }\n    iterator end() const noexcept { return _end; }\n    reverse_iterator\
-    \ rbegin() const noexcept { return reverse_iterator{_end}; }\n    reverse_iterator\
-    \ rend() const { return reverse_iterator{_begin}; }\n    auto operator[](std::size_t\
-    \ i) const noexcept { return *(_begin + i); }\n    auto size() const noexcept\
-    \ { return _end - _begin; }\n    bool empty() const noexcept { return _begin ==\
-    \ _end; }\n\n    auto to_vec() const { return std::vector(_begin, _end); }\n\n\
-    \  private:\n    iterator _begin, _end;\n};\ntemplate <class Iterable> auto reversed(Iterable&&\
-    \ iter) {\n    static_assert(is_iterable_v<Iterable>, \"iter is not iterable\"\
-    );\n    return SubRange(std::rbegin(std::forward<Iterable>(iter)), std::rend(std::forward<Iterable>(iter)));\n\
-    }\n}  // namespace bys\n/**\n * @file enumerate.hpp\n * @brief Python::enumerate\n\
-    \ *\n * Python\u518D\u73FE\u30B7\u30EA\u30FC\u30BA enumerate\u7DE8\n * See: https://docs.python.org/ja/3/library/functions.html#enumerate\n\
+    \ <iterator>\n\n\nnamespace bys {\ntemplate <class Iterator> class SubRange {\n\
+    \  public:\n    using iterator = Iterator;\n    using reverse_iterator = std::reverse_iterator<iterator>;\n\
+    \    using value_type = typename iterator::value_type;\n\n    SubRange() = default;\n\
+    \    SubRange(const SubRange& s) : _begin(s._begin), _end(s._end) {}\n    SubRange(const\
+    \ iterator& begin, const iterator& end) : _begin(begin), _end(end) {}\n\n    iterator\
+    \ begin() const noexcept { return _begin; }\n    iterator end() const noexcept\
+    \ { return _end; }\n    reverse_iterator rbegin() const noexcept { return reverse_iterator{_end};\
+    \ }\n    reverse_iterator rend() const { return reverse_iterator{_begin}; }\n\
+    \    auto operator[](std::size_t i) const noexcept { return *(_begin + i); }\n\
+    \    auto size() const noexcept { return _end - _begin; }\n    bool empty() const\
+    \ noexcept { return _begin == _end; }\n\n    auto to_vec() const { return std::vector(_begin,\
+    \ _end); }\n\n  private:\n    iterator _begin, _end;\n};\ntemplate <class Iterable>\
+    \ auto reversed(Iterable&& iter) {\n    static_assert(is_iterable_v<Iterable>,\
+    \ \"iter is not iterable\");\n    return SubRange(std::rbegin(std::forward<Iterable>(iter)),\
+    \ std::rend(std::forward<Iterable>(iter)));\n}\n}  // namespace bys\n/**\n * @file\
+    \ enumerate.hpp\n * @brief Python::enumerate\n *\n * Python\u518D\u73FE\u30B7\u30EA\
+    \u30FC\u30BA enumerate\u7DE8\n * See: https://docs.python.org/ja/3/library/functions.html#enumerate\n\
     \ */\nnamespace bys {\ntemplate <class Iterator> struct EnumerateIterator {\n\
     \  public:\n    using difference_type = typename Iterator::difference_type;\n\
     \    using value_type = std::tuple<i32, typename Iterator::value_type>;\n    //\
@@ -280,23 +323,32 @@ data:
     \ std::ws(std::cin).eof()) std::cerr << \"\U0001F7E1 Unused input.\" << std::endl;\n\
     #endif\n        return 0;\n    }\n};\n}  // namespace bys\n/**\n * @file stdlib.hpp\n\
     \ * @brief STL Template\n */\n#include <algorithm>\n#include <bitset>\n#include\
-    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n#include\
-    \ <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n\
-    #include <unordered_map>\n#include <unordered_set>\n\n\nnamespace bys {\nusing\
-    \ std::array, std::vector, std::string, std::set, std::map, std::pair;\nusing\
-    \ std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs;\n\n// alias\nusing Pa = std::pair<i32, i32>;\nusing Pa64 = std::pair<i64,\
-    \ i64>;\ntemplate <class T> using uset = std::unordered_set<T>;\ntemplate <class\
-    \ S, class T> using umap = std::unordered_map<S, T>;\n}  // namespace bys\n\n\
-    namespace bys {\nvoid Solver::solve() {\n    \n}\n}  // namespace bys\n\nint main()\
-    \ { return bys::Solver::main(/* bys::scanner.read<int>() */); }\n"
-  code: "#include \"byslib/template.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    \n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
+    \ <cmath>\n#include <complex>\n#include <functional>\n#include <queue>\n#include\
+    \ <set>\n#include <stack>\n#include <unordered_map>\n#include <unordered_set>\n\
+    \n\nnamespace bys {\nusing std::array, std::vector, std::string, std::set, std::map,\
+    \ std::pair;\nusing std::cin, std::cout, std::endl;\nusing std::min, std::max,\
+    \ std::sort, std::reverse, std::abs;\n\n// alias\nusing Pa = std::pair<i32, i32>;\n\
+    using Pa64 = std::pair<i64, i64>;\ntemplate <class T> using uset = std::unordered_set<T>;\n\
+    template <class S, class T> using umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n\nnamespace bys {\nvoid Solver::solve() {\n    auto [n, q] = scanner.read<i32,\
+    \ 2>();\n    auto que = scanner.readvec<array<i32, 3>>(q);\n    UnionFindTree\
+    \ uft(n);\n    for (auto&& [t, u, v] : que) {\n        if (t == 0) {\n       \
+    \     uft.unite(u, v);\n        } else {\n            print(uft.same(u, v) ? 1\
+    \ : 0);\n        }\n    }\n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
+    \ bys::scanner.read<int>() */); }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n\n#include\
+    \ \"../../byslib/ds/union_find.hpp\"\n#include \"../../byslib/template.hpp\"\n\
+    \nnamespace bys {\nvoid Solver::solve() {\n    auto [n, q] = scanner.read<i32,\
+    \ 2>();\n    auto que = scanner.readvec<array<i32, 3>>(q);\n    UnionFindTree\
+    \ uft(n);\n    for (auto&& [t, u, v] : que) {\n        if (t == 0) {\n       \
+    \     uft.unite(u, v);\n        } else {\n            print(uft.same(u, v) ? 1\
+    \ : 0);\n        }\n    }\n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
     \ bys::scanner.read<int>() */); }\n"
   dependsOn:
+  - byslib/ds/union_find.hpp
+  - byslib/core/int_alias.hpp
   - byslib/template.hpp
   - byslib/core/constant.hpp
-  - byslib/core/int_alias.hpp
   - byslib/core/traits.hpp
   - byslib/extension/change.hpp
   - byslib/extension/enumerate.hpp
@@ -308,16 +360,16 @@ data:
   - byslib/io/scanner.hpp
   - byslib/procon/solver.hpp
   - byslib/procon/stdlib.hpp
-  isVerificationFile: false
-  path: template.cpp
+  isVerificationFile: true
+  path: test/yosupo/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2022-11-30 18:07:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-12-02 16:49:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: template.cpp
+documentation_of: test/yosupo/unionfind.test.cpp
 layout: document
 redirect_from:
-- /library/template.cpp
-- /library/template.cpp.html
-title: template.cpp
+- /verify/test/yosupo/unionfind.test.cpp
+- /verify/test/yosupo/unionfind.test.cpp.html
+title: test/yosupo/unionfind.test.cpp
 ---

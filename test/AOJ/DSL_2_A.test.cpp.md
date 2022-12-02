@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: byslib/algebra/monoid.hpp
+    title: Monoid
+  - icon: ':question:'
     path: byslib/core/constant.hpp
     title: Const
   - icon: ':question:'
@@ -10,6 +13,9 @@ data:
   - icon: ':question:'
     path: byslib/core/traits.hpp
     title: Types
+  - icon: ':x:'
+    path: byslib/ds/segment_tree.hpp
+    title: Segment Tree
   - icon: ':question:'
     path: byslib/extension/change.hpp
     title: chmin/chmax
@@ -35,6 +41,9 @@ data:
     path: byslib/io/scanner.hpp
     title: Input
   - icon: ':question:'
+    path: byslib/ntheory/bit.hpp
+    title: Bit
+  - icon: ':question:'
     path: byslib/procon/solver.hpp
     title: Solver
   - icon: ':question:'
@@ -45,44 +54,148 @@ data:
     title: byslib/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "/**\n * @file template.hpp\n * @author bayashi_cl\n *\n * C++ library\
-    \ for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
-    \ * Document  : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
-    \ NDEBUG\n#endif\n\n#include <cstddef>\n#include <limits>\n#include <tuple>\n\
-    #include <utility>\n\n#include <cstdint>\nnamespace bys {\nusing i8 = std::int8_t;\n\
-    using i16 = std::int16_t;\nusing i32 = std::int32_t;\nusing i64 = std::int64_t;\n\
-    using i128 = __int128_t;\nusing u8 = std::uint8_t;\nusing u16 = std::uint16_t;\n\
-    using u32 = std::uint32_t;\nusing u64 = std::uint64_t;\nusing u128 = __uint128_t;\n\
-    using f32 = float;\nusing f64 = double;\nusing f128 = long double;\n\nusing isize\
-    \ = std::ptrdiff_t;\nusing usize = std::size_t;\n\n#define DEFINE_NUM_LITERAL(name,\
-    \ type) \\\n    constexpr auto operator\"\" name(unsigned long long x) { return\
-    \ static_cast<type>(x); }\n\nDEFINE_NUM_LITERAL(_i8, std::int8_t);\nDEFINE_NUM_LITERAL(_i16,\
-    \ std::int16_t);\nDEFINE_NUM_LITERAL(_i32, std::int32_t);\nDEFINE_NUM_LITERAL(_i64,\
-    \ std::int64_t);\nDEFINE_NUM_LITERAL(_i128, __int128_t);\nDEFINE_NUM_LITERAL(_u8,\
-    \ std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\nDEFINE_NUM_LITERAL(_u32,\
-    \ std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\nDEFINE_NUM_LITERAL(_u128,\
-    \ __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n#undef DEFINE_NUM_LITERAL\n\
-    }  // namespace bys\n#include <array>\n#include <iostream>\n#include <type_traits>\n\
-    /**\n * @file traits.hpp\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\n\
-    namespace bys {\ntemplate <class, class = void> struct has_rshift_from_istream\
-    \ : std::false_type {};\ntemplate <class T>\nstruct has_rshift_from_istream<T,\
-    \ std::void_t<decltype(std::declval<std::istream&>() >> std::declval<T&>())>>\
-    \ : std::true_type {};\ntemplate <class T> constexpr bool has_rshift_from_istream_v\
-    \ = has_rshift_from_istream<T>::value;\n\ntemplate <class, class = void> struct\
-    \ has_lshift_to_ostream : std::false_type {};\ntemplate <class T>\nstruct has_lshift_to_ostream<T,\
-    \ std::void_t<decltype(std::declval<std::ostream&>() << std::declval<T&>())>>\
-    \ : std::true_type {};\ntemplate <class T> constexpr bool has_lshft_to_ostream_v\
-    \ = has_lshift_to_ostream<T>::value;\n\ntemplate <class, class = void> struct\
-    \ is_tuple_like : std::false_type {};\ntemplate <class T> struct is_tuple_like<T,\
-    \ std::void_t<decltype(std::tuple_size<T>())>> : std::true_type {};\ntemplate\
-    \ <class T> constexpr bool is_tuple_like_v = is_tuple_like<T>::value;\n\ntemplate\
-    \ <class, class = void> struct is_iterable : std::false_type {};\ntemplate <class\
-    \ T> struct is_iterable<T, std::void_t<decltype(std::begin(std::declval<T>()))>>\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
+    \n\n#include <array>\n#include <optional>\n#include <utility>\n#include <cstdint>\n\
+    namespace bys {\nusing i8 = std::int8_t;\nusing i16 = std::int16_t;\nusing i32\
+    \ = std::int32_t;\nusing i64 = std::int64_t;\nusing i128 = __int128_t;\nusing\
+    \ u8 = std::uint8_t;\nusing u16 = std::uint16_t;\nusing u32 = std::uint32_t;\n\
+    using u64 = std::uint64_t;\nusing u128 = __uint128_t;\nusing f32 = float;\nusing\
+    \ f64 = double;\nusing f128 = long double;\n\nusing isize = std::ptrdiff_t;\n\
+    using usize = std::size_t;\n\n#define DEFINE_NUM_LITERAL(name, type) \\\n    constexpr\
+    \ auto operator\"\" name(unsigned long long x) { return static_cast<type>(x);\
+    \ }\n\nDEFINE_NUM_LITERAL(_i8, std::int8_t);\nDEFINE_NUM_LITERAL(_i16, std::int16_t);\n\
+    DEFINE_NUM_LITERAL(_i32, std::int32_t);\nDEFINE_NUM_LITERAL(_i64, std::int64_t);\n\
+    DEFINE_NUM_LITERAL(_i128, __int128_t);\nDEFINE_NUM_LITERAL(_u8, std::uint8_t);\n\
+    DEFINE_NUM_LITERAL(_u16, std::uint16_t);\nDEFINE_NUM_LITERAL(_u32, std::uint32_t);\n\
+    DEFINE_NUM_LITERAL(_u64, std::uint64_t);\nDEFINE_NUM_LITERAL(_u128, __uint128_t);\n\
+    DEFINE_NUM_LITERAL(_z, std::size_t);\n#undef DEFINE_NUM_LITERAL\n}  // namespace\
+    \ bys\n\n/**\n * @file monoid.hpp\n * @brief Monoid\n *\n * \u30E2\u30CE\u30A4\
+    \u30C9\n */\nnamespace bys {\nstruct Magma {\n    using set_type = std::nullptr_t;\n\
+    \    static constexpr set_type operation(set_type, set_type);\n    static constexpr\
+    \ set_type inverse(set_type);\n    static constexpr set_type identity{nullptr};\n\
+    \    static constexpr bool commutative{false};\n};\ntemplate <class T> struct\
+    \ Add : Magma {\n    using set_type = T;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return a + b; }\n    static constexpr set_type inverse(set_type\
+    \ a) { return -a; }\n    static constexpr set_type identity{0};\n    static constexpr\
+    \ bool commutative{true};\n};\ntemplate <class T> struct Min : Magma {\n    using\
+    \ set_type = T;\n    static constexpr set_type operation(set_type a, set_type\
+    \ b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
+    };\ntemplate <class T> struct Max : Magma {\n    using set_type = T;\n    static\
+    \ constexpr set_type operation(set_type a, set_type b) { return std::max(a, b);\
+    \ }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
+    };\ntemplate <class T> struct Update : Magma {\n    using set_type = std::optional<T>;\n\
+    \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
+    \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
+    \ <class T> struct Affine : Magma {\n    using set_type = std::pair<T, T>;\n \
+    \   static constexpr set_type operation(set_type a, set_type b) { return {a.first\
+    \ * b.first, a.second * b.first + b.second}; }\n    static constexpr set_type\
+    \ identity{1, 0};\n};\ntemplate <class Modint> struct ModMul : Magma {\n    using\
+    \ set_type = Modint;\n    static constexpr set_type operation(set_type a, set_type\
+    \ b) { return a * b; }\n    static constexpr set_type inverse(set_type a) { return\
+    \ a.inv(); }\n    static constexpr set_type identity{1};\n    static constexpr\
+    \ bool commutative{true};\n};\ntemplate <class T> struct Xor : Magma {\n    using\
+    \ set_type = T;\n    static constexpr set_type operation(set_type a, set_type\
+    \ b) { return a ^ b; }\n    static constexpr set_type inverse(set_type a) { return\
+    \ a; }\n    static constexpr set_type identity{0};\n    static constexpr bool\
+    \ commutative{true};\n};\ntemplate <std::size_t N> struct Perm : Magma {\n   \
+    \ using set_type = std::array<i32, N>;\n    static constexpr set_type operation(const\
+    \ set_type& a, const set_type& b) {\n        set_type res = {};\n        for (auto\
+    \ i = 0UL; i < N; ++i) res[i] = b[a[i]];\n        return res;\n    }\n    static\
+    \ constexpr set_type inverse(const set_type& a) {\n        set_type res = {};\n\
+    \        for (auto i = 0UL; i < N; ++i) res[a[i]] = i;\n        return res;\n\
+    \    }\n    static constexpr set_type identity = []() {\n        set_type res\
+    \ = {};\n        for (auto i = 0UL; i < N; ++i) res[i] = i;\n        return res;\n\
+    \    }();\n};\n}  // namespace bys\n#include <cassert>\n#include <vector>\n\n\
+    #include <algorithm>\n#include <string>\n/**\n * @file bit.hpp\n * @brief Bit\n\
+    \ * @note c++20\u3067<bit>\u304C\u8FFD\u52A0\u3055\u308C\u308B\n */\nnamespace\
+    \ bys {\n/**\n * @brief bit\u5E45\n *\n * bit_width(x) - 1  < log2(x) <= bit_width(x)\n\
+    \ */\ntemplate <class T> constexpr i32 bit_width(T x) {\n    i32 bits = 0;\n \
+    \   x = (x < 0) ? (-x) : x;\n    for (; x != 0; bits++) x >>= 1;\n    return bits;\n\
+    }\n//! @brief 2\u51AA\u306B\u5207\u308A\u4E0B\u3052\ntemplate <class T> constexpr\
+    \ T bit_floor(T x) {\n    assert(x >= 0);\n    return x == 0 ? 0 : T(1) << (bit_width(x)\
+    \ - 1);\n}\n//! @brief 2\u51AA\u306B\u5207\u308A\u4E0A\u3052\ntemplate <class\
+    \ T> constexpr T bit_ceil(T x) {\n    assert(x >= 0);\n    return x == 0 ? 1 :\
+    \ T(1) << bit_width(x - 1);\n}\n//! @brief 2\u9032\u6587\u5B57\u5217\u306B\u5909\
+    \u63DB\ntemplate <class T> std::string bin(T n) {\n    assert(n >= 0);\n    if\
+    \ (n == 0) return \"0\";\n    std::string res;\n    while (n > 0) {\n        res.push_back(n\
+    \ & 1 ? '1' : '0');\n        n >>= 1;\n    }\n    std::reverse(res.begin(), res.end());\n\
+    \    return res;\n}\n//! @brief d bit\u76EE\u304C\u7ACB\u3063\u3066\u3044\u308B\
+    \u304B\ntemplate <class T> constexpr bool pop(T s, i32 d) { return s & (T(1) <<\
+    \ d); }\n}  // namespace bys\n/**\n * @file segment_tree.hpp\n * @brief Segment\
+    \ Tree\n */\nnamespace bys {\n/**\n * @brief \u30BB\u30B0\u30E1\u30F3\u30C8\u6728\
+    \n *\n * \u4E00\u70B9\u66F4\u65B0: O(logN)\n * \u533A\u9593\u53D6\u5F97: O(logN)\n\
+    \ *\n * @tparam Monoid \u30E2\u30CE\u30A4\u30C9\n */\ntemplate <class Monoid>\
+    \ class SegmentTree {\n    using value_type = typename Monoid::set_type;\n   \
+    \ i32 _n, n_leaf;\n    std::vector<value_type> data;\n\n  public:\n    SegmentTree(i32\
+    \ n) : _n(n), n_leaf(bit_ceil(n)), data(n_leaf * 2, Monoid::identity) {}\n   \
+    \ SegmentTree(const std::vector<value_type>& v) : _n(v.size()), n_leaf(bit_ceil(_n)),\
+    \ data(n_leaf * 2, Monoid::identity) {\n        std::copy(v.begin(), v.end(),\
+    \ data.begin() + n_leaf);\n        for (i32 i = n_leaf - 1; i > 0; --i) data[i]\
+    \ = Monoid::operation(data[i * 2], data[i * 2 + 1]);\n    }\n\n    value_type\
+    \ fold(i32 l, i32 r) const {\n        assert(0 <= l && l <= _n);\n        assert(l\
+    \ <= r);\n        assert(r <= _n);\n\n        value_type left = Monoid::identity,\
+    \ right = Monoid::identity;\n        for (l += n_leaf, r += n_leaf; l < r; l >>=\
+    \ 1, r >>= 1) {\n            if (l & 1) left = Monoid::operation(left, data[l++]);\n\
+    \            if (r & 1) right = Monoid::operation(data[--r], right);\n       \
+    \ }\n        return Monoid::operation(left, right);\n    }\n\n    value_type fold_all()\
+    \ const { return data[1]; }\n\n    void update(i32 i, value_type val) {\n    \
+    \    assert(0 <= i && i < _n);\n        i += n_leaf;\n        data[i] = val;\n\
+    \        for (i >>= 1; i > 0; i >>= 1) data[i] = Monoid::operation(data[i * 2],\
+    \ data[i * 2 + 1]);\n    }\n\n    value_type operator[](i32 i) const {\n     \
+    \   assert(0 <= i && i < _n);\n        return data[i + n_leaf];\n    }\n\n   \
+    \ // f(fold(l, r)) == true \u3068\u306A\u308B\u6700\u5927\u306Er\n    template\
+    \ <class Lambda, class... Args> i32 bisect_from_left(i32 l, Lambda f, Args...\
+    \ args) const {\n        static_assert(std::is_same_v<std::invoke_result_t<Lambda,\
+    \ value_type, Args...>, bool>,\n                      \"The function signature\
+    \ is invalid.\");\n        assert(0 <= l && l < _n);\n        assert(f(Monoid::identity,\
+    \ args...));\n        l += n_leaf;\n        value_type sm = Monoid::identity;\n\
+    \        do {\n            l /= l & -l;\n            if (!f(Monoid::operation(sm,\
+    \ data[l]), args...)) {\n                while (l < n_leaf) {\n              \
+    \      l *= 2;\n                    if (value_type op = Monoid::operation(sm,\
+    \ data[l]); f(op, args...)) {\n                        sm = op;\n            \
+    \            ++l;\n                    }\n                }\n                return\
+    \ l - n_leaf;\n            }\n            sm = Monoid::operation(sm, data[l]);\n\
+    \            ++l;\n        } while ((l & -l) != l);\n        return _n;\n    }\n\
+    \n    // f(fold(l, r)) == true \u3068\u306A\u308B\u6700\u5C0F\u306El\n    template\
+    \ <class Lambda, class... Args> i32 bisect_from_right(i32 r, Lambda f, Args...\
+    \ args) const {\n        static_assert(std::is_same_v<std::invoke_result_t<Lambda,\
+    \ value_type, Args...>, bool>,\n                      \"The function signature\
+    \ is invalid.\");\n        assert(0 <= r && r <= _n);\n        assert(f(Monoid::identity,\
+    \ args...));\n        if (r == 0) return 0;\n        r += n_leaf;\n        value_type\
+    \ sm = Monoid::identity;\n        do {\n            --r;\n            while (r\
+    \ > 1 && (r % 2)) r >>= 1;\n            if (!f(Monoid::operation(data[r], sm)))\
+    \ {\n                while (r < n_leaf) {\n                    r = (2 * r + 1);\n\
+    \                    if (value_type op = Monoid::operation(data[r], sm); f(op,\
+    \ args...)) {\n                        sm = op;\n                        --r;\n\
+    \                    }\n                }\n                return r + 1 - n_leaf;\n\
+    \            }\n            sm = op(data[r], sm);\n        } while ((r & -r) !=\
+    \ r);\n        return 0;\n    }\n};\n}  // namespace bys\n/**\n * @file template.hpp\n\
+    \ * @author bayashi_cl\n *\n * C++ library for competitive programming by bayashi_cl\n\
+    \ * Repository: https://github.com/bayashi-cl/byslib\n * Document  : https://bayashi-cl.github.io/byslib/\n\
+    \ */\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <cstddef>\n#include <limits>\n\
+    #include <tuple>\n\n#include <iostream>\n#include <type_traits>\n/**\n * @file\
+    \ traits.hpp\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\nnamespace\
+    \ bys {\ntemplate <class, class = void> struct has_rshift_from_istream : std::false_type\
+    \ {};\ntemplate <class T>\nstruct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
+    \ >> std::declval<T&>())>> : std::true_type {};\ntemplate <class T> constexpr\
+    \ bool has_rshift_from_istream_v = has_rshift_from_istream<T>::value;\n\ntemplate\
+    \ <class, class = void> struct has_lshift_to_ostream : std::false_type {};\ntemplate\
+    \ <class T>\nstruct has_lshift_to_ostream<T, std::void_t<decltype(std::declval<std::ostream&>()\
+    \ << std::declval<T&>())>> : std::true_type {};\ntemplate <class T> constexpr\
+    \ bool has_lshft_to_ostream_v = has_lshift_to_ostream<T>::value;\n\ntemplate <class,\
+    \ class = void> struct is_tuple_like : std::false_type {};\ntemplate <class T>\
+    \ struct is_tuple_like<T, std::void_t<decltype(std::tuple_size<T>())>> : std::true_type\
+    \ {};\ntemplate <class T> constexpr bool is_tuple_like_v = is_tuple_like<T>::value;\n\
+    \ntemplate <class, class = void> struct is_iterable : std::false_type {};\ntemplate\
+    \ <class T> struct is_iterable<T, std::void_t<decltype(std::begin(std::declval<T>()))>>\
     \ : std::true_type {};\ntemplate <class T> constexpr bool is_iterable_v = is_iterable<T>::value;\n\
     \ntemplate <class T> struct Indexed {\n    static_assert(std::is_integral_v<T>);\n\
     \    using resolve_to = T;\n};\nusing i32_1 = Indexed<i32>;\nusing i64_1 = Indexed<i64>;\n\
@@ -117,23 +230,23 @@ data:
     \ * @brief \u6700\u5C0F\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\
     \u308C\u305F\u3068\u304D\n */\ntemplate <class T> constexpr bool chmin(T& a, T\
     \ const& b) { return a > b ? a = b, true : false; }\n}  // namespace bys\n#include\
-    \ <iterator>\n#include <vector>\n\n\nnamespace bys {\ntemplate <class Iterator>\
-    \ class SubRange {\n  public:\n    using iterator = Iterator;\n    using reverse_iterator\
-    \ = std::reverse_iterator<iterator>;\n    using value_type = typename iterator::value_type;\n\
-    \n    SubRange() = default;\n    SubRange(const SubRange& s) : _begin(s._begin),\
-    \ _end(s._end) {}\n    SubRange(const iterator& begin, const iterator& end) :\
-    \ _begin(begin), _end(end) {}\n\n    iterator begin() const noexcept { return\
-    \ _begin; }\n    iterator end() const noexcept { return _end; }\n    reverse_iterator\
-    \ rbegin() const noexcept { return reverse_iterator{_end}; }\n    reverse_iterator\
-    \ rend() const { return reverse_iterator{_begin}; }\n    auto operator[](std::size_t\
-    \ i) const noexcept { return *(_begin + i); }\n    auto size() const noexcept\
-    \ { return _end - _begin; }\n    bool empty() const noexcept { return _begin ==\
-    \ _end; }\n\n    auto to_vec() const { return std::vector(_begin, _end); }\n\n\
-    \  private:\n    iterator _begin, _end;\n};\ntemplate <class Iterable> auto reversed(Iterable&&\
-    \ iter) {\n    static_assert(is_iterable_v<Iterable>, \"iter is not iterable\"\
-    );\n    return SubRange(std::rbegin(std::forward<Iterable>(iter)), std::rend(std::forward<Iterable>(iter)));\n\
-    }\n}  // namespace bys\n/**\n * @file enumerate.hpp\n * @brief Python::enumerate\n\
-    \ *\n * Python\u518D\u73FE\u30B7\u30EA\u30FC\u30BA enumerate\u7DE8\n * See: https://docs.python.org/ja/3/library/functions.html#enumerate\n\
+    \ <iterator>\n\n\nnamespace bys {\ntemplate <class Iterator> class SubRange {\n\
+    \  public:\n    using iterator = Iterator;\n    using reverse_iterator = std::reverse_iterator<iterator>;\n\
+    \    using value_type = typename iterator::value_type;\n\n    SubRange() = default;\n\
+    \    SubRange(const SubRange& s) : _begin(s._begin), _end(s._end) {}\n    SubRange(const\
+    \ iterator& begin, const iterator& end) : _begin(begin), _end(end) {}\n\n    iterator\
+    \ begin() const noexcept { return _begin; }\n    iterator end() const noexcept\
+    \ { return _end; }\n    reverse_iterator rbegin() const noexcept { return reverse_iterator{_end};\
+    \ }\n    reverse_iterator rend() const { return reverse_iterator{_begin}; }\n\
+    \    auto operator[](std::size_t i) const noexcept { return *(_begin + i); }\n\
+    \    auto size() const noexcept { return _end - _begin; }\n    bool empty() const\
+    \ noexcept { return _begin == _end; }\n\n    auto to_vec() const { return std::vector(_begin,\
+    \ _end); }\n\n  private:\n    iterator _begin, _end;\n};\ntemplate <class Iterable>\
+    \ auto reversed(Iterable&& iter) {\n    static_assert(is_iterable_v<Iterable>,\
+    \ \"iter is not iterable\");\n    return SubRange(std::rbegin(std::forward<Iterable>(iter)),\
+    \ std::rend(std::forward<Iterable>(iter)));\n}\n}  // namespace bys\n/**\n * @file\
+    \ enumerate.hpp\n * @brief Python::enumerate\n *\n * Python\u518D\u73FE\u30B7\u30EA\
+    \u30FC\u30BA enumerate\u7DE8\n * See: https://docs.python.org/ja/3/library/functions.html#enumerate\n\
     \ */\nnamespace bys {\ntemplate <class Iterator> struct EnumerateIterator {\n\
     \  public:\n    using difference_type = typename Iterator::difference_type;\n\
     \    using value_type = std::tuple<i32, typename Iterator::value_type>;\n    //\
@@ -196,10 +309,10 @@ data:
     \ w = step >= 0 ? stop - start : start - stop;\n    auto s = step >= 0 ? step\
     \ : -step;\n    if (w < 0) w = 0;\n    return SubRange(iterator_t(start, static_cast<T>(0),\
     \ step), iterator_t(start, (w + s - 1) / s, step));\n}\n}  // namespace bys\n\
-    #include <string>\nusing std::literals::string_literals::operator\"\"s;\n/**\n\
-    \ * @file macro.hpp\n * @brief Macro\n */\n// clang-format off\n#define CONCAT_IMPL(a,\
-    \ b) a##b\n#define CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\
-    \u5909\u6570\u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
+    using std::literals::string_literals::operator\"\"s;\n/**\n * @file macro.hpp\n\
+    \ * @brief Macro\n */\n// clang-format off\n#define CONCAT_IMPL(a, b) a##b\n#define\
+    \ CONCAT(a, b) CONCAT_IMPL(a, b)\n//! @brief [[maybe_unused]]\u306A\u5909\u6570\
+    \u3092\u751F\u6210\u3002\n#define UV [[maybe_unused]] auto CONCAT(unused_val_,\
     \ __LINE__)\n#define RE std::runtime_error(\"file: \"s + __FILE__ + \", line:\
     \ \"s + std::to_string(__LINE__) + \", func: \"s + __func__)\n#ifdef LOCAL\n#define\
     \ DEBUGBLOCK(block) block\n#else\n#define DEBUGBLOCK(block)\n#endif\n// clang-format\
@@ -279,24 +392,35 @@ data:
     \ Input failed.\" << std::endl;\n        if (not isatty(STDIN_FILENO) and not\
     \ std::ws(std::cin).eof()) std::cerr << \"\U0001F7E1 Unused input.\" << std::endl;\n\
     #endif\n        return 0;\n    }\n};\n}  // namespace bys\n/**\n * @file stdlib.hpp\n\
-    \ * @brief STL Template\n */\n#include <algorithm>\n#include <bitset>\n#include\
-    \ <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n#include\
-    \ <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n\
-    #include <unordered_map>\n#include <unordered_set>\n\n\nnamespace bys {\nusing\
-    \ std::array, std::vector, std::string, std::set, std::map, std::pair;\nusing\
-    \ std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs;\n\n// alias\nusing Pa = std::pair<i32, i32>;\nusing Pa64 = std::pair<i64,\
-    \ i64>;\ntemplate <class T> using uset = std::unordered_set<T>;\ntemplate <class\
-    \ S, class T> using umap = std::unordered_map<S, T>;\n}  // namespace bys\n\n\
-    namespace bys {\nvoid Solver::solve() {\n    \n}\n}  // namespace bys\n\nint main()\
-    \ { return bys::Solver::main(/* bys::scanner.read<int>() */); }\n"
-  code: "#include \"byslib/template.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    \n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
+    \ * @brief STL Template\n */\n#include <bitset>\n#include <cmath>\n#include <complex>\n\
+    #include <functional>\n#include <map>\n#include <numeric>\n#include <queue>\n\
+    #include <set>\n#include <stack>\n#include <unordered_map>\n#include <unordered_set>\n\
+    \n\nnamespace bys {\nusing std::array, std::vector, std::string, std::set, std::map,\
+    \ std::pair;\nusing std::cin, std::cout, std::endl;\nusing std::min, std::max,\
+    \ std::sort, std::reverse, std::abs;\n\n// alias\nusing Pa = std::pair<i32, i32>;\n\
+    using Pa64 = std::pair<i64, i64>;\ntemplate <class T> using uset = std::unordered_set<T>;\n\
+    template <class S, class T> using umap = std::unordered_map<S, T>;\n}  // namespace\
+    \ bys\n\nnamespace bys {\nvoid Solver::solve() {\n    auto [n, q] = scanner.read<int,\
+    \ 2>();\n    SegmentTree<Min<int>> seg(n);\n    for (UV : irange(q)) {\n     \
+    \   auto [t, x, y] = scanner.read<int, 3>();\n        if (t == 0) {\n        \
+    \    seg.update(x, y);\n\n        } else {\n            print(seg.fold(x, y +\
+    \ 1));\n        }\n    }\n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
     \ bys::scanner.read<int>() */); }\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_A\"\
+    \n\n#include \"../../byslib/algebra/monoid.hpp\"\n#include \"../../byslib/ds/segment_tree.hpp\"\
+    \n#include \"../../byslib/template.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [n, q] = scanner.read<int, 2>();\n    SegmentTree<Min<int>> seg(n);\n\
+    \    for (UV : irange(q)) {\n        auto [t, x, y] = scanner.read<int, 3>();\n\
+    \        if (t == 0) {\n            seg.update(x, y);\n\n        } else {\n  \
+    \          print(seg.fold(x, y + 1));\n        }\n    }\n}\n}  // namespace bys\n\
+    \nint main() { return bys::Solver::main(/* bys::scanner.read<int>() */); }\n"
   dependsOn:
+  - byslib/algebra/monoid.hpp
+  - byslib/core/int_alias.hpp
+  - byslib/ds/segment_tree.hpp
+  - byslib/ntheory/bit.hpp
   - byslib/template.hpp
   - byslib/core/constant.hpp
-  - byslib/core/int_alias.hpp
   - byslib/core/traits.hpp
   - byslib/extension/change.hpp
   - byslib/extension/enumerate.hpp
@@ -308,16 +432,16 @@ data:
   - byslib/io/scanner.hpp
   - byslib/procon/solver.hpp
   - byslib/procon/stdlib.hpp
-  isVerificationFile: false
-  path: template.cpp
+  isVerificationFile: true
+  path: test/AOJ/DSL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2022-11-30 18:07:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-12-02 16:49:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: template.cpp
+documentation_of: test/AOJ/DSL_2_A.test.cpp
 layout: document
 redirect_from:
-- /library/template.cpp
-- /library/template.cpp.html
-title: template.cpp
+- /verify/test/AOJ/DSL_2_A.test.cpp
+- /verify/test/AOJ/DSL_2_A.test.cpp.html
+title: test/AOJ/DSL_2_A.test.cpp
 ---

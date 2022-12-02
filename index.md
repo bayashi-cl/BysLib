@@ -1,396 +1,385 @@
 ---
 data:
   libraryCategories:
-  - name: algebra
+  - name: byslib/algebra
     pages:
-    - icon: ':heavy_check_mark:'
-      path: algebra/mapping.hpp
+    - icon: ':warning:'
+      path: byslib/algebra/fraction.hpp
+      title: Fraction
+    - icon: ':question:'
+      path: byslib/algebra/mapping.hpp
       title: Mapping
     - icon: ':heavy_check_mark:'
-      path: algebra/monoid.hpp
+      path: byslib/algebra/modint.hpp
+      title: Modint
+    - icon: ':question:'
+      path: byslib/algebra/monoid.hpp
       title: Monoid
-  - name: algorithm
+    - icon: ':warning:'
+      path: byslib/algebra/util.hpp
+      title: byslib/algebra/util.hpp
+  - name: byslib/algorithm
     pages:
     - icon: ':warning:'
-      path: algorithm/run_length.hpp
+      path: byslib/algorithm/binary_search.hpp
+      title: Binary Search
+    - icon: ':warning:'
+      path: byslib/algorithm/compress.hpp
+      title: Coordinate Compression
+    - icon: ':warning:'
+      path: byslib/algorithm/inversion.hpp
+      title: byslib/algorithm/inversion.hpp
+    - icon: ':warning:'
+      path: byslib/algorithm/run_length.hpp
       title: Run Length Encoding
-  - name: core
+  - name: byslib/core
     pages:
-    - icon: ':heavy_check_mark:'
-      path: core/const.hpp
+    - icon: ':question:'
+      path: byslib/core/constant.hpp
       title: Const
-    - icon: ':heavy_check_mark:'
-      path: core/core.hpp
-      title: core/all
-    - icon: ':heavy_check_mark:'
-      path: core/io.hpp
-      title: I/O
-    - icon: ':heavy_check_mark:'
-      path: core/macro.hpp
-      title: Macro
-    - icon: ':heavy_check_mark:'
-      path: core/printer.hpp
-      title: Output
-    - icon: ':heavy_check_mark:'
-      path: core/scanner.hpp
-      title: Input
-    - icon: ':heavy_check_mark:'
-      path: core/solver.hpp
-      title: Solver
-    - icon: ':heavy_check_mark:'
-      path: core/stdlib.hpp
-      title: STL Template
-    - icon: ':warning:'
-      path: core/timer.hpp
-      title: Timer
-    - icon: ':heavy_check_mark:'
-      path: core/types.hpp
+    - icon: ':question:'
+      path: byslib/core/int_alias.hpp
+      title: byslib/core/int_alias.hpp
+    - icon: ':question:'
+      path: byslib/core/traits.hpp
       title: Types
-  - name: data
+  - name: byslib/dp
     pages:
-    - icon: ':heavy_check_mark:'
-      path: data/binary_indexed_tree.hpp
+    - icon: ':warning:'
+      path: byslib/dp/lcs.hpp
+      title: byslib/dp/lcs.hpp
+    - icon: ':warning:'
+      path: byslib/dp/lis.hpp
+      title: "\u6700\u9577\u5897\u52A0\u90E8\u5206\u5217"
+    - icon: ':warning:'
+      path: byslib/dp/substring.hpp
+      title: byslib/dp/substring.hpp
+  - name: byslib/ds
+    pages:
+    - icon: ':x:'
+      path: byslib/ds/binary_indexed_tree.hpp
       title: Binary Indexed Tree
-    - icon: ':heavy_check_mark:'
-      path: data/cumulative_sum.hpp
+    - icon: ':warning:'
+      path: byslib/ds/binary_trie.hpp
+      title: byslib/ds/binary_trie.hpp
+    - icon: ':x:'
+      path: byslib/ds/cumulative_sum.hpp
       title: Cumulative Sum
-    - icon: ':heavy_check_mark:'
-      path: data/dual_segment_tree.hpp
+    - icon: ':warning:'
+      path: byslib/ds/cumulative_sum_2D.hpp
+      title: byslib/ds/cumulative_sum_2D.hpp
+    - icon: ':x:'
+      path: byslib/ds/dual_segment_tree.hpp
       title: Dual Segment Tree
     - icon: ':heavy_check_mark:'
-      path: data/lazy_segment_tree.hpp
+      path: byslib/ds/imos.hpp
+      title: byslib/ds/imos.hpp
+    - icon: ':question:'
+      path: byslib/ds/lazy_segment_tree.hpp
       title: Lazy Segment Tree
     - icon: ':warning:'
-      path: data/ordered_pair.hpp
-      title: Orderd Pair
-    - icon: ':warning:'
-      path: data/ordered_set.hpp
+      path: byslib/ds/ordered_set.hpp
       title: Ordered Set
-    - icon: ':heavy_check_mark:'
-      path: data/segment_tree.hpp
+    - icon: ':x:'
+      path: byslib/ds/segment_tree.hpp
       title: Segment Tree
-    - icon: ':heavy_check_mark:'
-      path: data/sparse_table.hpp
+    - icon: ':x:'
+      path: byslib/ds/sparse_table.hpp
       title: Sparse Table
     - icon: ':heavy_check_mark:'
-      path: data/union_find.hpp
+      path: byslib/ds/union_find.hpp
       title: Union Find Tree
-  - name: dp
+  - name: byslib/extension
     pages:
+    - icon: ':question:'
+      path: byslib/extension/change.hpp
+      title: chmin/chmax
+    - icon: ':question:'
+      path: byslib/extension/enumerate.hpp
+      title: Python::enumerate
     - icon: ':warning:'
-      path: dp/inversion.hpp
-      title: dp/inversion.hpp
-  - name: geometry
+      path: byslib/extension/fixpoint.hpp
+      title: FixPoint
+    - icon: ':warning:'
+      path: byslib/extension/grid.hpp
+      title: Grid Manager
+    - icon: ':question:'
+      path: byslib/extension/irange.hpp
+      title: Python::range
+    - icon: ':warning:'
+      path: byslib/extension/itemsorter.hpp
+      title: ItemSorter
+    - icon: ':warning:'
+      path: byslib/extension/itertools.hpp
+      title: Python::itertools
+    - icon: ':question:'
+      path: byslib/extension/macro.hpp
+      title: Macro
+    - icon: ':warning:'
+      path: byslib/extension/ndvector.hpp
+      title: n-dimentional vector
+    - icon: ':warning:'
+      path: byslib/extension/operative_tuple.hpp
+      title: byslib/extension/operative_tuple.hpp
+    - icon: ':warning:'
+      path: byslib/extension/ordered_pair.hpp
+      title: Orderd Pair
+    - icon: ':question:'
+      path: byslib/extension/subrange.hpp
+      title: byslib/extension/subrange.hpp
+    - icon: ':warning:'
+      path: byslib/extension/timer.hpp
+      title: Timer
+    - icon: ':warning:'
+      path: byslib/extension/transformed.hpp
+      title: Transformed
+    - icon: ':warning:'
+      path: byslib/extension/type_info.hpp
+      title: byslib/extension/type_info.hpp
+  - name: byslib/geometry
     pages:
     - icon: ':heavy_check_mark:'
-      path: geometry/base.hpp
+      path: byslib/geometry/base.hpp
       title: Base
+    - icon: ':warning:'
+      path: byslib/geometry/circle.hpp
+      title: byslib/geometry/circle.hpp
     - icon: ':heavy_check_mark:'
-      path: geometry/line.hpp
+      path: byslib/geometry/line.hpp
       title: Line
     - icon: ':heavy_check_mark:'
-      path: geometry/point.hpp
+      path: byslib/geometry/point.hpp
       title: Point
     - icon: ':heavy_check_mark:'
-      path: geometry/polygon.hpp
+      path: byslib/geometry/polygon.hpp
       title: Polygon
-  - name: graph
+  - name: byslib/graph
     pages:
     - icon: ':heavy_check_mark:'
-      path: graph/bellman_ford.hpp
-      title: graph/bellman_ford.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/breadth_first.hpp
-      title: graph/breadth_first.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/depth_first.hpp
-      title: graph/depth_first.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/dijkstra.hpp
-      title: graph/dijkstra.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/edge.hpp
-      title: "\u30B0\u30E9\u30D5\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8"
-    - icon: ':heavy_check_mark:'
-      path: graph/kruskal.hpp
-      title: graph/kruskal.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/lca.hpp
-      title: graph/lca.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/reader.hpp
-      title: graph/reader.hpp
-    - icon: ':warning:'
-      path: graph/util.hpp
-      title: graph/util.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/warshall_floyd.hpp
-      title: graph/warshall_floyd.hpp
-  - name: graphv2
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: graphv2/bellman_ford.hpp
+      path: byslib/graph/bellman_ford.hpp
       title: Bellman Ford
-    - icon: ':heavy_check_mark:'
-      path: graphv2/breadth_first_search.hpp
-      title: Breadth First Search
     - icon: ':warning:'
-      path: graphv2/depth_first_search.hpp
-      title: Depth First Search
-    - icon: ':heavy_check_mark:'
-      path: graphv2/dijkstra.hpp
-      title: Dijkstra
-    - icon: ':heavy_check_mark:'
-      path: graphv2/edge.hpp
-      title: Edge
+      path: byslib/graph/bfs.hpp
+      title: byslib/graph/bfs.hpp
     - icon: ':warning:'
-      path: graphv2/kruskal.hpp
-      title: Kruskal
+      path: byslib/graph/dfs.hpp
+      title: byslib/graph/dfs.hpp
     - icon: ':heavy_check_mark:'
-      path: graphv2/lca.hpp
+      path: byslib/graph/dijkstra.hpp
+      title: byslib/graph/dijkstra.hpp
+    - icon: ':heavy_check_mark:'
+      path: byslib/graph/edge.hpp
+      title: byslib/graph/edge.hpp
+    - icon: ':heavy_check_mark:'
+      path: byslib/graph/graph.hpp
+      title: byslib/graph/graph.hpp
+    - icon: ':warning:'
+      path: byslib/graph/kruskal.hpp
+      title: byslib/graph/kruskal.hpp
+    - icon: ':warning:'
+      path: byslib/graph/lca.hpp
       title: Lowest Common Ancestor
     - icon: ':warning:'
-      path: graphv2/reader.hpp
+      path: byslib/graph/reader.hpp
       title: Reader
-    - icon: ':heavy_check_mark:'
-      path: graphv2/result.hpp
-      title: Shortest Path Result
     - icon: ':warning:'
-      path: graphv2/rooted_tree.hpp
-      title: Rooted tree
+      path: byslib/graph/shortest_path_tree.hpp
+      title: byslib/graph/shortest_path_tree.hpp
     - icon: ':warning:'
-      path: graphv2/topological_sort.hpp
+      path: byslib/graph/topological_sort.hpp
       title: Topological Sort
+    - icon: ':warning:'
+      path: byslib/graph/tree.hpp
+      title: byslib/graph/tree.hpp
+    - icon: ':warning:'
+      path: byslib/graph/util.hpp
+      title: byslib/graph/util.hpp
     - icon: ':heavy_check_mark:'
-      path: graphv2/warshall_floyd.hpp
+      path: byslib/graph/warshall_floyd.hpp
       title: Warshall Floyd
-  - name: math
+  - name: byslib/io
+    pages:
+    - icon: ':question:'
+      path: byslib/io/io.hpp
+      title: I/O
+    - icon: ':question:'
+      path: byslib/io/printer.hpp
+      title: Output
+    - icon: ':question:'
+      path: byslib/io/scanner.hpp
+      title: Input
+  - name: byslib/linalg
     pages:
     - icon: ':warning:'
-      path: math/affine.hpp
+      path: byslib/linalg/affine.hpp
       title: Affine Transformation
-    - icon: ':warning:'
-      path: math/base.hpp
-      title: Base conversion
     - icon: ':heavy_check_mark:'
-      path: math/bit.hpp
-      title: Bit
+      path: byslib/linalg/coo.hpp
+      title: byslib/linalg/coo.hpp
     - icon: ':heavy_check_mark:'
-      path: math/combination.hpp
-      title: Binomial Coefficient
+      path: byslib/linalg/csr.hpp
+      title: byslib/linalg/csr.hpp
     - icon: ':warning:'
-      path: math/divisor.hpp
-      title: Divisor
-    - icon: ':heavy_check_mark:'
-      path: math/euclid.hpp
-      title: Extended Euclidean Algorithm
-    - icon: ':warning:'
-      path: math/fraction.hpp
-      title: Fraction
-    - icon: ':warning:'
-      path: math/matrix.hpp
+      path: byslib/linalg/matrix.hpp
       title: Matrix
     - icon: ':heavy_check_mark:'
-      path: math/modint.hpp
-      title: Modint
-    - icon: ':heavy_check_mark:'
-      path: math/numeric.hpp
-      title: Numeric
-    - icon: ':heavy_check_mark:'
-      path: math/osa_k.hpp
-      title: Osa-k
-    - icon: ':heavy_check_mark:'
-      path: math/prime.hpp
-      title: Prime
-    - icon: ':warning:'
-      path: math/sequence.hpp
-      title: Sequence
-  - name: string
+      path: byslib/linalg/sparsefwd.hpp
+      title: byslib/linalg/sparsefwd.hpp
+  - name: byslib/ntheory
     pages:
     - icon: ':warning:'
-      path: string/ascii.hpp
+      path: byslib/ntheory/base.hpp
+      title: Base conversion
+    - icon: ':question:'
+      path: byslib/ntheory/bit.hpp
+      title: Bit
+    - icon: ':warning:'
+      path: byslib/ntheory/combination.hpp
+      title: Binomial Coefficient
+    - icon: ':warning:'
+      path: byslib/ntheory/divisor.hpp
+      title: Divisor
+    - icon: ':warning:'
+      path: byslib/ntheory/euclid.hpp
+      title: Extended Euclidean Algorithm
+    - icon: ':heavy_check_mark:'
+      path: byslib/ntheory/numeric.hpp
+      title: Numeric
+    - icon: ':warning:'
+      path: byslib/ntheory/osa_k.hpp
+      title: Osa-k
+    - icon: ':heavy_check_mark:'
+      path: byslib/ntheory/prime.hpp
+      title: Prime
+    - icon: ':warning:'
+      path: byslib/ntheory/sequence.hpp
+      title: Sequence
+    - icon: ':warning:'
+      path: byslib/ntheory/subset.hpp
+      title: byslib/ntheory/subset.hpp
+  - name: byslib/procon
+    pages:
+    - icon: ':question:'
+      path: byslib/procon/solver.hpp
+      title: Solver
+    - icon: ':question:'
+      path: byslib/procon/stdlib.hpp
+      title: STL Template
+  - name: byslib/string
+    pages:
+    - icon: ':warning:'
+      path: byslib/string/ascii.hpp
       title: Alphabet
     - icon: ':warning:'
-      path: string/str.hpp
+      path: byslib/string/rollinghash.hpp
+      title: "\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5"
+    - icon: ':warning:'
+      path: byslib/string/str.hpp
       title: Python::str
+  - name: byslib
+    pages:
+    - icon: ':question:'
+      path: byslib/template.hpp
+      title: byslib/template.hpp
   - name: .
     pages:
     - icon: ':warning:'
       path: template.cpp
       title: template.cpp
-  - name: utility
-    pages:
-    - icon: ':warning:'
-      path: utility/binary_search.hpp
-      title: Binary Search
-    - icon: ':heavy_check_mark:'
-      path: utility/change.hpp
-      title: chmin/chmax
-    - icon: ':warning:'
-      path: utility/compress.hpp
-      title: Coordinate Compression
-    - icon: ':warning:'
-      path: utility/enumerate.hpp
-      title: Python::enumerate
-    - icon: ':heavy_check_mark:'
-      path: utility/fixpoint.hpp
-      title: FixPoint
-    - icon: ':heavy_check_mark:'
-      path: utility/grid.hpp
-      title: Grid Manager
-    - icon: ':warning:'
-      path: utility/itemsorter.hpp
-      title: ItemSorter
-    - icon: ':warning:'
-      path: utility/itertools.hpp
-      title: Python::itertools
-    - icon: ':heavy_check_mark:'
-      path: utility/range.hpp
-      title: Python::range
-    - icon: ':warning:'
-      path: utility/transformed.hpp
-      title: Transformed
   verificationCategories:
-  - name: test/data
+  - name: test/AOJ
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/data/binary_indexed_tree.test.cpp
-      title: test/data/binary_indexed_tree.test.cpp
+      path: test/AOJ/CGL_1_A.test.cpp
+      title: test/AOJ/CGL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/binary_indexed_tree_aux.test.cpp
-      title: test/data/binary_indexed_tree_aux.test.cpp
+      path: test/AOJ/CGL_1_B.test.cpp
+      title: test/AOJ/CGL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/cumulative_sum.test.cpp
-      title: test/data/cumulative_sum.test.cpp
+      path: test/AOJ/CGL_1_C.test.cpp
+      title: test/AOJ/CGL_1_C.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/cumulative_sum_2D.test.cpp
-      title: test/data/cumulative_sum_2D.test.cpp
+      path: test/AOJ/CGL_2_A.test.cpp
+      title: test/AOJ/CGL_2_A.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/dual_segment_tree_RAQ.test.cpp
-      title: test/data/dual_segment_tree_RAQ.test.cpp
+      path: test/AOJ/CGL_2_B.test.cpp
+      title: test/AOJ/CGL_2_B.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/dual_segment_tree_RUQ.test.cpp
-      title: test/data/dual_segment_tree_RUQ.test.cpp
+      path: test/AOJ/CGL_2_C.test.cpp
+      title: test/AOJ/CGL_2_C.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
-      title: test/data/lazy_segment_tree_RMQ_RAQ.test.cpp
+      path: test/AOJ/CGL_2_D.test.cpp
+      title: test/AOJ/CGL_2_D.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
-      title: test/data/lazy_segment_tree_RMQ_RUQ.test.cpp
+      path: test/AOJ/CGL_3_A.test.cpp
+      title: test/AOJ/CGL_3_A.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
-      title: test/data/lazy_segment_tree_RSQ_RAQ.test.cpp
+      path: test/AOJ/CGL_3_B.test.cpp
+      title: test/AOJ/CGL_3_B.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
-      title: test/data/lazy_segment_tree_RSQ_RUQ.test.cpp
+      path: test/AOJ/DSL_1_A.test.cpp
+      title: test/AOJ/DSL_1_A.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_A.test.cpp
+      title: test/AOJ/DSL_2_A.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_B.test.cpp
+      title: test/AOJ/DSL_2_B.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_D.test.cpp
+      title: test/AOJ/DSL_2_D.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_E.test.cpp
+      title: test/AOJ/DSL_2_E.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_F.test.cpp
+      title: test/AOJ/DSL_2_F.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_G.test.cpp
+      title: test/AOJ/DSL_2_G.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_H.test.cpp
+      title: test/AOJ/DSL_2_H.test.cpp
+    - icon: ':x:'
+      path: test/AOJ/DSL_2_I.test.cpp
+      title: test/AOJ/DSL_2_I.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
-      title: test/data/lazy_segment_tree_Range_Affine_Range_Sum.test.cpp
+      path: test/AOJ/DSL_5_A.test.cpp
+      title: test/AOJ/DSL_5_A.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/segment_tree_RMQ.test.cpp
-      title: test/data/segment_tree_RMQ.test.cpp
+      path: test/AOJ/DSL_5_B.test.cpp
+      title: test/AOJ/DSL_5_B.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/segment_tree_RSQ.test.cpp
-      title: test/data/segment_tree_RSQ.test.cpp
+      path: test/AOJ/GRL_1_A.test.cpp
+      title: test/AOJ/GRL_1_A.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/segment_tree_RSQ2.test.cpp
-      title: test/data/segment_tree_RSQ2.test.cpp
+      path: test/AOJ/GRL_1_B.test.cpp
+      title: test/AOJ/GRL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/data/sparse_table.test.cpp
-      title: test/data/sparse_table.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/data/union_find.test.cpp
-      title: test/data/union_find.test.cpp
-  - name: test/geometry
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/area.test.cpp
-      title: test/geometry/area.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/counter_clockwise.test.cpp
-      title: test/geometry/counter_clockwise.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/cross_point.test.cpp
-      title: test/geometry/cross_point.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/distance.test.cpp
-      title: test/geometry/distance.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/intersection.test.cpp
-      title: test/geometry/intersection.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/is_convex.test.cpp
-      title: test/geometry/is_convex.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/parallel_orthogonal.test.cpp
-      title: test/geometry/parallel_orthogonal.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/projection.test.cpp
-      title: test/geometry/projection.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/geometry/reflection.test.cpp
-      title: test/geometry/reflection.test.cpp
-  - name: test/graph
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/graph/bellman_ford.test.cpp
-      title: test/graph/bellman_ford.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graph/bfs_grid.test.cpp
-      title: test/graph/bfs_grid.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graph/dijkstra.test.cpp
-      title: test/graph/dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graph/kruskal.test.cpp
-      title: test/graph/kruskal.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graph/lca.test.cpp
-      title: test/graph/lca.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graph/warshallfloyd.test.cpp
-      title: test/graph/warshallfloyd.test.cpp
-  - name: test/graphv2
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/graphv2/bellman_ford.test.cpp
-      title: test/graphv2/bellman_ford.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graphv2/bfs_grid.test.cpp
-      title: test/graphv2/bfs_grid.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graphv2/dijkstra.test.cpp
-      title: test/graphv2/dijkstra.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graphv2/lca.test.cpp
-      title: test/graphv2/lca.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/graphv2/warshallfloyd.test.cpp
-      title: test/graphv2/warshallfloyd.test.cpp
-  - name: test/math
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: test/math/combination.test.cpp
-      title: test/math/combination.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/math/euclid.test.cpp
-      title: test/math/euclid.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/math/osa_k.test.cpp
-      title: test/math/osa_k.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/math/prime.test.cpp
-      title: test/math/prime.test.cpp
+      path: test/AOJ/GRL_1_C.test.cpp
+      title: test/AOJ/GRL_1_C.test.cpp
   - name: test
     pages:
     - icon: ':heavy_check_mark:'
       path: test/test.test.cpp
       title: test/test.test.cpp
-  - name: test/utility
+  - name: test/yosupo
     pages:
+    - icon: ':x:'
+      path: test/yosupo/point_add_range_sum.test.cpp
+      title: test/yosupo/point_add_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/utility/range.test.cpp
-      title: test/utility/range.test.cpp
+      path: test/yosupo/range_affine_range_sum.test.cpp
+      title: test/yosupo/range_affine_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/static_range_sum.test.cpp
+      title: test/yosupo/static_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo/staticrmq.test.cpp
+      title: test/yosupo/staticrmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/unionfind.test.cpp
+      title: test/yosupo/unionfind.test.cpp
 layout: toppage
 ---
 [![Badge](https://cp-logo.vercel.app/atcoder/bayashi_cl)](https://atcoder.jp/users/bayashi_cl)

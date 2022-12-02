@@ -10,6 +10,9 @@ data:
   - icon: ':question:'
     path: byslib/core/traits.hpp
     title: Types
+  - icon: ':heavy_check_mark:'
+    path: byslib/ds/imos.hpp
+    title: byslib/ds/imos.hpp
   - icon: ':question:'
     path: byslib/extension/change.hpp
     title: chmin/chmax
@@ -47,27 +50,48 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "/**\n * @file template.hpp\n * @author bayashi_cl\n *\n * C++ library\
-    \ for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_5_A
+    links:
+    - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_5_A
+  bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_5_A\"\
+    \n#include <numeric>\n#include <vector>\n\n#include <cstdint>\nnamespace bys {\n\
+    using i8 = std::int8_t;\nusing i16 = std::int16_t;\nusing i32 = std::int32_t;\n\
+    using i64 = std::int64_t;\nusing i128 = __int128_t;\nusing u8 = std::uint8_t;\n\
+    using u16 = std::uint16_t;\nusing u32 = std::uint32_t;\nusing u64 = std::uint64_t;\n\
+    using u128 = __uint128_t;\nusing f32 = float;\nusing f64 = double;\nusing f128\
+    \ = long double;\n\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
+    \n#define DEFINE_NUM_LITERAL(name, type) \\\n    constexpr auto operator\"\" name(unsigned\
+    \ long long x) { return static_cast<type>(x); }\n\nDEFINE_NUM_LITERAL(_i8, std::int8_t);\n\
+    DEFINE_NUM_LITERAL(_i16, std::int16_t);\nDEFINE_NUM_LITERAL(_i32, std::int32_t);\n\
+    DEFINE_NUM_LITERAL(_i64, std::int64_t);\nDEFINE_NUM_LITERAL(_i128, __int128_t);\n\
+    DEFINE_NUM_LITERAL(_u8, std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\n\
+    DEFINE_NUM_LITERAL(_u32, std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\n\
+    DEFINE_NUM_LITERAL(_u128, __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n\
+    #undef DEFINE_NUM_LITERAL\n}  // namespace bys\n\nnamespace bys {\ntemplate <class\
+    \ T> class Imos {\n    const i32 _n;\n    std::vector<T> vec;\n\n  public:\n \
+    \   Imos(i32 n) : _n(n), vec(_n) {}\n    void add(i32 l, i32 r, T v) {\n     \
+    \   vec[l] += v;\n        if (r < _n) vec[r] -= v;\n    }\n    std::vector<T>\
+    \ build() const {\n        std::vector<T> res;\n        res.reserve(_n);\n   \
+    \     std::partial_sum(vec.begin(), vec.end(), std::back_inserter(res));\n   \
+    \     return res;\n    }\n};\ntemplate <class T> class Imos2D {\n    const i32\
+    \ _h, _w;\n    std::vector<std::vector<T>> vec;\n\n  public:\n    Imos2D(i32 h,\
+    \ i32 w) : _h(h), _w(w), vec(_h, std::vector<T>(w)) {}\n    void add(i32 si, i32\
+    \ sj, i32 ti, i32 tj, T v) {\n        ++ti, ++tj;\n        vec[si][sj] += v;\n\
+    \        if (tj < _w) vec[si][tj] -= v;\n        if (ti < _h) vec[ti][sj] -= v;\n\
+    \        if (ti < _h and tj < _w) vec[ti][tj] += v;\n    }\n    std::vector<std::vector<T>>\
+    \ build() const {\n        auto res = vec;\n        for (i32 i = 0; i < _h; ++i)\
+    \ {\n            for (i32 j = 0; j < _w; ++j) {\n                if (i != 0) res[i][j]\
+    \ += res[i - 1][j];\n                if (j != 0) res[i][j] += res[i][j - 1];\n\
+    \                if (i != 0 and j != 0) res[i][j] -= res[i - 1][j - 1];\n    \
+    \        }\n        }\n        return res;\n    }\n};\n}  // namespace bys\n/**\n\
+    \ * @file template.hpp\n * @author bayashi_cl\n *\n * C++ library for competitive\
+    \ programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
     \ * Document  : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
     \ NDEBUG\n#endif\n\n#include <cstddef>\n#include <limits>\n#include <tuple>\n\
-    #include <utility>\n\n#include <cstdint>\nnamespace bys {\nusing i8 = std::int8_t;\n\
-    using i16 = std::int16_t;\nusing i32 = std::int32_t;\nusing i64 = std::int64_t;\n\
-    using i128 = __int128_t;\nusing u8 = std::uint8_t;\nusing u16 = std::uint16_t;\n\
-    using u32 = std::uint32_t;\nusing u64 = std::uint64_t;\nusing u128 = __uint128_t;\n\
-    using f32 = float;\nusing f64 = double;\nusing f128 = long double;\n\nusing isize\
-    \ = std::ptrdiff_t;\nusing usize = std::size_t;\n\n#define DEFINE_NUM_LITERAL(name,\
-    \ type) \\\n    constexpr auto operator\"\" name(unsigned long long x) { return\
-    \ static_cast<type>(x); }\n\nDEFINE_NUM_LITERAL(_i8, std::int8_t);\nDEFINE_NUM_LITERAL(_i16,\
-    \ std::int16_t);\nDEFINE_NUM_LITERAL(_i32, std::int32_t);\nDEFINE_NUM_LITERAL(_i64,\
-    \ std::int64_t);\nDEFINE_NUM_LITERAL(_i128, __int128_t);\nDEFINE_NUM_LITERAL(_u8,\
-    \ std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\nDEFINE_NUM_LITERAL(_u32,\
-    \ std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\nDEFINE_NUM_LITERAL(_u128,\
-    \ __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n#undef DEFINE_NUM_LITERAL\n\
-    }  // namespace bys\n#include <array>\n#include <iostream>\n#include <type_traits>\n\
+    #include <utility>\n\n#include <array>\n#include <iostream>\n#include <type_traits>\n\
     /**\n * @file traits.hpp\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\n\
     namespace bys {\ntemplate <class, class = void> struct has_rshift_from_istream\
     \ : std::false_type {};\ntemplate <class T>\nstruct has_rshift_from_istream<T,\
@@ -117,23 +141,23 @@ data:
     \ * @brief \u6700\u5C0F\u5024\u3067\u66F4\u65B0\n * @return true \u66F4\u65B0\u3055\
     \u308C\u305F\u3068\u304D\n */\ntemplate <class T> constexpr bool chmin(T& a, T\
     \ const& b) { return a > b ? a = b, true : false; }\n}  // namespace bys\n#include\
-    \ <iterator>\n#include <vector>\n\n\nnamespace bys {\ntemplate <class Iterator>\
-    \ class SubRange {\n  public:\n    using iterator = Iterator;\n    using reverse_iterator\
-    \ = std::reverse_iterator<iterator>;\n    using value_type = typename iterator::value_type;\n\
-    \n    SubRange() = default;\n    SubRange(const SubRange& s) : _begin(s._begin),\
-    \ _end(s._end) {}\n    SubRange(const iterator& begin, const iterator& end) :\
-    \ _begin(begin), _end(end) {}\n\n    iterator begin() const noexcept { return\
-    \ _begin; }\n    iterator end() const noexcept { return _end; }\n    reverse_iterator\
-    \ rbegin() const noexcept { return reverse_iterator{_end}; }\n    reverse_iterator\
-    \ rend() const { return reverse_iterator{_begin}; }\n    auto operator[](std::size_t\
-    \ i) const noexcept { return *(_begin + i); }\n    auto size() const noexcept\
-    \ { return _end - _begin; }\n    bool empty() const noexcept { return _begin ==\
-    \ _end; }\n\n    auto to_vec() const { return std::vector(_begin, _end); }\n\n\
-    \  private:\n    iterator _begin, _end;\n};\ntemplate <class Iterable> auto reversed(Iterable&&\
-    \ iter) {\n    static_assert(is_iterable_v<Iterable>, \"iter is not iterable\"\
-    );\n    return SubRange(std::rbegin(std::forward<Iterable>(iter)), std::rend(std::forward<Iterable>(iter)));\n\
-    }\n}  // namespace bys\n/**\n * @file enumerate.hpp\n * @brief Python::enumerate\n\
-    \ *\n * Python\u518D\u73FE\u30B7\u30EA\u30FC\u30BA enumerate\u7DE8\n * See: https://docs.python.org/ja/3/library/functions.html#enumerate\n\
+    \ <iterator>\n\n\nnamespace bys {\ntemplate <class Iterator> class SubRange {\n\
+    \  public:\n    using iterator = Iterator;\n    using reverse_iterator = std::reverse_iterator<iterator>;\n\
+    \    using value_type = typename iterator::value_type;\n\n    SubRange() = default;\n\
+    \    SubRange(const SubRange& s) : _begin(s._begin), _end(s._end) {}\n    SubRange(const\
+    \ iterator& begin, const iterator& end) : _begin(begin), _end(end) {}\n\n    iterator\
+    \ begin() const noexcept { return _begin; }\n    iterator end() const noexcept\
+    \ { return _end; }\n    reverse_iterator rbegin() const noexcept { return reverse_iterator{_end};\
+    \ }\n    reverse_iterator rend() const { return reverse_iterator{_begin}; }\n\
+    \    auto operator[](std::size_t i) const noexcept { return *(_begin + i); }\n\
+    \    auto size() const noexcept { return _end - _begin; }\n    bool empty() const\
+    \ noexcept { return _begin == _end; }\n\n    auto to_vec() const { return std::vector(_begin,\
+    \ _end); }\n\n  private:\n    iterator _begin, _end;\n};\ntemplate <class Iterable>\
+    \ auto reversed(Iterable&& iter) {\n    static_assert(is_iterable_v<Iterable>,\
+    \ \"iter is not iterable\");\n    return SubRange(std::rbegin(std::forward<Iterable>(iter)),\
+    \ std::rend(std::forward<Iterable>(iter)));\n}\n}  // namespace bys\n/**\n * @file\
+    \ enumerate.hpp\n * @brief Python::enumerate\n *\n * Python\u518D\u73FE\u30B7\u30EA\
+    \u30FC\u30BA enumerate\u7DE8\n * See: https://docs.python.org/ja/3/library/functions.html#enumerate\n\
     \ */\nnamespace bys {\ntemplate <class Iterator> struct EnumerateIterator {\n\
     \  public:\n    using difference_type = typename Iterator::difference_type;\n\
     \    using value_type = std::tuple<i32, typename Iterator::value_type>;\n    //\
@@ -281,22 +305,31 @@ data:
     #endif\n        return 0;\n    }\n};\n}  // namespace bys\n/**\n * @file stdlib.hpp\n\
     \ * @brief STL Template\n */\n#include <algorithm>\n#include <bitset>\n#include\
     \ <cassert>\n#include <cmath>\n#include <complex>\n#include <functional>\n#include\
-    \ <map>\n#include <numeric>\n#include <queue>\n#include <set>\n#include <stack>\n\
-    #include <unordered_map>\n#include <unordered_set>\n\n\nnamespace bys {\nusing\
-    \ std::array, std::vector, std::string, std::set, std::map, std::pair;\nusing\
-    \ std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
-    \ std::abs;\n\n// alias\nusing Pa = std::pair<i32, i32>;\nusing Pa64 = std::pair<i64,\
-    \ i64>;\ntemplate <class T> using uset = std::unordered_set<T>;\ntemplate <class\
-    \ S, class T> using umap = std::unordered_map<S, T>;\n}  // namespace bys\n\n\
-    namespace bys {\nvoid Solver::solve() {\n    \n}\n}  // namespace bys\n\nint main()\
-    \ { return bys::Solver::main(/* bys::scanner.read<int>() */); }\n"
-  code: "#include \"byslib/template.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    \n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
+    \ <map>\n#include <queue>\n#include <set>\n#include <stack>\n#include <unordered_map>\n\
+    #include <unordered_set>\n\n\nnamespace bys {\nusing std::array, std::vector,\
+    \ std::string, std::set, std::map, std::pair;\nusing std::cin, std::cout, std::endl;\n\
+    using std::min, std::max, std::sort, std::reverse, std::abs;\n\n// alias\nusing\
+    \ Pa = std::pair<i32, i32>;\nusing Pa64 = std::pair<i64, i64>;\ntemplate <class\
+    \ T> using uset = std::unordered_set<T>;\ntemplate <class S, class T> using umap\
+    \ = std::unordered_map<S, T>;\n}  // namespace bys\nnamespace bys {\nvoid Solver::solve()\
+    \ {\n    auto [n, t] = scanner.read<int, 2>();\n    Imos<i32> imos(t + 1);\n\n\
+    \    for (UV : irange(n)) {\n        auto [l, r] = scanner.read<i32, 2>();\n \
+    \       imos.add(l, r, 1);\n    }\n    auto res = imos.build();\n    print(*std::max_element(res.begin(),\
+    \ res.end()));\n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
     \ bys::scanner.read<int>() */); }\n"
+  code: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_5_A\"\
+    \n#include \"../../byslib/ds/imos.hpp\"\n#include \"../../byslib/template.hpp\"\
+    \nnamespace bys {\nvoid Solver::solve() {\n    auto [n, t] = scanner.read<int,\
+    \ 2>();\n    Imos<i32> imos(t + 1);\n\n    for (UV : irange(n)) {\n        auto\
+    \ [l, r] = scanner.read<i32, 2>();\n        imos.add(l, r, 1);\n    }\n    auto\
+    \ res = imos.build();\n    print(*std::max_element(res.begin(), res.end()));\n\
+    }\n}  // namespace bys\n\nint main() { return bys::Solver::main(/* bys::scanner.read<int>()\
+    \ */); }\n"
   dependsOn:
+  - byslib/ds/imos.hpp
+  - byslib/core/int_alias.hpp
   - byslib/template.hpp
   - byslib/core/constant.hpp
-  - byslib/core/int_alias.hpp
   - byslib/core/traits.hpp
   - byslib/extension/change.hpp
   - byslib/extension/enumerate.hpp
@@ -308,16 +341,16 @@ data:
   - byslib/io/scanner.hpp
   - byslib/procon/solver.hpp
   - byslib/procon/stdlib.hpp
-  isVerificationFile: false
-  path: template.cpp
+  isVerificationFile: true
+  path: test/AOJ/DSL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2022-11-30 18:07:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-12-02 16:49:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: template.cpp
+documentation_of: test/AOJ/DSL_5_A.test.cpp
 layout: document
 redirect_from:
-- /library/template.cpp
-- /library/template.cpp.html
-title: template.cpp
+- /verify/test/AOJ/DSL_5_A.test.cpp
+- /verify/test/AOJ/DSL_5_A.test.cpp.html
+title: test/AOJ/DSL_5_A.test.cpp
 ---

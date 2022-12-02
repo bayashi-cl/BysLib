@@ -40,16 +40,105 @@ data:
   - icon: ':question:'
     path: byslib/procon/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
-    path: byslib/template.hpp
-    title: byslib/template.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: template.cpp
+    title: template.cpp
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_1_A.test.cpp
+    title: test/AOJ/CGL_1_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_1_B.test.cpp
+    title: test/AOJ/CGL_1_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_1_C.test.cpp
+    title: test/AOJ/CGL_1_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_2_A.test.cpp
+    title: test/AOJ/CGL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_2_B.test.cpp
+    title: test/AOJ/CGL_2_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_2_C.test.cpp
+    title: test/AOJ/CGL_2_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_2_D.test.cpp
+    title: test/AOJ/CGL_2_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_3_A.test.cpp
+    title: test/AOJ/CGL_3_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/CGL_3_B.test.cpp
+    title: test/AOJ/CGL_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/DSL_1_A.test.cpp
+    title: test/AOJ/DSL_1_A.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_A.test.cpp
+    title: test/AOJ/DSL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_B.test.cpp
+    title: test/AOJ/DSL_2_B.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_D.test.cpp
+    title: test/AOJ/DSL_2_D.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_E.test.cpp
+    title: test/AOJ/DSL_2_E.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_F.test.cpp
+    title: test/AOJ/DSL_2_F.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_G.test.cpp
+    title: test/AOJ/DSL_2_G.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_H.test.cpp
+    title: test/AOJ/DSL_2_H.test.cpp
+  - icon: ':x:'
+    path: test/AOJ/DSL_2_I.test.cpp
+    title: test/AOJ/DSL_2_I.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/DSL_5_A.test.cpp
+    title: test/AOJ/DSL_5_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/DSL_5_B.test.cpp
+    title: test/AOJ/DSL_5_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_1_A.test.cpp
+    title: test/AOJ/GRL_1_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_1_B.test.cpp
+    title: test/AOJ/GRL_1_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_1_C.test.cpp
+    title: test/AOJ/GRL_1_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/test.test.cpp
+    title: test/test.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/point_add_range_sum.test.cpp
+    title: test/yosupo/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/range_affine_range_sum.test.cpp
+    title: test/yosupo/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/static_range_sum.test.cpp
+    title: test/yosupo/static_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/yosupo/staticrmq.test.cpp
+    title: test/yosupo/staticrmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/unionfind.test.cpp
+    title: test/yosupo/unionfind.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - https://bayashi-cl.github.io/byslib/
+    - https://github.com/bayashi-cl/byslib
   bundledCode: "/**\n * @file template.hpp\n * @author bayashi_cl\n *\n * C++ library\
     \ for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
     \ * Document  : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
@@ -287,14 +376,15 @@ data:
     \ std::cin, std::cout, std::endl;\nusing std::min, std::max, std::sort, std::reverse,\
     \ std::abs;\n\n// alias\nusing Pa = std::pair<i32, i32>;\nusing Pa64 = std::pair<i64,\
     \ i64>;\ntemplate <class T> using uset = std::unordered_set<T>;\ntemplate <class\
-    \ S, class T> using umap = std::unordered_map<S, T>;\n}  // namespace bys\n\n\
-    namespace bys {\nvoid Solver::solve() {\n    \n}\n}  // namespace bys\n\nint main()\
-    \ { return bys::Solver::main(/* bys::scanner.read<int>() */); }\n"
-  code: "#include \"byslib/template.hpp\"\n\nnamespace bys {\nvoid Solver::solve()\
-    \ {\n    \n}\n}  // namespace bys\n\nint main() { return bys::Solver::main(/*\
-    \ bys::scanner.read<int>() */); }\n"
+    \ S, class T> using umap = std::unordered_map<S, T>;\n}  // namespace bys\n"
+  code: "#pragma once\n/**\n * @file template.hpp\n * @author bayashi_cl\n *\n * C++\
+    \ library for competitive programming by bayashi_cl\n * Repository: https://github.com/bayashi-cl/byslib\n\
+    \ * Document  : https://bayashi-cl.github.io/byslib/\n */\n#ifndef LOCAL\n#define\
+    \ NDEBUG\n#endif\n\n#include \"core/constant.hpp\"\n#include \"core/int_alias.hpp\"\
+    \n#include \"extension/change.hpp\"\n#include \"extension/enumerate.hpp\"\n#include\
+    \ \"extension/irange.hpp\"\n#include \"extension/macro.hpp\"\n#include \"io/io.hpp\"\
+    \n\n#include \"procon/solver.hpp\"\n#include \"procon/stdlib.hpp\"\n"
   dependsOn:
-  - byslib/template.hpp
   - byslib/core/constant.hpp
   - byslib/core/int_alias.hpp
   - byslib/core/traits.hpp
@@ -309,15 +399,45 @@ data:
   - byslib/procon/solver.hpp
   - byslib/procon/stdlib.hpp
   isVerificationFile: false
-  path: template.cpp
-  requiredBy: []
+  path: byslib/template.hpp
+  requiredBy:
+  - template.cpp
   timestamp: '2022-11-30 18:07:55+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
-documentation_of: template.cpp
+  verificationStatus: LIBRARY_SOME_WA
+  verifiedWith:
+  - test/AOJ/DSL_2_E.test.cpp
+  - test/AOJ/DSL_5_B.test.cpp
+  - test/AOJ/DSL_2_A.test.cpp
+  - test/AOJ/GRL_1_A.test.cpp
+  - test/AOJ/DSL_2_D.test.cpp
+  - test/AOJ/CGL_2_B.test.cpp
+  - test/AOJ/CGL_2_A.test.cpp
+  - test/AOJ/CGL_2_C.test.cpp
+  - test/AOJ/CGL_1_C.test.cpp
+  - test/AOJ/CGL_1_B.test.cpp
+  - test/AOJ/DSL_2_I.test.cpp
+  - test/AOJ/GRL_1_C.test.cpp
+  - test/AOJ/DSL_5_A.test.cpp
+  - test/AOJ/CGL_2_D.test.cpp
+  - test/AOJ/DSL_1_A.test.cpp
+  - test/AOJ/DSL_2_F.test.cpp
+  - test/AOJ/CGL_3_A.test.cpp
+  - test/AOJ/DSL_2_B.test.cpp
+  - test/AOJ/CGL_1_A.test.cpp
+  - test/AOJ/DSL_2_G.test.cpp
+  - test/AOJ/DSL_2_H.test.cpp
+  - test/AOJ/CGL_3_B.test.cpp
+  - test/AOJ/GRL_1_B.test.cpp
+  - test/test.test.cpp
+  - test/yosupo/staticrmq.test.cpp
+  - test/yosupo/point_add_range_sum.test.cpp
+  - test/yosupo/static_range_sum.test.cpp
+  - test/yosupo/unionfind.test.cpp
+  - test/yosupo/range_affine_range_sum.test.cpp
+documentation_of: byslib/template.hpp
 layout: document
 redirect_from:
-- /library/template.cpp
-- /library/template.cpp.html
-title: template.cpp
+- /library/byslib/template.hpp
+- /library/byslib/template.hpp.html
+title: byslib/template.hpp
 ---
