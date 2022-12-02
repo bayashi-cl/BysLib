@@ -16,33 +16,19 @@ namespace bys {
  */
 template <class T> class Compress {
     std::vector<T> cp;
-    bool build = false;
-
-  public:
-    Compress() {}
-    Compress(const std::vector<T>& vec) : cp(vec) { construct(); }
-    void add(T v) {
-        assert(!build);
-        cp.emplace_back(v);
-    }
-    void construct() {
-        assert(!build);
+    Compress(std::vector<T> const& v) : cp(v) {
         sort(std::begin(cp), std::end(cp));
         cp.erase(std::unique(std::begin(cp), std::end(cp)), cp.end());
-        build = true;
     }
     //! @brief 圧縮された値を取得 O(log N)
     i32 get(T v) const {
-        assert(build);
         auto itr = std::lower_bound(std::begin(cp), std::end(cp), v);
         assert(*itr == v);
         return std::distance(cp.begin(), itr);
     }
+
     //! @brief 解凍された値を取得 O(1)
-    T unzip(i32 i) const {
-        assert(build);
-        return cp[i];
-    }
+    T unzip(i32 i) const { return cp[i]; }
     std::size_t size() const { return cp.size(); }
     std::ptrdiff_t ssize() const { return cp.size(); }
 };
