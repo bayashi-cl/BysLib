@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/dual_segment_tree.hpp
     title: Dual Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/lazy_segment_tree.hpp
     title: Lazy Segment Tree
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_D.test.cpp
     title: test/AOJ/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_E.test.cpp
     title: test/AOJ/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_F.test.cpp
     title: test/AOJ/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_G.test.cpp
     title: test/AOJ/DSL_2_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_H.test.cpp
     title: test/AOJ/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_I.test.cpp
     title: test/AOJ/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Mapping
     links: []
@@ -55,18 +55,18 @@ data:
     \ std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\nDEFINE_NUM_LITERAL(_u32,\
     \ std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\nDEFINE_NUM_LITERAL(_u128,\
     \ __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n#undef DEFINE_NUM_LITERAL\n\
-    }  // namespace bys\n#include <array>\n#include <optional>\n#include <utility>\n\
-    \n/**\n * @file monoid.hpp\n * @brief Monoid\n *\n * \u30E2\u30CE\u30A4\u30C9\n\
-    \ */\nnamespace bys {\nstruct Magma {\n    using set_type = std::nullptr_t;\n\
-    \    static constexpr set_type operation(set_type, set_type);\n    static constexpr\
-    \ set_type inverse(set_type);\n    static constexpr set_type identity{nullptr};\n\
-    \    static constexpr bool commutative{false};\n};\ntemplate <class T> struct\
-    \ Add : Magma {\n    using set_type = T;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return a + b; }\n    static constexpr set_type inverse(set_type\
-    \ a) { return -a; }\n    static constexpr set_type identity{0};\n    static constexpr\
-    \ bool commutative{true};\n};\ntemplate <class T> struct Min : Magma {\n    using\
-    \ set_type = T;\n    static constexpr set_type operation(set_type a, set_type\
-    \ b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
+    }  // namespace bys\n#include <array>\n#include <limits>\n#include <optional>\n\
+    #include <utility>\n\n/**\n * @file monoid.hpp\n * @brief Monoid\n *\n * \u30E2\
+    \u30CE\u30A4\u30C9\n */\nnamespace bys {\nstruct Magma {\n    using set_type =\
+    \ std::nullptr_t;\n    static constexpr set_type operation(set_type, set_type);\n\
+    \    static constexpr set_type inverse(set_type);\n    static constexpr set_type\
+    \ identity{nullptr};\n    static constexpr bool commutative{false};\n};\ntemplate\
+    \ <class T> struct Add : Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return a + b; }\n    static constexpr\
+    \ set_type inverse(set_type a) { return -a; }\n    static constexpr set_type identity{0};\n\
+    \    static constexpr bool commutative{true};\n};\ntemplate <class T> struct Min\
+    \ : Magma {\n    using set_type = T;\n    static constexpr set_type operation(set_type\
+    \ a, set_type b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
     };\ntemplate <class T> struct Max : Magma {\n    using set_type = T;\n    static\
     \ constexpr set_type operation(set_type a, set_type b) { return std::max(a, b);\
     \ }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
@@ -167,8 +167,8 @@ data:
   requiredBy:
   - byslib/ds/dual_segment_tree.hpp
   - byslib/ds/lazy_segment_tree.hpp
-  timestamp: '2022-11-30 18:07:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2022-12-02 17:23:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/DSL_2_E.test.cpp
   - test/AOJ/DSL_2_D.test.cpp

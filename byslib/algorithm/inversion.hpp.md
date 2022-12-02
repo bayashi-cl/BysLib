@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
   - icon: ':warning:'
     path: byslib/algorithm/compress.hpp
     title: Coordinate Compression
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/binary_indexed_tree.hpp
     title: Binary Indexed Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ntheory/bit.hpp
     title: Bit
   _extendedRequiredBy: []
@@ -48,22 +48,23 @@ data:
     \ itr);\n    }\n\n    //! @brief \u89E3\u51CD\u3055\u308C\u305F\u5024\u3092\u53D6\
     \u5F97 O(1)\n    T unzip(i32 i) const { return cp[i]; }\n    std::size_t size()\
     \ const { return cp.size(); }\n    std::ptrdiff_t ssize() const { return cp.size();\
-    \ }\n};\n}  // namespace bys\n\n#include <array>\n#include <optional>\n#include\
-    \ <utility>\n\n/**\n * @file monoid.hpp\n * @brief Monoid\n *\n * \u30E2\u30CE\
-    \u30A4\u30C9\n */\nnamespace bys {\nstruct Magma {\n    using set_type = std::nullptr_t;\n\
-    \    static constexpr set_type operation(set_type, set_type);\n    static constexpr\
-    \ set_type inverse(set_type);\n    static constexpr set_type identity{nullptr};\n\
-    \    static constexpr bool commutative{false};\n};\ntemplate <class T> struct\
-    \ Add : Magma {\n    using set_type = T;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return a + b; }\n    static constexpr set_type inverse(set_type\
-    \ a) { return -a; }\n    static constexpr set_type identity{0};\n    static constexpr\
-    \ bool commutative{true};\n};\ntemplate <class T> struct Min : Magma {\n    using\
-    \ set_type = T;\n    static constexpr set_type operation(set_type a, set_type\
-    \ b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
-    };\ntemplate <class T> struct Max : Magma {\n    using set_type = T;\n    static\
-    \ constexpr set_type operation(set_type a, set_type b) { return std::max(a, b);\
-    \ }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
-    };\ntemplate <class T> struct Update : Magma {\n    using set_type = std::optional<T>;\n\
+    \ }\n};\n}  // namespace bys\n\n#include <array>\n#include <limits>\n#include\
+    \ <optional>\n#include <utility>\n\n/**\n * @file monoid.hpp\n * @brief Monoid\n\
+    \ *\n * \u30E2\u30CE\u30A4\u30C9\n */\nnamespace bys {\nstruct Magma {\n    using\
+    \ set_type = std::nullptr_t;\n    static constexpr set_type operation(set_type,\
+    \ set_type);\n    static constexpr set_type inverse(set_type);\n    static constexpr\
+    \ set_type identity{nullptr};\n    static constexpr bool commutative{false};\n\
+    };\ntemplate <class T> struct Add : Magma {\n    using set_type = T;\n    static\
+    \ constexpr set_type operation(set_type a, set_type b) { return a + b; }\n   \
+    \ static constexpr set_type inverse(set_type a) { return -a; }\n    static constexpr\
+    \ set_type identity{0};\n    static constexpr bool commutative{true};\n};\ntemplate\
+    \ <class T> struct Min : Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
+    \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
+    \ <class T> struct Max : Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return std::max(a, b); }\n    static\
+    \ constexpr set_type identity{std::numeric_limits<set_type>::min()};\n};\ntemplate\
+    \ <class T> struct Update : Magma {\n    using set_type = std::optional<T>;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
     \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
     \ <class T> struct Affine : Magma {\n    using set_type = std::pair<T, T>;\n \
@@ -169,7 +170,7 @@ data:
   isVerificationFile: false
   path: byslib/algorithm/inversion.hpp
   requiredBy: []
-  timestamp: '2022-12-02 16:15:30+09:00'
+  timestamp: '2022-12-02 17:23:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: byslib/algorithm/inversion.hpp

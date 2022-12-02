@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
   _extendedRequiredBy: []

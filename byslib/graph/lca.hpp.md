@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/constant.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/traits.hpp
     title: Types
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/sparse_table.hpp
     title: Sparse Table
   - icon: ':warning:'
     path: byslib/extension/fixpoint.hpp
     title: FixPoint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/subrange.hpp
     title: byslib/extension/subrange.hpp
   - icon: ':heavy_check_mark:'
@@ -46,35 +46,36 @@ data:
     document_title: Lowest Common Ancestor
     links: []
   bundledCode: "/**\n * @file lca.hpp\n * @brief Lowest Common Ancestor\n *\n * \u6700\
-    \u8FD1\u5171\u901A\u7956\u5148\n */\n#include <array>\n#include <optional>\n#include\
-    \ <utility>\n#include <cstdint>\nnamespace bys {\nusing i8 = std::int8_t;\nusing\
-    \ i16 = std::int16_t;\nusing i32 = std::int32_t;\nusing i64 = std::int64_t;\n\
-    using i128 = __int128_t;\nusing u8 = std::uint8_t;\nusing u16 = std::uint16_t;\n\
-    using u32 = std::uint32_t;\nusing u64 = std::uint64_t;\nusing u128 = __uint128_t;\n\
-    using f32 = float;\nusing f64 = double;\nusing f128 = long double;\n\nusing isize\
-    \ = std::ptrdiff_t;\nusing usize = std::size_t;\n\n#define DEFINE_NUM_LITERAL(name,\
-    \ type) \\\n    constexpr auto operator\"\" name(unsigned long long x) { return\
-    \ static_cast<type>(x); }\n\nDEFINE_NUM_LITERAL(_i8, std::int8_t);\nDEFINE_NUM_LITERAL(_i16,\
-    \ std::int16_t);\nDEFINE_NUM_LITERAL(_i32, std::int32_t);\nDEFINE_NUM_LITERAL(_i64,\
-    \ std::int64_t);\nDEFINE_NUM_LITERAL(_i128, __int128_t);\nDEFINE_NUM_LITERAL(_u8,\
-    \ std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\nDEFINE_NUM_LITERAL(_u32,\
-    \ std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\nDEFINE_NUM_LITERAL(_u128,\
-    \ __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n#undef DEFINE_NUM_LITERAL\n\
-    }  // namespace bys\n\n/**\n * @file monoid.hpp\n * @brief Monoid\n *\n * \u30E2\
-    \u30CE\u30A4\u30C9\n */\nnamespace bys {\nstruct Magma {\n    using set_type =\
-    \ std::nullptr_t;\n    static constexpr set_type operation(set_type, set_type);\n\
-    \    static constexpr set_type inverse(set_type);\n    static constexpr set_type\
-    \ identity{nullptr};\n    static constexpr bool commutative{false};\n};\ntemplate\
-    \ <class T> struct Add : Magma {\n    using set_type = T;\n    static constexpr\
-    \ set_type operation(set_type a, set_type b) { return a + b; }\n    static constexpr\
-    \ set_type inverse(set_type a) { return -a; }\n    static constexpr set_type identity{0};\n\
-    \    static constexpr bool commutative{true};\n};\ntemplate <class T> struct Min\
-    \ : Magma {\n    using set_type = T;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
-    };\ntemplate <class T> struct Max : Magma {\n    using set_type = T;\n    static\
-    \ constexpr set_type operation(set_type a, set_type b) { return std::max(a, b);\
-    \ }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
-    };\ntemplate <class T> struct Update : Magma {\n    using set_type = std::optional<T>;\n\
+    \u8FD1\u5171\u901A\u7956\u5148\n */\n#include <array>\n#include <limits>\n#include\
+    \ <optional>\n#include <utility>\n#include <cstdint>\nnamespace bys {\nusing i8\
+    \ = std::int8_t;\nusing i16 = std::int16_t;\nusing i32 = std::int32_t;\nusing\
+    \ i64 = std::int64_t;\nusing i128 = __int128_t;\nusing u8 = std::uint8_t;\nusing\
+    \ u16 = std::uint16_t;\nusing u32 = std::uint32_t;\nusing u64 = std::uint64_t;\n\
+    using u128 = __uint128_t;\nusing f32 = float;\nusing f64 = double;\nusing f128\
+    \ = long double;\n\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
+    \n#define DEFINE_NUM_LITERAL(name, type) \\\n    constexpr auto operator\"\" name(unsigned\
+    \ long long x) { return static_cast<type>(x); }\n\nDEFINE_NUM_LITERAL(_i8, std::int8_t);\n\
+    DEFINE_NUM_LITERAL(_i16, std::int16_t);\nDEFINE_NUM_LITERAL(_i32, std::int32_t);\n\
+    DEFINE_NUM_LITERAL(_i64, std::int64_t);\nDEFINE_NUM_LITERAL(_i128, __int128_t);\n\
+    DEFINE_NUM_LITERAL(_u8, std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\n\
+    DEFINE_NUM_LITERAL(_u32, std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\n\
+    DEFINE_NUM_LITERAL(_u128, __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n\
+    #undef DEFINE_NUM_LITERAL\n}  // namespace bys\n\n/**\n * @file monoid.hpp\n *\
+    \ @brief Monoid\n *\n * \u30E2\u30CE\u30A4\u30C9\n */\nnamespace bys {\nstruct\
+    \ Magma {\n    using set_type = std::nullptr_t;\n    static constexpr set_type\
+    \ operation(set_type, set_type);\n    static constexpr set_type inverse(set_type);\n\
+    \    static constexpr set_type identity{nullptr};\n    static constexpr bool commutative{false};\n\
+    };\ntemplate <class T> struct Add : Magma {\n    using set_type = T;\n    static\
+    \ constexpr set_type operation(set_type a, set_type b) { return a + b; }\n   \
+    \ static constexpr set_type inverse(set_type a) { return -a; }\n    static constexpr\
+    \ set_type identity{0};\n    static constexpr bool commutative{true};\n};\ntemplate\
+    \ <class T> struct Min : Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
+    \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
+    \ <class T> struct Max : Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return std::max(a, b); }\n    static\
+    \ constexpr set_type identity{std::numeric_limits<set_type>::min()};\n};\ntemplate\
+    \ <class T> struct Update : Magma {\n    using set_type = std::optional<T>;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
     \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
     \ <class T> struct Affine : Magma {\n    using set_type = std::pair<T, T>;\n \
@@ -135,10 +136,10 @@ data:
     \ std::forward<Args>(args)...);\n            memo.emplace(key, res);\n       \
     \     return res;\n        } else {\n            return itr->second;\n       \
     \ }\n    }\n};\n}  // namespace bys\n\n#include <cstddef>\n#include <iostream>\n\
-    \n#include <limits>\n#include <tuple>\n\n#include <type_traits>\n/**\n * @file\
-    \ traits.hpp\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\nnamespace\
-    \ bys {\ntemplate <class, class = void> struct has_rshift_from_istream : std::false_type\
-    \ {};\ntemplate <class T>\nstruct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
+    \n#include <tuple>\n\n#include <type_traits>\n/**\n * @file traits.hpp\n * @brief\
+    \ Types\n *\n * type_traits\u62E1\u5F35\n */\nnamespace bys {\ntemplate <class,\
+    \ class = void> struct has_rshift_from_istream : std::false_type {};\ntemplate\
+    \ <class T>\nstruct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
     \ >> std::declval<T&>())>> : std::true_type {};\ntemplate <class T> constexpr\
     \ bool has_rshift_from_istream_v = has_rshift_from_istream<T>::value;\n\ntemplate\
     \ <class, class = void> struct has_lshift_to_ostream : std::false_type {};\ntemplate\
@@ -328,7 +329,7 @@ data:
   isVerificationFile: false
   path: byslib/graph/lca.hpp
   requiredBy: []
-  timestamp: '2022-12-02 16:15:23+09:00'
+  timestamp: '2022-12-02 17:23:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: byslib/graph/lca.hpp

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum.test.cpp
     title: test/yosupo/static_range_sum.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Cumulative Sum
     links: []
   bundledCode: "#include <numeric>\n#include <vector>\n#include <array>\n#include\
-    \ <optional>\n#include <utility>\n#include <cstdint>\nnamespace bys {\nusing i8\
-    \ = std::int8_t;\nusing i16 = std::int16_t;\nusing i32 = std::int32_t;\nusing\
-    \ i64 = std::int64_t;\nusing i128 = __int128_t;\nusing u8 = std::uint8_t;\nusing\
-    \ u16 = std::uint16_t;\nusing u32 = std::uint32_t;\nusing u64 = std::uint64_t;\n\
+    \ <limits>\n#include <optional>\n#include <utility>\n#include <cstdint>\nnamespace\
+    \ bys {\nusing i8 = std::int8_t;\nusing i16 = std::int16_t;\nusing i32 = std::int32_t;\n\
+    using i64 = std::int64_t;\nusing i128 = __int128_t;\nusing u8 = std::uint8_t;\n\
+    using u16 = std::uint16_t;\nusing u32 = std::uint32_t;\nusing u64 = std::uint64_t;\n\
     using u128 = __uint128_t;\nusing f32 = float;\nusing f64 = double;\nusing f128\
     \ = long double;\n\nusing isize = std::ptrdiff_t;\nusing usize = std::size_t;\n\
     \n#define DEFINE_NUM_LITERAL(name, type) \\\n    constexpr auto operator\"\" name(unsigned\
@@ -108,8 +108,8 @@ data:
   isVerificationFile: false
   path: byslib/ds/cumulative_sum.hpp
   requiredBy: []
-  timestamp: '2022-11-30 18:07:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-02 17:23:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yosupo/static_range_sum.test.cpp
 documentation_of: byslib/ds/cumulative_sum.hpp

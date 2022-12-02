@@ -1,75 +1,75 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/mapping.hpp
     title: Mapping
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/constant.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/traits.hpp
     title: Types
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/lazy_segment_tree.hpp
     title: Lazy Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/change.hpp
     title: chmin/chmax
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/enumerate.hpp
     title: Python::enumerate
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/irange.hpp
     title: Python::range
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/subrange.hpp
     title: byslib/extension/subrange.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ntheory/bit.hpp
     title: Bit
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/template.hpp
     title: byslib/template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H
     links:
     - https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H
   bundledCode: "#define PROBLEM \"https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_H\"\
-    \n\n#include <array>\n#include <optional>\n#include <utility>\n#include <cstdint>\n\
-    namespace bys {\nusing i8 = std::int8_t;\nusing i16 = std::int16_t;\nusing i32\
-    \ = std::int32_t;\nusing i64 = std::int64_t;\nusing i128 = __int128_t;\nusing\
-    \ u8 = std::uint8_t;\nusing u16 = std::uint16_t;\nusing u32 = std::uint32_t;\n\
+    \n\n#include <array>\n#include <limits>\n#include <optional>\n#include <utility>\n\
+    #include <cstdint>\nnamespace bys {\nusing i8 = std::int8_t;\nusing i16 = std::int16_t;\n\
+    using i32 = std::int32_t;\nusing i64 = std::int64_t;\nusing i128 = __int128_t;\n\
+    using u8 = std::uint8_t;\nusing u16 = std::uint16_t;\nusing u32 = std::uint32_t;\n\
     using u64 = std::uint64_t;\nusing u128 = __uint128_t;\nusing f32 = float;\nusing\
     \ f64 = double;\nusing f128 = long double;\n\nusing isize = std::ptrdiff_t;\n\
     using usize = std::size_t;\n\n#define DEFINE_NUM_LITERAL(name, type) \\\n    constexpr\
@@ -224,11 +224,11 @@ data:
     \ - 1) >> i);\n        }\n    }\n};\n}  // namespace bys\n/**\n * @file template.hpp\n\
     \ * @author bayashi_cl\n *\n * C++ library for competitive programming by bayashi_cl\n\
     \ * Repository: https://github.com/bayashi-cl/byslib\n * Document  : https://bayashi-cl.github.io/byslib/\n\
-    \ */\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <cstddef>\n#include <limits>\n\
-    #include <tuple>\n\n#include <iostream>\n#include <type_traits>\n/**\n * @file\
-    \ traits.hpp\n * @brief Types\n *\n * type_traits\u62E1\u5F35\n */\nnamespace\
-    \ bys {\ntemplate <class, class = void> struct has_rshift_from_istream : std::false_type\
-    \ {};\ntemplate <class T>\nstruct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
+    \ */\n#ifndef LOCAL\n#define NDEBUG\n#endif\n\n#include <cstddef>\n#include <tuple>\n\
+    \n#include <iostream>\n#include <type_traits>\n/**\n * @file traits.hpp\n * @brief\
+    \ Types\n *\n * type_traits\u62E1\u5F35\n */\nnamespace bys {\ntemplate <class,\
+    \ class = void> struct has_rshift_from_istream : std::false_type {};\ntemplate\
+    \ <class T>\nstruct has_rshift_from_istream<T, std::void_t<decltype(std::declval<std::istream&>()\
     \ >> std::declval<T&>())>> : std::true_type {};\ntemplate <class T> constexpr\
     \ bool has_rshift_from_istream_v = has_rshift_from_istream<T>::value;\n\ntemplate\
     \ <class, class = void> struct has_lshift_to_ostream : std::false_type {};\ntemplate\
@@ -484,8 +484,8 @@ data:
   isVerificationFile: true
   path: test/AOJ/DSL_2_H.test.cpp
   requiredBy: []
-  timestamp: '2022-12-02 16:49:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-12-02 17:23:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/DSL_2_H.test.cpp
 layout: document

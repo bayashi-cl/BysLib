@@ -1,52 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/mapping.hpp
     title: Mapping
   - icon: ':heavy_check_mark:'
     path: byslib/algebra/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/constant.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/traits.hpp
     title: Types
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/lazy_segment_tree.hpp
     title: Lazy Segment Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/change.hpp
     title: chmin/chmax
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/enumerate.hpp
     title: Python::enumerate
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/irange.hpp
     title: Python::range
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/subrange.hpp
     title: byslib/extension/subrange.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ntheory/bit.hpp
     title: Bit
   - icon: ':heavy_check_mark:'
@@ -55,13 +55,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: byslib/ntheory/prime.hpp
     title: Prime
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/template.hpp
     title: byslib/template.hpp
   _extendedRequiredBy: []
@@ -605,7 +605,7 @@ data:
   isVerificationFile: true
   path: test/yosupo/range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-12-02 16:49:11+09:00'
+  timestamp: '2022-12-02 17:23:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yosupo/range_affine_range_sum.test.cpp

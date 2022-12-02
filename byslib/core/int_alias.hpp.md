@@ -5,13 +5,13 @@ data:
   - icon: ':warning:'
     path: byslib/algebra/fraction.hpp
     title: Fraction
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/mapping.hpp
     title: Mapping
   - icon: ':heavy_check_mark:'
     path: byslib/algebra/modint.hpp
     title: Modint
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
   - icon: ':warning:'
@@ -26,10 +26,10 @@ data:
   - icon: ':warning:'
     path: byslib/algorithm/run_length.hpp
     title: Run Length Encoding
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/constant.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/traits.hpp
     title: Types
   - icon: ':warning:'
@@ -41,49 +41,49 @@ data:
   - icon: ':warning:'
     path: byslib/dp/substring.hpp
     title: byslib/dp/substring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/binary_indexed_tree.hpp
     title: Binary Indexed Tree
   - icon: ':warning:'
     path: byslib/ds/binary_trie.hpp
     title: byslib/ds/binary_trie.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/cumulative_sum.hpp
     title: Cumulative Sum
   - icon: ':warning:'
     path: byslib/ds/cumulative_sum_2D.hpp
     title: byslib/ds/cumulative_sum_2D.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/dual_segment_tree.hpp
     title: Dual Segment Tree
   - icon: ':heavy_check_mark:'
     path: byslib/ds/imos.hpp
     title: byslib/ds/imos.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/lazy_segment_tree.hpp
     title: Lazy Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/segment_tree.hpp
     title: Segment Tree
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ds/sparse_table.hpp
     title: Sparse Table
   - icon: ':heavy_check_mark:'
     path: byslib/ds/union_find.hpp
     title: Union Find Tree
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/enumerate.hpp
     title: Python::enumerate
   - icon: ':warning:'
     path: byslib/extension/grid.hpp
     title: Grid Manager
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/irange.hpp
     title: Python::range
   - icon: ':warning:'
     path: byslib/extension/itertools.hpp
     title: Python::itertools
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/subrange.hpp
     title: byslib/extension/subrange.hpp
   - icon: ':warning:'
@@ -149,13 +149,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: byslib/graph/warshall_floyd.hpp
     title: Warshall Floyd
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/scanner.hpp
     title: Input
   - icon: ':warning:'
@@ -173,7 +173,7 @@ data:
   - icon: ':warning:'
     path: byslib/ntheory/base.hpp
     title: Base conversion
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ntheory/bit.hpp
     title: Bit
   - icon: ':warning:'
@@ -191,10 +191,10 @@ data:
   - icon: ':warning:'
     path: byslib/ntheory/subset.hpp
     title: byslib/ntheory/subset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/stdlib.hpp
     title: STL Template
   - icon: ':warning:'
@@ -203,7 +203,7 @@ data:
   - icon: ':warning:'
     path: byslib/string/str.hpp
     title: Python::str
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/template.hpp
     title: byslib/template.hpp
   - icon: ':warning:'
@@ -240,28 +240,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_1_A.test.cpp
     title: test/AOJ/DSL_1_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_A.test.cpp
     title: test/AOJ/DSL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_B.test.cpp
     title: test/AOJ/DSL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_D.test.cpp
     title: test/AOJ/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_E.test.cpp
     title: test/AOJ/DSL_2_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_F.test.cpp
     title: test/AOJ/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_G.test.cpp
     title: test/AOJ/DSL_2_G.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_H.test.cpp
     title: test/AOJ/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_I.test.cpp
     title: test/AOJ/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'
@@ -282,24 +282,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/test.test.cpp
     title: test/test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/point_add_range_sum.test.cpp
     title: test/yosupo/point_add_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/range_affine_range_sum.test.cpp
     title: test/yosupo/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/static_range_sum.test.cpp
     title: test/yosupo/static_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yosupo/staticrmq.test.cpp
     title: test/yosupo/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yosupo/unionfind.test.cpp
     title: test/yosupo/unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#include <cstdint>\nnamespace bys {\nusing i8 = std::int8_t;\nusing\
@@ -404,7 +404,7 @@ data:
   - byslib/dp/substring.hpp
   - byslib/dp/lis.hpp
   timestamp: '2022-11-28 10:41:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/DSL_2_E.test.cpp
   - test/AOJ/DSL_5_B.test.cpp

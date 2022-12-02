@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/mapping.hpp
     title: Mapping
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/algebra/monoid.hpp
     title: Monoid
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/ntheory/bit.hpp
     title: Bit
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_D.test.cpp
     title: test/AOJ/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_2_E.test.cpp
     title: test/AOJ/DSL_2_E.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: Dual Segment Tree
     links:
@@ -41,22 +41,23 @@ data:
     DEFINE_NUM_LITERAL(_u8, std::uint8_t);\nDEFINE_NUM_LITERAL(_u16, std::uint16_t);\n\
     DEFINE_NUM_LITERAL(_u32, std::uint32_t);\nDEFINE_NUM_LITERAL(_u64, std::uint64_t);\n\
     DEFINE_NUM_LITERAL(_u128, __uint128_t);\nDEFINE_NUM_LITERAL(_z, std::size_t);\n\
-    #undef DEFINE_NUM_LITERAL\n}  // namespace bys\n#include <array>\n#include <optional>\n\
-    #include <utility>\n\n/**\n * @file monoid.hpp\n * @brief Monoid\n *\n * \u30E2\
-    \u30CE\u30A4\u30C9\n */\nnamespace bys {\nstruct Magma {\n    using set_type =\
-    \ std::nullptr_t;\n    static constexpr set_type operation(set_type, set_type);\n\
-    \    static constexpr set_type inverse(set_type);\n    static constexpr set_type\
-    \ identity{nullptr};\n    static constexpr bool commutative{false};\n};\ntemplate\
-    \ <class T> struct Add : Magma {\n    using set_type = T;\n    static constexpr\
-    \ set_type operation(set_type a, set_type b) { return a + b; }\n    static constexpr\
-    \ set_type inverse(set_type a) { return -a; }\n    static constexpr set_type identity{0};\n\
-    \    static constexpr bool commutative{true};\n};\ntemplate <class T> struct Min\
-    \ : Magma {\n    using set_type = T;\n    static constexpr set_type operation(set_type\
-    \ a, set_type b) { return std::min(a, b); }\n    static constexpr set_type identity{std::numeric_limits<set_type>::max()};\n\
-    };\ntemplate <class T> struct Max : Magma {\n    using set_type = T;\n    static\
-    \ constexpr set_type operation(set_type a, set_type b) { return std::max(a, b);\
-    \ }\n    static constexpr set_type identity{std::numeric_limits<set_type>::min()};\n\
-    };\ntemplate <class T> struct Update : Magma {\n    using set_type = std::optional<T>;\n\
+    #undef DEFINE_NUM_LITERAL\n}  // namespace bys\n#include <array>\n#include <limits>\n\
+    #include <optional>\n#include <utility>\n\n/**\n * @file monoid.hpp\n * @brief\
+    \ Monoid\n *\n * \u30E2\u30CE\u30A4\u30C9\n */\nnamespace bys {\nstruct Magma\
+    \ {\n    using set_type = std::nullptr_t;\n    static constexpr set_type operation(set_type,\
+    \ set_type);\n    static constexpr set_type inverse(set_type);\n    static constexpr\
+    \ set_type identity{nullptr};\n    static constexpr bool commutative{false};\n\
+    };\ntemplate <class T> struct Add : Magma {\n    using set_type = T;\n    static\
+    \ constexpr set_type operation(set_type a, set_type b) { return a + b; }\n   \
+    \ static constexpr set_type inverse(set_type a) { return -a; }\n    static constexpr\
+    \ set_type identity{0};\n    static constexpr bool commutative{true};\n};\ntemplate\
+    \ <class T> struct Min : Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return std::min(a, b); }\n    static\
+    \ constexpr set_type identity{std::numeric_limits<set_type>::max()};\n};\ntemplate\
+    \ <class T> struct Max : Magma {\n    using set_type = T;\n    static constexpr\
+    \ set_type operation(set_type a, set_type b) { return std::max(a, b); }\n    static\
+    \ constexpr set_type identity{std::numeric_limits<set_type>::min()};\n};\ntemplate\
+    \ <class T> struct Update : Magma {\n    using set_type = std::optional<T>;\n\
     \    static constexpr set_type operation(set_type a, set_type b) { return b.has_value()\
     \ ? b : a; }\n    static constexpr set_type identity{std::nullopt};\n};\ntemplate\
     \ <class T> struct Affine : Magma {\n    using set_type = std::pair<T, T>;\n \
@@ -206,8 +207,8 @@ data:
   isVerificationFile: false
   path: byslib/ds/dual_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-12-02 16:14:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2022-12-02 17:23:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/DSL_2_E.test.cpp
   - test/AOJ/DSL_2_D.test.cpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/constant.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/traits.hpp
     title: Types
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/subrange.hpp
     title: byslib/extension/subrange.hpp
   - icon: ':heavy_check_mark:'
@@ -19,13 +19,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: byslib/graph/graph.hpp
     title: byslib/graph/graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/scanner.hpp
     title: Input
   - icon: ':heavy_check_mark:'

@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/constant.hpp
     title: Const
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/int_alias.hpp
     title: byslib/core/int_alias.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/core/traits.hpp
     title: Types
   - icon: ':heavy_check_mark:'
     path: byslib/ds/imos.hpp
     title: byslib/ds/imos.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/change.hpp
     title: chmin/chmax
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/enumerate.hpp
     title: Python::enumerate
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/irange.hpp
     title: Python::range
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/macro.hpp
     title: Macro
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/extension/subrange.hpp
     title: byslib/extension/subrange.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/io.hpp
     title: I/O
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/printer.hpp
     title: Output
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/io/scanner.hpp
     title: Input
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/solver.hpp
     title: Solver
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/procon/stdlib.hpp
     title: STL Template
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: byslib/template.hpp
     title: byslib/template.hpp
   _extendedRequiredBy: []
